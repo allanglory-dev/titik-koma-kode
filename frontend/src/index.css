@@ -218,9 +218,188 @@ kbd {
 }
 
 .wide {
-  max-width: 60rem;
+  max-width: 72rem;
   margin: 0 auto;
-  padding: 52px 24px 120px;
+  padding: 52px 32px 120px;
+}
+
+/* ---------------- Tata letak pelajaran: tiga zona ---------------- */
+
+.lesson {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr) 260px;
+  gap: 48px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  align-items: start;
+}
+
+/* Rail kiri: penunjuk bab bernomor dengan garis kemajuan */
+.chapters {
+  position: sticky;
+  top: calc(var(--header-h) + 36px);
+  padding: 8px 0 60px;
+  max-height: calc(100vh - var(--header-h) - 60px);
+  overflow-y: auto;
+}
+
+.chapters-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.chapters-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  padding: 7px 0;
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+/* Garis vertikal yang menyambungkan nomor bab */
+.step::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule);
+}
+
+.step:first-of-type::before {
+  top: 50%;
+}
+
+.step:last-of-type::before {
+  bottom: 50%;
+}
+
+.step-dot {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  margin-top: 1px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-soft);
+}
+
+.step:hover {
+  color: var(--ink);
+}
+
+.step.done .step-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.step.current {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.step.current .step-dot {
+  border-color: var(--accent);
+  border-width: 2px;
+  color: var(--accent);
+}
+
+/* Rail kanan: kemajuan dan tindakan */
+.aside-rail {
+  position: sticky;
+  top: calc(var(--header-h) + 36px);
+  padding: 8px 0 60px;
+  font-size: 14px;
+}
+
+.rail-card {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.rail-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+
+.rail-big {
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.rail-big span {
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.rail-next {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.rail-next .turn-title {
+  display: block;
+  margin-top: 3px;
+}
+
+/* Isi pelajaran: teks selebar nyaman dibaca, panel kode melebar keluar */
+.lesson-body {
+  min-width: 0;
+  padding: 48px 0 120px;
+}
+
+.lesson-body > .block-text,
+.lesson-body > .block-note,
+.lesson-body > h1,
+.lesson-body > h2,
+.lesson-body > .lead,
+.lesson-body > .chapter-mark {
+  max-width: var(--measure);
+}
+
+/* ---------------- Layar menengah: rail kanan disembunyikan ---------------- */
+
+@media (max-width: 1180px) {
+  .lesson {
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .aside-rail {
+    display: none;
+  }
 }
 
 /* ---------------- Tipografi ---------------- */
@@ -465,12 +644,20 @@ pre.code {
 
 /* ---------------- Daftar isi (laci) ---------------- */
 
+/* Hanya muncul di layar kecil, karena di layar lebar sudah ada rail bab di kiri. */
 .toc-trigger {
+  display: none;
   position: fixed;
-  right: 24px;
-  bottom: 24px;
+  right: 20px;
+  bottom: 20px;
   z-index: 30;
   box-shadow: 0 8px 24px rgba(30, 22, 14, 0.22);
+}
+
+@media (max-width: 900px) {
+  .toc-trigger {
+    display: inline-flex;
+  }
 }
 
 .toc-backdrop {
@@ -743,6 +930,23 @@ pre.code {
 }
 
 /* ---------------- Layar kecil ---------------- */
+
+@media (max-width: 900px) {
+  .lesson {
+    display: block;
+    padding: 0;
+  }
+
+  .chapters {
+    display: none;
+  }
+
+  .lesson-body {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 34px 16px 110px;
+  }
+}
 
 @media (max-width: 720px) {
   body {

@@ -3,8 +3,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { api } from "../api";
 import { BlockView } from "../components/BlockView";
+import { ChapterRail } from "../components/ChapterRail";
 import { TableOfContents } from "../components/TableOfContents";
-import { isLessonDone, setLessonDone } from "../progress";
+import { countDone, isLessonDone, setLessonDone } from "../progress";
 import { useFetch } from "../useFetch";
 
 export function LessonPage() {
@@ -44,6 +45,10 @@ export function LessonPage() {
   const previous = lessons[index - 1];
   const next = lessons[index + 1];
 
+  // Dibaca ulang tiap render; menekan tombol memicu render sehingga angkanya ikut segar.
+  const selesai = countDone(lessons);
+  const persen = lessons.length ? Math.round((selesai / lessons.length) * 100) : 0;
+
   function toggleDone() {
     const value = !done;
     setDone(value);
@@ -62,51 +67,85 @@ export function LessonPage() {
 
   return (
     <>
-      <article className="reader">
-        <span className="chapter-mark">
-          Bagian {String(index + 1).padStart(2, "0")} dari{" "}
-          {String(lessons.length).padStart(2, "0")}
-        </span>
+      <div className="lesson">
+        <ChapterRail course={course} lessons={lessons} currentId={lessonId} />
 
-        <h1>{lesson.title}</h1>
-        {lesson.summary && <p className="lead">{lesson.summary}</p>}
+        <article className="lesson-body">
+          <span className="chapter-mark">
+            Bagian {String(index + 1).padStart(2, "0")} dari{" "}
+            {String(lessons.length).padStart(2, "0")}
+          </span>
 
-        {blocks.map((block) => (
-          <BlockView key={block.id} block={block} />
-        ))}
+          <h1>{lesson.title}</h1>
+          {lesson.summary && <p className="lead">{lesson.summary}</p>}
 
-        <footer className="endnote">
-          <button className="btn ghost" onClick={toggleDone}>
-            {done ? "✓ Sudah dibaca" : "Tandai sudah dibaca"}
-          </button>
+          {blocks.map((block) => (
+            <BlockView key={block.id} block={block} />
+          ))}
 
-          <div className="turn-page">
-            {previous ? (
-              <Link
-                className="turn"
-                to={`/kursus/${courseId}/pelajaran/${previous.id}`}
-              >
-                <span className="turn-label">← Sebelumnya</span>
-                <span className="turn-title">{previous.title}</span>
-              </Link>
-            ) : (
-              <Link className="turn" to={`/kursus/${courseId}`}>
-                <span className="turn-label">← Kembali</span>
-                <span className="turn-title">{course.title}</span>
-              </Link>
-            )}
+          <footer className="endnote">
+            <button className="btn ghost" onClick={toggleDone}>
+              {done ? "✓ Sudah dibaca" : "Tandai sudah dibaca"}
+            </button>
 
-            <button className="turn next" onClick={goNext}>
-              <span className="turn-label">
-                {next ? "Selanjutnya →" : "Selesai →"}
-              </span>
-              <span className="turn-title">
-                {next ? next.title : "Tutup bagian ini"}
-              </span>
+            <div className="turn-page">
+              {previous ? (
+                <Link
+                  className="turn"
+                  to={`/kursus/${courseId}/pelajaran/${previous.id}`}
+                >
+                  <span className="turn-label">← Sebelumnya</span>
+                  <span className="turn-title">{previous.title}</span>
+                </Link>
+              ) : (
+                <Link className="turn" to={`/kursus/${courseId}`}>
+                  <span className="turn-label">← Kembali</span>
+                  <span className="turn-title">{course.title}</span>
+                </Link>
+              )}
+
+              <button className="turn next" onClick={goNext}>
+                <span className="turn-label">
+                  {next ? "Selanjutnya →" : "Selesai →"}
+                </span>
+                <span className="turn-title">
+                  {next ? next.title : "Tutup bagian ini"}
+                </span>
+              </button>
+            </div>
+          </footer>
+        </article>
+
+        <aside className="aside-rail">
+          <div className="rail-card">
+            <p className="rail-label">Kemajuanmu</p>
+            <p className="rail-big">
+              {selesai}
+              <span> / {lessons.length}</span>
+            </p>
+            <div className="progress">
+              <div style={{ width: `${persen}%` }} />
+            </div>
+            <button
+              className="btn ghost small"
+              style={{ width: "100%", justifyContent: "center", marginTop: 4 }}
+              onClick={toggleDone}
+            >
+              {done ? "✓ Sudah dibaca" : "Tandai sudah dibaca"}
             </button>
           </div>
-        </footer>
-      </article>
+
+          {next && (
+            <Link
+              className="rail-card rail-next"
+              to={`/kursus/${courseId}/pelajaran/${next.id}`}
+            >
+              <p className="rail-label">Selanjutnya</p>
+              <span className="turn-title">{next.title}</span>
+            </Link>
+          )}
+        </aside>
+      </div>
 
       <button
         className="btn toc-trigger"

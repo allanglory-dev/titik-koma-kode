@@ -11,19 +11,15 @@
           "lessons": [
             {
               "title": "Apa Itu HTML",
-              "summary": "Mengenal bahasa yang menyusun isi setiap halaman web.",
+              "summary": "Bahasa yang menyusun isi setiap halaman web.",
               "blocks": [
                 {
                   "type": "TEXT",
-                  "content": "Setiap halaman web yang kamu buka hari ini, dari mesin pencari sampai lapak belanja daring, pada dasarnya dibangun dari bahan yang sama: HTML. Kepanjangannya HyperText Markup Language, dan ia sudah menjadi fondasi web sejak awal 1990-an."
+                  "content": "HTML bukan bahasa pemrograman. Ia tidak bisa menghitung atau mengambil keputusan. Tugasnya menandai isi halaman: ini judul, ini paragraf, ini gambar. Browser membaca tanda itu lalu menampilkannya."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Satu hal perlu diluruskan sejak awal, karena ini sering menjadi salah paham pertama orang yang baru mulai. HTML bukan bahasa pemrograman. Ia tidak bisa menghitung, membandingkan, atau mengambil keputusan, dan memang tidak dirancang untuk itu. Tugasnya hanya satu, yaitu menandai bagian-bagian halaman: yang ini judul, yang itu paragraf, yang di sebelah sana gambar. Browser kemudian membaca tanda-tanda tersebut dan menampilkannya sesuai maknanya."
-                },
-                {
-                  "type": "TEXT",
-                  "content": "Tanda itu disebut tag, dan ditulis di antara sepasang kurung siku. Sebagian besar tag datang berpasangan, satu untuk membuka dan satu untuk menutup, dengan garis miring sebagai pembeda."
+                  "content": "Tandanya disebut tag, ditulis di antara kurung siku. Kebanyakan tag berpasangan."
                 },
                 {
                   "type": "CODE",
@@ -32,11 +28,11 @@
                 },
                 {
                   "type": "TEXT",
-                  "content": "Gabungan tag pembuka, isi, dan tag penutup itulah yang kita sebut satu elemen. Pada contoh di atas, `<p>` membuka, kalimat di tengah menjadi isinya, dan `</p>` menutup. Huruf p-nya sendiri diambil dari kata paragraph, sehingga sekali kamu tahu asal-usulnya, nama tag jadi jauh lebih mudah diingat."
+                  "content": "`<p>` membuka, `</p>` menutup, dan kalimat di tengah adalah isinya. Ketiganya bersama-sama disebut satu elemen. Huruf p diambil dari paragraph."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Elemen boleh diletakkan di dalam elemen lain, dan kemampuan inilah yang membuat halaman web bisa punya susunan berlapis. Syaratnya cuma satu dan sebaiknya kamu hafalkan: elemen yang dibuka belakangan harus ditutup lebih dulu. Bila susunannya sampai tumpang tindih, browser tidak akan menampilkan pesan kesalahan, melainkan diam-diam menebak maksudmu, dan tebakannya kerap meleset dari yang kamu bayangkan."
+                  "content": "Elemen boleh ditaruh di dalam elemen lain. Aturannya: yang dibuka belakangan ditutup lebih dulu."
                 },
                 {
                   "type": "CODE",
@@ -45,25 +41,29 @@
                 },
                 {
                   "type": "TEXT",
-                  "content": "Ada pula segelintir elemen yang berdiri sendiri tanpa tag penutup, sebab memang tidak punya isi untuk dibungkus. Dua yang paling sering kamu temui adalah `<br>` untuk memindahkan baris dan `<hr>` untuk menarik garis pemisah. Elemen semacam ini biasa disebut elemen kosong."
-                },
-                {
-                  "type": "NOTE",
-                  "content": "Lupa menuliskan tag penutup adalah kesalahan yang hampir semua orang alami di pekan-pekan pertama. Jadi ketika tampilan tiba-tiba berantakan tanpa sebab yang jelas, periksalah bagian itu lebih dulu sebelum mencurigai hal lain."
+                  "content": "Kalau susunannya tumpang tindih, browser tidak menampilkan pesan kesalahan. Ia menebak maksudmu, dan tebakannya sering meleset."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Panel di atas bukan sekadar gambar. Ubah tulisannya, tekan Jalankan, lalu perhatikan hasilnya berubah di sebelah kanan. Sebagai percobaan pertama, cobalah hapus satu tag penutup dengan sengaja dan amati apa yang terjadi. Belajar dari kesalahan yang kamu buat sendiri jauh lebih melekat daripada menghafal aturannya."
+                  "content": "Sebagian elemen tidak punya tag penutup karena tidak membungkus apa pun. `<br>` memindahkan baris, `<hr>` menarik garis pemisah. Keduanya disebut elemen kosong."
+                },
+                {
+                  "type": "NOTE",
+                  "content": "Lupa tag penutup adalah kesalahan paling umum di awal. Kalau tampilan berantakan, periksa itu dulu."
+                },
+                {
+                  "type": "TEXT",
+                  "content": "Panel di atas bisa kamu ubah. Coba hapus satu tag penutup, tekan Jalankan, lihat apa yang terjadi."
                 }
               ]
             },
             {
               "title": "Kerangka Halaman",
-              "summary": "Bagian-bagian tetap yang dimiliki setiap halaman HTML.",
+              "summary": "Bagian tetap yang dimiliki setiap halaman HTML.",
               "blocks": [
                 {
                   "type": "TEXT",
-                  "content": "Contoh pada pelajaran sebelumnya sengaja dipersingkat agar mudah dicerna. Halaman web yang sesungguhnya selalu berdiri di atas kerangka tetap seperti berikut, dan kerangka ini akan kamu tulis berulang kali sepanjang perjalananmu."
+                  "content": "Contoh sebelumnya sengaja dipendekkan. Halaman web yang sesungguhnya punya kerangka seperti ini."
                 },
                 {
                   "type": "CODE",
@@ -72,62 +72,58 @@
                 },
                 {
                   "type": "TEXT",
-                  "content": "Baris pertama, `<!DOCTYPE html>`, adalah pernyataan kepada browser bahwa dokumen ini mengikuti HTML versi sekarang. Baris ini terlihat sepele dan mudah terlewat, padahal tanpanya sebagian browser akan beralih ke mode peniruan perilaku lama, dan tampilan yang sudah kamu atur rapi bisa melenceng tanpa kamu tahu sebabnya."
+                  "content": "`<!DOCTYPE html>` menyatakan dokumen ini HTML versi sekarang. Tanpanya, sebagian browser beralih ke mode peniruan perilaku lama dan tampilanmu melenceng."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Elemen `<html>` membungkus seluruh isi dokumen. Padanya kita sematkan `lang=\"id\"` untuk menyatakan bahwa halaman ini berbahasa Indonesia. Keterangan kecil ini punya dampak nyata: pembaca layar memakainya untuk memilih pelafalan yang tepat, dan mesin pencari memakainya untuk menyajikan halamanmu kepada orang yang memang mencari dalam bahasa Indonesia."
+                  "content": "`<html>` membungkus seluruh dokumen. Atribut `lang=\"id\"` menyatakan isinya berbahasa Indonesia. Pembaca layar memakainya untuk memilih pelafalan, mesin pencari untuk menyaring hasil."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Di dalamnya ada dua ruang yang berbeda sifat. `<head>` menampung keterangan tentang halaman, bukan isi yang dilihat pengunjung. Di sanalah `<meta charset=\"utf-8\">` berperan menjaga agar huruf beraksen dan karakter di luar alfabet Latin tidak berubah menjadi simbol aneh, sementara `<title>` menentukan tulisan pada tab browser sekaligus nama yang tersimpan ketika halaman dijadikan penanda."
+                  "content": "Di dalamnya ada dua ruang. `<head>` menampung keterangan tentang halaman, bukan isi yang terlihat. `<meta charset=\"utf-8\">` menjaga huruf beraksen tidak berubah jadi simbol aneh. `<title>` mengisi tulisan di tab browser."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Ruang kedua adalah `<body>`, dan di sinilah semua yang benar-benar terlihat pengunjung berada: tulisan, gambar, tombol, tabel, dan selebihnya. Hampir seluruh materi setelah bab ini akan kamu tulis di dalamnya."
+                  "content": "`<body>` berisi semua yang dilihat pengunjung. Hampir seluruh materi setelah ini kamu tulis di sini."
                 },
                 {
                   "type": "NOTE",
-                  "content": "Perhatikan bagaimana baris-baris di dalam contoh menjorok masuk mengikuti kedalamannya. Browser sama sekali tidak mempedulikan hal ini, namun kamu akan sangat berterima kasih pada dirimu sendiri ketika halaman mulai memanjang dan kamu perlu mencari satu tag di antara ratusan baris."
+                  "content": "Baris yang menjorok masuk tidak berpengaruh ke tampilan. Browser mengabaikannya. Tapi kamu akan membutuhkannya saat halaman mulai panjang."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Terakhir, dua kebiasaan kecil yang sebaiknya kamu tanam sejak sekarang: tulis nama tag dengan huruf kecil, dan selalu apit nilai atribut dengan tanda kutip. HTML sebenarnya cukup pemaaf dan tetap berjalan meski kamu melanggar keduanya, tetapi kode yang konsisten jauh lebih mudah dibaca, termasuk oleh dirimu sendiri beberapa bulan dari sekarang ketika ingatanmu sudah memudar."
+                  "content": "Dua kebiasaan yang perlu kamu tanam: tulis nama tag dengan huruf kecil, dan apit nilai atribut dengan tanda kutip. HTML tetap jalan tanpa keduanya, tapi kode yang konsisten lebih mudah dibaca."
                 }
               ]
             },
             {
               "title": "Judul dan Paragraf",
-              "summary": "Menyusun tulisan agar jelas bagi pembaca maupun mesin.",
+              "summary": "Menyusun tulisan agar jelas bagi pembaca dan mesin.",
               "blocks": [
                 {
                   "type": "TEXT",
-                  "content": "HTML menyediakan enam tingkat judul, dari `<h1>` hingga `<h6>`. Angka pada namanya menunjukkan tingkat kedalaman, bukan ukuran huruf, dan perbedaan ini penting. `<h1>` berperan sebagai judul utama halaman, `<h2>` menjadi anak judulnya, begitu seterusnya ke bawah."
+                  "content": "HTML punya enam tingkat judul, `<h1>` sampai `<h6>`. Angkanya menunjukkan tingkat, bukan ukuran huruf."
                 },
                 {
                   "type": "CODE",
                   "language": "html",
-                  "content": "<h1>Resep Nasi Goreng</h1>\n<p>Resep sederhana untuk sarapan di hari sibuk.</p>\n\n<h2>Bahan</h2>\n<p>Nasi putih, telur, bawang merah, dan kecap manis.</p>\n\n<h2>Cara Memasak</h2>\n<p>Tumis bawang sampai harum, lalu masukkan nasi.</p>\n\n<h3>Tips</h3>\n<p>Gunakan nasi dingin supaya butirannya tidak menggumpal.</p>"
+                  "content": "<h1>Resep Nasi Goreng</h1>\n<p>Resep sederhana untuk sarapan.</p>\n\n<h2>Bahan</h2>\n<p>Nasi putih, telur, bawang merah, kecap manis.</p>\n\n<h2>Cara Memasak</h2>\n<p>Tumis bawang sampai harum, masukkan nasi.</p>\n\n<h3>Tips</h3>\n<p>Pakai nasi dingin supaya tidak menggumpal.</p>"
                 },
                 {
                   "type": "TEXT",
-                  "content": "Ada tiga pedoman yang berlaku hampir di mana saja. Pertama, satu halaman cukup memiliki sebuah `<h1>`, yaitu judul utamanya, sebab dua judul utama pada satu halaman sama membingungkannya dengan buku bersampul ganda. Kedua, tingkatnya tidak boleh melompat, jadi jangan beranjak dari `<h1>` langsung ke `<h3>`. Ketiga, tiga tingkat biasanya sudah lebih dari cukup; lebih dalam dari itu pembaca mulai kehilangan jejak."
+                  "content": "Tiga aturan yang berlaku di mana saja. Satu halaman cukup punya satu `<h1>`. Tingkatnya tidak boleh melompat, jadi jangan dari `<h1>` langsung ke `<h3>`. Tiga tingkat biasanya sudah cukup."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Pertanyaan yang wajar muncul di sini adalah mengapa harus serapi itu, toh pembaca juga tidak melihat kodenya. Jawabannya terletak pada hal-hal yang tak kasat mata. Pembaca layar yang digunakan penyandang tunanetra menyusun daftar judul sebagai peta untuk melompat antarbagian, sehingga susunan yang kacau membuat halamanmu melelahkan untuk ditelusuri. Mesin pencari pun membaca susunan yang sama untuk memahami tentang apa sebenarnya halamanmu."
+                  "content": "Kenapa harus serapi itu? Pembaca layar menyusun daftar judul sebagai peta untuk melompat antarbagian. Susunan yang kacau membuat halamanmu sulit ditelusuri. Mesin pencari membaca susunan yang sama untuk memahami isi halaman."
                 },
                 {
                   "type": "NOTE",
-                  "content": "Hindari memilih tingkat judul berdasarkan ukurannya yang kebetulan enak dipandang. Bila `<h2>` terasa terlalu besar, kecilkan melalui CSS; jangan menggantinya menjadi `<h4>` hanya demi tampilan, sebab yang kamu ubah bukan ukuran, melainkan makna."
+                  "content": "Jangan memilih tingkat judul karena ukurannya pas. Kalau `<h2>` terlalu besar, kecilkan lewat CSS. Mengganti ke `<h4>` bukan mengubah ukuran, melainkan mengubah makna."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Untuk tulisan biasa, bungkus setiap paragraf dengan `<p>`, satu paragraf satu elemen. Godaan yang sering muncul adalah menumpuk beberapa paragraf dalam satu `<p>` lalu memisahkannya dengan `<br>`. Tampilannya memang mirip, tetapi bagi browser dan pembaca layar keduanya sama sekali berbeda: yang pertama adalah beberapa gagasan terpisah, yang kedua satu gagasan panjang yang kebetulan patah barisnya."
-                },
-                {
-                  "type": "TEXT",
-                  "content": "Cobalah tambahkan satu `<h2>` baru beserta paragrafnya pada panel di atas, lalu perhatikan bagaimana susunannya terbentuk dengan sendirinya tanpa kamu perlu mengatur ukuran apa pun."
+                  "content": "Bungkus setiap paragraf dengan `<p>`, satu paragraf satu elemen. Menumpuk beberapa paragraf dalam satu `<p>` lalu memisahkannya dengan `<br>` memang tampak mirip, tapi artinya berbeda: yang pertama beberapa gagasan, yang kedua satu gagasan yang patah barisnya."
                 }
               ]
             },
@@ -137,117 +133,117 @@
               "blocks": [
                 {
                   "type": "TEXT",
-                  "content": "Dalam sebuah tulisan selalu ada bagian yang perlu ditonjolkan, entah karena penting, mendesak, atau sekadar menjadi inti kalimat. HTML menyediakan beberapa elemen untuk keperluan ini, dan pilihan di antaranya menentukan makna, bukan sekadar rupa."
+                  "content": "HTML punya beberapa elemen untuk menonjolkan bagian teks. Pilihan di antaranya menentukan makna, bukan rupa."
                 },
                 {
                   "type": "CODE",
                   "language": "html",
-                  "content": "<p>Simpan berkas ini <strong>sebelum</strong> menutup editor.</p>\n<p>Kata <em>deploy</em> berarti menaikkan aplikasi ke server.</p>\n<p>Harga lama <del>Rp150.000</del> kini menjadi Rp99.000.</p>\n<p>Bagian <mark>ini</mark> yang perlu kamu perhatikan.</p>"
+                  "content": "<p>Simpan berkas ini <strong>sebelum</strong> menutup editor.</p>\n<p>Kata <em>deploy</em> berarti menaikkan aplikasi ke server.</p>\n<p>Harga lama <del>Rp150.000</del> kini Rp99.000.</p>\n<p>Bagian <mark>ini</mark> perlu kamu perhatikan.</p>"
                 },
                 {
                   "type": "TEXT",
-                  "content": "Masing-masing punya tugasnya sendiri. `<strong>` menandai sesuatu yang penting atau mendesak, dan browser menampilkannya tebal. `<em>` menandai penekanan sebagaimana kita menekankan satu kata saat berbicara, lalu ditampilkan miring. `<del>` menyatakan bahwa teks tersebut sudah dihapus atau tidak berlaku lagi, sementara `<mark>` menyorot bagian yang kebetulan relevan bagi pembaca saat itu."
+                  "content": "`<strong>` untuk sesuatu yang penting, ditampilkan tebal. `<em>` untuk penekanan seperti saat kita menekan satu kata ketika berbicara, ditampilkan miring. `<del>` menyatakan teks sudah tidak berlaku. `<mark>` menyorot bagian yang sedang relevan."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Dalam tutorial lama kamu mungkin masih menjumpai `<b>` dan `<i>`. Keduanya hanya mengubah rupa tanpa membawa makna apa pun, dan di situlah letak perbedaannya. Ketika pembaca layar menemukan `<strong>`, ia dapat mengubah nada bacanya sehingga maksudmu ikut sampai ke telinga pendengar; dengan `<b>` yang terdengar hanyalah kata biasa. Maka untuk penekanan, pilihlah `<strong>` dan `<em>`."
+                  "content": "Tutorial lama masih memakai `<b>` dan `<i>`. Keduanya hanya mengubah rupa tanpa membawa makna. Pembaca layar yang menemukan `<strong>` bisa mengubah nada bacanya; dengan `<b>` yang terdengar hanya kata biasa."
                 },
                 {
                   "type": "NOTE",
-                  "content": "Pegangan sederhananya begini. Bila kamu menginginkan huruf tebal semata-mata karena enak dipandang, itu wilayah CSS. Bila kata tersebut memang penting dan kamu ingin pembaca berhenti sejenak di sana, barulah `<strong>` adalah pilihan yang tepat."
+                  "content": "Mau tebal karena enak dipandang? Itu urusan CSS. Kata itu memang penting? Baru pakai `<strong>`."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Dua elemen kosong yang kita singgung di bab pertama juga menemukan tempatnya di sini. `<br>` memindahkan baris di dalam satu paragraf, berguna untuk alamat surat atau bait puisi yang pemenggalan barisnya memang disengaja. Sementara `<hr>` menarik garis yang menandai pergantian topik, semacam jeda sebelum pembahasan berpindah."
+                  "content": "Dua elemen kosong tadi juga berguna di sini. `<br>` untuk alamat surat atau bait puisi, yang pemenggalan barisnya memang disengaja. `<hr>` untuk menandai pergantian topik."
                 },
                 {
                   "type": "CODE",
                   "language": "html",
-                  "content": "<p>\n  Toko Berkah<br>\n  Jalan Melati Nomor 12<br>\n  Yogyakarta\n</p>\n\n<hr>\n\n<p>Jam buka: 08.00 sampai 17.00.</p>"
+                  "content": "<p>\n  Toko Berkah<br>\n  Jalan Melati Nomor 12<br>\n  Yogyakarta\n</p>\n\n<hr>\n\n<p>Jam buka 08.00 sampai 17.00.</p>"
                 }
               ]
             },
             {
               "title": "Link",
-              "summary": "Menghubungkan satu halaman dengan halaman lainnya.",
+              "summary": "Menghubungkan satu halaman dengan halaman lain.",
               "blocks": [
                 {
                   "type": "TEXT",
-                  "content": "Link adalah alasan mengapa web disebut web, sebuah jaring. Tanpa link, setiap halaman akan berdiri sendiri seperti pulau yang tidak punya jembatan, dan gagasan tentang internet seperti yang kita kenal sekarang tidak akan pernah terbentuk."
+                  "content": "Link adalah alasan web disebut web. Tanpa link, setiap halaman berdiri sendiri tanpa ada yang menghubungkan."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Link dibuat dengan elemen `<a>`, singkatan dari anchor atau jangkar. Alamat tujuannya dituliskan pada atribut `href`."
+                  "content": "Link dibuat dengan `<a>`, singkatan dari anchor. Alamat tujuannya ditulis di atribut `href`."
                 },
                 {
                   "type": "CODE",
                   "language": "html",
-                  "content": "<p>\n  Dokumentasi web yang paling lengkap tersedia di\n  <a href=\"https://developer.mozilla.org\">MDN Web Docs</a>.\n</p>"
+                  "content": "<p>\n  Dokumentasi web terlengkap ada di\n  <a href=\"https://developer.mozilla.org\">MDN Web Docs</a>.\n</p>"
                 },
                 {
                   "type": "TEXT",
-                  "content": "Isi `href` dapat berupa alamat lengkap seperti contoh di atas, atau alamat relatif yang menunjuk berkas lain di situs yang sama. Menulis `<a href=\"kontak.html\">` berarti menunjuk berkas pada folder yang sama, sedangkan `<a href=\"../index.html\">` naik satu folder terlebih dahulu sebelum mencari. Alamat relatif lebih ringkas dan tidak perlu diubah seandainya situsmu kelak berpindah nama domain."
+                  "content": "`href` bisa berisi alamat lengkap seperti di atas, atau alamat relatif ke berkas lain di situs yang sama. `kontak.html` menunjuk berkas di folder yang sama. `../index.html` naik satu folder dulu."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Tulisan di dalam link sebaiknya menjelaskan ke mana link itu membawa pembaca. Kalimat seperti \"klik di sini\" sudah lama dianggap kurang baik, dan alasannya masuk akal begitu kamu membayangkannya. Pembaca layar dapat membacakan seluruh link pada satu halaman sebagai daftar tersendiri, lepas dari kalimat di sekitarnya. Bila semuanya berbunyi \"klik di sini\", daftar itu tidak memberi tahu apa-apa. Mesin pencari pun membaca teks link untuk menebak isi halaman tujuan."
+                  "content": "Tulisan di dalam link harus menjelaskan tujuannya. Hindari \"klik di sini\". Pembaca layar bisa membacakan seluruh link sebagai daftar tersendiri, lepas dari kalimat di sekitarnya. Kalau semuanya berbunyi \"klik di sini\", daftar itu tidak berguna."
                 },
                 {
                   "type": "CODE",
                   "language": "html",
-                  "content": "<p>Kurang baik: <a href=\"#\">klik di sini</a> untuk mengunduh panduan.</p>\n<p>Lebih baik: <a href=\"#\">unduh panduan untuk pemula</a>.</p>"
+                  "content": "<p>Kurang baik: <a href=\"#\">klik di sini</a> untuk mengunduh panduan.</p>\n<p>Lebih baik: <a href=\"#\">unduh panduan pemula</a>.</p>"
                 },
                 {
                   "type": "TEXT",
-                  "content": "Menambahkan `target=\"_blank\"` akan membuka link pada tab baru. Gunakan seperlunya saja, misalnya ketika mengarah ke situs lain dan kamu tidak ingin pembaca kehilangan tempatnya. Membuka tab baru tanpa alasan justru membingungkan, sebab tombol kembali mendadak tidak berfungsi, dan pengguna pembaca layar bisa tidak menyadari bahwa mereka kini berada di tempat yang sama sekali berbeda."
+                  "content": "`target=\"_blank\"` membuka link di tab baru. Pakai seperlunya. Tombol kembali jadi tidak berfungsi, dan pengguna pembaca layar bisa tidak sadar sudah berpindah tempat."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Link juga sanggup membawa pembaca ke bagian tertentu pada halaman yang sedang dibuka. Caranya dengan memberi `id` pada elemen tujuan, lalu menunjuknya memakai tanda pagar. Daftar isi pada artikel panjang umumnya bekerja persis seperti ini."
+                  "content": "Link juga bisa menuju bagian tertentu di halaman yang sama. Beri `id` pada elemen tujuan, lalu tunjuk dengan tanda pagar. Daftar isi pada artikel panjang bekerja seperti ini."
                 },
                 {
                   "type": "CODE",
                   "language": "html",
-                  "content": "<p><a href=\"#harga\">Lompat ke bagian harga</a></p>\n\n<p>Isi halaman yang panjang berada di sini.</p>\n<p>Masih panjang.</p>\n<p>Masih panjang juga.</p>\n\n<h2 id=\"harga\">Harga</h2>\n<p>Mulai Rp50.000 per bulan.</p>"
+                  "content": "<p><a href=\"#harga\">Lompat ke bagian harga</a></p>\n\n<p>Isi halaman yang panjang.</p>\n<p>Masih panjang.</p>\n<p>Masih panjang juga.</p>\n\n<h2 id=\"harga\">Harga</h2>\n<p>Mulai Rp50.000 per bulan.</p>"
                 },
                 {
                   "type": "NOTE",
-                  "content": "Untuk link surel, tuliskan `mailto:` di depan alamatnya, misalnya `<a href=\"mailto:halo@contoh.com\">`. Link tersebut akan membuka aplikasi surel pengunjung dengan alamat tujuan yang sudah terisi."
+                  "content": "Untuk link surel, tulis `mailto:` di depan alamatnya: `<a href=\"mailto:halo@contoh.com\">`."
                 }
               ]
             },
             {
               "title": "Gambar",
-              "summary": "Menampilkan gambar dengan benar dan bertanggung jawab.",
+              "summary": "Menampilkan gambar dengan benar.",
               "blocks": [
                 {
                   "type": "TEXT",
-                  "content": "Gambar ditampilkan melalui elemen `<img>`. Berbeda dari elemen yang sudah kita bahas, `<img>` tidak memiliki tag penutup, sebab isinya bukan berasal dari tulisan yang kamu ketik melainkan dari berkas di luar dokumen."
+                  "content": "Gambar ditampilkan dengan `<img>`. Elemen ini tidak punya tag penutup karena isinya datang dari berkas di luar dokumen."
                 },
                 {
                   "type": "CODE",
                   "language": "html",
-                  "content": "<img\n  src=\"https://picsum.photos/id/1025/400/300\"\n  alt=\"Seekor anjing pug duduk di atas selimut\"\n  width=\"400\"\n  height=\"300\">"
+                  "content": "<img\n  src=\"https://picsum.photos/id/1025/400/300\"\n  alt=\"Anjing pug duduk di atas selimut\"\n  width=\"400\"\n  height=\"300\">"
                 },
                 {
                   "type": "TEXT",
-                  "content": "Atribut `src` memuat alamat berkas gambarnya, sedangkan `alt` memuat penjelasan singkat mengenai isi gambar tersebut. Dari keduanya, `alt` paling sering dilewatkan pemula padahal perannya justru paling luas. Ia dibacakan pembaca layar kepada pengunjung tunanetra, ditampilkan sebagai pengganti ketika gambar gagal dimuat karena jaringan sedang buruk, dan dibaca mesin pencari yang tidak mampu melihat gambar secara langsung."
+                  "content": "`src` memuat alamat berkasnya. `alt` memuat penjelasan isi gambar. Dari keduanya, `alt` paling sering dilewatkan padahal perannya paling luas: dibacakan pembaca layar, ditampilkan saat gambar gagal dimuat, dan dibaca mesin pencari."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Cara termudah menyusun `alt` adalah membayangkan gambarnya raib, lalu menuliskan apa yang perlu diketahui pembaca agar tidak kehilangan informasi apa pun. Bila gambar tersebut murni hiasan dan tidak membawa makna, tulis `alt=\"\"` dalam keadaan kosong, sehingga pembaca layar melewatinya begitu saja alih-alih membacakan nama berkas yang tidak berarti."
+                  "content": "Cara menyusun `alt`: bayangkan gambarnya hilang, lalu tulis apa yang perlu diketahui pembaca. Kalau gambarnya murni hiasan, tulis `alt=\"\"` kosong supaya pembaca layar melewatinya."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Sementara itu `width` dan `height` sebaiknya diisi sesuai ukuran asli gambar. Dengan keterangan tersebut browser dapat menyediakan ruang kosong seluas gambar sebelum berkasnya selesai diunduh, sehingga tulisan di sekitarnya tidak melompat mendadak ketika gambar akhirnya muncul. Lompatan semacam itu tampak sepele, namun cukup mengganggu bagi pembaca yang sedang di tengah kalimat."
+                  "content": "`width` dan `height` diisi sesuai ukuran asli. Browser lalu bisa menyiapkan ruangnya sebelum berkas selesai diunduh, sehingga tulisan di sekitarnya tidak melompat saat gambar muncul."
                 },
                 {
                   "type": "NOTE",
-                  "content": "Hindari menautkan gambar langsung dari situs orang lain tanpa izin. Selain memakai kuota server mereka tanpa sepengetahuan pemiliknya, gambar itu sewaktu-waktu bisa dihapus atau diganti, dan halamanmu ikut berubah tanpa kamu menyentuh apa pun."
+                  "content": "Jangan menautkan gambar dari situs orang lain tanpa izin. Selain memakai kuota server mereka, gambarnya bisa dihapus atau diganti sewaktu-waktu."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Apabila gambar memerlukan keterangan, bungkuslah dengan `<figure>` dan tuliskan keterangannya pada `<figcaption>`. Pasangan ini memberi tahu browser bahwa teks tersebut memang milik gambar di atasnya, bukan paragraf yang kebetulan berdekatan."
+                  "content": "Kalau gambar perlu keterangan, bungkus dengan `<figure>` dan tulis keterangannya di `<figcaption>`. Pasangan ini menyatakan teks tersebut milik gambar di atasnya, bukan paragraf yang kebetulan berdekatan."
                 },
                 {
                   "type": "CODE",
@@ -258,24 +254,24 @@
             },
             {
               "title": "Daftar",
-              "summary": "Menyusun poin dan langkah agar mudah diikuti.",
+              "summary": "Menyusun poin dan langkah.",
               "blocks": [
                 {
                   "type": "TEXT",
-                  "content": "Dua jenis daftar akan menemanimu hampir sepanjang waktu, dan memilih di antara keduanya cukup dengan menjawab satu pertanyaan sederhana: apakah urutannya penting?"
+                  "content": "Memilih jenis daftar cukup dengan satu pertanyaan: apakah urutannya penting?"
                 },
                 {
                   "type": "TEXT",
-                  "content": "Bila urutan tidak menentukan apa-apa, gunakan `<ul>` yang menghasilkan daftar bertanda titik. Bila urutan justru menjadi inti persoalan, seperti pada langkah-langkah yang harus dikerjakan berurutan, gunakan `<ol>` yang menomori sendiri isinya. Apa pun pilihanmu, setiap butir ditulis di dalam `<li>`."
+                  "content": "Kalau tidak penting, pakai `<ul>` yang menghasilkan tanda titik. Kalau penting, pakai `<ol>` yang menomori sendiri. Setiap butir ditulis di dalam `<li>`."
                 },
                 {
                   "type": "CODE",
                   "language": "html",
-                  "content": "<h3>Belanja</h3>\n<ul>\n  <li>Beras</li>\n  <li>Telur</li>\n  <li>Minyak goreng</li>\n</ul>\n\n<h3>Cara membuat teh</h3>\n<ol>\n  <li>Rebus air sampai mendidih</li>\n  <li>Masukkan kantong teh ke dalam gelas</li>\n  <li>Tuang air panas, lalu tunggu tiga menit</li>\n</ol>"
+                  "content": "<h3>Belanja</h3>\n<ul>\n  <li>Beras</li>\n  <li>Telur</li>\n  <li>Minyak goreng</li>\n</ul>\n\n<h3>Cara membuat teh</h3>\n<ol>\n  <li>Rebus air sampai mendidih</li>\n  <li>Masukkan kantong teh ke gelas</li>\n  <li>Tuang air panas, tunggu tiga menit</li>\n</ol>"
                 },
                 {
                   "type": "TEXT",
-                  "content": "Daftar boleh disusun bertingkat, dan di sinilah satu kekeliruan kecil sering terjadi. Daftar anak harus berada di dalam `<li>` milik induknya, bukan diselipkan di antara dua `<li>`. Perhatikan letak tag penutup pada contoh berikut, sebab di situlah perbedaannya."
+                  "content": "Daftar boleh bertingkat. Satu hal yang sering keliru: daftar anak harus berada di dalam `<li>` induknya, bukan di antara dua `<li>`. Perhatikan letak tag penutupnya."
                 },
                 {
                   "type": "CODE",
@@ -284,16 +280,16 @@
                 },
                 {
                   "type": "TEXT",
-                  "content": "Ada pula jenis ketiga yang jarang disinggung tutorial pemula namun kerap berguna, yaitu daftar istilah dengan `<dl>`. Istilahnya ditulis pada `<dt>` dan penjelasannya pada `<dd>`. Bentuk ini cocok untuk glosarium, daftar tanya jawab, atau keterangan spesifikasi produk."
+                  "content": "Ada jenis ketiga yang jarang disinggung, yaitu daftar istilah dengan `<dl>`. Istilahnya di `<dt>`, penjelasannya di `<dd>`. Cocok untuk glosarium atau spesifikasi produk."
                 },
                 {
                   "type": "CODE",
                   "language": "html",
-                  "content": "<dl>\n  <dt>Browser</dt>\n  <dd>Program untuk membuka halaman web, misalnya Chrome atau Firefox.</dd>\n\n  <dt>Server</dt>\n  <dd>Komputer yang menyimpan halaman web dan mengirimkannya kepada pengunjung.</dd>\n</dl>"
+                  "content": "<dl>\n  <dt>Browser</dt>\n  <dd>Program untuk membuka halaman web, misalnya Chrome atau Firefox.</dd>\n\n  <dt>Server</dt>\n  <dd>Komputer yang menyimpan halaman web dan mengirimkannya ke pengunjung.</dd>\n</dl>"
                 },
                 {
                   "type": "NOTE",
-                  "content": "Menu navigasi pada hampir semua situs yang kamu kunjungi sebenarnya juga daftar, berupa sekumpulan link yang dibungkus `<ul>`, lalu dirapikan dengan CSS hingga berjajar menyamping. Pengetahuan ini akan berguna ketika kamu mulai menyusun tata letak."
+                  "content": "Menu navigasi di hampir semua situs sebenarnya juga daftar: sekumpulan link dalam `<ul>`, lalu dirapikan CSS supaya berjajar menyamping."
                 }
               ]
             },
@@ -303,11 +299,11 @@
               "blocks": [
                 {
                   "type": "TEXT",
-                  "content": "Tabel diperuntukkan bagi data yang memang berbentuk baris dan kolom, seperti daftar nilai, jadwal pelajaran, atau perbandingan harga. Penekanan pada kata data ini bukan kebetulan, dan alasannya akan jelas di akhir bab."
+                  "content": "Tabel untuk data yang memang berbentuk baris dan kolom: daftar nilai, jadwal, perbandingan harga."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Susunannya bertingkat dan cukup mudah diingat. `<table>` membungkus keseluruhan, `<tr>` mewakili satu baris, `<th>` adalah sel judul, sedangkan `<td>` adalah sel berisi data biasa."
+                  "content": "`<table>` membungkus keseluruhan. `<tr>` satu baris. `<th>` sel judul. `<td>` sel data."
                 },
                 {
                   "type": "CODE",
@@ -316,15 +312,15 @@
                 },
                 {
                   "type": "TEXT",
-                  "content": "Beberapa elemen pendukung membuat tabel jauh lebih mudah dipahami. `<caption>` memberi judul pada tabel, sementara `<thead>` dan `<tbody>` memisahkan bagian judul dari isinya. Ketiganya nyaris tidak mengubah tampilan, namun keberadaannya menjelaskan susunan tabel kepada siapa pun yang membacanya tanpa melihat."
+                  "content": "`<caption>` memberi judul tabel. `<thead>` dan `<tbody>` memisahkan judul dari isi. Ketiganya nyaris tidak mengubah tampilan, tapi menjelaskan susunan tabel kepada yang membacanya tanpa melihat."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Atribut `scope` melangkah lebih jauh dengan menjelaskan sebuah `<th>` itu judul untuk apa. Nilai `col` berarti judul kolom dan `row` berarti judul baris. Berkat keterangan ini, pembaca layar dapat menyebutkan \"Andi, Matematika, 85\" ketika penggunanya berpindah sel, alih-alih membacakan deretan angka telanjang yang tidak bermakna apa-apa."
+                  "content": "`scope` menjelaskan sebuah `<th>` itu judul untuk apa. Nilai `col` berarti judul kolom, `row` berarti judul baris. Dengan ini pembaca layar bisa menyebutkan \"Andi, Matematika, 85\" saat penggunanya berpindah sel."
                 },
                 {
                   "type": "TEXT",
-                  "content": "Sebuah sel juga dapat melebar melintasi beberapa kolom dengan `colspan`, atau beberapa baris dengan `rowspan`. Keduanya berguna untuk judul gabungan atau data yang berlaku bagi lebih dari satu baris."
+                  "content": "Satu sel bisa melebar ke beberapa kolom dengan `colspan`, atau beberapa baris dengan `rowspan`."
                 },
                 {
                   "type": "CODE",
@@ -333,7 +329,7 @@
                 },
                 {
                   "type": "NOTE",
-                  "content": "Pada masa awal web, tabel kerap dipakai untuk mengatur tata letak halaman, sebab belum ada cara lain yang memadai. Kebiasaan itu kini ditinggalkan karena menyesatkan pembaca layar, yang akan mengumumkan hubungan baris dan kolom yang sebenarnya tidak ada, serta merepotkan ketika halaman harus menyesuaikan diri dengan layar ponsel. Untuk urusan tata letak, CSS adalah jawabannya."
+                  "content": "Dulu tabel dipakai untuk mengatur tata letak halaman. Kebiasaan itu ditinggalkan karena pembaca layar akan mengumumkan hubungan baris dan kolom yang sebenarnya tidak ada. Untuk tata letak, pakai CSS."
                 }
               ]
             }
