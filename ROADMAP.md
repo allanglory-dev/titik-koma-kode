@@ -38,26 +38,27 @@ Jaringan, Keamanan, Cloud dan DevOps, Data dan Machine Learning, Karier dan Port
 
 Selesaikan satu fase sebelum lanjut ke fase berikutnya.
 
-### Fase 0: Persiapan
+### Fase 0: Persiapan ✅
 - [x] Folder proyek dan Git
-- [ ] Database `titikkoma` di PostgreSQL
-- [ ] Proyek Spring Boot (backend)
-- [ ] Repo GitHub dan push pertama
+- [x] Database `titikkoma` di PostgreSQL
+- [x] Proyek Spring Boot (backend)
+- [x] Repo GitHub dan push pertama
 
-### Fase 1: Backend dasar
-- Entitas Subject, Course, Lesson, Block
-- Endpoint baca data kursus dan pelajaran
-- Data awal (seed)
+### Fase 1: Backend dasar ✅
+- [x] Entitas Subject, Course, Lesson, Block
+- [x] Endpoint baca data kursus dan pelajaran
+- [x] Data awal (seed)
 
-### Fase 2: Frontend dasar
-- Proyek React (Vite)
-- Beranda, daftar kursus, halaman kursus, halaman pelajaran
-- Blok isi: teks, kode, rumus
-- Ambil data dari API
+### Fase 2: Frontend dasar ✅
+- [x] Proyek React (Vite)
+- [x] Beranda, halaman kursus, halaman pelajaran
+- [x] Blok isi: teks, kode, catatan, rumus
+- [x] Ambil data dari API
+- [x] Mode terang dan gelap
 
-### Fase 3: Progres belajar
-- Tombol selesai dan persen progres
-- Disimpan di browser untuk pengunjung tanpa akun
+### Fase 3: Progres belajar ✅
+- [x] Tombol selesai dan persen progres
+- [x] Disimpan di browser untuk pengunjung tanpa akun
 
 ### Fase 4: Kuis
 - Soal pilihan ganda dan skor

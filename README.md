@@ -33,6 +33,52 @@ titik-koma-kode/
 └── ROADMAP.md
 ```
 
+## Menjalankan di komputer sendiri
+
+**Yang perlu ada:** JDK 21 atau lebih baru, Node.js 20 atau lebih baru, dan PostgreSQL.
+
+**1. Siapkan database**
+
+```bash
+psql -U postgres -c "CREATE DATABASE titikkoma;"
+```
+
+**2. Isi password database**
+
+Buat file `backend/src/main/resources/application-local.properties`:
+
+```properties
+spring.datasource.password=password_postgres_anda
+```
+
+File ini sengaja tidak masuk repo.
+
+**3. Jalankan backend** (port 8080)
+
+```bash
+cd backend && ./mvnw spring-boot:run
+```
+
+**4. Jalankan frontend** (port 5173)
+
+```bash
+cd frontend && npm install && npm run dev
+```
+
+Buka `http://localhost:5173`.
+
+## API
+
+| Endpoint | Isi |
+|---|---|
+| `GET /api/subjects` | Semua mata pelajaran |
+| `GET /api/subjects/{id}/courses` | Kursus di satu mata pelajaran |
+| `GET /api/courses/{id}` | Satu kursus |
+| `GET /api/courses/{id}/lessons` | Pelajaran di satu kursus |
+| `GET /api/lessons/{id}` | Satu pelajaran |
+| `GET /api/lessons/{id}/blocks` | Blok isi satu pelajaran |
+
 ## Status
 
-Tahap perencanaan. Lihat [ROADMAP.md](ROADMAP.md) untuk fase kerja dan keputusan desain.
+Fase 0 sampai 3 selesai: model data, API baca, tampilan React, dan progres belajar.
+Lihat [ROADMAP.md](ROADMAP.md) untuk fase berikutnya dan keputusan desain.
