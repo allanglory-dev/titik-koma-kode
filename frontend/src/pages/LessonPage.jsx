@@ -5,7 +5,7 @@ import { api } from "../api";
 import { BlockView } from "../components/BlockView";
 import { ChapterRail } from "../components/ChapterRail";
 import { TableOfContents } from "../components/TableOfContents";
-import { countDone, isLessonDone, setLessonDone } from "../progress";
+import { isLessonDone, setLessonDone } from "../progress";
 import { useFetch } from "../useFetch";
 
 export function LessonPage() {
@@ -44,10 +44,6 @@ export function LessonPage() {
   const index = lessons.findIndex((item) => String(item.id) === String(lessonId));
   const previous = lessons[index - 1];
   const next = lessons[index + 1];
-
-  // Dibaca ulang tiap render; menekan tombol memicu render sehingga angkanya ikut segar.
-  const selesai = countDone(lessons);
-  const persen = lessons.length ? Math.round((selesai / lessons.length) * 100) : 0;
 
   function toggleDone() {
     const value = !done;
@@ -115,36 +111,6 @@ export function LessonPage() {
             </div>
           </footer>
         </article>
-
-        <aside className="aside-rail">
-          <div className="rail-card">
-            <p className="rail-label">Kemajuanmu</p>
-            <p className="rail-big">
-              {selesai}
-              <span> / {lessons.length}</span>
-            </p>
-            <div className="progress">
-              <div style={{ width: `${persen}%` }} />
-            </div>
-            <button
-              className="btn ghost small"
-              style={{ width: "100%", justifyContent: "center", marginTop: 4 }}
-              onClick={toggleDone}
-            >
-              {done ? "✓ Sudah dibaca" : "Tandai sudah dibaca"}
-            </button>
-          </div>
-
-          {next && (
-            <Link
-              className="rail-card rail-next"
-              to={`/kursus/${courseId}/pelajaran/${next.id}`}
-            >
-              <p className="rail-label">Selanjutnya</p>
-              <span className="turn-title">{next.title}</span>
-            </Link>
-          )}
-        </aside>
       </div>
 
       <button

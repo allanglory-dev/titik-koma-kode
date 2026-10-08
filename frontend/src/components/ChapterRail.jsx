@@ -7,7 +7,6 @@ export function ChapterRail({ course, lessons, currentId }) {
   return (
     <nav className="chapters" aria-label="Daftar bab">
       <p className="chapters-title">{course.title}</p>
-      <p className="chapters-sub">{lessons.length} bagian</p>
 
       {lessons.map((lesson, index) => {
         const done = isLessonDone(lesson.id);

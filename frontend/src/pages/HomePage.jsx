@@ -9,69 +9,72 @@ export function HomePage() {
   );
 
   if (loading) {
-    return <div className="state">Memuat...</div>;
+    return <div className="state">memuat…</div>;
   }
 
   if (error) {
     return (
       <div className="state error">
-        Gagal memuat data. Pastikan server backend sudah berjalan di port 8080.
+        Gagal memuat data. Pastikan server backend berjalan di port 8080.
       </div>
     );
   }
 
   const [subjects, courses] = data;
-  const firstCourse = courses[0];
+  const siap = courses.find((course) => course.lessonCount > 0);
 
   return (
     <main className="wide">
       <header className="cover">
         <span className="chapter-mark">Belajar IT dari nol</span>
-        <h1>Pelan-pelan, sampai benar-benar paham.</h1>
+        <h1>
+          Pelan-pelan, sampai <em>benar-benar</em> paham.
+        </h1>
         <p>
-          Materi berbahasa Indonesia yang disusun runut, dengan contoh yang bisa
-          langsung kamu ubah sendiri di tempatnya. Gratis, tanpa perlu daftar.
+          Materi berbahasa Indonesia yang disusun runut. Setiap contoh bisa kamu
+          ubah di tempatnya, lalu langsung kamu lihat hasilnya.
         </p>
-        {firstCourse && (
-          <Link className="btn" to={`/kursus/${firstCourse.id}`}>
-            Mulai dari {firstCourse.title}
+        {siap && (
+          <Link className="btn" to={`/kursus/${siap.id}`}>
+            Mulai dari {siap.title} →
           </Link>
         )}
       </header>
 
       {subjects.map((subject) => {
-        const milik = courses.filter((course) => course.subjectId === subject.id);
+        const milik = courses.filter((c) => c.subjectId === subject.id);
         return (
           <section key={subject.id} className="shelf">
             <div className="shelf-head">
               <h2>{subject.name}</h2>
-              <span className="rule" />
+              <p>{subject.description}</p>
             </div>
-            <p className="progress-label">{subject.description}</p>
 
-            <div className="cards">
-              {milik.map((course) =>
-                course.lessonCount === 0 ? (
-                  <div key={course.id} className="card empty">
-                    <span className="card-meta">Segera hadir</span>
-                    <h3>{course.title}</h3>
-                    <p>{course.description}</p>
-                  </div>
-                ) : (
-                  <Link
-                    key={course.id}
-                    to={`/kursus/${course.id}`}
-                    className="card"
-                  >
-                    <span className="card-meta">
-                      {course.level} · {course.lessonCount} pelajaran
-                    </span>
-                    <h3>{course.title}</h3>
-                    <p>{course.description}</p>
-                  </Link>
-                )
-              )}
-            </div>
+            {milik.map((course, i) => {
+              const nomor = String(i + 1).padStart(2, "0");
+              const isi = (
+                <>
+                  <span className="row-num">{nomor}</span>
+                  <span className="row-title">{course.title}</span>
+                  <span className="row-desc">{course.description}</span>
+                  <span className="row-meta">
+                    {course.lessonCount > 0
+                      ? `${course.level} · ${course.lessonCount} bagian`
+                      : "segera"}
+                  </span>
+                </>
+              );
+
+              return course.lessonCount > 0 ? (
+                <Link key={course.id} to={`/kursus/${course.id}`} className="row">
+                  {isi}
+                </Link>
+              ) : (
+                <div key={course.id} className="row soon">
+                  {isi}
+                </div>
+              );
+            })}
           </section>
         );
       })}

@@ -1,9 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 
-/** Panel latihan: kode di kiri, hasilnya langsung di kanan. */
+import { ElementTree } from "./ElementTree";
+
+/**
+ * Panel latihan. Kode di kiri; di kanan hasilnya atau susunan sarangnya,
+ * tergantung tab yang dipilih.
+ */
 export function TryIt({ initialCode }) {
   const [code, setCode] = useState(initialCode);
   const [preview, setPreview] = useState(initialCode);
+  const [tab, setTab] = useState("hasil");
   const textareaRef = useRef(null);
 
   useEffect(() => {
@@ -29,44 +35,54 @@ export function TryIt({ initialCode }) {
 
   return (
     <div className="lab">
-      <div className="lab-bar">
-        <span className="lab-dots">
-          <span />
-          <span />
-          <span />
-        </span>
-        <span className="lab-title">latihan.html</span>
-        <span className="lab-actions">
-          <button
-            className="lab-chip"
-            onClick={() => {
-              setCode(initialCode);
-              setPreview(initialCode);
-            }}
-          >
-            Kembalikan
-          </button>
-          <button className="lab-chip primary" onClick={() => setPreview(code)}>
-            Jalankan
-          </button>
-        </span>
+      <div className="lab-bar" role="tablist">
+        <span className="lab-name">latihan.html</span>
+
+        <button
+          className="lab-tab"
+          role="tab"
+          aria-selected={tab === "hasil"}
+          onClick={() => setTab("hasil")}
+        >
+          hasil
+        </button>
+        <button
+          className="lab-tab"
+          role="tab"
+          aria-selected={tab === "struktur"}
+          onClick={() => setTab("struktur")}
+        >
+          struktur
+        </button>
+
+        <button
+          className="lab-reset"
+          onClick={() => {
+            setCode(initialCode);
+            setPreview(initialCode);
+          }}
+        >
+          kembalikan
+        </button>
+        <button className="lab-run" onClick={() => setPreview(code)}>
+          Jalankan
+        </button>
       </div>
 
       <div className="lab-body">
-        <div className="lab-pane">
-          <span className="lab-label">Kode</span>
-          <textarea
-            ref={textareaRef}
-            value={code}
-            spellCheck={false}
-            onChange={(event) => setCode(event.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-        </div>
-        <div className="lab-pane">
-          <span className="lab-label">Hasil</span>
+        <textarea
+          ref={textareaRef}
+          value={code}
+          spellCheck={false}
+          aria-label="Kode HTML"
+          onChange={(event) => setCode(event.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        {tab === "hasil" ? (
           <iframe title="Hasil" srcDoc={preview} sandbox="allow-scripts" />
-        </div>
+        ) : (
+          <ElementTree html={code} />
+        )}
       </div>
     </div>
   );

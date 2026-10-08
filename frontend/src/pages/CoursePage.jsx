@@ -13,7 +13,7 @@ export function CoursePage() {
   );
 
   if (loading) {
-    return <div className="state">Memuat...</div>;
+    return <div className="state">memuat…</div>;
   }
 
   if (error) {
@@ -22,8 +22,8 @@ export function CoursePage() {
 
   const [course, lessons] = data;
   const done = countDone(lessons);
-  const percent = lessons.length ? Math.round((done / lessons.length) * 100) : 0;
-  const lanjut = lessons.find((lesson) => !isLessonDone(lesson.id)) ?? lessons[0];
+  const persen = lessons.length ? Math.round((done / lessons.length) * 100) : 0;
+  const lanjut = lessons.find((l) => !isLessonDone(l.id)) ?? lessons[0];
 
   return (
     <main className="reader">
@@ -32,68 +32,48 @@ export function CoursePage() {
       <p className="lead">{course.description}</p>
 
       {lessons.length === 0 ? (
-        <p className="progress-label">
-          Materi untuk kursus ini sedang disusun. Sabar sebentar ya.
-        </p>
+        <p className="progress-label">materi sedang disusun</p>
       ) : (
         <>
           <div className="progress">
-            <div style={{ width: `${percent}%` }} />
+            <div style={{ width: `${persen}%` }} />
           </div>
           <p className="progress-label">
-            {done} dari {lessons.length} pelajaran sudah dibaca
+            {done} dari {lessons.length} bagian selesai
           </p>
 
-          <p style={{ margin: "26px 0 0" }}>
-            <Link
-              className="btn"
-              to={`/kursus/${courseId}/pelajaran/${lanjut.id}`}
-            >
-              {done > 0 ? "Lanjutkan membaca" : "Mulai membaca"}
+          <p style={{ margin: "28px 0 56px" }}>
+            <Link className="btn" to={`/kursus/${courseId}/pelajaran/${lanjut.id}`}>
+              {done > 0 ? "Lanjutkan" : "Mulai"} →
             </Link>
           </p>
 
-          <h2>Daftar isi</h2>
-          <div>
-            {lessons.map((lesson, index) => (
-              <Link
-                key={lesson.id}
-                to={`/kursus/${courseId}/pelajaran/${lesson.id}`}
-                className={
-                  isLessonDone(lesson.id) ? "toc-item done" : "toc-item"
-                }
-              >
-                <span className="toc-num">
-                  {isLessonDone(lesson.id)
-                    ? "✓"
-                    : String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="toc-text">
-                  <strong>{lesson.title}</strong>
-                  {lesson.summary && (
-                    <span
-                      style={{
-                        display: "block",
-                        fontSize: "14.5px",
-                        color: "var(--ink-soft)",
-                      }}
-                    >
-                      {lesson.summary}
-                    </span>
-                  )}
-                </span>
-              </Link>
-            ))}
+          <div className="shelf-head">
+            <h2>Daftar bagian</h2>
           </div>
+
+          {lessons.map((lesson, i) => (
+            <Link
+              key={lesson.id}
+              to={`/kursus/${courseId}/pelajaran/${lesson.id}`}
+              className="row"
+            >
+              <span className="row-num">
+                {isLessonDone(lesson.id) ? "✓" : String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="row-title">{lesson.title}</span>
+              <span className="row-desc">{lesson.summary}</span>
+              <span className="row-meta">baca →</span>
+            </Link>
+          ))}
         </>
       )}
 
-      <footer className="endnote">
-        <Link to="/" className="turn" style={{ display: "inline-flex" }}>
-          <span className="turn-label">← Kembali</span>
-          <span className="turn-title">Semua kursus</span>
+      <p style={{ marginTop: 56 }}>
+        <Link className="btn ghost" to="/">
+          ← Semua kursus
         </Link>
-      </footer>
+      </p>
     </main>
   );
 }
