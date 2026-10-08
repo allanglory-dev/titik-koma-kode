@@ -9,7 +9,7 @@ async function get(path) {
 }
 
 export const api = {
-  getSubjects: () => get("/subjects"),
+  getAreas: () => get("/areas"),
   getCourses: () => get("/courses"),
   getCourse: (courseSlug) => get(`/courses/${courseSlug}`),
   getLessons: (courseSlug) => get(`/courses/${courseSlug}/lessons`),

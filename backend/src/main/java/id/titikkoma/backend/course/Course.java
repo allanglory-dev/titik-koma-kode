@@ -1,9 +1,14 @@
 package id.titikkoma.backend.course;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import id.titikkoma.backend.subject.Subject;
+import id.titikkoma.backend.area.Area;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -11,8 +16,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Transient;
 
+/** Satu mata kuliah di dalam kurikulum. */
 @Entity
 public class Course {
 
@@ -20,48 +27,83 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** Dipakai di alamat halaman, misalnya /kursus/html-dasar. Tetap sama selama judulnya tetap. */
+    /** Kode mata kuliah, misalnya IF205. */
+    @Column(unique = true, nullable = false, length = 12)
+    private String code;
+
+    /** Dipakai di alamat halaman, misalnya /kursus/pemrograman-web. */
     @Column(unique = true, nullable = false)
     private String slug;
 
+    @Column(nullable = false)
     private String title;
 
+    @Column(columnDefinition = "text")
     private String description;
 
-    /** Tingkat kesulitan: Pemula, Menengah, atau Lanjutan. */
+    /** Semester 1 sampai 8. */
+    @Column(nullable = false)
+    private Integer semester;
+
+    /** Bobot satuan kredit semester. */
+    @Column(nullable = false)
+    private Integer sks;
+
+    /** Pemula, Menengah, atau Lanjutan. */
     private String level;
 
-    /** Urutan tampil kursus di dalam satu mata pelajaran. */
-    private Integer orderIndex;
+    /** Perkiraan jam belajar mandiri untuk menuntaskan mata kuliah ini. */
+    private Integer hours;
+
+    /** Capaian pembelajaran: apa yang bisa dilakukan setelah menuntaskannya. */
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "course_outcome", joinColumns = @JoinColumn(name = "course_id"))
+    @OrderColumn(name = "position")
+    @Column(name = "outcome", columnDefinition = "text")
+    private List<String> outcomes = new ArrayList<>();
+
+    /** Kode mata kuliah yang sebaiknya dituntaskan lebih dulu. */
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "course_prerequisite", joinColumns = @JoinColumn(name = "course_id"))
+    @OrderColumn(name = "position")
+    @Column(name = "prerequisite_code", length = 12)
+    private List<String> prerequisites = new ArrayList<>();
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subject_id")
-    private Subject subject;
+    @JoinColumn(name = "area_id")
+    private Area area;
 
-    /** Tidak disimpan di tabel. Diisi controller supaya frontend tahu kursus ini sudah ada isinya. */
+    /** Tidak disimpan di tabel. Diisi controller supaya frontend tahu isinya sudah ada. */
     @Transient
     private Long lessonCount;
 
     public Course() {
     }
 
-    public Course(String slug, String title, String description, String level, Integer orderIndex,
-            Subject subject) {
+    public Course(String code, String slug, String title, String description,
+            Integer semester, Integer sks, String level, Integer hours, Area area) {
+        this.code = code;
         this.slug = slug;
         this.title = title;
         this.description = description;
+        this.semester = semester;
+        this.sks = sks;
         this.level = level;
-        this.orderIndex = orderIndex;
-        this.subject = subject;
+        this.hours = hours;
+        this.area = area;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getSlug() {
@@ -88,6 +130,22 @@ public class Course {
         this.description = description;
     }
 
+    public Integer getSemester() {
+        return semester;
+    }
+
+    public void setSemester(Integer semester) {
+        this.semester = semester;
+    }
+
+    public Integer getSks() {
+        return sks;
+    }
+
+    public void setSks(Integer sks) {
+        this.sks = sks;
+    }
+
     public String getLevel() {
         return level;
     }
@@ -96,17 +154,45 @@ public class Course {
         this.level = level;
     }
 
-    public Integer getOrderIndex() {
-        return orderIndex;
+    public Integer getHours() {
+        return hours;
     }
 
-    public void setOrderIndex(Integer orderIndex) {
-        this.orderIndex = orderIndex;
+    public void setHours(Integer hours) {
+        this.hours = hours;
     }
 
-    /** Ikut dikirim ke frontend supaya kursus bisa dikelompokkan per mata pelajaran. */
-    public Long getSubjectId() {
-        return subject == null ? null : subject.getId();
+    public List<String> getOutcomes() {
+        return outcomes;
+    }
+
+    public void setOutcomes(List<String> outcomes) {
+        this.outcomes = outcomes;
+    }
+
+    public List<String> getPrerequisites() {
+        return prerequisites;
+    }
+
+    public void setPrerequisites(List<String> prerequisites) {
+        this.prerequisites = prerequisites;
+    }
+
+    /** Ikut dikirim ke frontend supaya mata kuliah bisa dikelompokkan per bidang. */
+    public String getAreaCode() {
+        return area == null ? null : area.getCode();
+    }
+
+    public String getAreaName() {
+        return area == null ? null : area.getName();
+    }
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
     }
 
     public Long getLessonCount() {
@@ -115,13 +201,5 @@ public class Course {
 
     public void setLessonCount(Long lessonCount) {
         this.lessonCount = lessonCount;
-    }
-
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
     }
 }

@@ -1,6 +1,14 @@
 # Titik Koma Kode
 
-Platform belajar IT berbahasa Indonesia. Materinya mencakup pemrograman, matematika untuk IT, bahasa Inggris untuk IT, dan topik IT lain secara bertahap.
+Kurikulum Informatika empat tahun yang bisa ditempuh secara mandiri, berbahasa Indonesia.
+
+43 mata kuliah, 134 SKS, delapan semester. Strukturnya disusun mengikuti pembagian
+17 bidang pengetahuan [CS2023](https://csed.acm.org/knowledge-areas/) dari ACM dan IEEE,
+dengan pola semester dan bobot SKS seperti program sarjana Informatika di Indonesia.
+Mata kuliah umum di luar bidang keilmuan tidak disertakan.
+
+Setiap mata kuliah punya kode, bobot SKS, bidang, capaian pembelajaran, dan prasyarat
+yang saling terhubung, sehingga urutan belajarnya jelas.
 
 Proyek ini dibuat untuk tiga tujuan: belajar, portofolio, dan peluang penghasilan tambahan.
 
@@ -74,18 +82,27 @@ jadi alamatnya tetap sama walau materi dimuat ulang.
 
 | Endpoint | Isi |
 |---|---|
-| `GET /api/subjects` | Semua mata pelajaran |
-| `GET /api/courses` | Semua kursus |
-| `GET /api/courses/html-dasar` | Satu kursus |
-| `GET /api/courses/html-dasar/lessons` | Pelajaran di satu kursus |
-| `GET /api/courses/html-dasar/lessons/apa-itu-html` | Satu pelajaran |
-| `GET /api/courses/html-dasar/lessons/apa-itu-html/blocks` | Blok isi satu pelajaran |
+| `GET /api/areas` | 17 bidang pengetahuan CS2023 |
+| `GET /api/courses` | Semua mata kuliah, bisa disaring `?semester=2` atau `?area=SDF` |
+| `GET /api/courses/pemrograman-web` | Satu mata kuliah beserta capaian dan prasyaratnya |
+| `GET /api/courses/pemrograman-web/lessons` | Pelajaran di satu mata kuliah |
+| `GET /api/courses/pemrograman-web/lessons/apa-itu-html` | Satu pelajaran |
+| `GET /api/courses/pemrograman-web/lessons/apa-itu-html/blocks` | Blok isi satu pelajaran |
 
-## Mengubah materi
+## Mengubah kurikulum
 
-Seluruh materi ada di `backend/src/main/resources/seed/content.json`. Ubah berkas
-itu lalu jalankan ulang backend. Tabel dibuat ulang setiap kali backend dijalankan,
-jadi tidak perlu menyentuh database secara manual.
+Seluruh kurikulum ada di satu berkas: `backend/src/main/resources/seed/kurikulum.json`.
+Ubah berkas itu lalu jalankan ulang backend. Tabel dibuat ulang setiap kali backend
+dijalankan, jadi tidak perlu menyentuh database secara manual.
+
+Saat dimuat, prasyarat setiap mata kuliah diperiksa. Bila ada yang menunjuk kode
+yang tidak terdaftar, aplikasi berhenti dengan pesan yang menyebut kodenya.
+
+## Status materi
+
+Kerangka kurikulum sudah lengkap untuk 43 mata kuliah: kode, SKS, bidang, capaian
+pembelajaran, dan prasyarat. Isi pelajarannya masih diisi bertahap, dimulai dari
+IF205 Pemrograman Web.
 
 ## Status
 

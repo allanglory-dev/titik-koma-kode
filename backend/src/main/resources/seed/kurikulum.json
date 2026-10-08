@@ -1,0 +1,983 @@
+{
+  "program": {
+    "code": "IF",
+    "name": "Informatika",
+    "description": "Kurikulum empat tahun yang menelusuri ilmu komputer dari dasar sampai terapan. Disusun mengikuti pembagian bidang CS2023 dari ACM dan IEEE, dengan pola semester dan bobot SKS seperti program sarjana Informatika di Indonesia.",
+    "semesters": 8
+  },
+
+  "areas": [
+    {
+      "code": "SDF",
+      "name": "Dasar Pengembangan Perangkat Lunak",
+      "description": "Menulis, membaca, dan menyusun program. Titik berangkat semua bidang lain."
+    },
+    {
+      "code": "AL",
+      "name": "Algoritma dan Kompleksitas",
+      "description": "Merancang algoritma dan mengukur ongkosnya dalam waktu dan ruang."
+    },
+    {
+      "code": "MSF",
+      "name": "Matematika dan Statistika",
+      "description": "Perkakas hitung yang menopang algoritma, grafika, dan pembelajaran mesin."
+    },
+    {
+      "code": "AR",
+      "name": "Arsitektur dan Organisasi Komputer",
+      "description": "Cara perangkat keras menjalankan program, dari gerbang logika sampai prosesor."
+    },
+    {
+      "code": "SF",
+      "name": "Dasar Sistem",
+      "description": "Gagasan yang berlaku lintas lapisan: abstraksi, berbagi sumber daya, dan kinerja."
+    },
+    {
+      "code": "OS",
+      "name": "Sistem Operasi",
+      "description": "Perangkat lunak yang mengatur proses, memori, dan berkas."
+    },
+    {
+      "code": "NC",
+      "name": "Jaringan dan Komunikasi",
+      "description": "Cara dua mesin bertukar data lewat protokol berlapis."
+    },
+    {
+      "code": "DM",
+      "name": "Manajemen Data",
+      "description": "Menyimpan, menata, dan menanyai data dalam jumlah besar."
+    },
+    {
+      "code": "SE",
+      "name": "Rekayasa Perangkat Lunak",
+      "description": "Membangun perangkat lunak yang bisa dirawat dan dikerjakan bersama orang lain."
+    },
+    {
+      "code": "FPL",
+      "name": "Dasar Bahasa Pemrograman",
+      "description": "Paradigma, tata bahasa, dan cara bahasa pemrograman diterjemahkan."
+    },
+    {
+      "code": "AI",
+      "name": "Kecerdasan Buatan",
+      "description": "Penalaran, pencarian, dan sistem yang belajar dari data."
+    },
+    {
+      "code": "SEC",
+      "name": "Keamanan",
+      "description": "Mengenali ancaman dan merancang sistem yang tahan terhadapnya."
+    },
+    {
+      "code": "HCI",
+      "name": "Interaksi Manusia dan Komputer",
+      "description": "Merancang antarmuka berdasarkan cara manusia sungguhan bekerja."
+    },
+    {
+      "code": "SPD",
+      "name": "Pengembangan Platform Khusus",
+      "description": "Membangun untuk sasaran tertentu: web, perangkat bergerak, atau tertanam."
+    },
+    {
+      "code": "PDC",
+      "name": "Komputasi Paralel dan Terdistribusi",
+      "description": "Menjalankan pekerjaan di banyak inti atau banyak mesin sekaligus."
+    },
+    {
+      "code": "GIT",
+      "name": "Grafika dan Teknik Interaktif",
+      "description": "Membentuk dan menggambar citra, dari geometri sampai pencahayaan."
+    },
+    {
+      "code": "SEP",
+      "name": "Masyarakat, Etika, dan Profesi",
+      "description": "Dampak teknologi, tanggung jawab yang menyertainya, dan cara bekerja secara profesional."
+    }
+  ],
+
+  "courses": [
+    {
+      "code": "IF101",
+      "title": "Pengantar Ilmu Komputer",
+      "description": "Peta besar ilmu komputer: apa saja cabangnya, bagaimana satu sama lain terhubung, dan bagaimana sebuah komputer mengubah listrik menjadi perhitungan.",
+      "semester": 1, "sks": 3, "level": "Pemula", "hours": 45, "area": "SF",
+      "outcomes": [
+        "Menjelaskan cabang-cabang utama ilmu komputer dan hubungan antarcabangnya.",
+        "Menguraikan perjalanan sebuah instruksi dari kode sampai dijalankan prosesor.",
+        "Membedakan persoalan yang bisa dan tidak bisa diselesaikan komputer."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+    {
+      "code": "IF102",
+      "title": "Algoritma dan Pemrograman",
+      "description": "Menyusun langkah penyelesaian masalah lalu menuliskannya sebagai program. Mencakup variabel, percabangan, perulangan, fungsi, dan rekursi.",
+      "semester": 1, "sks": 4, "level": "Pemula", "hours": 60, "area": "SDF",
+      "outcomes": [
+        "Menerjemahkan persoalan sehari-hari menjadi langkah algoritma yang runut.",
+        "Menulis program dengan percabangan, perulangan, dan fungsi.",
+        "Menelusuri jalannya program untuk menemukan sebab sebuah kesalahan."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+    {
+      "code": "IF103",
+      "title": "Logika Informatika",
+      "description": "Logika proposisi dan predikat sebagai dasar penalaran, pembuktian, dan perancangan rangkaian.",
+      "semester": 1, "sks": 3, "level": "Pemula", "hours": 45, "area": "MSF",
+      "outcomes": [
+        "Menyusun dan menyederhanakan pernyataan logika.",
+        "Membuktikan kesahihan sebuah argumen dengan tabel kebenaran dan aturan inferensi.",
+        "Menghubungkan ungkapan logika dengan kondisi di dalam program."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+    {
+      "code": "IF104",
+      "title": "Matematika Diskrit",
+      "description": "Himpunan, relasi, fungsi, kombinatorik, dan teori graf. Bahasa matematika yang dipakai hampir semua mata kuliah setelahnya.",
+      "semester": 1, "sks": 3, "level": "Pemula", "hours": 45, "area": "MSF",
+      "outcomes": [
+        "Mengoperasikan himpunan, relasi, dan fungsi.",
+        "Menghitung banyaknya kemungkinan dengan kaidah kombinatorik.",
+        "Memodelkan persoalan sebagai graf dan membaca sifat-sifatnya."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+    {
+      "code": "IF105",
+      "title": "Organisasi Komputer",
+      "description": "Susunan mesin di balik program: representasi biner, gerbang logika, memori, dan daur instruksi prosesor.",
+      "semester": 1, "sks": 3, "level": "Pemula", "hours": 45, "area": "AR",
+      "outcomes": [
+        "Mengubah bilangan antara basis dua, sepuluh, dan enam belas.",
+        "Merancang rangkaian logika sederhana dari gerbang dasar.",
+        "Menjelaskan daur ambil, pecah, dan jalankan pada prosesor."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+    {
+      "code": "IF106",
+      "title": "Bahasa Inggris untuk Teknologi",
+      "description": "Membaca dokumentasi, memahami pesan kesalahan, dan menulis laporan teknis dalam bahasa Inggris.",
+      "semester": 1, "sks": 2, "level": "Pemula", "hours": 30, "area": "SEP",
+      "outcomes": [
+        "Membaca dokumentasi resmi tanpa bergantung pada terjemahan.",
+        "Menguraikan pesan kesalahan dan jejak tumpukan.",
+        "Menulis isu, catatan perubahan, dan ringkasan teknis yang jelas."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+
+    {
+      "code": "IF201",
+      "title": "Struktur Data",
+      "description": "Cara menata data di memori beserta akibatnya terhadap kecepatan. Mencakup senarai, tumpukan, antrean, pohon, tabel hash, dan graf.",
+      "semester": 2, "sks": 4, "level": "Menengah", "hours": 60, "area": "SDF",
+      "outcomes": [
+        "Memilih struktur data yang sesuai dengan pola akses sebuah persoalan.",
+        "Menerapkan senarai berantai, tumpukan, antrean, pohon, dan tabel hash.",
+        "Membandingkan ongkos operasi tiap struktur data."
+      ],
+      "prerequisites": ["IF102"],
+      "lessons": []
+    },
+    {
+      "code": "IF202",
+      "title": "Pemrograman Berorientasi Objek",
+      "description": "Menyusun program sebagai kumpulan objek yang saling berkirim pesan: kelas, pewarisan, polimorfisme, dan antarmuka.",
+      "semester": 2, "sks": 3, "level": "Menengah", "hours": 45, "area": "FPL",
+      "outcomes": [
+        "Merancang kelas beserta tanggung jawabnya masing-masing.",
+        "Menerapkan pewarisan dan polimorfisme pada tempat yang tepat.",
+        "Mengenali kapan komposisi lebih baik daripada pewarisan."
+      ],
+      "prerequisites": ["IF102"],
+      "lessons": []
+    },
+    {
+      "code": "IF203",
+      "title": "Aljabar Linear",
+      "description": "Vektor, matriks, dan transformasi linear. Dasar bagi grafika komputer dan pembelajaran mesin.",
+      "semester": 2, "sks": 3, "level": "Menengah", "hours": 45, "area": "MSF",
+      "outcomes": [
+        "Mengoperasikan vektor dan matriks.",
+        "Menyelesaikan sistem persamaan linear.",
+        "Menafsirkan transformasi linear sebagai perubahan ruang."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+    {
+      "code": "IF204",
+      "title": "Statistika dan Probabilitas",
+      "description": "Meringkas data, mengukur ketidakpastian, dan menarik kesimpulan dari sampel.",
+      "semester": 2, "sks": 3, "level": "Menengah", "hours": 45, "area": "MSF",
+      "outcomes": [
+        "Meringkas data dengan ukuran pemusatan dan penyebaran.",
+        "Menghitung peluang kejadian dan memakai distribusi yang umum.",
+        "Menguji hipotesis sederhana dan membaca hasilnya dengan hati-hati."
+      ],
+      "prerequisites": ["IF104"],
+      "lessons": []
+    },
+    {
+      "code": "IF205",
+      "slug": "pemrograman-web",
+      "title": "Pemrograman Web",
+      "description": "Membangun halaman web dari nol: menyusun isi dengan HTML, mengatur tampilan dengan CSS, dan menghidupkannya dengan JavaScript.",
+      "semester": 2, "sks": 3, "level": "Pemula", "hours": 45, "area": "SPD",
+      "outcomes": [
+        "Menyusun isi halaman dengan penanda HTML yang tepat makna.",
+        "Mengatur tampilan dan tata letak dengan CSS.",
+        "Menjelaskan peran browser, server, dan HTTP dalam memuat satu halaman."
+      ],
+      "prerequisites": [],
+      "lessons": [
+        {
+          "title": "Apa Itu HTML",
+          "summary": "Bahasa yang menyusun isi setiap halaman web.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "HTML bukan bahasa pemrograman. Ia tidak bisa menghitung atau mengambil keputusan. Tugasnya menandai isi halaman: ini judul, ini paragraf, ini gambar. Browser membaca tanda itu lalu menampilkannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Tandanya disebut tag, ditulis di antara kurung siku. Kebanyakan tag berpasangan."
+            },
+            { "type": "CODE", "language": "html", "content": "<p>Kucing saya galak.</p>" },
+            {
+              "type": "TEXT",
+              "content": "`<p>` membuka, `</p>` menutup, dan kalimat di tengah adalah isinya. Ketiganya bersama-sama disebut satu elemen. Huruf p diambil dari paragraph."
+            },
+            {
+              "type": "TEXT",
+              "content": "Elemen boleh ditaruh di dalam elemen lain. Aturannya: yang dibuka belakangan ditutup lebih dulu."
+            },
+            { "type": "CODE", "language": "html", "content": "<p>Kucing saya <strong>sangat</strong> galak.</p>" },
+            {
+              "type": "TEXT",
+              "content": "Kalau susunannya tumpang tindih, browser tidak menampilkan pesan kesalahan. Ia menebak maksudmu, dan tebakannya sering meleset."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sebagian elemen tidak punya tag penutup karena tidak membungkus apa pun. `<br>` memindahkan baris, `<hr>` menarik garis pemisah. Keduanya disebut elemen kosong."
+            },
+            {
+              "type": "NOTE",
+              "content": "Lupa tag penutup adalah kesalahan paling umum di awal. Kalau tampilan berantakan, periksa itu dulu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Panel di atas bisa kamu ubah. Coba hapus satu tag penutup, tekan Jalankan, lihat apa yang terjadi. Buka juga tab struktur untuk melihat susunan sarangnya."
+            }
+          ]
+        },
+        {
+          "title": "Kerangka Halaman",
+          "summary": "Bagian tetap yang dimiliki setiap halaman HTML.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Contoh sebelumnya sengaja dipendekkan. Halaman web yang sesungguhnya punya kerangka seperti ini."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<!DOCTYPE html>\n<html lang=\"id\">\n  <head>\n    <meta charset=\"utf-8\">\n    <title>Halaman Pertamaku</title>\n  </head>\n  <body>\n    <h1>Halo</h1>\n    <p>Senang bisa sampai di sini.</p>\n  </body>\n</html>"
+            },
+            {
+              "type": "TEXT",
+              "content": "`<!DOCTYPE html>` menyatakan dokumen ini HTML versi sekarang. Tanpanya, sebagian browser beralih ke mode peniruan perilaku lama dan tampilanmu melenceng."
+            },
+            {
+              "type": "TEXT",
+              "content": "`<html>` membungkus seluruh dokumen. Atribut `lang=\"id\"` menyatakan isinya berbahasa Indonesia. Pembaca layar memakainya untuk memilih pelafalan, mesin pencari untuk menyaring hasil."
+            },
+            {
+              "type": "TEXT",
+              "content": "Di dalamnya ada dua ruang. `<head>` menampung keterangan tentang halaman, bukan isi yang terlihat. `<meta charset=\"utf-8\">` menjaga huruf beraksen tidak berubah jadi simbol aneh. `<title>` mengisi tulisan di tab browser."
+            },
+            {
+              "type": "TEXT",
+              "content": "`<body>` berisi semua yang dilihat pengunjung. Hampir seluruh materi setelah ini kamu tulis di sini."
+            },
+            {
+              "type": "NOTE",
+              "content": "Baris yang menjorok masuk tidak berpengaruh ke tampilan. Browser mengabaikannya. Tapi kamu akan membutuhkannya saat halaman mulai panjang."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dua kebiasaan yang perlu kamu tanam: tulis nama tag dengan huruf kecil, dan apit nilai atribut dengan tanda kutip. HTML tetap jalan tanpa keduanya, tapi kode yang konsisten lebih mudah dibaca."
+            }
+          ]
+        },
+        {
+          "title": "Judul dan Paragraf",
+          "summary": "Menyusun tulisan agar jelas bagi pembaca dan mesin.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "HTML punya enam tingkat judul, `<h1>` sampai `<h6>`. Angkanya menunjukkan tingkat, bukan ukuran huruf."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<h1>Resep Nasi Goreng</h1>\n<p>Resep sederhana untuk sarapan.</p>\n\n<h2>Bahan</h2>\n<p>Nasi putih, telur, bawang merah, kecap manis.</p>\n\n<h2>Cara Memasak</h2>\n<p>Tumis bawang sampai harum, masukkan nasi.</p>\n\n<h3>Tips</h3>\n<p>Pakai nasi dingin supaya tidak menggumpal.</p>"
+            },
+            {
+              "type": "TEXT",
+              "content": "Tiga aturan yang berlaku di mana saja. Satu halaman cukup punya satu `<h1>`. Tingkatnya tidak boleh melompat, jadi jangan dari `<h1>` langsung ke `<h3>`. Tiga tingkat biasanya sudah cukup."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kenapa harus serapi itu? Pembaca layar menyusun daftar judul sebagai peta untuk melompat antarbagian. Susunan yang kacau membuat halamanmu sulit ditelusuri. Mesin pencari membaca susunan yang sama untuk memahami isi halaman."
+            },
+            {
+              "type": "NOTE",
+              "content": "Jangan memilih tingkat judul karena ukurannya pas. Kalau `<h2>` terlalu besar, kecilkan lewat CSS. Mengganti ke `<h4>` bukan mengubah ukuran, melainkan mengubah makna."
+            },
+            {
+              "type": "TEXT",
+              "content": "Bungkus setiap paragraf dengan `<p>`, satu paragraf satu elemen. Menumpuk beberapa paragraf dalam satu `<p>` lalu memisahkannya dengan `<br>` memang tampak mirip, tapi artinya berbeda: yang pertama beberapa gagasan, yang kedua satu gagasan yang patah barisnya."
+            }
+          ]
+        },
+        {
+          "title": "Menandai Teks Penting",
+          "summary": "Memberi penekanan tanpa kehilangan makna.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "HTML punya beberapa elemen untuk menonjolkan bagian teks. Pilihan di antaranya menentukan makna, bukan rupa."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<p>Simpan berkas ini <strong>sebelum</strong> menutup editor.</p>\n<p>Kata <em>deploy</em> berarti menaikkan aplikasi ke server.</p>\n<p>Harga lama <del>Rp150.000</del> kini Rp99.000.</p>\n<p>Bagian <mark>ini</mark> perlu kamu perhatikan.</p>"
+            },
+            {
+              "type": "TEXT",
+              "content": "`<strong>` untuk sesuatu yang penting, ditampilkan tebal. `<em>` untuk penekanan seperti saat kita menekan satu kata ketika berbicara, ditampilkan miring. `<del>` menyatakan teks sudah tidak berlaku. `<mark>` menyorot bagian yang sedang relevan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Tutorial lama masih memakai `<b>` dan `<i>`. Keduanya hanya mengubah rupa tanpa membawa makna. Pembaca layar yang menemukan `<strong>` bisa mengubah nada bacanya; dengan `<b>` yang terdengar hanya kata biasa."
+            },
+            {
+              "type": "NOTE",
+              "content": "Mau tebal karena enak dipandang? Itu urusan CSS. Kata itu memang penting? Baru pakai `<strong>`."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dua elemen kosong tadi juga berguna di sini. `<br>` untuk alamat surat atau bait puisi, yang pemenggalan barisnya memang disengaja. `<hr>` untuk menandai pergantian topik."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<p>\n  Toko Berkah<br>\n  Jalan Melati Nomor 12<br>\n  Yogyakarta\n</p>\n\n<hr>\n\n<p>Jam buka 08.00 sampai 17.00.</p>"
+            }
+          ]
+        },
+        {
+          "title": "Link",
+          "summary": "Menghubungkan satu halaman dengan halaman lain.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Link adalah alasan web disebut web. Tanpa link, setiap halaman berdiri sendiri tanpa ada yang menghubungkan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Link dibuat dengan `<a>`, singkatan dari anchor. Alamat tujuannya ditulis di atribut `href`."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<p>\n  Dokumentasi web terlengkap ada di\n  <a href=\"https://developer.mozilla.org\">MDN Web Docs</a>.\n</p>"
+            },
+            {
+              "type": "TEXT",
+              "content": "`href` bisa berisi alamat lengkap seperti di atas, atau alamat relatif ke berkas lain di situs yang sama. `kontak.html` menunjuk berkas di folder yang sama. `../index.html` naik satu folder dulu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Tulisan di dalam link harus menjelaskan tujuannya. Hindari \"klik di sini\". Pembaca layar bisa membacakan seluruh link sebagai daftar tersendiri, lepas dari kalimat di sekitarnya. Kalau semuanya berbunyi \"klik di sini\", daftar itu tidak berguna."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<p>Kurang baik: <a href=\"#\">klik di sini</a> untuk mengunduh panduan.</p>\n<p>Lebih baik: <a href=\"#\">unduh panduan pemula</a>.</p>"
+            },
+            {
+              "type": "TEXT",
+              "content": "`target=\"_blank\"` membuka link di tab baru. Pakai seperlunya. Tombol kembali jadi tidak berfungsi, dan pengguna pembaca layar bisa tidak sadar sudah berpindah tempat."
+            },
+            {
+              "type": "TEXT",
+              "content": "Link juga bisa menuju bagian tertentu di halaman yang sama. Beri `id` pada elemen tujuan, lalu tunjuk dengan tanda pagar. Daftar isi pada artikel panjang bekerja seperti ini."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<p><a href=\"#harga\">Lompat ke bagian harga</a></p>\n\n<p>Isi halaman yang panjang.</p>\n<p>Masih panjang.</p>\n<p>Masih panjang juga.</p>\n\n<h2 id=\"harga\">Harga</h2>\n<p>Mulai Rp50.000 per bulan.</p>"
+            },
+            {
+              "type": "NOTE",
+              "content": "Untuk link surel, tulis `mailto:` di depan alamatnya: `<a href=\"mailto:halo@contoh.com\">`."
+            }
+          ]
+        },
+        {
+          "title": "Gambar",
+          "summary": "Menampilkan gambar dengan benar.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Gambar ditampilkan dengan `<img>`. Elemen ini tidak punya tag penutup karena isinya datang dari berkas di luar dokumen."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<img\n  src=\"https://picsum.photos/id/1025/400/300\"\n  alt=\"Anjing pug duduk di atas selimut\"\n  width=\"400\"\n  height=\"300\">"
+            },
+            {
+              "type": "TEXT",
+              "content": "`src` memuat alamat berkasnya. `alt` memuat penjelasan isi gambar. Dari keduanya, `alt` paling sering dilewatkan padahal perannya paling luas: dibacakan pembaca layar, ditampilkan saat gambar gagal dimuat, dan dibaca mesin pencari."
+            },
+            {
+              "type": "TEXT",
+              "content": "Cara menyusun `alt`: bayangkan gambarnya hilang, lalu tulis apa yang perlu diketahui pembaca. Kalau gambarnya murni hiasan, tulis `alt=\"\"` kosong supaya pembaca layar melewatinya."
+            },
+            {
+              "type": "TEXT",
+              "content": "`width` dan `height` diisi sesuai ukuran asli. Browser lalu bisa menyiapkan ruangnya sebelum berkas selesai diunduh, sehingga tulisan di sekitarnya tidak melompat saat gambar muncul."
+            },
+            {
+              "type": "NOTE",
+              "content": "Jangan menautkan gambar dari situs orang lain tanpa izin. Selain memakai kuota server mereka, gambarnya bisa dihapus atau diganti sewaktu-waktu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau gambar perlu keterangan, bungkus dengan `<figure>` dan tulis keterangannya di `<figcaption>`. Pasangan ini menyatakan teks tersebut milik gambar di atasnya, bukan paragraf yang kebetulan berdekatan."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<figure>\n  <img\n    src=\"https://picsum.photos/id/1015/400/260\"\n    alt=\"Sungai mengalir di antara dua tebing batu\"\n    width=\"400\"\n    height=\"260\">\n  <figcaption>Aliran sungai pada musim kemarau.</figcaption>\n</figure>"
+            }
+          ]
+        },
+        {
+          "title": "Daftar",
+          "summary": "Menyusun poin dan langkah.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Memilih jenis daftar cukup dengan satu pertanyaan: apakah urutannya penting?"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau tidak penting, pakai `<ul>` yang menghasilkan tanda titik. Kalau penting, pakai `<ol>` yang menomori sendiri. Setiap butir ditulis di dalam `<li>`."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<h3>Belanja</h3>\n<ul>\n  <li>Beras</li>\n  <li>Telur</li>\n  <li>Minyak goreng</li>\n</ul>\n\n<h3>Cara membuat teh</h3>\n<ol>\n  <li>Rebus air sampai mendidih</li>\n  <li>Masukkan kantong teh ke gelas</li>\n  <li>Tuang air panas, tunggu tiga menit</li>\n</ol>"
+            },
+            {
+              "type": "TEXT",
+              "content": "Daftar boleh bertingkat. Satu hal yang sering keliru: daftar anak harus berada di dalam `<li>` induknya, bukan di antara dua `<li>`. Perhatikan letak tag penutupnya."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<ol>\n  <li>Siapkan bahan\n    <ul>\n      <li>Nasi dingin</li>\n      <li>Telur</li>\n    </ul>\n  </li>\n  <li>Panaskan wajan</li>\n  <li>Tumis bumbu sampai harum</li>\n</ol>"
+            },
+            {
+              "type": "TEXT",
+              "content": "Ada jenis ketiga yang jarang disinggung, yaitu daftar istilah dengan `<dl>`. Istilahnya di `<dt>`, penjelasannya di `<dd>`. Cocok untuk glosarium atau spesifikasi produk."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<dl>\n  <dt>Browser</dt>\n  <dd>Program untuk membuka halaman web, misalnya Chrome atau Firefox.</dd>\n\n  <dt>Server</dt>\n  <dd>Komputer yang menyimpan halaman web dan mengirimkannya ke pengunjung.</dd>\n</dl>"
+            },
+            {
+              "type": "NOTE",
+              "content": "Menu navigasi di hampir semua situs sebenarnya juga daftar: sekumpulan link dalam `<ul>`, lalu dirapikan CSS supaya berjajar menyamping."
+            }
+          ]
+        },
+        {
+          "title": "Tabel",
+          "summary": "Menyajikan data dalam baris dan kolom.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Tabel untuk data yang memang berbentuk baris dan kolom: daftar nilai, jadwal, perbandingan harga."
+            },
+            {
+              "type": "TEXT",
+              "content": "`<table>` membungkus keseluruhan. `<tr>` satu baris. `<th>` sel judul. `<td>` sel data."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<table>\n  <caption>Nilai Ujian Semester</caption>\n  <thead>\n    <tr>\n      <th scope=\"col\">Nama</th>\n      <th scope=\"col\">Matematika</th>\n      <th scope=\"col\">Bahasa Inggris</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th scope=\"row\">Andi</th>\n      <td>85</td>\n      <td>78</td>\n    </tr>\n    <tr>\n      <th scope=\"row\">Sari</th>\n      <td>92</td>\n      <td>88</td>\n    </tr>\n  </tbody>\n</table>"
+            },
+            {
+              "type": "TEXT",
+              "content": "`<caption>` memberi judul tabel. `<thead>` dan `<tbody>` memisahkan judul dari isi. Ketiganya nyaris tidak mengubah tampilan, tapi menjelaskan susunan tabel kepada yang membacanya tanpa melihat."
+            },
+            {
+              "type": "TEXT",
+              "content": "`scope` menjelaskan sebuah `<th>` itu judul untuk apa. Nilai `col` berarti judul kolom, `row` berarti judul baris. Dengan ini pembaca layar bisa menyebutkan \"Andi, Matematika, 85\" saat penggunanya berpindah sel."
+            },
+            {
+              "type": "TEXT",
+              "content": "Satu sel bisa melebar ke beberapa kolom dengan `colspan`, atau beberapa baris dengan `rowspan`."
+            },
+            {
+              "type": "CODE",
+              "language": "html",
+              "content": "<table border=\"1\">\n  <tr>\n    <th colspan=\"2\">Jadwal Senin</th>\n  </tr>\n  <tr>\n    <td>08.00</td>\n    <td>Matematika</td>\n  </tr>\n  <tr>\n    <td>10.00</td>\n    <td>Bahasa Inggris</td>\n  </tr>\n</table>"
+            },
+            {
+              "type": "NOTE",
+              "content": "Dulu tabel dipakai untuk mengatur tata letak halaman. Kebiasaan itu ditinggalkan karena pembaca layar akan mengumumkan hubungan baris dan kolom yang sebenarnya tidak ada. Untuk tata letak, pakai CSS."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "IF206",
+      "title": "Sistem Operasi",
+      "description": "Perangkat lunak yang membagi prosesor, memori, dan berkas di antara banyak program sekaligus.",
+      "semester": 2, "sks": 3, "level": "Menengah", "hours": 45, "area": "OS",
+      "outcomes": [
+        "Menjelaskan daur hidup proses dan cara penjadwalannya.",
+        "Menguraikan pengelolaan memori, termasuk memori maya.",
+        "Mengenali sebab kebuntuan dan cara mencegahnya."
+      ],
+      "prerequisites": ["IF105"],
+      "lessons": []
+    },
+
+    {
+      "code": "IF301",
+      "title": "Analisis Algoritma",
+      "description": "Merancang algoritma dan membuktikan ongkosnya. Mencakup notasi Big O, bagi-dan-kuasai, algoritma rakus, dan pemrograman dinamis.",
+      "semester": 3, "sks": 4, "level": "Menengah", "hours": 60, "area": "AL",
+      "outcomes": [
+        "Menghitung kompleksitas waktu dan ruang sebuah algoritma.",
+        "Menerapkan bagi-dan-kuasai, algoritma rakus, dan pemrograman dinamis.",
+        "Membuktikan sebuah algoritma benar dan berhenti."
+      ],
+      "prerequisites": ["IF201", "IF104"],
+      "lessons": []
+    },
+    {
+      "code": "IF302",
+      "title": "Basis Data",
+      "description": "Merancang penyimpanan data yang rapi lalu menanyainya dengan SQL. Mencakup model relasional, normalisasi, dan transaksi.",
+      "semester": 3, "sks": 4, "level": "Menengah", "hours": 60, "area": "DM",
+      "outcomes": [
+        "Merancang skema relasional dari kebutuhan nyata.",
+        "Menulis kueri SQL yang melibatkan gabungan dan pengelompokan.",
+        "Menormalkan tabel sampai bentuk normal ketiga."
+      ],
+      "prerequisites": ["IF201"],
+      "lessons": []
+    },
+    {
+      "code": "IF303",
+      "title": "Jaringan Komputer",
+      "description": "Cara data berpindah antarmesin: model berlapis, TCP/IP, perutean, DNS, dan HTTP.",
+      "semester": 3, "sks": 3, "level": "Menengah", "hours": 45, "area": "NC",
+      "outcomes": [
+        "Menjelaskan tugas tiap lapisan pada model TCP/IP.",
+        "Menelusuri perjalanan satu permintaan HTTP dari browser sampai server.",
+        "Membaca hasil perkakas diagnosis jaringan."
+      ],
+      "prerequisites": ["IF206"],
+      "lessons": []
+    },
+    {
+      "code": "IF304",
+      "title": "Pemrograman Web Lanjut",
+      "description": "Membangun aplikasi web utuh: JavaScript modern, REST API, autentikasi, dan kerangka kerja antarmuka.",
+      "semester": 3, "sks": 3, "level": "Menengah", "hours": 45, "area": "SPD",
+      "outcomes": [
+        "Membangun REST API beserta klien yang memakainya.",
+        "Mengelola keadaan antarmuka dengan kerangka kerja komponen.",
+        "Menerapkan autentikasi berbasis token."
+      ],
+      "prerequisites": ["IF205", "IF202"],
+      "lessons": []
+    },
+    {
+      "code": "IF305",
+      "title": "Teori Bahasa dan Automata",
+      "description": "Batas kemampuan mesin: bahasa formal, automata hingga, tata bahasa bebas konteks, dan mesin Turing.",
+      "semester": 3, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "FPL",
+      "outcomes": [
+        "Merancang automata hingga untuk sebuah bahasa.",
+        "Menyusun tata bahasa bebas konteks dan pohon urainya.",
+        "Menjelaskan persoalan yang tidak terputuskan."
+      ],
+      "prerequisites": ["IF104"],
+      "lessons": []
+    },
+    {
+      "code": "IF306",
+      "title": "Etika dan Profesi Teknologi",
+      "description": "Tanggung jawab yang menyertai pekerjaan teknologi: privasi, bias algoritma, hak kekayaan intelektual, dan dampak sosial.",
+      "semester": 3, "sks": 2, "level": "Menengah", "hours": 30, "area": "SEP",
+      "outcomes": [
+        "Mengenali persoalan etis pada sebuah rancangan sistem.",
+        "Menimbang kepentingan pengguna, perusahaan, dan masyarakat.",
+        "Menjelaskan pokok aturan perlindungan data pribadi."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+
+    {
+      "code": "IF401",
+      "title": "Rekayasa Perangkat Lunak",
+      "description": "Membangun perangkat lunak secara terkelola: pengumpulan kebutuhan, perancangan, pengendalian versi, dan kerja tim.",
+      "semester": 4, "sks": 4, "level": "Menengah", "hours": 60, "area": "SE",
+      "outcomes": [
+        "Menerjemahkan kebutuhan pengguna menjadi spesifikasi yang bisa dikerjakan.",
+        "Memakai pengendalian versi dan telaah kode dalam kerja tim.",
+        "Memilih daur pengembangan yang sesuai dengan sifat proyek."
+      ],
+      "prerequisites": ["IF202"],
+      "lessons": []
+    },
+    {
+      "code": "IF402",
+      "title": "Kecerdasan Buatan",
+      "description": "Pencarian, penalaran, dan representasi pengetahuan sebagai dasar sistem cerdas.",
+      "semester": 4, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "AI",
+      "outcomes": [
+        "Menerapkan pencarian buta dan pencarian berpandu.",
+        "Memodelkan persoalan sebagai pemenuhan kekangan.",
+        "Menjelaskan batas dan risiko sistem cerdas."
+      ],
+      "prerequisites": ["IF301"],
+      "lessons": []
+    },
+    {
+      "code": "IF403",
+      "title": "Keamanan Siber",
+      "description": "Mengenali ancaman dan merancang pertahanan: kriptografi, kendali akses, dan model ancaman.",
+      "semester": 4, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "SEC",
+      "outcomes": [
+        "Menyusun model ancaman untuk sebuah sistem.",
+        "Memilih primitif kriptografi yang sesuai keperluan.",
+        "Menerapkan kendali akses dan pencatatan jejak."
+      ],
+      "prerequisites": ["IF303"],
+      "lessons": []
+    },
+    {
+      "code": "IF404",
+      "title": "Interaksi Manusia dan Komputer",
+      "description": "Merancang antarmuka berdasarkan cara manusia sungguhan bekerja, lalu mengujinya pada pengguna.",
+      "semester": 4, "sks": 3, "level": "Menengah", "hours": 45, "area": "HCI",
+      "outcomes": [
+        "Menerapkan kaidah usabilitas pada rancangan antarmuka.",
+        "Menjalankan uji usabilitas sederhana dan membaca hasilnya.",
+        "Merancang antarmuka yang dapat diakses pengguna disabilitas."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+    {
+      "code": "IF405",
+      "title": "Basis Data Lanjut",
+      "description": "Pengindeksan, penalaan kueri, basis data non-relasional, dan replikasi.",
+      "semester": 4, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "DM",
+      "outcomes": [
+        "Merancang indeks berdasarkan pola kueri yang sesungguhnya.",
+        "Membaca rencana eksekusi kueri dan memperbaiki yang lambat.",
+        "Memilih antara basis data relasional dan non-relasional dengan alasan."
+      ],
+      "prerequisites": ["IF302"],
+      "lessons": []
+    },
+    {
+      "code": "IF406",
+      "title": "Pemrograman Perangkat Bergerak",
+      "description": "Membangun aplikasi untuk ponsel: daur hidup aplikasi, penyimpanan lokal, dan keterbatasan perangkat.",
+      "semester": 4, "sks": 3, "level": "Menengah", "hours": 45, "area": "SPD",
+      "outcomes": [
+        "Membangun aplikasi bergerak berlayar banyak.",
+        "Mengelola penyimpanan lokal dan keadaan saat aplikasi dijeda.",
+        "Menyesuaikan rancangan dengan keterbatasan baterai dan jaringan."
+      ],
+      "prerequisites": ["IF202"],
+      "lessons": []
+    },
+
+    {
+      "code": "IF501",
+      "title": "Pembelajaran Mesin",
+      "description": "Sistem yang belajar dari data: regresi, klasifikasi, pengelompokan, dan evaluasi model.",
+      "semester": 5, "sks": 4, "level": "Lanjutan", "hours": 60, "area": "AI",
+      "outcomes": [
+        "Menyiapkan data dan memilih fitur yang relevan.",
+        "Melatih serta mengevaluasi model regresi dan klasifikasi.",
+        "Mengenali gejala kelewat pas dan cara menanganinya."
+      ],
+      "prerequisites": ["IF402", "IF204"],
+      "lessons": []
+    },
+    {
+      "code": "IF502",
+      "title": "Sistem Terdistribusi",
+      "description": "Banyak mesin bekerja sebagai satu sistem: konsistensi, toleransi kegagalan, dan konsensus.",
+      "semester": 5, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "PDC",
+      "outcomes": [
+        "Menjelaskan pertukaran antara konsistensi dan ketersediaan.",
+        "Merancang sistem yang tetap jalan saat satu simpul mati.",
+        "Menguraikan cara kerja algoritma konsensus."
+      ],
+      "prerequisites": ["IF303"],
+      "lessons": []
+    },
+    {
+      "code": "IF503",
+      "title": "Arsitektur Perangkat Lunak",
+      "description": "Keputusan besar yang menentukan bentuk sistem: pola arsitektur, batasan modul, dan utang teknis.",
+      "semester": 5, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "SE",
+      "outcomes": [
+        "Memilih pola arsitektur yang sesuai dengan kebutuhan mutu.",
+        "Menetapkan batas antarmodul dan ketergantungannya.",
+        "Mendokumentasikan keputusan arsitektur beserta alasannya."
+      ],
+      "prerequisites": ["IF401"],
+      "lessons": []
+    },
+    {
+      "code": "IF504",
+      "title": "Grafika Komputer",
+      "description": "Membentuk dan menggambar citra: transformasi geometri, rasterisasi, dan pencahayaan.",
+      "semester": 5, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "GIT",
+      "outcomes": [
+        "Menerapkan transformasi geometri dengan matriks.",
+        "Menjelaskan tahapan jalur penggambaran.",
+        "Menghitung pencahayaan dasar pada permukaan."
+      ],
+      "prerequisites": ["IF203"],
+      "lessons": []
+    },
+    {
+      "code": "IF505",
+      "title": "Komputasi Awan",
+      "description": "Menjalankan aplikasi di infrastruktur sewa: kontainer, orkestrasi, dan penskalaan.",
+      "semester": 5, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "PDC",
+      "outcomes": [
+        "Mengemas aplikasi ke dalam kontainer.",
+        "Menyusun penskalaan mendatar beserta pemerataan bebannya.",
+        "Memperkirakan biaya dan memilih layanan yang sepadan."
+      ],
+      "prerequisites": ["IF206", "IF303"],
+      "lessons": []
+    },
+    {
+      "code": "IF506",
+      "title": "Penambangan Data",
+      "description": "Menemukan pola pada data berukuran besar: pembersihan, pengelompokan, dan kaidah asosiasi.",
+      "semester": 5, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "DM",
+      "outcomes": [
+        "Membersihkan dan menyatukan data dari banyak sumber.",
+        "Menerapkan pengelompokan dan kaidah asosiasi.",
+        "Menyajikan temuan secara jujur tanpa melebihkan."
+      ],
+      "prerequisites": ["IF302", "IF204"],
+      "lessons": []
+    },
+
+    {
+      "code": "IF601",
+      "title": "Pengujian Perangkat Lunak",
+      "description": "Memastikan perangkat lunak bekerja sebagaimana mestinya: uji unit, uji integrasi, dan otomasi.",
+      "semester": 6, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "SE",
+      "outcomes": [
+        "Menulis uji unit dan uji integrasi yang bermakna.",
+        "Mengukur cakupan uji tanpa terjebak mengejar angkanya.",
+        "Menyusun pengujian otomatis pada alur integrasi."
+      ],
+      "prerequisites": ["IF401"],
+      "lessons": []
+    },
+    {
+      "code": "IF602",
+      "title": "DevOps dan Integrasi Berkelanjutan",
+      "description": "Merapatkan jarak antara menulis kode dan menjalankannya di produksi: otomasi, pemantauan, dan penerapan.",
+      "semester": 6, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "SE",
+      "outcomes": [
+        "Menyusun alur integrasi dan penerapan berkelanjutan.",
+        "Memantau aplikasi di produksi beserta peringatannya.",
+        "Memulihkan sistem setelah penerapan yang gagal."
+      ],
+      "prerequisites": ["IF505"],
+      "lessons": []
+    },
+    {
+      "code": "IF603",
+      "title": "Sains Data",
+      "description": "Mengubah data mentah menjadi keputusan: perumusan pertanyaan, analisis, dan penyajian.",
+      "semester": 6, "sks": 4, "level": "Lanjutan", "hours": 60, "area": "AI",
+      "outcomes": [
+        "Merumuskan pertanyaan yang bisa dijawab data.",
+        "Menjalankan analisis yang bisa diulang orang lain.",
+        "Menyajikan temuan dengan visualisasi yang tidak menyesatkan."
+      ],
+      "prerequisites": ["IF501"],
+      "lessons": []
+    },
+    {
+      "code": "IF604",
+      "title": "Keamanan Aplikasi Web",
+      "description": "Celah yang paling sering ditemui di aplikasi web beserta cara menutupnya, mengacu pada daftar OWASP.",
+      "semester": 6, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "SEC",
+      "outcomes": [
+        "Mengenali celah yang masuk daftar OWASP Top Ten.",
+        "Menutup celah suntikan, XSS, dan kesalahan kendali akses.",
+        "Menguji keamanan aplikasi sendiri secara bertanggung jawab."
+      ],
+      "prerequisites": ["IF304", "IF403"],
+      "lessons": []
+    },
+    {
+      "code": "IF605",
+      "title": "Manajemen Proyek Perangkat Lunak",
+      "description": "Mengatur lingkup, jadwal, dan risiko sebuah proyek, serta bekerja dengan orang di luar tim teknis.",
+      "semester": 6, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "SE",
+      "outcomes": [
+        "Memecah pekerjaan menjadi satuan yang bisa diperkirakan.",
+        "Mengenali risiko sejak awal beserta rencana penanganannya.",
+        "Menyampaikan kemajuan kepada pemangku kepentingan non-teknis."
+      ],
+      "prerequisites": ["IF401"],
+      "lessons": []
+    },
+    {
+      "code": "IF606",
+      "title": "Pemrosesan Bahasa Alami",
+      "description": "Membuat mesin memahami dan menghasilkan bahasa manusia: tokenisasi, representasi kata, dan model bahasa.",
+      "semester": 6, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "AI",
+      "outcomes": [
+        "Menyiapkan teks untuk diolah mesin.",
+        "Menerapkan representasi kata dan model urutan.",
+        "Menilai keluaran model bahasa secara kritis."
+      ],
+      "prerequisites": ["IF501"],
+      "lessons": []
+    },
+
+    {
+      "code": "IF701",
+      "title": "Komputasi Paralel",
+      "description": "Memanfaatkan banyak inti prosesor: utas, sinkronisasi, dan pola paralel.",
+      "semester": 7, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "PDC",
+      "outcomes": [
+        "Memecah pekerjaan menjadi bagian yang bisa berjalan serentak.",
+        "Menghindari kondisi balapan dan kebuntuan.",
+        "Mengukur percepatan nyata dan membandingkannya dengan hukum Amdahl."
+      ],
+      "prerequisites": ["IF301"],
+      "lessons": []
+    },
+    {
+      "code": "IF702",
+      "title": "Metodologi Penelitian",
+      "description": "Menyusun pertanyaan penelitian, menelaah pustaka, dan merancang percobaan yang bisa diulang.",
+      "semester": 7, "sks": 2, "level": "Lanjutan", "hours": 30, "area": "SEP",
+      "outcomes": [
+        "Merumuskan pertanyaan penelitian yang terukur.",
+        "Menelaah pustaka secara sistematis.",
+        "Merancang percobaan beserta cara menilai hasilnya."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+    {
+      "code": "IF703",
+      "title": "Penulisan Teknis",
+      "description": "Menulis dokumentasi, laporan, dan catatan keputusan yang benar-benar dibaca orang.",
+      "semester": 7, "sks": 2, "level": "Menengah", "hours": 30, "area": "SEP",
+      "outcomes": [
+        "Menulis dokumentasi yang sesuai dengan kebutuhan pembacanya.",
+        "Menyusun laporan teknis yang runut dan ringkas.",
+        "Mencatat keputusan arsitektur beserta pertimbangannya."
+      ],
+      "prerequisites": ["IF106"],
+      "lessons": []
+    },
+    {
+      "code": "IF704",
+      "title": "Kewirausahaan Digital",
+      "description": "Mengubah kemampuan teknis menjadi produk: menguji gagasan, membangun purwarupa, dan menilai kelayakannya.",
+      "semester": 7, "sks": 2, "level": "Menengah", "hours": 30, "area": "SEP",
+      "outcomes": [
+        "Menguji gagasan produk sebelum membangunnya penuh.",
+        "Menyusun purwarupa yang cukup untuk belajar dari pengguna.",
+        "Menghitung biaya dan menilai kelayakan sebuah produk digital."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+    {
+      "code": "IF705",
+      "title": "Kerja Praktik",
+      "description": "Menerapkan seluruh kemampuan pada persoalan nyata di luar ruang belajar, lalu melaporkannya.",
+      "semester": 7, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "SEP",
+      "outcomes": [
+        "Bekerja pada basis kode yang ditulis orang lain.",
+        "Menyesuaikan diri dengan cara kerja sebuah tim.",
+        "Menyusun laporan atas pekerjaan yang dikerjakan."
+      ],
+      "prerequisites": ["IF401"],
+      "lessons": []
+    },
+    {
+      "code": "IF706",
+      "title": "Topik Lanjutan Informatika",
+      "description": "Pendalaman satu bidang pilihan sesuai minat, mengikuti perkembangan yang sedang berjalan.",
+      "semester": 7, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "SF",
+      "outcomes": [
+        "Menelusuri perkembangan terbaru pada satu bidang pilihan.",
+        "Membaca makalah ilmiah dan merangkum intinya.",
+        "Mencoba ulang hasil yang dilaporkan orang lain."
+      ],
+      "prerequisites": [],
+      "lessons": []
+    },
+
+    {
+      "code": "IF801",
+      "title": "Proyek Akhir",
+      "description": "Membangun satu sistem utuh dari awal sampai dapat dipakai orang lain, lalu mempertanggungjawabkannya.",
+      "semester": 8, "sks": 6, "level": "Lanjutan", "hours": 90, "area": "SE",
+      "outcomes": [
+        "Merancang dan membangun sistem utuh secara mandiri.",
+        "Menguji dan menerapkannya sampai bisa dipakai pengguna sungguhan.",
+        "Mempertanggungjawabkan keputusan teknis yang diambil."
+      ],
+      "prerequisites": ["IF503", "IF601"],
+      "lessons": []
+    }
+  ]
+}

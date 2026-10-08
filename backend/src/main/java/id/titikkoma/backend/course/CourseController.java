@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.titikkoma.backend.lesson.Lesson;
@@ -23,15 +24,23 @@ public class CourseController {
         this.lessonRepository = lessonRepository;
     }
 
-    /** GET /api/courses */
+    /** GET /api/courses, boleh disaring dengan ?semester=2 atau ?area=SDF */
     @GetMapping
-    public List<Course> findAll() {
-        List<Course> courses = courseRepository.findAll();
+    public List<Course> findAll(@RequestParam(required = false) Integer semester,
+            @RequestParam(required = false) String area) {
+        List<Course> courses;
+        if (semester != null) {
+            courses = courseRepository.findBySemesterOrderByCodeAsc(semester);
+        } else if (area != null) {
+            courses = courseRepository.findByAreaCodeOrderBySemesterAscCodeAsc(area);
+        } else {
+            courses = courseRepository.findAllByOrderBySemesterAscCodeAsc();
+        }
         courses.forEach(this::fillLessonCount);
         return courses;
     }
 
-    /** GET /api/courses/html-dasar */
+    /** GET /api/courses/pemrograman-web */
     @GetMapping("/{slug}")
     public ResponseEntity<Course> findBySlug(@PathVariable String slug) {
         return courseRepository.findBySlug(slug)
@@ -42,7 +51,7 @@ public class CourseController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    /** GET /api/courses/html-dasar/lessons */
+    /** GET /api/courses/pemrograman-web/lessons */
     @GetMapping("/{slug}/lessons")
     public ResponseEntity<List<Lesson>> findLessons(@PathVariable String slug) {
         if (courseRepository.findBySlug(slug).isEmpty()) {

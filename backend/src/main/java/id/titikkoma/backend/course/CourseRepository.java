@@ -9,9 +9,11 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     Optional<Course> findBySlug(String slug);
 
-    /**
-     * Spring membuatkan query-nya otomatis dari nama method ini:
-     * cari Course yang subject.id-nya sama dengan parameter, urutkan dari orderIndex terkecil.
-     */
-    List<Course> findBySubjectIdOrderByOrderIndexAsc(Long subjectId);
+    Optional<Course> findByCode(String code);
+
+    List<Course> findAllByOrderBySemesterAscCodeAsc();
+
+    List<Course> findBySemesterOrderByCodeAsc(Integer semester);
+
+    List<Course> findByAreaCodeOrderBySemesterAscCodeAsc(String areaCode);
 }
