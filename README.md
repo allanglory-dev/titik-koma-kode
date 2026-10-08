@@ -123,6 +123,7 @@ pelajarannya ditulis bertahap.
 | Topik | Bagian | Keterangan |
 |---|---|---|
 | Algoritma dan Pemrograman | 12 | Python, dari algoritma sampai rekursi |
+| Aljabar Linear | 9 | Pendekatan geometris, dengan contoh NumPy |
 | Pemrograman Web | 8 | HTML, dengan editor langsung |
 
 ### Sumber
@@ -130,10 +131,21 @@ pelajarannya ditulis bertahap.
 - Materi HTML disusun dari [MDN Web Docs](https://developer.mozilla.org).
 - Urutan materi pemrograman mengikuti pola CS1 dan susunan
   [Think Python](https://greenteapress.com/wp/think-python-2e/) karya Allen Downey.
-- Bagian yang menyinggung kesalahpahaman pemula mengacu pada penelitian pendidikan
-  pemrograman, antara lain percobaan metafora variabel oleh Hermans dkk. terhadap
-  496 pemula, serta tinjauan pustaka tentang kesalahpahaman pada perulangan dan
-  penugasan nilai.
+- Aljabar Linear memakai urutan geometris
+  [Essence of Linear Algebra](https://www.3blue1brown.com/topics/linear-algebra)
+  dari 3Blue1Brown, dengan isi perhitungan mengacu pada
+  [MIT 18.06](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/)
+  karya Gilbert Strang.
+- Bagian yang menyinggung kesalahpahaman mengacu pada penelitian pendidikan,
+  antara lain percobaan metafora variabel oleh Hermans dkk. terhadap 496 pemula,
+  tinjauan pustaka tentang kesalahpahaman pada perulangan dan penugasan nilai,
+  serta kajian kekeliruan mahasiswa pada aljabar linear seperti anggapan bahwa
+  perkalian matriks dapat ditukar urutannya.
+
+### Penanda di dalam teks materi
+
+Isi blok teks mengenal dua penanda: `` `kode` `` untuk potongan kode di tengah
+kalimat, dan `**penting**` untuk penekanan.
 
 ## Status
 

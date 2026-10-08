@@ -1,22 +1,37 @@
 import { TryIt } from "./TryIt";
 
 /**
- * Mengubah teks bertanda backtick menjadi potongan kode.
- * Contoh: "Pakai `<p>` untuk paragraf." -> kata <p> tampil sebagai kode.
+ * Mengubah penanda sederhana di dalam teks materi menjadi elemen:
+ *   `kode`      -> potongan kode
+ *   **penting** -> teks tebal
+ * Sengaja dibatasi dua penanda ini saja supaya isi materi tetap mudah ditulis.
  */
-function withInlineCode(text) {
-  return text
-    .split("`")
-    .map((part, index) =>
-      index % 2 === 1 ? <code key={index}>{part}</code> : part
-    );
+function format(text) {
+  const hasil = [];
+
+  // Pecah dulu pada backtick; bagian berindeks ganjil adalah kode.
+  text.split("`").forEach((bagian, i) => {
+    if (i % 2 === 1) {
+      hasil.push(<code key={`k${i}`}>{bagian}</code>);
+      return;
+    }
+    // Di luar kode, kenali penanda tebal.
+    bagian.split("**").forEach((potong, j) => {
+      if (potong === "") return;
+      hasil.push(
+        j % 2 === 1 ? <strong key={`t${i}-${j}`}>{potong}</strong> : potong
+      );
+    });
+  });
+
+  return hasil;
 }
 
 /** Menampilkan satu blok isi sesuai jenisnya. */
 export function BlockView({ block }) {
   switch (block.type) {
     case "TEXT":
-      return <p className="block-text">{withInlineCode(block.content)}</p>;
+      return <p className="block-text">{format(block.content)}</p>;
 
     case "CODE":
       return block.language === "html" ? (
@@ -31,7 +46,7 @@ export function BlockView({ block }) {
       return (
         <aside className="block-note">
           <span className="block-note-label">Catatan</span>
-          {withInlineCode(block.content)}
+          {format(block.content)}
         </aside>
       );
 

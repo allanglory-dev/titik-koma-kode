@@ -891,12 +891,511 @@
       "description": "Vektor, matriks, dan transformasi linear. Dasar bagi grafika komputer dan pembelajaran mesin.",
       "semester": 2, "sks": 3, "level": "Menengah", "hours": 45, "area": "MSF",
       "outcomes": [
-        "Mengoperasikan vektor dan matriks.",
-        "Menyelesaikan sistem persamaan linear.",
-        "Menafsirkan transformasi linear sebagai perubahan ruang."
+        "Menafsirkan matriks sebagai transformasi ruang, bukan sekadar tabel angka.",
+        "Mengoperasikan vektor dan matriks beserta syarat ukurannya.",
+        "Menjelaskan arti determinan, invers, dan vektor eigen secara geometris.",
+        "Mengenali peran aljabar linear pada grafika komputer dan pembelajaran mesin."
       ],
       "prerequisites": [],
-      "lessons": []
+      "lessons": [
+        {
+          "title": "Vektor",
+          "summary": "Tiga cara memandang benda yang sama.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Aljabar linear dibangun di atas satu benda: vektor. Masalahnya, tiga kelompok orang memandangnya dengan cara berbeda, dan ketiganya benar."
+            },
+            {
+              "type": "TEXT",
+              "content": "Bagi anak fisika, vektor adalah panah yang punya arah dan panjang. Bagi anak ilmu komputer, vektor adalah deretan angka. Bagi matematikawan, vektor adalah apa pun yang bisa dijumlahkan dan dikalikan bilangan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Untuk sekarang pakai dua pandangan pertama, dan biasakan berpindah-pindah di antara keduanya. Kemampuan itu yang nanti membuat materi ini terasa masuk akal."
+            },
+            {
+              "type": "MATH",
+              "content": "v = [ 3 ]\n    [ 2 ]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Deretan angka di atas adalah petunjuk arah: berjalan 3 satuan ke kanan, lalu 2 satuan ke atas, dimulai dari titik asal. Angkanya disebut komponen, dan banyaknya komponen menentukan dimensi."
+            },
+            {
+              "type": "TEXT",
+              "content": "Di ilmu komputer, vektor hampir selalu muncul sebagai daftar angka yang mewakili sesuatu. Satu foto berukuran 28 kali 28 piksel adalah vektor berdimensi 784. Satu rumah bisa diwakili vektor berisi luas, jumlah kamar, dan umur bangunan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nv = np.array([3, 2])\nw = np.array([1, 4])\n\nprint(v)\nprint(v.shape)   # (2,) artinya dua komponen"
+            },
+            {
+              "type": "TEXT",
+              "content": "Menjumlahkan dua vektor berarti menjalankan petunjuk pertama, lalu dilanjutkan petunjuk kedua dari tempat berhenti tadi. Dalam angka, komponen dijumlahkan satu per satu."
+            },
+            {
+              "type": "MATH",
+              "content": "[ 3 ]   [ 1 ]   [ 4 ]\n[ 2 ] + [ 4 ] = [ 6 ]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Mengalikan vektor dengan sebuah bilangan membuatnya memanjang atau memendek tanpa berubah arah. Bilangan itu disebut skalar, karena pekerjaannya memang menyekala."
+            },
+            {
+              "type": "MATH",
+              "content": "2 * [ 3 ] = [ 6 ]\n    [ 2 ]   [ 4 ]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Skalar negatif membalik arahnya. Mengalikan dengan nol membuatnya runtuh ke titik asal, dan itu akan kembali kita bahas saat membicarakan determinan."
+            },
+            {
+              "type": "NOTE",
+              "content": "Dua vektor hanya bisa dijumlahkan bila dimensinya sama. Vektor berdimensi 2 dan 3 tidak punya arti kalau dijumlahkan. Pemeriksaan ukuran ini akan terus muncul sepanjang aljabar linear, dan melewatkannya adalah sumber kesalahan yang paling sering."
+            }
+          ]
+        },
+        {
+          "title": "Kombinasi Linear dan Basis",
+          "summary": "Ke mana saja kamu bisa sampai hanya dengan dua vektor.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Dengan dua operasi tadi, menskala dan menjumlahkan, kamu bisa menyusun vektor baru dari vektor yang sudah ada. Hasilnya disebut kombinasi linear."
+            },
+            {
+              "type": "MATH",
+              "content": "a * v + b * w"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pertanyaan yang menarik: kalau `a` dan `b` boleh bernilai apa saja, ke titik mana saja kamu bisa sampai? Kumpulan semua titik yang bisa dicapai itu disebut rentang."
+            },
+            {
+              "type": "TEXT",
+              "content": "Untuk dua vektor di bidang datar, biasanya jawabannya adalah seluruh bidang. Berapa pun titik yang kamu tunjuk, selalu ada pasangan `a` dan `b` yang membawamu ke sana."
+            },
+            {
+              "type": "TEXT",
+              "content": "Tapi tidak selalu. Kalau kedua vektor itu segaris, kamu tidak akan pernah keluar dari garis tersebut, sebanyak apa pun kamu menskala dan menjumlahkan."
+            },
+            {
+              "type": "MATH",
+              "content": "v = [ 1 ]      w = [ 2 ]\n    [ 2 ]          [ 4 ]\n\nw = 2 * v, jadi keduanya segaris"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau salah satu vektor bisa disusun dari yang lain, vektor itu tidak menambah apa-apa pada rentang. Keadaan ini disebut bergantung linear. Kalau tidak bisa, keduanya bebas linear."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sekumpulan vektor yang bebas linear dan rentangannya mencakup seluruh ruang disebut basis. Basis yang paling akrab adalah dua vektor satuan pada sumbu x dan y."
+            },
+            {
+              "type": "MATH",
+              "content": "i = [ 1 ]      j = [ 0 ]\n    [ 0 ]          [ 1 ]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Lewat kacamata ini, deretan angka pada sebuah vektor sebenarnya adalah takaran untuk basisnya. Vektor `[3, 2]` berarti tiga kali `i` ditambah dua kali `j`."
+            },
+            {
+              "type": "NOTE",
+              "content": "Gagasan ini kecil tapi menentukan. Angka pada sebuah vektor tidak punya arti sendiri; artinya baru muncul setelah ada basis yang disepakati. Basis yang berbeda membuat titik yang sama ditulis dengan angka yang berbeda."
+            },
+            {
+              "type": "TEXT",
+              "content": "Simpan dulu gagasan ini. Bagian berikutnya akan memakainya untuk menjelaskan apa sebenarnya sebuah matriks."
+            }
+          ]
+        },
+        {
+          "title": "Matriks sebagai Transformasi",
+          "summary": "Kenapa matriks bukan sekadar tabel angka.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Kebanyakan orang pertama kali bertemu matriks sebagai tabel angka dengan aturan hitung yang harus dihafal. Itu sebabnya banyak yang bisa menghitung tapi tidak tahu apa yang sedang dihitung."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pandangan yang jauh lebih berguna: matriks adalah sebuah transformasi, yaitu fungsi yang menerima vektor dan mengembalikan vektor lain. Matriks menggeser seluruh ruang."
+            },
+            {
+              "type": "TEXT",
+              "content": "Transformasi disebut linear bila dua hal terjaga: semua garis tetap lurus setelah dipindahkan, dan titik asal tidak bergeser. Tidak ada garis yang jadi melengkung."
+            },
+            {
+              "type": "TEXT",
+              "content": "Inilah kuncinya. Karena garis tetap lurus dan titik asal tetap, kamu cukup tahu ke mana dua vektor basis mendarat. Semua vektor lain mengikuti."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dan di situlah matriks berperan: **kolom sebuah matriks adalah tempat vektor basis mendarat.**"
+            },
+            {
+              "type": "MATH",
+              "content": "A = [ 2  -1 ]\n    [ 1   3 ]\n\nkolom pertama  -> i mendarat di [2, 1]\nkolom kedua    -> j mendarat di [-1, 3]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Untuk mengetahui ke mana sebuah vektor dibawa, pakai takarannya pada basis yang baru. Vektor `[3, 2]` berarti 3 kali tempat mendarat `i`, ditambah 2 kali tempat mendarat `j`."
+            },
+            {
+              "type": "MATH",
+              "content": "A * [ 3 ]  =  3 * [ 2 ]  +  2 * [ -1 ]  =  [  4 ]\n    [ 2 ]         [ 1 ]         [  3 ]     [  9 ]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Inilah yang sebenarnya terjadi di balik aturan perkalian matriks dengan vektor yang biasa dihafal. Hasilnya adalah kombinasi linear dari kolom-kolom matriks."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nA = np.array([[2, -1],\n              [1,  3]])\nv = np.array([3, 2])\n\nprint(A @ v)   # [4 9], tanda @ untuk perkalian matriks"
+            },
+            {
+              "type": "NOTE",
+              "content": "Perhatikan syarat ukurannya. Matriks berukuran m kali n hanya bisa mengalikan vektor berdimensi n, dan hasilnya berdimensi m. Jumlah kolom matriks harus sama dengan dimensi vektor yang masuk."
+            },
+            {
+              "type": "TEXT",
+              "content": "Beberapa transformasi yang sering dipakai, terutama di grafika komputer:"
+            },
+            {
+              "type": "MATH",
+              "content": "Perbesar 2 kali     Putar 90 derajat     Cermin sumbu y\n[ 2  0 ]            [ 0  -1 ]            [ -1  0 ]\n[ 0  2 ]            [ 1   0 ]            [  0  1 ]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Coba periksa sendiri matriks putar itu dengan cara tadi: ke mana `i` mendarat, dan ke mana `j` mendarat? Kalau cocok dengan bayanganmu tentang perputaran 90 derajat, berarti gagasannya sudah masuk."
+            }
+          ]
+        },
+        {
+          "title": "Perkalian Matriks",
+          "summary": "Menggabungkan dua transformasi menjadi satu.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Kalau matriks adalah transformasi, apa artinya mengalikan dua matriks? Jawabannya sederhana: melakukan transformasi pertama, lalu transformasi kedua."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perkalian matriks adalah penggabungan. Hasilnya satu matriks baru yang pengaruhnya sama dengan mengerjakan keduanya berurutan."
+            },
+            {
+              "type": "MATH",
+              "content": "B * A  berarti  kerjakan A dulu, baru B"
+            },
+            {
+              "type": "TEXT",
+              "content": "Urutannya dibaca dari kanan ke kiri. Ini terasa terbalik, tapi masuk akal bila kamu melihatnya sebagai fungsi: `B(A(v))` artinya `v` masuk ke `A` dulu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dari sini muncul sifat yang paling sering disalahpahami di seluruh aljabar linear: **perkalian matriks tidak bisa ditukar urutannya.** Umumnya `A * B` berbeda dengan `B * A`."
+            },
+            {
+              "type": "NOTE",
+              "content": "Penelitian terhadap mahasiswa menemukan anggapan `AB = BA` sebagai salah satu kesalahan paling sering bertahan meski sudah diajarkan. Dengan pandangan geometris, alasannya jadi jelas: memutar lalu menggeser memberi hasil berbeda dengan menggeser lalu memutar. Coba sendiri dengan buku di atas meja."
+            },
+            {
+              "type": "MATH",
+              "content": "Putar 90      Geser miring\nP = [ 0  -1 ]   G = [ 1  1 ]\n    [ 1   0 ]       [ 0  1 ]\n\nP * G = [ 0  -1 ]      G * P = [ 1  -1 ]\n        [ 1   1 ]              [ 1   0 ]\n\nHasilnya berbeda."
+            },
+            {
+              "type": "TEXT",
+              "content": "Cara menghitungnya mengikuti gagasan tadi. Setiap kolom hasil adalah tempat mendaratnya kolom matriks kanan setelah dikenai matriks kiri."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nP = np.array([[0, -1],\n              [1,  0]])\nG = np.array([[1, 1],\n              [0, 1]])\n\nprint(P @ G)\nprint(G @ P)   # berbeda\nprint(np.array_equal(P @ G, G @ P))   # False"
+            },
+            {
+              "type": "NOTE",
+              "content": "Syarat ukuran sering terlewat. Matriks m kali n hanya bisa dikalikan dengan matriks n kali p, dan hasilnya m kali p. Jumlah kolom yang kiri harus sama dengan jumlah baris yang kanan. Kalau tidak, perkaliannya memang tidak punya arti."
+            },
+            {
+              "type": "TEXT",
+              "content": "Ada satu matriks yang tidak mengubah apa pun, disebut matriks identitas. Perannya seperti angka satu pada perkalian biasa."
+            },
+            {
+              "type": "MATH",
+              "content": "I = [ 1  0 ]\n    [ 0  1 ]\n\nA * I = I * A = A"
+            },
+            {
+              "type": "TEXT",
+              "content": "Penggabungan inilah yang dipakai mesin grafis. Satu benda bisa diputar, diperbesar, lalu digeser hanya dengan satu matriks hasil penggabungan, bukan tiga perhitungan terpisah."
+            }
+          ]
+        },
+        {
+          "title": "Determinan",
+          "summary": "Satu angka yang memberi tahu seberapa ruang diregangkan.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Setiap transformasi meregangkan atau memampatkan ruang. Determinan mengukur seberapa besar perubahan itu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Di bidang datar, bayangkan sebuah persegi satuan yang dibentuk `i` dan `j`, luasnya 1. Setelah dikenai transformasi, persegi itu berubah jadi jajar genjang. Luas jajar genjang itulah determinannya."
+            },
+            {
+              "type": "MATH",
+              "content": "A = [ 3  0 ]      det(A) = 6\n    [ 0  2 ]\n\nLuas persegi satuan menjadi 6 kali lipat."
+            },
+            {
+              "type": "TEXT",
+              "content": "Untuk matriks 2 kali 2, rumusnya pendek."
+            },
+            {
+              "type": "MATH",
+              "content": "A = [ a  b ]      det(A) = a*d - b*c\n    [ c  d ]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Nilai determinan yang paling penting adalah nol. Determinan nol berarti ruang runtuh ke dimensi yang lebih rendah: bidang menjadi garis, atau bahkan menjadi titik."
+            },
+            {
+              "type": "MATH",
+              "content": "A = [ 1  2 ]      det(A) = 1*4 - 2*2 = 0\n    [ 2  4 ]\n\nKedua kolomnya segaris, seluruh bidang runtuh menjadi satu garis."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan hubungannya dengan bagian sebelumnya. Kolom yang segaris berarti bergantung linear, rentangannya menyusut, dan determinannya nol. Tiga cara menyebut keadaan yang sama."
+            },
+            {
+              "type": "TEXT",
+              "content": "Determinan juga bisa bernilai negatif. Tandanya menunjukkan ruang terbalik, seperti bayangan di cermin."
+            },
+            {
+              "type": "NOTE",
+              "content": "Dua kekeliruan yang sering ditemukan pada mahasiswa. Pertama, mencampuradukkan matriks dengan determinannya: matriks itu tabel, determinan itu satu angka hasil hitungan. Kedua, soal penskalaan: mengalikan matriks 2 kali 2 dengan k membuat semua isinya terkali k, tetapi determinannya terkali k pangkat 2, bukan k. Masuk akal secara geometris, karena luas diregangkan di dua arah sekaligus."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nA = np.array([[3, 0],\n              [0, 2]])\nB = np.array([[1, 2],\n              [2, 4]])\n\nprint(np.linalg.det(A))      # 6.0\nprint(np.linalg.det(B))      # 0.0, runtuh\nprint(np.linalg.det(2 * A))  # 24.0, bukan 12.0"
+            },
+            {
+              "type": "TEXT",
+              "content": "Determinan nol punya akibat besar: transformasinya tidak bisa dibatalkan. Begitu informasi runtuh, tidak ada cara mengembalikannya. Itu pokok bahasan berikutnya."
+            }
+          ]
+        },
+        {
+          "title": "Invers dan Sistem Persamaan",
+          "summary": "Membatalkan transformasi, dan kapan itu mustahil.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Sistem persamaan linear yang kamu kenal sejak sekolah sebenarnya adalah pertanyaan tentang transformasi."
+            },
+            {
+              "type": "MATH",
+              "content": "2x +  y = 5\n x + 3y = 6\n\nsama artinya dengan\n\n[ 2  1 ] [ x ]   [ 5 ]\n[ 1  3 ] [ y ] = [ 6 ]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bentuk ringkasnya `A x = b`. Pertanyaannya: vektor mana yang, setelah dikenai transformasi `A`, mendarat tepat di `b`?"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau transformasinya bisa dibatalkan, jawabannya tinggal menjalankan transformasi kebalikannya pada `b`. Transformasi kebalikan itu disebut invers, ditulis `A` pangkat negatif satu."
+            },
+            {
+              "type": "MATH",
+              "content": "A * A^-1 = I\n\nx = A^-1 * b"
+            },
+            {
+              "type": "TEXT",
+              "content": "Invers ada selama determinannya tidak nol. Kalau determinannya nol, ruang sudah runtuh, dan tidak ada cara mengembalikan sesuatu yang sudah menyatu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Bayangkan seluruh bidang dipipihkan menjadi satu garis. Banyak titik berbeda mendarat di tempat yang sama. Ketika diminta mengembalikannya, tidak ada jawaban tunggal."
+            },
+            {
+              "type": "TEXT",
+              "content": "Saat determinan nol, sistemnya punya dua kemungkinan. Bila `b` kebetulan berada pada garis hasil keruntuhan, jawabannya tak terhingga banyak. Bila tidak, tidak ada jawaban sama sekali."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nA = np.array([[2, 1],\n              [1, 3]])\nb = np.array([5, 6])\n\nprint(np.linalg.det(A))        # 5.0, tidak nol, aman\nprint(np.linalg.solve(A, b))   # [1.8 1.4]"
+            },
+            {
+              "type": "NOTE",
+              "content": "Dalam praktik, jangan menghitung invers lalu mengalikannya. Pakai penyelesai seperti `np.linalg.solve`. Hasilnya lebih teliti dan lebih cepat, terutama pada matriks berukuran besar."
+            },
+            {
+              "type": "TEXT",
+              "content": "Satu kekeliruan yang sering terjadi: menukar invers dengan transpos. Transpos hanya mencerminkan matriks pada diagonalnya, sedangkan invers membatalkan transformasinya. Keduanya hal yang sama sekali berbeda."
+            },
+            {
+              "type": "MATH",
+              "content": "A = [ 1  2 ]      A^T = [ 1  3 ]\n    [ 3  4 ]            [ 2  4 ]\n\nTranspos: baris menjadi kolom. Bukan invers."
+            }
+          ]
+        },
+        {
+          "title": "Hasil Kali Titik",
+          "summary": "Mengukur seberapa searah dua vektor.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Hasil kali titik menerima dua vektor dan mengembalikan satu bilangan. Hitungannya sederhana: kalikan komponen yang bersesuaian, lalu jumlahkan."
+            },
+            {
+              "type": "MATH",
+              "content": "[ 3 ] . [ 1 ]  =  3*1 + 2*4  =  11\n[ 2 ]   [ 4 ]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Arti geometrisnya jauh lebih berguna daripada rumusnya. Hasil kali titik mengukur seberapa searah dua vektor."
+            },
+            {
+              "type": "TEXT",
+              "content": "Hasilnya positif bila keduanya mengarah ke sisi yang sama. Negatif bila berlawanan. Dan nol tepat ketika keduanya saling tegak lurus."
+            },
+            {
+              "type": "MATH",
+              "content": "v . w = |v| * |w| * cos(sudut)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dari rumus itu, sudut antara dua vektor bisa dihitung. Inilah dasar ukuran kemiripan yang dipakai mesin pencari dan sistem rekomendasi."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nv = np.array([3, 2])\nw = np.array([1, 4])\n\nprint(np.dot(v, w))              # 11\nprint(np.dot(v, np.array([2, -3])))  # 0, saling tegak lurus\n\n# kemiripan kosinus\ncos = np.dot(v, w) / (np.linalg.norm(v) * np.linalg.norm(w))\nprint(cos)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Panjang sebuah vektor juga berasal dari sini. Hasil kali titik sebuah vektor dengan dirinya sendiri adalah kuadrat panjangnya, yang tidak lain adalah teorema Pythagoras."
+            },
+            {
+              "type": "MATH",
+              "content": "|v| = akar(v . v) = akar(3*3 + 2*2) = akar(13)"
+            },
+            {
+              "type": "NOTE",
+              "content": "Di pembelajaran mesin, dokumen dan gambar diwakili sebagai vektor, lalu kemiripan di antara keduanya diukur dengan hasil kali titik. Dua dokumen yang membahas hal serupa akan menghasilkan sudut yang kecil. Itu sebabnya bagian ini penting bagi anak ilmu komputer, bukan sekadar hitungan di kertas."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bedanya dengan perkalian matriks. Hasil kali titik menghasilkan satu bilangan, sedangkan perkalian matriks menghasilkan matriks. Keduanya sering tertukar karena sama-sama disebut perkalian."
+            }
+          ]
+        },
+        {
+          "title": "Nilai Eigen dan Vektor Eigen",
+          "summary": "Arah yang bertahan ketika semua hal lain berputar.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Ketika sebuah transformasi dikenakan, hampir semua vektor berubah arah. Tapi biasanya ada beberapa yang tetap berada pada garisnya semula, cuma memanjang atau memendek."
+            },
+            {
+              "type": "TEXT",
+              "content": "Vektor seperti itu disebut vektor eigen. Angka pengali yang menunjukkan seberapa ia memanjang disebut nilai eigen."
+            },
+            {
+              "type": "MATH",
+              "content": "A * v = lambda * v\n\nv       = vektor eigen\nlambda  = nilai eigen"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bacalah persamaan itu pelan-pelan. Sisi kiri adalah transformasi penuh. Sisi kanan hanya penskalaan. Vektor eigen adalah vektor yang bagi dirinya, transformasi serumit apa pun terasa seperti sekadar diperbesar."
+            },
+            {
+              "type": "MATH",
+              "content": "A = [ 3  0 ]\n    [ 0  2 ]\n\nvektor [1, 0] menjadi [3, 0]   -> nilai eigen 3\nvektor [0, 1] menjadi [0, 2]   -> nilai eigen 2"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pada transformasi perputaran di bidang datar, tidak ada vektor yang bertahan pada garisnya, karena semuanya ikut berputar. Itu sebabnya matriks perputaran tidak punya vektor eigen bernilai riil."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nA = np.array([[3, 1],\n              [0, 2]])\n\nnilai, vektor = np.linalg.eig(A)\nprint(nilai)    # nilai eigen\nprint(vektor)   # vektor eigen, tersusun sebagai kolom"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kenapa ini penting bagi anak ilmu komputer? Karena vektor eigen menunjukkan arah yang paling menentukan pada sekumpulan data."
+            },
+            {
+              "type": "TEXT",
+              "content": "Analisis komponen utama, teknik yang dipakai untuk memampatkan data berdimensi tinggi, bekerja dengan mencari vektor eigen dari matriks ragam data. Arah dengan nilai eigen terbesar adalah arah yang paling banyak membawa informasi."
+            },
+            {
+              "type": "NOTE",
+              "content": "Nilai eigen juga menentukan kestabilan sistem yang berulang. Bila nilai eigennya lebih besar dari satu, keadaan membesar tanpa henti setiap putaran. Bila lebih kecil dari satu, keadaan menyusut menuju nol. Gagasan ini muncul lagi di analisis algoritma dan pembelajaran mesin."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan satu hal: vektor eigen tidak pernah tunggal. Kelipatan dari sebuah vektor eigen juga vektor eigen, dengan nilai eigen yang sama. Yang penting arahnya, bukan panjangnya."
+            }
+          ]
+        },
+        {
+          "title": "Untuk Apa Semua Ini",
+          "summary": "Tempat aljabar linear bekerja di balik layar.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Aljabar linear terasa abstrak selama dipandang sebagai hitungan di kertas. Begitu dilihat sebagai transformasi ruang, ia muncul hampir di mana-mana di ilmu komputer."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Grafika komputer.** Setiap benda di layar adalah kumpulan titik. Memutar, memperbesar, dan menggeser benda itu semuanya perkalian matriks. Satu adegan permainan menjalankan jutaan perkalian seperti ini setiap detik."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perputaran kamera, sudut pandang, dan proyeksi dari ruang tiga dimensi ke layar dua dimensi semuanya matriks. Ketiganya digabung menjadi satu matriks lewat perkalian, persis seperti yang dibahas di bagian penggabungan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pembelajaran mesin.** Satu lapisan jaringan saraf tidak lebih dari perkalian matriks ditambah sebuah vektor, lalu dilewatkan fungsi pengaktif."
+            },
+            {
+              "type": "MATH",
+              "content": "keluaran = f(W * masukan + b)\n\nW = matriks bobot\nb = vektor bias"
+            },
+            {
+              "type": "TEXT",
+              "content": "Itu sebabnya kartu grafis dipakai melatih model. Kartu grafis memang dirancang untuk mengerjakan perkalian matriks dalam jumlah besar secara serentak, awalnya untuk permainan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pencarian dan rekomendasi.** Dokumen, lagu, dan gambar diwakili sebagai vektor. Mencari yang mirip berarti mencari vektor dengan sudut terkecil, dan itu dihitung dengan hasil kali titik."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pemampatan data.** Analisis komponen utama memakai vektor eigen untuk membuang arah yang kurang membawa informasi. Data berdimensi 784 bisa disusutkan menjadi 50 dimensi dengan kehilangan yang kecil."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Peringkat halaman web.** Algoritma PageRank yang membesarkan Google pada dasarnya mencari vektor eigen dari matriks tautan antarhalaman. Halaman penting adalah halaman yang ditunjuk banyak halaman penting lain, dan itu persamaan vektor eigen."
+            },
+            {
+              "type": "NOTE",
+              "content": "Kalau ada satu hal yang perlu kamu bawa dari topik ini, bawalah ini: matriks bukan tabel angka, melainkan sesuatu yang mengubah ruang. Setiap kali bertemu matriks di topik lain, tanyakan apa yang sedang ia ubah."
+            },
+            {
+              "type": "TEXT",
+              "content": "Untuk pendalaman, dua rujukan yang pantas disebut. Seri video Essence of Linear Algebra dari 3Blue1Brown membangun pemahaman geometris, dan kuliah 18.06 Gilbert Strang di MIT OpenCourseWare memberi dasar perhitungan yang kokoh. Keduanya gratis."
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "IF204",
