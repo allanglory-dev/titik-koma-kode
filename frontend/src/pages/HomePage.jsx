@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { api } from "../api";
+import { GlyphField } from "../components/GlyphField";
 import { useFetch } from "../useFetch";
 
 export function HomePage() {
@@ -26,19 +27,22 @@ export function HomePage() {
   return (
     <main className="wide">
       <header className="cover">
-        <span className="chapter-mark">Belajar IT dari nol</span>
-        <h1>
-          Pelan-pelan, sampai <em>benar-benar</em> paham.
-        </h1>
-        <p>
-          Materi berbahasa Indonesia yang disusun runut. Setiap contoh bisa kamu
-          ubah di tempatnya, lalu langsung kamu lihat hasilnya.
-        </p>
-        {siap && (
-          <Link className="btn" to={`/kursus/${siap.id}`}>
-            Mulai dari {siap.title} →
-          </Link>
-        )}
+        <GlyphField />
+        <div className="cover-isi">
+          <span className="chapter-mark">Belajar IT dari nol</span>
+          <h1>
+            Pelan-pelan, sampai <em>benar-benar</em> paham.
+          </h1>
+          <p>
+            Materi berbahasa Indonesia yang disusun runut. Setiap contoh bisa
+            kamu ubah di tempatnya, lalu langsung kamu lihat hasilnya.
+          </p>
+          {siap && (
+            <Link className="btn" to={`/kursus/${siap.id}`}>
+              Mulai dari {siap.title} →
+            </Link>
+          )}
+        </div>
       </header>
 
       {subjects.map((subject) => {

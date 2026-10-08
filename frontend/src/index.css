@@ -120,6 +120,29 @@ pre {
   font-weight: 500;
   line-height: 0.6;
   color: var(--nila);
+  animation: kedip 2.4s steps(1) infinite;
+}
+
+/* Berkedip pelan seperti kursor teks yang menunggu diketik */
+@keyframes kedip {
+  0%,
+  72% {
+    opacity: 1;
+  }
+  73%,
+  86% {
+    opacity: 0.25;
+  }
+  87%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark {
+    animation: none;
+  }
 }
 
 .brand-name {
@@ -593,8 +616,40 @@ pre.code {
 }
 
 .cover {
+  position: relative;
+  margin: -64px -40px 76px;
+  padding: 96px 40px 104px;
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+/* Bidang tanda baca yang hidup, menempel di belakang sampul */
+.glyph-field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Isi sampul diangkat di atas kanvas, dengan sapuan gelap agar teks tetap jelas */
+.cover-isi {
+  position: relative;
+  z-index: 1;
   max-width: 24ch;
-  margin-bottom: 76px;
+}
+
+.cover-isi::before {
+  content: "";
+  position: absolute;
+  inset: -40px -80px -40px -60px;
+  z-index: -1;
+  background: radial-gradient(
+    75% 70% at 30% 50%,
+    var(--bg) 42%,
+    color-mix(in srgb, var(--bg) 70%, transparent) 68%,
+    transparent 100%
+  );
 }
 
 .cover h1 {
@@ -871,6 +926,11 @@ pre.code {
   .wide,
   .reader {
     padding: 36px 18px 100px;
+  }
+
+  .cover {
+    margin: -36px -18px 56px;
+    padding: 60px 18px 64px;
   }
 
   .lab-body {
