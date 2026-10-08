@@ -10,12 +10,15 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/kursus/:courseId" element={<CoursePage />} />
+        <Route path="/kursus/:courseSlug" element={<CoursePage />} />
         <Route
-          path="/kursus/:courseId/pelajaran/:lessonId"
+          path="/kursus/:courseSlug/pelajaran/:lessonSlug"
           element={<LessonPage />}
         />
-        <Route path="*" element={<div className="state">Halaman tidak ditemukan.</div>} />
+        <Route
+          path="*"
+          element={<div className="state">halaman tidak ditemukan</div>}
+        />
       </Route>
     </Routes>
   );

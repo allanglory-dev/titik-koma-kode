@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import id.titikkoma.backend.block.Block;
 import id.titikkoma.backend.block.BlockRepository;
 
+/**
+ * Pelajaran dialamatkan lewat kursusnya, sebab slug pelajaran
+ * hanya dijamin unik di dalam satu kursus.
+ */
 @RestController
-@RequestMapping("/api/lessons")
+@RequestMapping("/api/courses/{courseSlug}/lessons")
 public class LessonController {
 
     private final LessonRepository lessonRepository;
@@ -23,20 +27,22 @@ public class LessonController {
         this.blockRepository = blockRepository;
     }
 
-    /** GET /api/lessons/1 */
-    @GetMapping("/{id}")
-    public ResponseEntity<Lesson> findById(@PathVariable Long id) {
-        return lessonRepository.findById(id)
+    /** GET /api/courses/html-dasar/lessons/apa-itu-html */
+    @GetMapping("/{lessonSlug}")
+    public ResponseEntity<Lesson> findOne(@PathVariable String courseSlug,
+            @PathVariable String lessonSlug) {
+        return lessonRepository.findByCourseSlugAndSlug(courseSlug, lessonSlug)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    /** GET /api/lessons/1/blocks */
-    @GetMapping("/{id}/blocks")
-    public ResponseEntity<List<Block>> findBlocks(@PathVariable Long id) {
-        if (!lessonRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(blockRepository.findByLessonIdOrderByOrderIndexAsc(id));
+    /** GET /api/courses/html-dasar/lessons/apa-itu-html/blocks */
+    @GetMapping("/{lessonSlug}/blocks")
+    public ResponseEntity<List<Block>> findBlocks(@PathVariable String courseSlug,
+            @PathVariable String lessonSlug) {
+        return lessonRepository.findByCourseSlugAndSlug(courseSlug, lessonSlug)
+                .map(lesson -> ResponseEntity
+                        .ok(blockRepository.findByLessonIdOrderByOrderIndexAsc(lesson.getId())))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

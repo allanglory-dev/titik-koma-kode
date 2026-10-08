@@ -38,7 +38,7 @@ export function HomePage() {
             kamu ubah di tempatnya, lalu langsung kamu lihat hasilnya.
           </p>
           {siap && (
-            <Link className="btn" to={`/kursus/${siap.id}`}>
+            <Link className="btn" to={`/kursus/${siap.slug}`}>
               Mulai dari {siap.title} →
             </Link>
           )}
@@ -70,11 +70,11 @@ export function HomePage() {
               );
 
               return course.lessonCount > 0 ? (
-                <Link key={course.id} to={`/kursus/${course.id}`} className="row">
+                <Link key={course.slug} to={`/kursus/${course.slug}`} className="row">
                   {isi}
                 </Link>
               ) : (
-                <div key={course.id} className="row soon">
+                <div key={course.slug} className="row soon">
                   {isi}
                 </div>
               );

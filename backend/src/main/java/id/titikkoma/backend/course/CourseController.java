@@ -31,24 +31,24 @@ public class CourseController {
         return courses;
     }
 
-    /** GET /api/courses/1 */
-    @GetMapping("/{id}")
-    public ResponseEntity<Course> findById(@PathVariable Long id) {
-        return courseRepository.findById(id)
+    /** GET /api/courses/html-dasar */
+    @GetMapping("/{slug}")
+    public ResponseEntity<Course> findBySlug(@PathVariable String slug) {
+        return courseRepository.findBySlug(slug)
                 .map(course -> {
                     fillLessonCount(course);
                     return ResponseEntity.ok(course);
                 })
-                .orElse(ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    /** GET /api/courses/1/lessons */
-    @GetMapping("/{id}/lessons")
-    public ResponseEntity<List<Lesson>> findLessons(@PathVariable Long id) {
-        if (!courseRepository.existsById(id)) {
+    /** GET /api/courses/html-dasar/lessons */
+    @GetMapping("/{slug}/lessons")
+    public ResponseEntity<List<Lesson>> findLessons(@PathVariable String slug) {
+        if (courseRepository.findBySlug(slug).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(lessonRepository.findByCourseIdOrderByOrderIndexAsc(id));
+        return ResponseEntity.ok(lessonRepository.findByCourseSlugOrderByOrderIndexAsc(slug));
     }
 
     private void fillLessonCount(Course course) {

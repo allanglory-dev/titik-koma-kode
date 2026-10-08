@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { isLessonDone } from "../progress";
 
 /** Daftar isi yang muncul sebagai laci dari sisi kanan. */
-export function TableOfContents({ course, lessons, currentId, onClose }) {
+export function TableOfContents({ course, lessons, currentSlug, onClose }) {
   useEffect(() => {
     function onKey(event) {
       if (event.key === "Escape") {
@@ -22,7 +22,7 @@ export function TableOfContents({ course, lessons, currentId, onClose }) {
         <div className="toc-head">
           <div>
             <h3>{course.title}</h3>
-            <p>{lessons.length} pelajaran</p>
+            <p>{lessons.length} bagian</p>
           </div>
           <button
             className="icon-btn"
@@ -34,12 +34,12 @@ export function TableOfContents({ course, lessons, currentId, onClose }) {
         </div>
 
         {lessons.map((lesson, index) => {
-          const done = isLessonDone(lesson.id);
-          const current = String(lesson.id) === String(currentId);
+          const done = isLessonDone(course.slug, lesson.slug);
+          const current = lesson.slug === currentSlug;
           return (
             <Link
-              key={lesson.id}
-              to={`/kursus/${course.id}/pelajaran/${lesson.id}`}
+              key={lesson.slug}
+              to={`/kursus/${course.slug}/pelajaran/${lesson.slug}`}
               onClick={onClose}
               className={["toc-item", current ? "current" : "", done ? "done" : ""]
                 .filter(Boolean)

@@ -10,10 +10,11 @@ async function get(path) {
 
 export const api = {
   getSubjects: () => get("/subjects"),
-  getCoursesBySubject: (subjectId) => get(`/subjects/${subjectId}/courses`),
   getCourses: () => get("/courses"),
-  getCourse: (courseId) => get(`/courses/${courseId}`),
-  getLessonsByCourse: (courseId) => get(`/courses/${courseId}/lessons`),
-  getLesson: (lessonId) => get(`/lessons/${lessonId}`),
-  getBlocksByLesson: (lessonId) => get(`/lessons/${lessonId}/blocks`),
+  getCourse: (courseSlug) => get(`/courses/${courseSlug}`),
+  getLessons: (courseSlug) => get(`/courses/${courseSlug}/lessons`),
+  getLesson: (courseSlug, lessonSlug) =>
+    get(`/courses/${courseSlug}/lessons/${lessonSlug}`),
+  getBlocks: (courseSlug, lessonSlug) =>
+    get(`/courses/${courseSlug}/lessons/${lessonSlug}/blocks`),
 };

@@ -17,6 +17,8 @@ public class SeedContent {
     }
 
     public static class SeedCourse {
+        /** Opsional. Kalau kosong, dibuat dari judul. Diisi hanya bila alamat lama perlu dipertahankan. */
+        public String slug;
         public String title;
         public String description;
         public String level;
@@ -24,6 +26,8 @@ public class SeedContent {
     }
 
     public static class SeedLesson {
+        /** Opsional, sama seperti pada kursus. */
+        public String slug;
         public String title;
         public String summary;
         public List<SeedBlock> blocks = List.of();

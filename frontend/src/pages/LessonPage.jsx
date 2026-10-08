@@ -9,7 +9,7 @@ import { isLessonDone, setLessonDone } from "../progress";
 import { useFetch } from "../useFetch";
 
 export function LessonPage() {
-  const { courseId, lessonId } = useParams();
+  const { courseSlug, lessonSlug } = useParams();
   const navigate = useNavigate();
 
   const [tocOpen, setTocOpen] = useState(false);
@@ -18,22 +18,22 @@ export function LessonPage() {
   const { data, error, loading } = useFetch(
     () =>
       Promise.all([
-        api.getCourse(courseId),
-        api.getLessonsByCourse(courseId),
-        api.getLesson(lessonId),
-        api.getBlocksByLesson(lessonId),
+        api.getCourse(courseSlug),
+        api.getLessons(courseSlug),
+        api.getLesson(courseSlug, lessonSlug),
+        api.getBlocks(courseSlug, lessonSlug),
       ]),
-    [courseId, lessonId]
+    [courseSlug, lessonSlug]
   );
 
   useEffect(() => {
-    setDone(isLessonDone(lessonId));
+    setDone(isLessonDone(courseSlug, lessonSlug));
     setTocOpen(false);
     window.scrollTo(0, 0);
-  }, [lessonId]);
+  }, [courseSlug, lessonSlug]);
 
   if (loading) {
-    return <div className="state">Memuat...</div>;
+    return <div className="state">memuat…</div>;
   }
 
   if (error) {
@@ -41,30 +41,32 @@ export function LessonPage() {
   }
 
   const [course, lessons, lesson, blocks] = data;
-  const index = lessons.findIndex((item) => String(item.id) === String(lessonId));
+  const index = lessons.findIndex((item) => item.slug === lessonSlug);
   const previous = lessons[index - 1];
   const next = lessons[index + 1];
 
   function toggleDone() {
     const value = !done;
     setDone(value);
-    setLessonDone(lessonId, value);
+    setLessonDone(courseSlug, lessonSlug, value);
   }
 
   function goNext() {
     if (!done) {
       setDone(true);
-      setLessonDone(lessonId, true);
+      setLessonDone(courseSlug, lessonSlug, true);
     }
     navigate(
-      next ? `/kursus/${courseId}/pelajaran/${next.id}` : `/kursus/${courseId}`
+      next
+        ? `/kursus/${courseSlug}/pelajaran/${next.slug}`
+        : `/kursus/${courseSlug}`
     );
   }
 
   return (
     <>
       <div className="lesson">
-        <ChapterRail course={course} lessons={lessons} currentId={lessonId} />
+        <ChapterRail course={course} lessons={lessons} currentSlug={lessonSlug} />
 
         <article className="lesson-body">
           <span className="chapter-mark">
@@ -88,13 +90,13 @@ export function LessonPage() {
               {previous ? (
                 <Link
                   className="turn"
-                  to={`/kursus/${courseId}/pelajaran/${previous.id}`}
+                  to={`/kursus/${courseSlug}/pelajaran/${previous.slug}`}
                 >
                   <span className="turn-label">← Sebelumnya</span>
                   <span className="turn-title">{previous.title}</span>
                 </Link>
               ) : (
-                <Link className="turn" to={`/kursus/${courseId}`}>
+                <Link className="turn" to={`/kursus/${courseSlug}`}>
                   <span className="turn-label">← Kembali</span>
                   <span className="turn-title">{course.title}</span>
                 </Link>
@@ -125,7 +127,7 @@ export function LessonPage() {
         <TableOfContents
           course={course}
           lessons={lessons}
-          currentId={lessonId}
+          currentSlug={lessonSlug}
           onClose={() => setTocOpen(false)}
         />
       )}

@@ -18,6 +18,7 @@ import id.titikkoma.backend.course.CourseRepository;
 import id.titikkoma.backend.lesson.Lesson;
 import id.titikkoma.backend.lesson.LessonRepository;
 import id.titikkoma.backend.seed.SeedContent;
+import id.titikkoma.backend.seed.Slug;
 import id.titikkoma.backend.subject.Subject;
 import id.titikkoma.backend.subject.SubjectRepository;
 
@@ -73,12 +74,14 @@ public class DataSeeder implements CommandLineRunner {
             int courseOrder = 1;
             for (SeedContent.SeedCourse seedCourse : seedSubject.courses) {
                 Course course = courseRepository.save(new Course(
+                        slugDari(seedCourse.slug, seedCourse.title),
                         seedCourse.title, seedCourse.description,
                         seedCourse.level, courseOrder++, subject));
 
                 int lessonOrder = 1;
                 for (SeedContent.SeedLesson seedLesson : seedCourse.lessons) {
                     Lesson lesson = lessonRepository.save(new Lesson(
+                            slugDari(seedLesson.slug, seedLesson.title),
                             seedLesson.title, seedLesson.summary,
                             lessonOrder++, course));
                     lessonCount++;
@@ -99,5 +102,12 @@ public class DataSeeder implements CommandLineRunner {
 
         log.info("Materi dimuat: {} mata pelajaran, {} pelajaran, {} blok isi.",
                 seed.subjects.size(), lessonCount, blockCount);
+    }
+
+    /** Pakai slug yang ditulis di berkas bila ada; selebihnya dibuat dari judul. */
+    private static String slugDari(String slugTertulis, String judul) {
+        return (slugTertulis != null && !slugTertulis.isBlank())
+                ? slugTertulis
+                : Slug.of(judul);
     }
 }

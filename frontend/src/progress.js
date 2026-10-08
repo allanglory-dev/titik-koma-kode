@@ -2,8 +2,11 @@
  * Progres belajar untuk pengunjung tanpa akun.
  * Disimpan di browser, jadi hanya berlaku di perangkat dan browser ini.
  * Nanti saat fitur login jadi, isinya dipindahkan ke akun.
+ *
+ * Kuncinya memakai slug, bukan id. Id berubah setiap materi dimuat ulang,
+ * sedangkan slug tetap sama selama judulnya tidak diganti.
  */
-const KEY = "titikkoma-progres";
+const KEY = "titikkoma-progres-slug";
 
 function readAll() {
   try {
@@ -22,21 +25,25 @@ function writeAll(data) {
   }
 }
 
-export function isLessonDone(lessonId) {
-  return Boolean(readAll()[lessonId]);
+function kunci(courseSlug, lessonSlug) {
+  return `${courseSlug}/${lessonSlug}`;
 }
 
-export function setLessonDone(lessonId, done) {
+export function isLessonDone(courseSlug, lessonSlug) {
+  return Boolean(readAll()[kunci(courseSlug, lessonSlug)]);
+}
+
+export function setLessonDone(courseSlug, lessonSlug, done) {
   const all = readAll();
   if (done) {
-    all[lessonId] = true;
+    all[kunci(courseSlug, lessonSlug)] = true;
   } else {
-    delete all[lessonId];
+    delete all[kunci(courseSlug, lessonSlug)];
   }
   writeAll(all);
 }
 
-export function countDone(lessons) {
+export function countDone(courseSlug, lessons) {
   const all = readAll();
-  return lessons.filter((lesson) => all[lesson.id]).length;
+  return lessons.filter((lesson) => all[kunci(courseSlug, lesson.slug)]).length;
 }

@@ -2,19 +2,19 @@ import { Link } from "react-router-dom";
 
 import { isLessonDone } from "../progress";
 
-/** Penunjuk bab di sisi kiri: nomor bulat yang disambung satu garis kemajuan. */
-export function ChapterRail({ course, lessons, currentId }) {
+/** Penunjuk bab di sisi kiri: nomor mono, garis kunyit menandai yang sedang dibaca. */
+export function ChapterRail({ course, lessons, currentSlug }) {
   return (
     <nav className="chapters" aria-label="Daftar bab">
       <p className="chapters-title">{course.title}</p>
 
       {lessons.map((lesson, index) => {
-        const done = isLessonDone(lesson.id);
-        const current = String(lesson.id) === String(currentId);
+        const done = isLessonDone(course.slug, lesson.slug);
+        const current = lesson.slug === currentSlug;
         return (
           <Link
-            key={lesson.id}
-            to={`/kursus/${course.id}/pelajaran/${lesson.id}`}
+            key={lesson.slug}
+            to={`/kursus/${course.slug}/pelajaran/${lesson.slug}`}
             className={["step", current ? "current" : "", done ? "done" : ""]
               .filter(Boolean)
               .join(" ")}

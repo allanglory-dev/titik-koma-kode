@@ -3,6 +3,7 @@ package id.titikkoma.backend.course;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import id.titikkoma.backend.subject.Subject;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +19,10 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    /** Dipakai di alamat halaman, misalnya /kursus/html-dasar. Tetap sama selama judulnya tetap. */
+    @Column(unique = true, nullable = false)
+    private String slug;
 
     private String title;
 
@@ -41,7 +46,9 @@ public class Course {
     public Course() {
     }
 
-    public Course(String title, String description, String level, Integer orderIndex, Subject subject) {
+    public Course(String slug, String title, String description, String level, Integer orderIndex,
+            Subject subject) {
+        this.slug = slug;
         this.title = title;
         this.description = description;
         this.level = level;
@@ -55,6 +62,14 @@ public class Course {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     public String getTitle() {

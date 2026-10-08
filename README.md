@@ -69,14 +69,23 @@ Buka `http://localhost:5173`.
 
 ## API
 
+Kursus dan pelajaran dialamatkan dengan slug, bukan id. Slug dibuat dari judulnya,
+jadi alamatnya tetap sama walau materi dimuat ulang.
+
 | Endpoint | Isi |
 |---|---|
 | `GET /api/subjects` | Semua mata pelajaran |
-| `GET /api/subjects/{id}/courses` | Kursus di satu mata pelajaran |
-| `GET /api/courses/{id}` | Satu kursus |
-| `GET /api/courses/{id}/lessons` | Pelajaran di satu kursus |
-| `GET /api/lessons/{id}` | Satu pelajaran |
-| `GET /api/lessons/{id}/blocks` | Blok isi satu pelajaran |
+| `GET /api/courses` | Semua kursus |
+| `GET /api/courses/html-dasar` | Satu kursus |
+| `GET /api/courses/html-dasar/lessons` | Pelajaran di satu kursus |
+| `GET /api/courses/html-dasar/lessons/apa-itu-html` | Satu pelajaran |
+| `GET /api/courses/html-dasar/lessons/apa-itu-html/blocks` | Blok isi satu pelajaran |
+
+## Mengubah materi
+
+Seluruh materi ada di `backend/src/main/resources/seed/content.json`. Ubah berkas
+itu lalu jalankan ulang backend. Tabel dibuat ulang setiap kali backend dijalankan,
+jadi tidak perlu menyentuh database secara manual.
 
 ## Status
 

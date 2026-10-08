@@ -5,11 +5,11 @@ import { countDone, isLessonDone } from "../progress";
 import { useFetch } from "../useFetch";
 
 export function CoursePage() {
-  const { courseId } = useParams();
+  const { courseSlug } = useParams();
 
   const { data, error, loading } = useFetch(
-    () => Promise.all([api.getCourse(courseId), api.getLessonsByCourse(courseId)]),
-    [courseId]
+    () => Promise.all([api.getCourse(courseSlug), api.getLessons(courseSlug)]),
+    [courseSlug]
   );
 
   if (loading) {
@@ -21,9 +21,10 @@ export function CoursePage() {
   }
 
   const [course, lessons] = data;
-  const done = countDone(lessons);
+  const done = countDone(courseSlug, lessons);
   const persen = lessons.length ? Math.round((done / lessons.length) * 100) : 0;
-  const lanjut = lessons.find((l) => !isLessonDone(l.id)) ?? lessons[0];
+  const lanjut =
+    lessons.find((l) => !isLessonDone(courseSlug, l.slug)) ?? lessons[0];
 
   return (
     <main className="reader">
@@ -43,7 +44,10 @@ export function CoursePage() {
           </p>
 
           <p style={{ margin: "28px 0 56px" }}>
-            <Link className="btn" to={`/kursus/${courseId}/pelajaran/${lanjut.id}`}>
+            <Link
+              className="btn"
+              to={`/kursus/${courseSlug}/pelajaran/${lanjut.slug}`}
+            >
               {done > 0 ? "Lanjutkan" : "Mulai"} →
             </Link>
           </p>
@@ -54,12 +58,14 @@ export function CoursePage() {
 
           {lessons.map((lesson, i) => (
             <Link
-              key={lesson.id}
-              to={`/kursus/${courseId}/pelajaran/${lesson.id}`}
+              key={lesson.slug}
+              to={`/kursus/${courseSlug}/pelajaran/${lesson.slug}`}
               className="row"
             >
               <span className="row-num">
-                {isLessonDone(lesson.id) ? "✓" : String(i + 1).padStart(2, "0")}
+                {isLessonDone(courseSlug, lesson.slug)
+                  ? "✓"
+                  : String(i + 1).padStart(2, "0")}
               </span>
               <span className="row-title">{lesson.title}</span>
               <span className="row-desc">{lesson.summary}</span>
