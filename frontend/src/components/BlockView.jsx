@@ -5,9 +5,11 @@ import { TryIt } from "./TryIt";
  * Contoh: "Pakai `<p>` untuk paragraf." -> kata <p> tampil sebagai kode.
  */
 function withInlineCode(text) {
-  return text.split("`").map((part, index) =>
-    index % 2 === 1 ? <code key={index}>{part}</code> : part
-  );
+  return text
+    .split("`")
+    .map((part, index) =>
+      index % 2 === 1 ? <code key={index}>{part}</code> : part
+    );
 }
 
 /** Menampilkan satu blok isi sesuai jenisnya. */
@@ -27,10 +29,10 @@ export function BlockView({ block }) {
 
     case "NOTE":
       return (
-        <div className="block-note">
-          <span aria-hidden="true">💡</span>
-          <span>{withInlineCode(block.content)}</span>
-        </div>
+        <aside className="block-note">
+          <span className="block-note-label">Catatan</span>
+          {withInlineCode(block.content)}
+        </aside>
       );
 
     case "MATH":

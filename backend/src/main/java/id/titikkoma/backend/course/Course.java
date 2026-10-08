@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Course {
@@ -32,6 +33,10 @@ public class Course {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
     private Subject subject;
+
+    /** Tidak disimpan di tabel. Diisi controller supaya frontend tahu kursus ini sudah ada isinya. */
+    @Transient
+    private Long lessonCount;
 
     public Course() {
     }
@@ -82,6 +87,19 @@ public class Course {
 
     public void setOrderIndex(Integer orderIndex) {
         this.orderIndex = orderIndex;
+    }
+
+    /** Ikut dikirim ke frontend supaya kursus bisa dikelompokkan per mata pelajaran. */
+    public Long getSubjectId() {
+        return subject == null ? null : subject.getId();
+    }
+
+    public Long getLessonCount() {
+        return lessonCount;
+    }
+
+    public void setLessonCount(Long lessonCount) {
+        this.lessonCount = lessonCount;
     }
 
     public Subject getSubject() {

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-/** Editor kecil dengan hasil yang langsung tampil di sebelahnya. */
+/** Panel latihan: kode di kiri, hasilnya langsung di kanan. */
 export function TryIt({ initialCode }) {
   const [code, setCode] = useState(initialCode);
   const [preview, setPreview] = useState(initialCode);
@@ -28,33 +28,45 @@ export function TryIt({ initialCode }) {
   }
 
   return (
-    <div className="tryit">
-      <div className="tryit-head">
-        <span>Coba Sendiri</span>
-        <span style={{ display: "flex", gap: 8 }}>
+    <div className="lab">
+      <div className="lab-bar">
+        <span className="lab-dots">
+          <span />
+          <span />
+          <span />
+        </span>
+        <span className="lab-title">latihan.html</span>
+        <span className="lab-actions">
           <button
-            className="btn ghost small"
+            className="lab-chip"
             onClick={() => {
               setCode(initialCode);
               setPreview(initialCode);
             }}
           >
-            Reset
+            Kembalikan
           </button>
-          <button className="btn small" onClick={() => setPreview(code)}>
+          <button className="lab-chip primary" onClick={() => setPreview(code)}>
             Jalankan
           </button>
         </span>
       </div>
-      <div className="tryit-body">
-        <textarea
-          ref={textareaRef}
-          value={code}
-          spellCheck={false}
-          onChange={(event) => setCode(event.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <iframe title="Hasil" srcDoc={preview} sandbox="allow-scripts" />
+
+      <div className="lab-body">
+        <div className="lab-pane">
+          <span className="lab-label">Kode</span>
+          <textarea
+            ref={textareaRef}
+            value={code}
+            spellCheck={false}
+            onChange={(event) => setCode(event.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+        </div>
+        <div className="lab-pane">
+          <span className="lab-label">Hasil</span>
+          <iframe title="Hasil" srcDoc={preview} sandbox="allow-scripts" />
+        </div>
       </div>
     </div>
   );

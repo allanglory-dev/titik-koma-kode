@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { api } from "../api";
 import { BlockView } from "../components/BlockView";
+import { TableOfContents } from "../components/TableOfContents";
 import { isLessonDone, setLessonDone } from "../progress";
 import { useFetch } from "../useFetch";
 
@@ -10,7 +11,7 @@ export function LessonPage() {
   const { courseId, lessonId } = useParams();
   const navigate = useNavigate();
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [tocOpen, setTocOpen] = useState(false);
   const [done, setDone] = useState(false);
 
   const { data, error, loading } = useFetch(
@@ -26,7 +27,7 @@ export function LessonPage() {
 
   useEffect(() => {
     setDone(isLessonDone(lessonId));
-    setSidebarOpen(false);
+    setTocOpen(false);
     window.scrollTo(0, 0);
   }, [lessonId]);
 
@@ -55,76 +56,74 @@ export function LessonPage() {
       setLessonDone(lessonId, true);
     }
     navigate(
-      next
-        ? `/kursus/${courseId}/pelajaran/${next.id}`
-        : `/kursus/${courseId}`
+      next ? `/kursus/${courseId}/pelajaran/${next.id}` : `/kursus/${courseId}`
     );
   }
 
   return (
-    <div className="lesson-layout">
-      <aside className={sidebarOpen ? "sidebar open" : "sidebar"}>
-        <p className="sidebar-title">{course.title}</p>
-        {lessons.map((item) => (
-          <Link
-            key={item.id}
-            to={`/kursus/${courseId}/pelajaran/${item.id}`}
-            className={
-              String(item.id) === String(lessonId)
-                ? "sidebar-link active"
-                : "sidebar-link"
-            }
-          >
-            <span className="check">{isLessonDone(item.id) ? "✓" : ""}</span>
-            {item.title}
-          </Link>
-        ))}
-      </aside>
+    <>
+      <article className="reader">
+        <span className="chapter-mark">
+          Bagian {String(index + 1).padStart(2, "0")} dari{" "}
+          {String(lessons.length).padStart(2, "0")}
+        </span>
 
-      <main className="lesson-main">
-        <button
-          className="icon-btn menu-btn"
-          style={{ marginBottom: 16 }}
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          aria-label="Buka daftar pelajaran"
-        >
-          ☰
-        </button>
-
-        <Link to={`/kursus/${courseId}`} className="eyebrow">
-          ← {course.title}
-        </Link>
-
-        <h1 style={{ marginTop: 12 }}>{lesson.title}</h1>
+        <h1>{lesson.title}</h1>
         {lesson.summary && <p className="lead">{lesson.summary}</p>}
 
         {blocks.map((block) => (
           <BlockView key={block.id} block={block} />
         ))}
 
-        <p style={{ marginTop: 36 }}>
+        <footer className="endnote">
           <button className="btn ghost" onClick={toggleDone}>
-            {done ? "✓ Sudah selesai" : "Tandai selesai"}
+            {done ? "✓ Sudah dibaca" : "Tandai sudah dibaca"}
           </button>
-        </p>
 
-        <nav className="pager">
-          {previous ? (
-            <Link
-              className="btn ghost"
-              to={`/kursus/${courseId}/pelajaran/${previous.id}`}
-            >
-              ← {previous.title}
-            </Link>
-          ) : (
-            <span />
-          )}
+          <div className="turn-page">
+            {previous ? (
+              <Link
+                className="turn"
+                to={`/kursus/${courseId}/pelajaran/${previous.id}`}
+              >
+                <span className="turn-label">← Sebelumnya</span>
+                <span className="turn-title">{previous.title}</span>
+              </Link>
+            ) : (
+              <Link className="turn" to={`/kursus/${courseId}`}>
+                <span className="turn-label">← Kembali</span>
+                <span className="turn-title">{course.title}</span>
+              </Link>
+            )}
 
-          <button className="btn" onClick={goNext}>
-            {next ? `${next.title} →` : "Selesai ✓"}
-          </button>
-        </nav>
-      </main>
-    </div>
+            <button className="turn next" onClick={goNext}>
+              <span className="turn-label">
+                {next ? "Selanjutnya →" : "Selesai →"}
+              </span>
+              <span className="turn-title">
+                {next ? next.title : "Tutup bagian ini"}
+              </span>
+            </button>
+          </div>
+        </footer>
+      </article>
+
+      <button
+        className="btn toc-trigger"
+        onClick={() => setTocOpen(true)}
+        aria-label="Buka daftar isi"
+      >
+        ☰ Daftar isi
+      </button>
+
+      {tocOpen && (
+        <TableOfContents
+          course={course}
+          lessons={lessons}
+          currentId={lessonId}
+          onClose={() => setTocOpen(false)}
+        />
+      )}
+    </>
   );
 }

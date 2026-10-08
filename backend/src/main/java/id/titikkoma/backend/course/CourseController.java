@@ -26,14 +26,19 @@ public class CourseController {
     /** GET /api/courses */
     @GetMapping
     public List<Course> findAll() {
-        return courseRepository.findAll();
+        List<Course> courses = courseRepository.findAll();
+        courses.forEach(this::fillLessonCount);
+        return courses;
     }
 
     /** GET /api/courses/1 */
     @GetMapping("/{id}")
     public ResponseEntity<Course> findById(@PathVariable Long id) {
         return courseRepository.findById(id)
-                .map(ResponseEntity::ok)
+                .map(course -> {
+                    fillLessonCount(course);
+                    return ResponseEntity.ok(course);
+                })
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -44,5 +49,9 @@ public class CourseController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(lessonRepository.findByCourseIdOrderByOrderIndexAsc(id));
+    }
+
+    private void fillLessonCount(Course course) {
+        course.setLessonCount(lessonRepository.countByCourseId(course.getId()));
     }
 }

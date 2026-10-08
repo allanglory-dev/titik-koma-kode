@@ -9,6 +9,28 @@ function readTheme() {
   }
 }
 
+/** Garis tipis di bawah bilah atas yang menunjukkan sejauh mana halaman sudah dibaca. */
+function ReadingProgress() {
+  const [percent, setPercent] = useState(0);
+
+  useEffect(() => {
+    function update() {
+      const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+      setPercent(scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0);
+    }
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  return <div className="read-progress" style={{ width: `${percent}%` }} />;
+}
+
 export function Layout() {
   const [theme, setTheme] = useState(readTheme);
 
@@ -30,7 +52,7 @@ export function Layout() {
       <header className="topbar">
         <Link to="/" className="brand">
           <span className="brand-mark">;</span>
-          Titik Koma Kode
+          <span className="brand-name">Titik Koma Kode</span>
         </Link>
         <span className="topbar-spacer" />
         <button
@@ -41,6 +63,7 @@ export function Layout() {
           {theme === "dark" ? "☀" : "☾"}
         </button>
       </header>
+      <ReadingProgress />
       <Outlet />
     </>
   );
