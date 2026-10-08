@@ -117,11 +117,23 @@ yang tidak terdaftar, aplikasi berhenti dengan pesan yang menyebut kodenya.
 
 ## Status materi
 
-Rangka 43 topik sudah lengkap: perkiraan waktu, capaian, dan prasyarat. Isi
-pelajarannya ditulis bertahap, dimulai dari Pemrograman Web.
+Rangka 39 topik sudah lengkap: perkiraan waktu, capaian, dan prasyarat. Isi
+pelajarannya ditulis bertahap.
 
-Materi HTML disusun dari [MDN Web Docs](https://developer.mozilla.org), ditulis ulang
-dalam bahasa Indonesia.
+| Topik | Bagian | Keterangan |
+|---|---|---|
+| Algoritma dan Pemrograman | 12 | Python, dari algoritma sampai rekursi |
+| Pemrograman Web | 8 | HTML, dengan editor langsung |
+
+### Sumber
+
+- Materi HTML disusun dari [MDN Web Docs](https://developer.mozilla.org).
+- Urutan materi pemrograman mengikuti pola CS1 dan susunan
+  [Think Python](https://greenteapress.com/wp/think-python-2e/) karya Allen Downey.
+- Bagian yang menyinggung kesalahpahaman pemula mengacu pada penelitian pendidikan
+  pemrograman, antara lain percobaan metafora variabel oleh Hermans dkk. terhadap
+  496 pemula, serta tinjauan pustaka tentang kesalahpahaman pada perulangan dan
+  penugasan nilai.
 
 ## Status
 

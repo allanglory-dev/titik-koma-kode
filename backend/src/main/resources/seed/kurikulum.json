@@ -119,7 +119,692 @@
         "Menelusuri jalannya program untuk menemukan sebab sebuah kesalahan."
       ],
       "prerequisites": [],
-      "lessons": []
+      "lessons": [
+        {
+          "title": "Apa Itu Algoritma",
+          "summary": "Menyusun langkah sebelum menulis satu baris kode pun.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Algoritma adalah urutan langkah untuk menyelesaikan suatu persoalan. Tidak harus soal komputer. Resep masakan dan petunjuk arah juga algoritma."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sebuah algoritma harus memenuhi empat syarat. Langkahnya terbatas, artinya suatu saat berhenti. Setiap langkah jelas, tidak bermakna ganda. Ada masukan dan ada keluaran. Dan setiap langkah bisa benar-benar dikerjakan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Coba perhatikan dua petunjuk ini. \"Masak nasi secukupnya\" bukan algoritma, karena secukupnya itu berapa. \"Takar dua gelas beras, cuci sampai airnya bening, tambahkan air sampai satu ruas jari di atas beras\" baru algoritma."
+            },
+            {
+              "type": "TEXT",
+              "content": "Komputer tidak bisa menebak. Kalau langkahmu bermakna ganda, hasilnya pasti meleset. Sebagian besar kesalahan pemula terjadi bukan karena salah menulis kode, melainkan karena langkahnya memang belum jelas sejak awal."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sebelum menulis kode, langkah biasanya ditulis dulu dalam pseudokode: bahasa sehari-hari yang disusun serapi program. Tidak ada aturan baku, yang penting runut."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "ALGORITMA Nilai_Akhir\n  MASUKAN  nilai_uts, nilai_uas\n  PROSES\n    akhir <- 0.4 * nilai_uts + 0.6 * nilai_uas\n    JIKA akhir >= 60 MAKA\n      status <- \"lulus\"\n    SELAIN ITU\n      status <- \"mengulang\"\n  KELUARAN akhir, status"
+            },
+            {
+              "type": "TEXT",
+              "content": "Tanda panah `<-` berarti mengisi. Nilai di sebelah kanan dimasukkan ke nama di sebelah kiri. Nanti di Python, tanda itu menjadi `=`."
+            },
+            {
+              "type": "NOTE",
+              "content": "Biasakan menulis langkahnya dulu, meski cuma di kertas coretan. Memperbaiki kesalahan berpikir di pseudokode jauh lebih murah daripada setelah jadi seratus baris kode."
+            },
+            {
+              "type": "TEXT",
+              "content": "Selain pseudokode, ada juga diagram alir yang menggambarkan langkah sebagai bagan. Keduanya sama-sama alat bantu berpikir. Pakai yang mana saja yang membuatmu lebih jelas."
+            },
+            {
+              "type": "TEXT",
+              "content": "Satu persoalan bisa punya banyak algoritma yang sama-sama benar. Yang membedakan adalah kecepatannya, dan itu dibahas tersendiri nanti. Untuk sekarang, cukup pastikan langkahmu benar dulu."
+            }
+          ]
+        },
+        {
+          "title": "Program Pertama",
+          "summary": "Dari langkah di kertas menjadi perintah yang dijalankan mesin.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Python membaca programmu dari baris paling atas ke bawah, satu per satu. Tidak ada yang dilewati kecuali kamu menyuruhnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "print(\"Halo, dunia!\")\nprint(\"Ini baris kedua.\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "`print` adalah perintah untuk menampilkan sesuatu ke layar. Yang ditampilkan ditulis di dalam tanda kurung. Teks selalu diapit tanda kutip."
+            },
+            {
+              "type": "TEXT",
+              "content": "Tanda kutip itu penting. Tanpa kutip, Python mengira kamu menyebut nama sesuatu, bukan teks biasa. `print(Halo)` akan dianggap menyebut nama `Halo` yang belum pernah kamu buat, lalu muncul pesan kesalahan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Satu baris, satu perintah. Tidak perlu titik koma di akhir seperti di beberapa bahasa lain."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kamu juga bisa menitipkan catatan untuk dirimu sendiri memakai tanda pagar. Semua tulisan setelah `#` diabaikan Python."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Menghitung luas persegi panjang\nprint(8 * 5)   # hasilnya 40"
+            },
+            {
+              "type": "TEXT",
+              "content": "Catatan itu bukan hiasan. Tiga bulan lagi kamu akan membuka kodemu sendiri dan lupa apa maksudnya. Tulis alasan kenapa, bukan mengulang apa yang sudah jelas dari kodenya."
+            },
+            {
+              "type": "NOTE",
+              "content": "Pesan kesalahan bukan tanda kamu gagal. Itu cara Python memberi tahu letak persoalannya. Baca baris terakhirnya dulu, biasanya di situ inti masalahnya, lengkap dengan nomor baris."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kesalahan yang paling sering muncul di awal adalah kurung atau kutip yang tidak berpasangan. Kalau pesan kesalahannya menyebut baris yang menurutmu sudah benar, periksa baris di atasnya."
+            }
+          ]
+        },
+        {
+          "title": "Variabel",
+          "summary": "Memberi nama pada sebuah nilai supaya bisa dipakai lagi.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Variabel adalah nama yang menunjuk ke sebuah nilai. Kamu membuatnya dengan tanda sama dengan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nama = \"Sari\"\numur = 20\n\nprint(nama)\nprint(umur)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Arahnya selalu dari kanan ke kiri. Nilai di sebelah kanan dipasangkan ke nama di sebelah kiri. Menulis `20 = umur` akan ditolak Python."
+            },
+            {
+              "type": "TEXT",
+              "content": "Banyak buku menggambarkan variabel sebagai kotak yang diisi nilai. Gambaran itu menyesatkan. Penelitian terhadap hampir 500 pemula menemukan bahwa yang diajari metafora kotak lebih sering mengira sebuah variabel bisa menyimpan dua nilai sekaligus."
+            },
+            {
+              "type": "TEXT",
+              "content": "Gambaran yang lebih tepat: variabel itu label yang ditempelkan pada sebuah nilai. Satu label hanya menempel di satu tempat. Kalau kamu memindahkannya, label itu lepas dari nilai yang lama."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = 5\nnilai = 7\n\nprint(nilai)   # 7, bukan 5 dan bukan 12"
+            },
+            {
+              "type": "NOTE",
+              "content": "Nilai 5 tidak hilang ke mana-mana, hanya tidak ada lagi yang menunjuk ke sana. Setelah baris kedua, label `nilai` sudah pindah ke angka 7."
+            },
+            {
+              "type": "TEXT",
+              "content": "Baris seperti ini sering bikin pemula berhenti sejenak, karena dalam matematika pernyataannya mustahil:"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "skor = 10\nskor = skor + 1\n\nprint(skor)   # 11"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bacanya bukan \"skor sama dengan skor tambah satu\", melainkan \"hitung dulu `skor + 1`, lalu pindahkan label `skor` ke hasilnya\". Sisi kanan selalu dikerjakan lebih dulu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Nama variabel sebaiknya menjelaskan isinya. `jumlah_mahasiswa` jauh lebih berguna daripada `jm` atau `x`. Pakai huruf kecil dan garis bawah sebagai pemisah kata, itu kebiasaan yang berlaku di Python."
+            },
+            {
+              "type": "TEXT",
+              "content": "Nama tidak boleh diawali angka dan tidak boleh mengandung spasi. `2nilai` dan `nilai akhir` keduanya ditolak. Tulis `nilai_akhir`."
+            }
+          ]
+        },
+        {
+          "title": "Tipe Data",
+          "summary": "Jenis nilai menentukan apa yang bisa dilakukan padanya.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Setiap nilai di Python punya jenis. Empat jenis yang paling sering kamu temui di awal:"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "jumlah = 20           # int, bilangan bulat\ntinggi = 1.68         # float, bilangan pecahan\nnama = \"Sari\"         # str, teks\nlulus = True          # bool, benar atau salah\n\nprint(type(jumlah))\nprint(type(tinggi))\nprint(type(nama))\nprint(type(lulus))"
+            },
+            {
+              "type": "TEXT",
+              "content": "`type()` menunjukkan jenis sebuah nilai. Perintah ini berguna saat program bertingkah aneh dan kamu curiga jenisnya tidak sesuai dugaan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Jenis menentukan operasi apa yang masuk akal. Dua angka bisa dikurangkan, dua teks tidak."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "print(3 + 4)           # 7\nprint(\"3\" + \"4\")       # 34, teks disambung\nprint(\"ha\" * 3)        # hahaha"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan baris kedua. `\"3\"` dengan tanda kutip bukan angka tiga, melainkan teks berisi karakter tiga. Menyambung dua teks menghasilkan `34`, bukan `7`."
+            },
+            {
+              "type": "NOTE",
+              "content": "Angka yang diapit kutip adalah teks. Ini sumber kebingungan yang akan kamu temui lagi di bab masukan pengguna."
+            },
+            {
+              "type": "TEXT",
+              "content": "Mencampur jenis yang tidak cocok menghasilkan kesalahan, bukan tebakan:"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "umur = 20\nprint(\"Umur saya \" + umur)   # TypeError"
+            },
+            {
+              "type": "TEXT",
+              "content": "Python menolak menyambung teks dengan angka. Ubah dulu angkanya menjadi teks dengan `str()`, atau pakai f-string yang lebih enak dibaca."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "umur = 20\n\nprint(\"Umur saya \" + str(umur))\nprint(f\"Umur saya {umur}\")        # cara yang lebih umum dipakai"
+            },
+            {
+              "type": "TEXT",
+              "content": "Huruf `f` sebelum tanda kutip menandakan f-string. Apa pun yang ditulis di dalam kurung kurawal dihitung dulu, lalu hasilnya disisipkan ke dalam teks."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perubahan jenis juga bisa ke arah sebaliknya. `int(\"25\")` menghasilkan angka 25, dan `float(\"3.5\")` menghasilkan 3.5. Tapi `int(\"dua puluh\")` gagal, karena Python tidak membaca kata."
+            }
+          ]
+        },
+        {
+          "title": "Operasi dan Ekspresi",
+          "summary": "Menghitung, membandingkan, dan urutan pengerjaannya.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Operasi hitung di Python mirip matematika biasa, dengan dua tambahan yang perlu diperhatikan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "print(7 + 3)    # 10\nprint(7 - 3)    # 4\nprint(7 * 3)    # 21\nprint(7 / 3)    # 2.333... selalu pecahan\nprint(7 // 3)   # 2    pembagian bulat, sisanya dibuang\nprint(7 % 3)    # 1    sisa bagi\nprint(7 ** 3)   # 343  pangkat"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dua yang sering baru bagi pemula adalah `//` dan `%`. Pembagian bulat membuang bagian pecahannya. Sisa bagi memberi sisanya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sisa bagi jauh lebih berguna daripada kelihatannya. `n % 2` bernilai 0 untuk bilangan genap dan 1 untuk ganjil. Itu cara paling umum memeriksa genap atau ganjil."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "angka = 14\nprint(angka % 2)        # 0, berarti genap\n\nmenit_total = 135\nprint(menit_total // 60)  # 2 jam\nprint(menit_total % 60)   # 15 menit"
+            },
+            {
+              "type": "TEXT",
+              "content": "Urutan pengerjaan juga mengikuti matematika: pangkat dulu, lalu kali dan bagi, baru tambah dan kurang. Kalau ragu, pakai kurung. Kurung tidak pernah salah."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "print(2 + 3 * 4)     # 14, bukan 20\nprint((2 + 3) * 4)   # 20"
+            },
+            {
+              "type": "TEXT",
+              "content": "Selain menghitung, kamu juga akan sering membandingkan. Hasil perbandingan selalu `True` atau `False`."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = 75\n\nprint(nilai > 60)    # True\nprint(nilai == 75)   # True, dua sama dengan\nprint(nilai != 75)   # False, tidak sama dengan\nprint(nilai <= 70)   # False"
+            },
+            {
+              "type": "NOTE",
+              "content": "Satu sama dengan `=` memberi nilai. Dua sama dengan `==` menanyakan apakah sama. Tertukarnya dua tanda ini adalah salah satu kesalahan paling sering di seluruh dunia pemrograman, bukan cuma di kalangan pemula."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perbandingan bisa digabung dengan `and`, `or`, dan `not`. `and` menuntut keduanya benar, `or` cukup salah satu."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = 75\nkehadiran = 90\n\nprint(nilai >= 60 and kehadiran >= 80)   # True, keduanya terpenuhi\nprint(nilai >= 90 or kehadiran >= 80)    # True, salah satu cukup\nprint(not (nilai >= 90))                 # True, kebalikan dari False"
+            }
+          ]
+        },
+        {
+          "title": "Masukan dari Pengguna",
+          "summary": "Membuat program menerima data, beserta jebakan yang menyertainya.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Program yang nilainya ditulis langsung di kode cuma berguna sekali. Supaya bisa dipakai berulang dengan data berbeda, program perlu menerima masukan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nama = input(\"Siapa namamu? \")\nprint(f\"Halo, {nama}!\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "`input()` menampilkan pertanyaan, menunggu pengguna mengetik, lalu menyerahkan apa yang diketik ke programmu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sekarang bagian yang menjebak hampir semua pemula. `input()` **selalu** menghasilkan teks, bahkan ketika yang diketik berupa angka."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "umur = input(\"Umurmu berapa? \")\nprint(umur + 1)   # TypeError, teks tidak bisa ditambah angka"
+            },
+            {
+              "type": "TEXT",
+              "content": "Angka yang diketik pengguna masuk sebagai teks. Ubah dulu dengan `int()` untuk bilangan bulat atau `float()` untuk pecahan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "umur = int(input(\"Umurmu berapa? \"))\nprint(f\"Tahun depan umurmu {umur + 1}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan susunannya dibaca dari dalam ke luar: `input()` dikerjakan dulu, hasilnya diserahkan ke `int()`, baru hasilnya dipasangkan ke `umur`."
+            },
+            {
+              "type": "NOTE",
+              "content": "Kalau pengguna mengetik sesuatu yang bukan angka, `int()` akan gagal dan program berhenti. Menanganinya dengan rapi butuh penanganan kesalahan, yang dibahas di topik lanjutan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Berikut contoh utuh yang menyatukan semua yang sudah dibahas sejauh ini."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nama = input(\"Nama: \")\nuts = float(input(\"Nilai UTS: \"))\nuas = float(input(\"Nilai UAS: \"))\n\nakhir = 0.4 * uts + 0.6 * uas\n\nprint(f\"{nama}, nilai akhirmu {akhir}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bandingkan dengan pseudokode di bagian pertama. Susunannya sama persis: ambil masukan, hitung, tampilkan hasil. Yang berubah hanya cara menuliskannya."
+            }
+          ]
+        },
+        {
+          "title": "Percabangan",
+          "summary": "Membuat program mengambil keputusan.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Sampai sini programmu selalu mengerjakan semua baris. Dengan percabangan, sebagian baris hanya dikerjakan bila syaratnya terpenuhi."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = 75\n\nif nilai >= 60:\n    print(\"Lulus\")\nelse:\n    print(\"Mengulang\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan dua hal. Ada titik dua di akhir baris `if`, dan baris di bawahnya menjorok masuk."
+            },
+            {
+              "type": "TEXT",
+              "content": "Di Python, jorokan itu bukan sekadar kerapian. Justru jorokan yang menentukan baris mana termasuk ke dalam `if`. Bahasa lain memakai kurung kurawal untuk ini."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = 50\n\nif nilai >= 60:\n    print(\"Lulus\")\n    print(\"Selamat!\")      # ikut di dalam if\nprint(\"Program selesai\")    # di luar if, selalu dikerjakan"
+            },
+            {
+              "type": "NOTE",
+              "content": "Gunakan jorokan yang tetap, empat spasi, dan jangan mencampur spasi dengan tab. Python akan menolak menjalankan kode yang jorokannya tidak konsisten."
+            },
+            {
+              "type": "TEXT",
+              "content": "Untuk lebih dari dua kemungkinan, pakai `elif`. Python memeriksanya berurutan dari atas, dan berhenti pada yang pertama terpenuhi."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = 85\n\nif nilai >= 85:\n    huruf = \"A\"\nelif nilai >= 70:\n    huruf = \"B\"\nelif nilai >= 60:\n    huruf = \"C\"\nelse:\n    huruf = \"E\"\n\nprint(huruf)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Urutannya penting. Karena Python berhenti di syarat pertama yang terpenuhi, nilai 85 langsung mendapat A dan syarat di bawahnya tidak diperiksa lagi."
+            },
+            {
+              "type": "TEXT",
+              "content": "Coba balik urutannya, letakkan `nilai >= 60` di paling atas. Semua nilai di atas 60 akan mendapat C, termasuk yang seharusnya A. Ini kesalahan yang sering terjadi dan tidak memunculkan pesan kesalahan apa pun, karena kodenya sah, cuma logikanya keliru."
+            },
+            {
+              "type": "TEXT",
+              "content": "Percabangan boleh berada di dalam percabangan lain, tapi jangan terlalu dalam. Lebih dari dua tingkat biasanya tanda bahwa syaratnya sebaiknya digabung dengan `and`."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = 75\nkehadiran = 90\n\n# bertingkat\nif nilai >= 60:\n    if kehadiran >= 80:\n        print(\"Lulus\")\n\n# lebih mudah dibaca\nif nilai >= 60 and kehadiran >= 80:\n    print(\"Lulus\")"
+            }
+          ]
+        },
+        {
+          "title": "Perulangan while",
+          "summary": "Mengulang selama syaratnya masih terpenuhi.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Perulangan membuat sekumpulan baris dikerjakan berkali-kali. `while` mengulang selama syaratnya masih benar."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "hitung = 1\n\nwhile hitung <= 5:\n    print(hitung)\n    hitung = hitung + 1\n\nprint(\"Selesai\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Tiga bagian yang harus selalu ada pada `while`. Nilai awal sebelum perulangan dimulai. Syarat yang menentukan kapan berhenti. Dan perubahan di dalam badan perulangan yang membuat syaratnya suatu saat tidak terpenuhi lagi."
+            },
+            {
+              "type": "TEXT",
+              "content": "Lupa bagian ketiga membuat perulangan tidak pernah berhenti. Programmu akan menggantung sampai kamu paksa berhenti."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "hitung = 1\n\nwhile hitung <= 5:\n    print(hitung)\n    # hitung tidak pernah bertambah\n    # syaratnya selamanya benar"
+            },
+            {
+              "type": "NOTE",
+              "content": "Ada salah paham yang umum: banyak yang mengira perulangan berhenti seketika begitu syaratnya jadi salah, di tengah badan perulangan sekalipun. Tidak begitu. Syarat hanya diperiksa di awal setiap putaran. Begitu masuk, seluruh badan perulangan diselesaikan dulu sampai habis."
+            },
+            {
+              "type": "TEXT",
+              "content": "Telusuri contoh ini baris per baris untuk melihat bedanya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "n = 1\n\nwhile n < 3:\n    n = n + 5      # n langsung melompat jadi 6\n    print(n)       # tetap dicetak, 6\n\nprint(\"keluar\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Meski `n` menjadi 6 dan syarat `n < 3` tidak lagi benar, baris `print(n)` tetap dikerjakan karena sudah terlanjur berada di dalam putaran itu. Pemeriksaan berikutnya baru terjadi setelah badan perulangan habis."
+            },
+            {
+              "type": "TEXT",
+              "content": "`while` paling cocok dipakai ketika kamu belum tahu akan mengulang berapa kali. Contohnya menunggu masukan yang benar dari pengguna."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "sandi = \"\"\n\nwhile sandi != \"rahasia\":\n    sandi = input(\"Sandi: \")\n\nprint(\"Berhasil masuk\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau jumlah pengulangannya sudah diketahui sejak awal, ada bentuk yang lebih ringkas, dan itu bahasan bagian berikutnya."
+            }
+          ]
+        },
+        {
+          "title": "Perulangan for",
+          "summary": "Mengulang untuk setiap anggota sebuah kumpulan.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "`for` mengulang satu kali untuk setiap anggota dari sesuatu yang bisa ditelusuri. Tidak perlu mengatur penghitung sendiri."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "for angka in range(1, 6):\n    print(angka)\n\nprint(\"Selesai\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bandingkan dengan `while` di bagian sebelumnya. Hasilnya sama, tapi nilai awal, syarat, dan penambahan sudah terangkum dalam satu baris."
+            },
+            {
+              "type": "TEXT",
+              "content": "`range(1, 6)` menghasilkan 1, 2, 3, 4, 5. Batas akhirnya tidak ikut. Ini membingungkan di awal, tapi konsisten dengan seluruh Python."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "print(list(range(5)))         # 0 1 2 3 4, mulai dari nol\nprint(list(range(1, 6)))      # 1 2 3 4 5\nprint(list(range(0, 10, 2)))  # 0 2 4 6 8, melompat dua\nprint(list(range(5, 0, -1)))  # 5 4 3 2 1, mundur"
+            },
+            {
+              "type": "NOTE",
+              "content": "`range(5)` dengan satu angka dimulai dari 0, bukan 1, dan berhenti sebelum 5. Jadi isinya lima angka: 0 sampai 4. Salah mengira batas akhirnya ikut adalah sumber kesalahan selisih satu yang sangat sering terjadi."
+            },
+            {
+              "type": "TEXT",
+              "content": "`for` juga bisa menelusuri teks, satu huruf setiap putaran."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "for huruf in \"Python\":\n    print(huruf)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pola yang paling sering kamu pakai adalah mengumpulkan sesuatu selama perulangan berjalan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "total = 0\n\nfor angka in range(1, 101):\n    total = total + angka\n\nprint(total)   # 5050"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan `total` dibuat sebelum perulangan, bukan di dalamnya. Kalau diletakkan di dalam, nilainya akan kembali nol setiap putaran dan hasil akhirnya salah."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pakai `for` kalau jumlah pengulangannya sudah jelas, dan `while` kalau belum. Keduanya bisa saling menggantikan, tapi memilih yang tepat membuat maksudmu lebih mudah dibaca orang lain."
+            }
+          ]
+        },
+        {
+          "title": "List",
+          "summary": "Menyimpan banyak nilai dalam satu nama.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Sejauh ini satu variabel menampung satu nilai. List memungkinkan satu nama menampung banyak nilai yang berurutan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = [80, 75, 90, 65]\n\nprint(nilai)\nprint(len(nilai))   # 4, banyaknya isi"
+            },
+            {
+              "type": "TEXT",
+              "content": "Setiap isi punya nomor urut yang disebut indeks. Penomorannya dimulai dari nol, bukan satu."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = [80, 75, 90, 65]\n\nprint(nilai[0])   # 80, yang pertama\nprint(nilai[1])   # 75\nprint(nilai[3])   # 65, yang terakhir\nprint(nilai[-1])  # 65 juga, hitung dari belakang"
+            },
+            {
+              "type": "NOTE",
+              "content": "List berisi empat nilai punya indeks 0 sampai 3. Menyebut `nilai[4]` menghasilkan kesalahan. Inilah kesalahan selisih satu yang akan menemanimu sepanjang karier."
+            },
+            {
+              "type": "TEXT",
+              "content": "Isi list bisa diubah, ditambah, dan dihapus."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = [80, 75, 90]\n\nnilai[1] = 85          # ubah isi kedua\nnilai.append(70)       # tambah di belakang\nnilai.remove(90)       # hapus nilai 90\n\nprint(nilai)           # [80, 85, 70]"
+            },
+            {
+              "type": "TEXT",
+              "content": "List dan perulangan adalah pasangan yang paling sering kamu pakai. `for` bisa menelusuri list secara langsung tanpa menyentuh indeks sama sekali."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = [80, 75, 90, 65]\ntotal = 0\n\nfor n in nilai:\n    total = total + n\n\nrata = total / len(nilai)\nprint(f\"Rata-rata: {rata}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau kamu memang membutuhkan nomor urutnya, `enumerate` memberi indeks dan isinya sekaligus."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "mahasiswa = [\"Andi\", \"Sari\", \"Budi\"]\n\nfor nomor, nama in enumerate(mahasiswa, start=1):\n    print(f\"{nomor}. {nama}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Python juga menyediakan beberapa perintah siap pakai yang menghemat banyak baris."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = [80, 75, 90, 65]\n\nprint(sum(nilai))         # 310\nprint(max(nilai))         # 90\nprint(min(nilai))         # 65\nprint(sorted(nilai))      # [65, 75, 80, 90]"
+            }
+          ]
+        },
+        {
+          "title": "Fungsi",
+          "summary": "Memberi nama pada sepotong pekerjaan supaya bisa dipakai berulang.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Ketika program mulai panjang, kamu akan menemukan potongan kode yang sama ditulis berulang. Fungsi menyatukannya menjadi satu nama."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def sapa(nama):\n    print(f\"Halo, {nama}!\")\n\nsapa(\"Sari\")\nsapa(\"Budi\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "`def` membuat fungsi baru. Nama di dalam kurung disebut parameter, yaitu nilai yang harus diberikan saat fungsi dipanggil."
+            },
+            {
+              "type": "TEXT",
+              "content": "Menulis `def` saja tidak menjalankan apa pun. Isinya baru dikerjakan ketika fungsinya dipanggil. Ini sering membingungkan di awal: kode ada tapi seolah tidak terjadi apa-apa."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kebanyakan fungsi sebaiknya menghasilkan nilai, bukan langsung mencetak. Nilai yang dihasilkan bisa dipakai lagi untuk perhitungan lain."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def nilai_akhir(uts, uas):\n    return 0.4 * uts + 0.6 * uas\n\nhasil = nilai_akhir(70, 80)\nprint(hasil)\n\n# karena menghasilkan nilai, bisa langsung dipakai lagi\nif nilai_akhir(70, 80) >= 60:\n    print(\"Lulus\")"
+            },
+            {
+              "type": "NOTE",
+              "content": "`return` mengakhiri fungsi saat itu juga. Baris apa pun setelahnya di dalam fungsi yang sama tidak akan pernah dikerjakan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Fungsi tanpa `return` tetap menghasilkan sesuatu, yaitu `None`. Kalau kamu lupa menulis `return` lalu mencoba memakai hasilnya, `None` inilah yang muncul."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def tambah(a, b):\n    hasil = a + b      # dihitung tapi tidak dikembalikan\n\nprint(tambah(2, 3))    # None"
+            },
+            {
+              "type": "TEXT",
+              "content": "Variabel yang dibuat di dalam fungsi hanya hidup selama fungsi itu berjalan, lalu hilang. Ini disebut lingkup. Nama yang sama di dalam dan di luar fungsi adalah dua hal yang berbeda."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def hitung():\n    angka = 100     # hanya ada di dalam fungsi\n    print(angka)\n\nangka = 5\nhitung()        # 100\nprint(angka)    # 5, tidak terpengaruh"
+            },
+            {
+              "type": "TEXT",
+              "content": "Satu fungsi sebaiknya mengerjakan satu hal, dan namanya menjelaskan hal itu. Kalau kamu kesulitan memberi nama, biasanya fungsinya mengerjakan terlalu banyak dan sebaiknya dipecah."
+            }
+          ]
+        },
+        {
+          "title": "Rekursi",
+          "summary": "Fungsi yang memanggil dirinya sendiri.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Sebuah fungsi boleh memanggil dirinya sendiri. Cara ini disebut rekursi, dan terasa membingungkan di awal karena kita terbiasa membaca kode dari atas ke bawah."
+            },
+            {
+              "type": "TEXT",
+              "content": "Setiap rekursi butuh dua bagian. Kasus dasar, yaitu keadaan paling sederhana yang jawabannya langsung diketahui tanpa memanggil diri sendiri lagi. Dan kasus rekursif, yang memanggil dirinya dengan persoalan yang lebih kecil."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def faktorial(n):\n    if n <= 1:          # kasus dasar\n        return 1\n    return n * faktorial(n - 1)   # kasus rekursif\n\nprint(faktorial(5))   # 120"
+            },
+            {
+              "type": "TEXT",
+              "content": "Cara membacanya: faktorial 5 adalah 5 dikali faktorial 4, faktorial 4 adalah 4 dikali faktorial 3, begitu seterusnya sampai mencapai 1 yang jawabannya sudah diketahui."
+            },
+            {
+              "type": "TEXT",
+              "content": "Telusuri langkahnya satu per satu supaya terlihat jelas:"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "faktorial(5)\n= 5 * faktorial(4)\n= 5 * (4 * faktorial(3))\n= 5 * (4 * (3 * faktorial(2)))\n= 5 * (4 * (3 * (2 * faktorial(1))))\n= 5 * (4 * (3 * (2 * 1)))\n= 120"
+            },
+            {
+              "type": "NOTE",
+              "content": "Tanpa kasus dasar, fungsi memanggil dirinya selamanya sampai Python menyerah dengan pesan RecursionError. Setiap kali menulis rekursi, tulis kasus dasarnya lebih dulu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pastikan juga setiap pemanggilan benar-benar mengecil dan menuju kasus dasar. Menulis `faktorial(n)` alih-alih `faktorial(n - 1)` membuat persoalannya tidak pernah mengecil."
+            },
+            {
+              "type": "TEXT",
+              "content": "Hampir semua rekursi bisa ditulis ulang sebagai perulangan biasa, dan sebaliknya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def faktorial_ulang(n):\n    hasil = 1\n    for i in range(2, n + 1):\n        hasil = hasil * i\n    return hasil\n\nprint(faktorial_ulang(5))   # 120"
+            },
+            {
+              "type": "TEXT",
+              "content": "Untuk faktorial, versi perulangan lebih sederhana dan lebih hemat. Rekursi baru benar-benar unggul pada persoalan yang bentuknya memang bercabang, seperti menelusuri pohon atau folder bersarang. Itu akan kamu temui lagi di topik Struktur Data."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau rekursi masih terasa kabur, jangan cemas. Hampir semua orang butuh waktu untuk terbiasa. Cara tercepat memahaminya adalah menelusuri pemanggilannya di kertas, persis seperti bagan di atas."
+            }
+          ]
+        }
+      ]
     },
     {
       "code": "IF103",
