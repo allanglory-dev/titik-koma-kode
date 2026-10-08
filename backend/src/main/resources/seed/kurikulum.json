@@ -901,19 +901,6 @@
       "lessons": []
     },
     {
-      "code": "IF702",
-      "title": "Metodologi Penelitian",
-      "description": "Menyusun pertanyaan penelitian, menelaah pustaka, dan merancang percobaan yang bisa diulang.",
-      "semester": 7, "sks": 2, "level": "Lanjutan", "hours": 30, "area": "SEP",
-      "outcomes": [
-        "Merumuskan pertanyaan penelitian yang terukur.",
-        "Menelaah pustaka secara sistematis.",
-        "Merancang percobaan beserta cara menilai hasilnya."
-      ],
-      "prerequisites": [],
-      "lessons": []
-    },
-    {
       "code": "IF703",
       "title": "Penulisan Teknis",
       "description": "Menulis dokumentasi, laporan, dan catatan keputusan yang benar-benar dibaca orang.",
@@ -927,54 +914,14 @@
       "lessons": []
     },
     {
-      "code": "IF704",
-      "title": "Kewirausahaan Digital",
-      "description": "Mengubah kemampuan teknis menjadi produk: menguji gagasan, membangun purwarupa, dan menilai kelayakannya.",
-      "semester": 7, "sks": 2, "level": "Menengah", "hours": 30, "area": "SEP",
-      "outcomes": [
-        "Menguji gagasan produk sebelum membangunnya penuh.",
-        "Menyusun purwarupa yang cukup untuk belajar dari pengguna.",
-        "Menghitung biaya dan menilai kelayakan sebuah produk digital."
-      ],
-      "prerequisites": [],
-      "lessons": []
-    },
-    {
-      "code": "IF705",
-      "title": "Kerja Praktik",
-      "description": "Menerapkan seluruh kemampuan pada persoalan nyata di luar ruang belajar, lalu melaporkannya.",
-      "semester": 7, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "SEP",
-      "outcomes": [
-        "Bekerja pada basis kode yang ditulis orang lain.",
-        "Menyesuaikan diri dengan cara kerja sebuah tim.",
-        "Menyusun laporan atas pekerjaan yang dikerjakan."
-      ],
-      "prerequisites": ["IF401"],
-      "lessons": []
-    },
-    {
-      "code": "IF706",
-      "title": "Topik Lanjutan Informatika",
-      "description": "Pendalaman satu bidang pilihan sesuai minat, mengikuti perkembangan yang sedang berjalan.",
-      "semester": 7, "sks": 3, "level": "Lanjutan", "hours": 45, "area": "SF",
-      "outcomes": [
-        "Menelusuri perkembangan terbaru pada satu bidang pilihan.",
-        "Membaca makalah ilmiah dan merangkum intinya.",
-        "Mencoba ulang hasil yang dilaporkan orang lain."
-      ],
-      "prerequisites": [],
-      "lessons": []
-    },
-
-    {
       "code": "IF801",
-      "title": "Proyek Akhir",
-      "description": "Membangun satu sistem utuh dari awal sampai dapat dipakai orang lain, lalu mempertanggungjawabkannya.",
-      "semester": 8, "sks": 6, "level": "Lanjutan", "hours": 90, "area": "SE",
+      "title": "Proyek Portofolio",
+      "description": "Membangun satu aplikasi utuh dengan panduan, dari rancangan sampai bisa dibuka orang lain. Hasilnya layak dipamerkan di CV dan GitHub.",
+      "semester": 8, "sks": 4, "level": "Lanjutan", "hours": 60, "area": "SE",
       "outcomes": [
-        "Merancang dan membangun sistem utuh secara mandiri.",
-        "Menguji dan menerapkannya sampai bisa dipakai pengguna sungguhan.",
-        "Mempertanggungjawabkan keputusan teknis yang diambil."
+        "Merancang dan membangun aplikasi utuh dari awal sampai diterbitkan.",
+        "Menulis dokumentasi dan README yang membuat proyekmu mudah dipahami orang lain.",
+        "Menjelaskan keputusan teknis yang kamu ambil, termasuk saat ditanya pewawancara."
       ],
       "prerequisites": ["IF503", "IF601"],
       "lessons": []
