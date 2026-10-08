@@ -672,35 +672,57 @@ pre.code {
   margin: 22px 0 30px;
 }
 
-/* Pemilih tampilan kurikulum */
-.switch {
-  display: inline-flex;
-  gap: 2px;
-  border: 1px solid var(--rule);
-  border-radius: 3px;
-  padding: 2px;
-  margin-bottom: 44px;
+/* Penyaring semester di beranda */
+.saring {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 48px;
 }
 
-.switch button {
-  border: 0;
-  border-radius: 2px;
+.saring-tanya {
+  font-family: var(--f-judul);
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  margin-right: 6px;
+}
+
+.saring button {
+  min-width: 34px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
   background: none;
   color: var(--ink-soft);
-  padding: 7px 15px;
-  font-family: var(--f-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
+  padding: 5px 13px;
+  font-family: var(--f-judul);
+  font-size: 13.5px;
+  font-weight: 600;
   cursor: pointer;
 }
 
-.switch button:hover {
+.saring button:hover {
+  border-color: var(--ink);
   color: var(--ink);
 }
 
-.switch button.aktif {
+.saring button.aktif {
   background: var(--ink);
+  border-color: var(--ink);
   color: var(--bg);
+}
+
+/* Keterangan ringkas di halaman topik */
+.fakta-baris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 44px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--f-judul);
+  font-size: 14.5px;
+  color: var(--ink-soft);
 }
 
 .area-desc {
@@ -708,40 +730,6 @@ pre.code {
   max-width: 48ch;
   color: var(--ink-soft);
   font-size: 16px;
-}
-
-/* Keterangan akademik mata kuliah */
-.fakta {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 1px;
-  margin: 36px 0 48px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.fakta > div {
-  background: var(--bg);
-  padding: 15px 18px;
-}
-
-.fakta dt {
-  font-family: var(--f-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 5px;
-}
-
-.fakta dd {
-  margin: 0;
-  font-family: var(--f-judul);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
 }
 
 .capaian {

@@ -22,7 +22,7 @@ export function CoursePage() {
   }
 
   if (error) {
-    return <div className="state error">Mata kuliah tidak ditemukan.</div>;
+    return <div className="state error">Topik tidak ditemukan.</div>;
   }
 
   const [course, lessons, semua] = data;
@@ -31,66 +31,55 @@ export function CoursePage() {
   const lanjut =
     lessons.find((l) => !isLessonDone(courseSlug, l.slug)) ?? lessons[0];
 
-  const prasyarat = course.prerequisites
+  // Prasyarat disimpan sebagai kode, tapi yang ditampilkan judulnya.
+  const sebelum = course.prerequisites
     .map((kode) => semua.find((c) => c.code === kode))
     .filter(Boolean);
-  const membuka = semua.filter((c) => c.prerequisites.includes(course.code));
+  const sesudah = semua.filter((c) => c.prerequisites.includes(course.code));
 
   return (
     <main className="reader">
-      <span className="chapter-mark">
-        {course.code} · Semester {course.semester} · {course.sks} SKS
-      </span>
+      <span className="chapter-mark">{course.level}</span>
       <h1>{course.title}</h1>
       <p className="lead">{course.description}</p>
 
-      <dl className="fakta">
-        <div>
-          <dt>Bidang</dt>
-          <dd>
-            {course.areaCode} · {course.areaName}
-          </dd>
-        </div>
-        <div>
-          <dt>Tingkat</dt>
-          <dd>{course.level}</dd>
-        </div>
-        <div>
-          <dt>Perkiraan waktu</dt>
-          <dd>{course.hours} jam</dd>
-        </div>
-        <div>
-          <dt>Prasyarat</dt>
-          <dd>
-            {prasyarat.length === 0
-              ? "Tidak ada"
-              : prasyarat.map((p, i) => (
-                  <span key={p.code}>
-                    {i > 0 && ", "}
-                    <Link to={`/kursus/${p.slug}`}>{p.code}</Link>
-                  </span>
-                ))}
-          </dd>
-        </div>
-      </dl>
+      <div className="fakta-baris">
+        <span>Sekitar {course.hours} jam</span>
+        <span>·</span>
+        <span>
+          {sebelum.length === 0 ? (
+            "Bisa langsung mulai"
+          ) : (
+            <>
+              Sebaiknya paham dulu:{" "}
+              {sebelum.map((p, i) => (
+                <span key={p.code}>
+                  {i > 0 && ", "}
+                  <Link to={`/kursus/${p.slug}`}>{p.title}</Link>
+                </span>
+              ))}
+            </>
+          )}
+        </span>
+      </div>
 
-      <h2>Capaian pembelajaran</h2>
-      <p className="progress-label" style={{ marginBottom: 14 }}>
-        Setelah menuntaskan mata kuliah ini, kamu dapat:
-      </p>
+      <h2>Setelah ini kamu bisa</h2>
       <ol className="capaian">
         {course.outcomes.map((o, i) => (
           <li key={i}>{o}</li>
         ))}
       </ol>
 
-      <h2>Materi</h2>
       {lessons.length === 0 ? (
-        <p className="progress-label">
-          materi sedang disusun · kurikulum dan capaiannya sudah ditetapkan
-        </p>
+        <>
+          <h2>Materi</h2>
+          <p className="progress-label">
+            belum ada isinya · rangka topiknya sudah ditetapkan
+          </p>
+        </>
       ) : (
         <>
+          <h2>Isi</h2>
           <div className="progress">
             <div style={{ width: `${persen}%` }} />
           </div>
@@ -103,7 +92,7 @@ export function CoursePage() {
               className="btn"
               to={`/kursus/${courseSlug}/pelajaran/${lanjut.slug}`}
             >
-              {done > 0 ? "Lanjutkan" : "Mulai"} →
+              {done > 0 ? "Lanjutkan" : "Mulai baca"} →
             </Link>
           </p>
 
@@ -126,15 +115,17 @@ export function CoursePage() {
         </>
       )}
 
-      {membuka.length > 0 && (
+      {sesudah.length > 0 && (
         <>
-          <h2>Membuka jalan ke</h2>
-          {membuka.map((c) => (
+          <h2>Lanjut ke</h2>
+          {sesudah.map((c) => (
             <Link key={c.code} to={`/kursus/${c.slug}`} className="row">
-              <span className="row-num">{c.code}</span>
+              <span className="row-num">→</span>
               <span className="row-title">{c.title}</span>
               <span className="row-desc">{c.description}</span>
-              <span className="row-meta">Semester {c.semester}</span>
+              <span className="row-meta">
+                {c.lessonCount > 0 ? "siap" : "belum ada isinya"}
+              </span>
             </Link>
           ))}
         </>
@@ -142,7 +133,7 @@ export function CoursePage() {
 
       <p style={{ marginTop: 56 }}>
         <Link className="btn ghost" to="/">
-          ← Seluruh kurikulum
+          ← Semua topik
         </Link>
       </p>
     </main>

@@ -5,16 +5,42 @@ import { api } from "../api";
 import { GlyphField } from "../components/GlyphField";
 import { useFetch } from "../useFetch";
 
-function KartuMataKuliah({ course }) {
+/**
+ * Semester tetap dipakai di balik layar untuk mengurutkan topik,
+ * tapi yang tampil adalah tahap dengan nama yang lebih manusiawi.
+ */
+const TAHAP = [
+  {
+    nama: "Mulai dari sini",
+    catatan: "Dasar yang dipakai hampir semua topik setelahnya.",
+    semester: [1, 2],
+  },
+  {
+    nama: "Setelah dasarnya kuat",
+    catatan: "Topik yang biasanya paling bikin nyangkut.",
+    semester: [3, 4],
+  },
+  {
+    nama: "Pendalaman",
+    catatan: "Pilih yang sesuai arah yang kamu tuju.",
+    semester: [5, 6],
+  },
+  {
+    nama: "Penutup",
+    catatan: "Menyatukan semuanya jadi sesuatu yang utuh.",
+    semester: [7, 8],
+  },
+];
+
+function BarisTopik({ course, nomor }) {
   const siap = course.lessonCount > 0;
   const isi = (
     <>
-      <span className="row-num">{course.code}</span>
+      <span className="row-num">{nomor}</span>
       <span className="row-title">{course.title}</span>
       <span className="row-desc">{course.description}</span>
       <span className="row-meta">
-        {course.sks} SKS · {course.areaCode}
-        {siap ? "" : " · segera"}
+        {siap ? `sekitar ${course.hours} jam` : "belum ada isinya"}
       </span>
     </>
   );
@@ -29,10 +55,8 @@ function KartuMataKuliah({ course }) {
 }
 
 export function HomePage() {
-  const [tampilan, setTampilan] = useState("semester");
-  const { data, error, loading } = useFetch(() =>
-    Promise.all([api.getCourses(), api.getAreas()])
-  );
+  const [semester, setSemester] = useState(null);
+  const { data, error, loading } = useFetch(() => api.getCourses());
 
   if (loading) {
     return <div className="state">memuat…</div>;
@@ -41,14 +65,13 @@ export function HomePage() {
   if (error) {
     return (
       <div className="state error">
-        Gagal memuat kurikulum. Pastikan server backend berjalan di port 8080.
+        Gagal memuat daftar topik. Pastikan server backend berjalan di port 8080.
       </div>
     );
   }
 
-  const [courses, areas] = data;
-  const totalSks = courses.reduce((n, c) => n + c.sks, 0);
-  const siap = courses.find((c) => c.lessonCount > 0);
+  const courses = data;
+  const adaIsi = courses.filter((c) => c.lessonCount > 0);
   const semesters = [...new Set(courses.map((c) => c.semester))].sort((a, b) => a - b);
 
   return (
@@ -56,74 +79,79 @@ export function HomePage() {
       <header className="cover">
         <GlyphField />
         <div className="cover-isi">
-          <span className="chapter-mark">Kurikulum Informatika</span>
+          <span className="chapter-mark">Untuk anak Informatika</span>
           <h1>
-            Empat tahun ilmu komputer, <em>tanpa</em> uang kuliah.
+            Kuliah Informatika nggak harus <em>bikin pusing.</em>
           </h1>
           <p>
-            {courses.length} mata kuliah, {totalSks} SKS, delapan semester.
-            Disusun mengikuti pembagian bidang CS2023 dari ACM dan IEEE, dengan
-            pola semester seperti program sarjana Informatika di Indonesia.
+            Materi yang sering bikin nyangkut, dijelaskan pelan-pelan dalam
+            bahasa Indonesia, dan bisa kamu utak-atik sendiri sambil baca.
           </p>
-          {siap && (
-            <Link className="btn" to={`/kursus/${siap.slug}`}>
-              Mulai dari {siap.title} →
+          {adaIsi[0] && (
+            <Link className="btn" to={`/kursus/${adaIsi[0].slug}`}>
+              Lihat contohnya: {adaIsi[0].title} →
             </Link>
           )}
         </div>
       </header>
 
-      <div className="switch">
+      <div className="saring">
+        <span className="saring-tanya">Lagi semester berapa?</span>
         <button
-          className={tampilan === "semester" ? "aktif" : ""}
-          onClick={() => setTampilan("semester")}
+          className={semester === null ? "aktif" : ""}
+          onClick={() => setSemester(null)}
         >
-          per semester
+          semua
         </button>
-        <button
-          className={tampilan === "bidang" ? "aktif" : ""}
-          onClick={() => setTampilan("bidang")}
-        >
-          per bidang
-        </button>
+        {semesters.map((s) => (
+          <button
+            key={s}
+            className={semester === s ? "aktif" : ""}
+            onClick={() => setSemester(s)}
+          >
+            {s}
+          </button>
+        ))}
       </div>
 
-      {tampilan === "semester"
-        ? semesters.map((semester) => {
-            const milik = courses.filter((c) => c.semester === semester);
-            const sks = milik.reduce((n, c) => n + c.sks, 0);
-            return (
-              <section key={semester} className="shelf">
-                <div className="shelf-head">
-                  <h2>Semester {semester}</h2>
-                  <p>
-                    {milik.length} mata kuliah · {sks} SKS
-                  </p>
-                </div>
-                {milik.map((course) => (
-                  <KartuMataKuliah key={course.code} course={course} />
-                ))}
-              </section>
-            );
-          })
-        : areas.map((area) => {
-            const milik = courses.filter((c) => c.areaCode === area.code);
-            if (milik.length === 0) return null;
-            return (
-              <section key={area.code} className="shelf">
-                <div className="shelf-head">
-                  <h2>
-                    {area.code} · {area.name}
-                  </h2>
-                  <p>{milik.length} mata kuliah</p>
-                </div>
-                <p className="area-desc">{area.description}</p>
-                {milik.map((course) => (
-                  <KartuMataKuliah key={course.code} course={course} />
-                ))}
-              </section>
-            );
-          })}
+      {semester !== null ? (
+        <section className="shelf">
+          <div className="shelf-head">
+            <h2>Semester {semester}</h2>
+            <p>{courses.filter((c) => c.semester === semester).length} topik</p>
+          </div>
+          {courses
+            .filter((c) => c.semester === semester)
+            .map((course, i) => (
+              <BarisTopik
+                key={course.code}
+                course={course}
+                nomor={String(i + 1).padStart(2, "0")}
+              />
+            ))}
+        </section>
+      ) : (
+        TAHAP.map((tahap) => {
+          const milik = courses.filter((c) => tahap.semester.includes(c.semester));
+          if (milik.length === 0) return null;
+          return (
+            <section key={tahap.nama} className="shelf">
+              <div className="shelf-head">
+                <h2>{tahap.nama}</h2>
+                <p>{milik.length} topik</p>
+              </div>
+              <p className="area-desc">{tahap.catatan}</p>
+              {milik.map((course, i) => (
+                <BarisTopik
+                  key={course.code}
+                  course={course}
+                  nomor={String(i + 1).padStart(2, "0")}
+                />
+              ))}
+            </section>
+          );
+        })
+      )}
     </main>
   );
 }

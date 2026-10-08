@@ -1,16 +1,33 @@
 # Titik Koma Kode
 
-Kurikulum Informatika empat tahun yang bisa ditempuh secara mandiri, berbahasa Indonesia.
+Teman belajar untuk mahasiswa Teknik Informatika dan Ilmu Komputer.
 
-43 mata kuliah, 134 SKS, delapan semester. Strukturnya disusun mengikuti pembagian
-17 bidang pengetahuan [CS2023](https://csed.acm.org/knowledge-areas/) dari ACM dan IEEE,
-dengan pola semester dan bobot SKS seperti program sarjana Informatika di Indonesia.
-Mata kuliah umum di luar bidang keilmuan tidak disertakan.
+Materi kuliah yang sering bikin nyangkut, dijelaskan dalam bahasa Indonesia dan bisa
+diutak-atik langsung di halamannya. Bukan pengganti kuliah, bukan lembaga pendidikan,
+dan tidak menerbitkan ijazah atau gelar.
 
-Setiap mata kuliah punya kode, bobot SKS, bidang, capaian pembelajaran, dan prasyarat
-yang saling terhubung, sehingga urutan belajarnya jelas.
+## Fokus
 
-Proyek ini dibuat untuk tiga tujuan: belajar, portofolio, dan peluang penghasilan tambahan.
+Mahasiswa Informatika punya kesulitan yang berulang: beberapa mata kuliah terkenal
+bikin banyak orang tersendat, penjelasan di kelas cepat dan abstrak, dan buku acuannya
+berbahasa Inggris. Sebagian konsep baru terasa masuk ketika dilihat bergerak, bukan
+dibaca.
+
+Platform ini menyasar celah itu.
+
+## Susunan
+
+43 topik yang mengikuti mata kuliah Informatika, dikelompokkan dalam empat tahap dari
+dasar sampai penutup. Tiap topik punya perkiraan waktu, daftar hal yang bisa dilakukan
+setelah menuntaskannya, dan prasyarat yang saling terhubung sehingga urutan belajarnya
+jelas.
+
+Di balik layar, rangkanya mengacu pada pembagian 17 bidang pengetahuan
+[CS2023](https://csed.acm.org/knowledge-areas/) dari ACM dan IEEE, serta pola semester
+program sarjana Informatika di Indonesia. Istilah akademiknya sengaja tidak ditampilkan
+agar terasa seperti teman belajar, bukan ruang kuliah.
+
+Proyek ini dibuat untuk tiga tujuan: belajar, portofolio, dan merintis usaha.
 
 ## Fitur yang direncanakan
 
@@ -100,9 +117,11 @@ yang tidak terdaftar, aplikasi berhenti dengan pesan yang menyebut kodenya.
 
 ## Status materi
 
-Kerangka kurikulum sudah lengkap untuk 43 mata kuliah: kode, SKS, bidang, capaian
-pembelajaran, dan prasyarat. Isi pelajarannya masih diisi bertahap, dimulai dari
-IF205 Pemrograman Web.
+Rangka 43 topik sudah lengkap: perkiraan waktu, capaian, dan prasyarat. Isi
+pelajarannya ditulis bertahap, dimulai dari Pemrograman Web.
+
+Materi HTML disusun dari [MDN Web Docs](https://developer.mozilla.org), ditulis ulang
+dalam bahasa Indonesia.
 
 ## Status
 
