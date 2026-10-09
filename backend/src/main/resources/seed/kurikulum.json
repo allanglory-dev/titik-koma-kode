@@ -2902,7 +2902,863 @@
         "Menghubungkan ungkapan logika dengan kondisi di dalam program."
       ],
       "prerequisites": [],
-      "lessons": []
+      "lessons": [
+        {
+          "title": "Proposisi",
+          "summary": "Kalimat yang bisa dinilai benar atau salah.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Logika mempersoalkan satu hal: bagaimana menarik kesimpulan yang sah. Sebelum sampai ke sana, kita perlu bahan bakunya, yaitu kalimat yang bisa dinilai."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Proposisi** adalah kalimat pernyataan yang bernilai benar atau salah, tetapi tidak keduanya sekaligus."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Proposisi:\n  Jakarta ibu kota Indonesia          (benar)\n  2 + 2 = 5                           (salah)\n  Setiap bilangan genap habis dibagi 2 (benar)\n\nBukan proposisi:\n  Jam berapa sekarang?        pertanyaan\n  Tolong tutup pintunya       perintah\n  Semoga lekas sembuh         harapan\n  x + 1 = 5                   belum tentu, bergantung x"
+            },
+            {
+              "type": "TEXT",
+              "content": "Contoh terakhir penting. `x + 1 = 5` baru menjadi proposisi setelah nilai `x` ditentukan. Kalimat seperti ini disebut kalimat terbuka, dan nanti ditangani dengan kuantor."
+            },
+            {
+              "type": "NOTE",
+              "content": "Nilai kebenaran sebuah proposisi tidak harus kamu ketahui. \"Ada kehidupan di planet lain\" tetap proposisi, karena pasti benar atau pasti salah, meski belum ada yang tahu jawabannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Penamaan.** Proposisi biasanya diberi huruf kecil: p, q, r, dan seterusnya. Nilainya ditulis B untuk benar dan S untuk salah, atau T dan F dalam buku berbahasa Inggris."
+            },
+            {
+              "type": "MATH",
+              "content": "p : Hari ini hujan\nq : Saya membawa payung"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Dari kalimat biasa menjadi lambang.** Kemampuan ini yang paling dibutuhkan di awal, dan paling sering keliru."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Kalimat                                  Lambang\n\nHari ini hujan dan saya bawa payung      p ∧ q\nHari ini tidak hujan                     ¬p\nHari ini hujan atau saya bawa payung     p ∨ q\nJika hujan maka saya bawa payung         p → q"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kata penghubung dalam bahasa sehari-hari tidak selalu persis sama dengan lambangnya. \"Tetapi\", \"meskipun\", dan \"sedangkan\" semuanya diterjemahkan menjadi konjungsi, karena logika hanya peduli pada nilai kebenaran, bukan nuansa."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Saya lapar tetapi tidak ada makanan   ->  p ∧ ¬q\nMeskipun hujan, saya tetap pergi      ->  p ∧ q"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Proposisi majemuk** adalah proposisi yang tersusun dari proposisi lain lewat penghubung. Proposisi yang tidak bisa dipecah lagi disebut proposisi atomik."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kenapa ini penting bagi anak informatika.** Setiap syarat di dalam `if` adalah proposisi. Setiap syarat perulangan adalah proposisi. Memahami logika berarti memahami kapan sebuah syarat bernilai benar, dan itu langsung memengaruhi jalannya program."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = 75\nkehadiran = 90\n\n# p: nilai >= 60\n# q: kehadiran >= 80\n\nprint(nilai >= 60)                      # p\nprint(nilai >= 60 and kehadiran >= 80)  # p dan q"
+            },
+            {
+              "type": "TASK",
+              "content": "Tentukan mana yang proposisi dan mana yang bukan. Untuk yang proposisi, sebutkan nilai kebenarannya.\n\n1. Bilangan 17 adalah bilangan prima\n2. Tutup jendelanya\n3. 5 lebih besar dari 9\n4. y - 3 = 10\n5. Apakah kamu sudah makan?",
+              "solution": "```\n1. Proposisi, benar\n2. Bukan, ini perintah\n3. Proposisi, salah\n4. Bukan proposisi, nilainya bergantung pada y\n5. Bukan, ini pertanyaan\n```\n\nNomor 4 disebut kalimat terbuka. Ia berubah menjadi proposisi begitu nilai `y` ditetapkan, atau begitu diberi kuantor seperti \"untuk setiap y\"."
+            },
+            {
+              "type": "TASK",
+              "content": "Ubah kalimat berikut menjadi lambang logika. Tetapkan dulu p dan q-nya.\n\n\"Saya lulus ujian tetapi tidak mendapat beasiswa.\"",
+              "solution": "```\np : Saya lulus ujian\nq : Saya mendapat beasiswa\n\nLambangnya:  p ∧ ¬q\n```\n\nKata \"tetapi\" diterjemahkan menjadi konjungsi, sama seperti \"dan\". Dalam bahasa sehari-hari \"tetapi\" menyiratkan pertentangan, tetapi logika hanya peduli pada nilai kebenaran, bukan nuansa rasa.\n\nBagian \"tidak mendapat\" menjadi negasi, sehingga ditulis `¬q`."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa kalimat \"Kalimat ini salah\" bukan proposisi?",
+              "solution": "Karena kalimat itu tidak bisa diberi nilai benar maupun salah tanpa menimbulkan pertentangan.\n\nKalau kita anggap benar, maka isinya terpenuhi, yang berarti kalimat itu salah. Kalau kita anggap salah, maka isinya tidak terpenuhi, yang berarti kalimat itu benar.\n\nKeduanya bertentangan dengan dirinya sendiri, jadi kalimat ini tidak punya nilai kebenaran sama sekali.\n\nBentuk seperti ini disebut paradoks pembohong, dan bukan sekadar permainan kata. Pola pertentangan yang sama dipakai Turing untuk membuktikan persoalan berhenti tidak terpecahkan, yang dibahas di topik Pengantar Ilmu Komputer."
+            }
+          ]
+        },
+        {
+          "title": "Negasi, Konjungsi, dan Disjungsi",
+          "summary": "Tiga penghubung dasar beserta tabel kebenarannya.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Tiga penghubung pertama inilah yang paling dekat dengan bahasa sehari-hari, dan ketiganya langsung punya padanan di dalam kode."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Negasi** membalik nilai kebenaran. Ditulis `¬p`, dibaca \"tidak p\"."
+            },
+            {
+              "type": "MATH",
+              "content": "p     ¬p\n\nB     S\nS     B"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dalam bahasa Indonesia, negasi dibentuk dengan menyisipkan \"tidak\" atau \"bukan\". Perhatikan negasi dari \"semua\" bukan \"semua tidak\", melainkan \"ada yang tidak\". Ini dibahas tuntas di bagian kuantor."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Konjungsi** bernilai benar hanya bila **kedua** bagiannya benar. Ditulis `p ∧ q`, dibaca \"p dan q\"."
+            },
+            {
+              "type": "MATH",
+              "content": "p     q     p ∧ q\n\nB     B      B\nB     S      S\nS     B      S\nS     S      S"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Disjungsi** bernilai benar bila **salah satu** bagiannya benar. Ditulis `p ∨ q`, dibaca \"p atau q\"."
+            },
+            {
+              "type": "MATH",
+              "content": "p     q     p ∨ q\n\nB     B      B\nB     S      B\nS     B      B\nS     S      S"
+            },
+            {
+              "type": "NOTE",
+              "content": "Perhatikan baris pertama. Dalam logika, \"atau\" tetap bernilai benar ketika keduanya benar. Ini berbeda dari pemakaian sehari-hari, misalnya \"mau teh atau kopi\" yang biasanya berarti pilih salah satu. Yang terakhir itu disebut disjungsi eksklusif, ditulis `⊕`, dan bernilai benar hanya bila keduanya berbeda."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Ketiganya ada di Python**, dengan nama yang hampir sama. Karena bisa dijalankan, cobalah ubah nilainya dan perhatikan hasilnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "p = True\nq = False\n\nprint(not p)      # negasi\nprint(p and q)    # konjungsi\nprint(p or q)     # disjungsi\nprint(p != q)     # disjungsi eksklusif"
+            },
+            {
+              "type": "TEXT",
+              "content": "Mari bangun seluruh tabel kebenaran konjungsi dengan kode, supaya terlihat bahwa tabel itu bukan hafalan melainkan hasil hitungan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "print(\"p      q      p dan q\")\nfor p in [True, False]:\n    for q in [True, False]:\n        print(f\"{p!s:<6} {q!s:<6} {p and q}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Urutan pengerjaan.** Negasi dikerjakan lebih dulu, lalu konjungsi, baru disjungsi."
+            },
+            {
+              "type": "MATH",
+              "content": "¬p ∨ q ∧ r   dibaca   (¬p) ∨ (q ∧ r)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Sama seperti di aritmetika, kalau ragu pakai kurung. Kode yang jelas lebih berharga daripada kode yang pendek."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Hubungannya dengan kode.** Syarat di dalam `if` yang panjang sebenarnya proposisi majemuk, dan bisa dibaca dengan cara yang sama."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = 75\nkehadiran = 90\ntugas = 60\n\n# (p ∧ q) ∨ r\nlulus = (nilai >= 60 and kehadiran >= 80) or tugas >= 90\nprint(lulus)"
+            },
+            {
+              "type": "TASK",
+              "content": "Lengkapi tabel kebenaran untuk `¬p ∨ q`.",
+              "solution": "```\np     q     ¬p    ¬p ∨ q\n\nB     B      S       B\nB     S      S       S\nS     B      B       B\nS     S      B       B\n```\n\nKerjakan kolom per kolom. Hitung `¬p` lebih dulu untuk semua baris, baru gabungkan dengan `q` memakai aturan disjungsi.\n\nSimpan hasil ini. Di bagian berikutnya kamu akan menemukan bahwa tabel ini **persis sama** dengan tabel implikasi `p → q`, dan itu bukan kebetulan."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis program yang menampilkan tabel kebenaran lengkap untuk `p ∨ q`, lalu jalankan.",
+              "solution": "```\nprint(\"p      q      p atau q\")\nfor p in [True, False]:\n    for q in [True, False]:\n        print(f\"{p!s:<6} {q!s:<6} {p or q}\")\n```\n\nKeluarannya:\n\n```\np      q      p atau q\nTrue   True   True\nTrue   False  True\nFalse  True   True\nFalse  False  False\n```\n\nPerulangan bersarang dipakai agar semua pasangan nilai tercakup. Dengan dua proposisi ada 4 kemungkinan, dengan tiga proposisi ada 8, dan seterusnya mengikuti 2 pangkat n."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah kedai menulis \"Gratis kopi untuk pelanggan yang membawa tumbler atau berbelanja di atas 50 ribu\". Seorang pelanggan membawa tumbler **dan** berbelanja 80 ribu. Apakah ia berhak atas kopi gratis?",
+              "solution": "Ya, berhak.\n\nDalam logika, \"atau\" bernilai benar bila salah satu bagiannya benar, termasuk ketika keduanya benar. Baris pertama tabel disjungsi menyatakan `B ∨ B` bernilai `B`.\n\n```\np : membawa tumbler              = benar\nq : berbelanja di atas 50 ribu   = benar\n\np ∨ q = benar\n```\n\nKalau kedai bermaksud pelanggan harus memilih salah satu saja, yang dimaksud sebenarnya disjungsi eksklusif, dan kalimatnya perlu ditulis ulang menjadi \"salah satu dari\".\n\nKetaksaan semacam ini sering muncul pada syarat dan ketentuan, dan logika membantumu melihatnya."
+            }
+          ]
+        },
+        {
+          "title": "Implikasi",
+          "summary": "Penghubung yang paling sering disalahpahami.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Implikasi menyatakan hubungan jika maka. Ditulis `p → q`, dibaca \"jika p maka q\"."
+            },
+            {
+              "type": "MATH",
+              "content": "p : kamu dapat nilai A di ujian akhir\nq : kamu dapat nilai A untuk mata kuliah ini\n\np → q : Jika kamu dapat A di ujian akhir,\n        maka kamu dapat A untuk mata kuliah ini"
+            },
+            {
+              "type": "TEXT",
+              "content": "`p` disebut anteseden atau syarat, `q` disebut konsekuen atau akibat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Inilah bagian yang paling banyak membuat mahasiswa tersendat**, dan itu terdokumentasi dalam penelitian pendidikan. Bukan karena mahasiswanya kurang teliti, melainkan karena tabel kebenarannya bertabrakan dengan cara kita memakai kata \"jika\" sehari-hari."
+            },
+            {
+              "type": "TEXT",
+              "content": "Karena itu jangan mulai dari tabelnya. Mulailah dari satu pertanyaan: **kapan sebuah janji dianggap ingkar?**"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bayangkan dosenmu berjanji: \"Jika kamu dapat A di ujian akhir, maka kamu dapat A untuk mata kuliah ini.\" Periksa empat kemungkinan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "1. Kamu dapat A di ujian, dan dapat A mata kuliah\n   Janji ditepati.\n\n2. Kamu dapat A di ujian, tapi tidak dapat A mata kuliah\n   Janji ingkar. Jelas.\n\n3. Kamu tidak dapat A di ujian, tapi tetap dapat A mata kuliah\n   Apakah dosen ingkar? Tidak. Ia tidak pernah\n   menjanjikan apa pun untuk keadaan ini.\n\n4. Kamu tidak dapat A di ujian, dan tidak dapat A mata kuliah\n   Juga tidak ingkar. Tidak ada yang dilanggar."
+            },
+            {
+              "type": "TEXT",
+              "content": "Hanya satu keadaan yang membuat janji itu ingkar, yaitu nomor dua. Pada tiga keadaan lainnya, janji tersebut **tidak dilanggar**, jadi tetap bernilai benar."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dari situ aturannya muncul dengan sendirinya: **implikasi bernilai salah hanya ketika syaratnya terpenuhi tapi akibatnya tidak.**"
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 580 210\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Tabel kebenaran implikasi, hanya satu baris yang bernilai salah\">\n  <text x=\"130\" y=\"34\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\"\n        fill=\"currentColor\" opacity=\"0.65\">p</text>\n  <text x=\"210\" y=\"34\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\"\n        fill=\"currentColor\" opacity=\"0.65\">q</text>\n  <text x=\"310\" y=\"34\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\"\n        fill=\"currentColor\" opacity=\"0.65\">p &#8594; q</text>\n  <line x1=\"96\" y1=\"44\" x2=\"396\" y2=\"44\" stroke=\"currentColor\" stroke-opacity=\"0.25\"/>\n  <text x=\"130\" y=\"64\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"currentColor\" opacity=\"0.55\">B</text><text x=\"210\" y=\"64\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"currentColor\" opacity=\"0.55\">B</text><text x=\"310\" y=\"64\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"currentColor\" opacity=\"0.55\">B</text><rect x=\"96\" y=\"78\" width=\"300\" height=\"28\" rx=\"3\" fill=\"var(--kunyit)\" fill-opacity=\"0.12\"/><text x=\"130\" y=\"96\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"var(--kunyit)\" opacity=\"1\">B</text><text x=\"210\" y=\"96\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"var(--kunyit)\" opacity=\"1\">S</text><text x=\"310\" y=\"96\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"var(--kunyit)\" opacity=\"1\">S</text><text x=\"412\" y=\"96\" font-family=\"system-ui, sans-serif\" font-size=\"12.5\" fill=\"var(--kunyit)\">satu-satunya yang salah</text><text x=\"130\" y=\"128\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"currentColor\" opacity=\"0.55\">S</text><text x=\"210\" y=\"128\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"currentColor\" opacity=\"0.55\">B</text><text x=\"310\" y=\"128\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"currentColor\" opacity=\"0.55\">B</text><text x=\"130\" y=\"160\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"currentColor\" opacity=\"0.55\">S</text><text x=\"210\" y=\"160\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"currentColor\" opacity=\"0.55\">S</text><text x=\"310\" y=\"160\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"currentColor\" opacity=\"0.55\">B</text>\n  <text x=\"290\" y=\"196\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"13\"\n        fill=\"currentColor\" opacity=\"0.65\">Janji hanya ingkar bila syaratnya terpenuhi tapi hasilnya tidak</text>\n</svg>",
+              "solution": "Dari empat kemungkinan, hanya satu yang membuat implikasi bernilai salah."
+            },
+            {
+              "type": "MATH",
+              "content": "p     q     p → q\n\nB     B      B\nB     S      S\nS     B      B\nS     S      B"
+            },
+            {
+              "type": "NOTE",
+              "content": "Baris ketiga dan keempat itulah yang paling sering ditolak. Penelitian menemukan banyak orang menganggap keadaan dengan syarat yang tidak terpenuhi sebagai \"tidak relevan\", bukan \"benar\". Secara perasaan itu masuk akal, tetapi logika tidak menyediakan nilai ketiga. Kalau sebuah janji tidak dilanggar, ia dianggap ditepati."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Cara kedua untuk memeriksanya.** Perhatikan tabel `¬p ∨ q` yang kamu susun di bagian sebelumnya. Hasilnya persis sama dengan tabel implikasi."
+            },
+            {
+              "type": "MATH",
+              "content": "p → q  setara dengan  ¬p ∨ q"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dibaca dalam bahasa biasa: \"syaratnya tidak terpenuhi, atau akibatnya terjadi\". Bentuk ini sering lebih mudah diterima daripada tabel implikasi itu sendiri."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Bandingkan keduanya di Python\nprint(\"p      q      p->q   not p or q\")\nfor p in [True, False]:\n    for q in [True, False]:\n        implikasi = (not p) or q\n        print(f\"{p!s:<6} {q!s:<6} {implikasi!s:<6} {(not p) or q}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tiga bentuk turunan** yang perlu kamu bedakan, karena sering tertukar."
+            },
+            {
+              "type": "MATH",
+              "content": "Implikasi      p → q       Jika hujan maka jalanan basah\nKonvers        q → p       Jika jalanan basah maka hujan\nInvers         ¬p → ¬q     Jika tidak hujan maka jalanan tidak basah\nKontraposisi   ¬q → ¬p     Jika jalanan tidak basah maka tidak hujan"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan contohnya. Implikasi asli masuk akal. Konversnya tidak, karena jalanan bisa basah oleh sebab lain, misalnya mobil tangki air yang bocor. Begitu pula inversnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Tetapi kontraposisinya selalu masuk akal: kalau jalanan kering, pastilah tidak hujan."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 560 220\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Hubungan antara implikasi, konvers, invers, dan kontraposisi\">\n  <rect x=\"40\" y=\"30\" width=\"190\" height=\"46\" rx=\"3\" fill=\"none\"\n        stroke=\"var(--nila)\" stroke-width=\"1.5\"/>\n  <text x=\"135\" y=\"52\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">IMPLIKASI</text>\n  <text x=\"135\" y=\"70\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"var(--nila)\">p &#8594; q</text>\n\n  <rect x=\"330\" y=\"30\" width=\"190\" height=\"46\" rx=\"3\" fill=\"none\"\n        stroke=\"currentColor\" stroke-opacity=\"0.4\"/>\n  <text x=\"425\" y=\"52\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\"\n        fill=\"currentColor\" opacity=\"0.6\">KONVERS</text>\n  <text x=\"425\" y=\"70\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\"\n        fill=\"currentColor\" opacity=\"0.75\">q &#8594; p</text>\n\n  <rect x=\"40\" y=\"140\" width=\"190\" height=\"46\" rx=\"3\" fill=\"none\"\n        stroke=\"currentColor\" stroke-opacity=\"0.4\"/>\n  <text x=\"135\" y=\"162\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\"\n        fill=\"currentColor\" opacity=\"0.6\">INVERS</text>\n  <text x=\"135\" y=\"180\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\"\n        fill=\"currentColor\" opacity=\"0.75\">&#172;p &#8594; &#172;q</text>\n\n  <rect x=\"330\" y=\"140\" width=\"190\" height=\"46\" rx=\"3\" fill=\"none\"\n        stroke=\"var(--nila)\" stroke-width=\"1.5\"/>\n  <text x=\"425\" y=\"162\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">KONTRAPOSISI</text>\n  <text x=\"425\" y=\"180\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"var(--nila)\">&#172;q &#8594; &#172;p</text>\n\n  <path d=\"M 230 70 L 325 150\" stroke=\"var(--nila)\" stroke-width=\"1.5\" fill=\"none\"/>\n  <rect x=\"246\" y=\"98\" width=\"88\" height=\"22\" rx=\"11\" fill=\"var(--bg-raised)\"/>\n  <text x=\"290\" y=\"113\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">setara</text>\n\n  <path d=\"M 230 166 L 325 76\" stroke=\"currentColor\" stroke-opacity=\"0.3\"\n        stroke-dasharray=\"4 3\" fill=\"none\"/>\n\n  <text x=\"280\" y=\"212\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12.5\"\n        fill=\"currentColor\" opacity=\"0.6\">Konvers dan invers juga setara satu sama lain, tapi tidak dengan implikasinya</text>\n</svg>",
+              "solution": "Implikasi selalu setara dengan kontraposisinya, tetapi tidak dengan konvers maupun inversnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kesetaraan dengan kontraposisi ini sangat berguna.** Dalam pembuktian matematika, membuktikan kontraposisi sering jauh lebih mudah daripada membuktikan pernyataan aslinya secara langsung."
+            },
+            {
+              "type": "NOTE",
+              "content": "Menukar implikasi dengan konversnya adalah kekeliruan penalaran yang sangat umum di luar kelas logika. \"Semua pencuri memakai topi\" tidak berarti \"semua yang memakai topi adalah pencuri\". Kekeliruan ini punya nama sendiri, yaitu penegasan konsekuen."
+            },
+            {
+              "type": "TASK",
+              "content": "Tentukan nilai kebenaran pernyataan berikut, lalu jelaskan alasannya.\n\n\"Jika 2 + 2 = 5, maka saya presiden Indonesia.\"",
+              "solution": "Bernilai **benar**.\n\nSyaratnya, yaitu `2 + 2 = 5`, bernilai salah. Menurut tabel implikasi, ketika syaratnya salah, seluruh implikasi bernilai benar apa pun akibatnya.\n\nIni terasa janggal, dan kejanggalan itu wajar. Tetapi lihat lewat sudut pandang janji: tidak ada janji yang dilanggar di sini, karena syaratnya memang tidak pernah terpenuhi.\n\nPernyataan semacam ini kadang disebut benar secara hampa. Ia benar bukan karena isinya bermakna, melainkan karena tidak ada cara untuk membuktikannya salah."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis konvers, invers, dan kontraposisi dari pernyataan berikut, lalu tentukan mana yang bernilai benar.\n\n\"Jika sebuah bilangan habis dibagi 4, maka bilangan itu genap.\"",
+              "solution": "```\nImplikasi     Jika habis dibagi 4, maka genap          BENAR\nKonvers       Jika genap, maka habis dibagi 4          SALAH\nInvers        Jika tidak habis dibagi 4, maka ganjil   SALAH\nKontraposisi  Jika ganjil, maka tidak habis dibagi 4   BENAR\n```\n\nKonversnya salah karena ada penyangkalnya: 6 genap tetapi tidak habis dibagi 4. Inversnya juga salah dengan contoh penyangkal yang sama.\n\nPerhatikan implikasi dan kontraposisi sama-sama benar, sedangkan konvers dan invers sama-sama salah. Itu bukan kebetulan: implikasi selalu setara dengan kontraposisinya, dan konvers selalu setara dengan inversnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Seorang teman berkata: \"Kalau kamu rajin belajar, kamu pasti lulus. Kamu lulus, berarti kamu rajin belajar.\" Apa yang keliru dari penalarannya?",
+              "solution": "Ia menukar implikasi dengan konversnya.\n\n```\nYang dikatakan      p → q    rajin belajar → lulus\nYang disimpulkan    q → p    lulus → rajin belajar\n```\n\nKeduanya tidak setara. Dari kenyataan bahwa seseorang lulus, kita tidak bisa menyimpulkan ia rajin belajar, sebab mungkin saja ia beruntung, soalnya mudah, atau ia memang sudah menguasai bahannya sejak awal.\n\nKekeliruan ini bernama penegasan konsekuen, dan merupakan salah satu kesalahan penalaran yang paling sering ditemui dalam percakapan sehari-hari maupun iklan.\n\nYang **sah** disimpulkan adalah kontraposisinya: kalau ia tidak lulus, berarti ia tidak rajin belajar."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut, lalu jelaskan kenapa kedua kolomnya selalu sama.\n\n```\nfor p in [True, False]:\n    for q in [True, False]:\n        print((not p) or q, p <= q)\n```",
+              "solution": "Keduanya sama karena `(not p) or q` memang bentuk lain dari implikasi `p → q`.\n\nBagian yang mengejutkan adalah `p <= q`. Di Python, `True` bernilai 1 dan `False` bernilai 0. Satu-satunya keadaan yang membuat `p <= q` bernilai salah adalah ketika `p` bernilai 1 dan `q` bernilai 0, yaitu persis keadaan yang membuat implikasi bernilai salah.\n\n```\np      q      not p or q    p <= q\nTrue   True   True          True\nTrue   False  False         False\nFalse  True   True          True\nFalse  False  True          True\n```\n\nIni cara yang rapi untuk memeriksa pemahamanmu, meski menulis `p <= q` untuk menyatakan implikasi di dalam kode sungguhan akan membingungkan pembaca. Tulis maksudmu dengan jelas, bukan dengan trik."
+            }
+          ]
+        },
+        {
+          "title": "Tabel Kebenaran",
+          "summary": "Memeriksa nilai sebuah pernyataan untuk semua kemungkinan.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Tabel kebenaran adalah alat paling dasar sekaligus paling jujur dalam logika. Ia memeriksa **semua** kemungkinan, jadi tidak ada yang terlewat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Banyaknya baris** ditentukan jumlah proposisi dasarnya."
+            },
+            {
+              "type": "MATH",
+              "content": "1 proposisi   ->  2 baris\n2 proposisi   ->  4 baris\n3 proposisi   ->  8 baris\nn proposisi   ->  2^n baris"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pertumbuhan berlipat dua ini akan kamu temui lagi di Analisis Algoritma. Untuk sepuluh proposisi sudah 1.024 baris, dan untuk dua puluh lebih dari satu juta. Memeriksa semua kemungkinan cepat menjadi mahal."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Cara menyusunnya.** Kerjakan dari bagian terdalam ke luar, satu kolom setiap kali, jangan langsung ke jawaban akhir."
+            },
+            {
+              "type": "TEXT",
+              "content": "Mari susun tabel untuk `(p ∧ q) → ¬r`."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "p   q   r   p∧q   ¬r   (p∧q)→¬r\n\nB   B   B    B    S       S\nB   B   S    B    B       B\nB   S   B    S    S       B\nB   S   S    S    B       B\nS   B   B    S    S       B\nS   B   S    S    B       B\nS   S   B    S    S       B\nS   S   S    S    B       B"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan cara mengisi kolom p, q, dan r. Kolom pertama separuh atas B semua, kolom kedua berselang empat, kolom ketiga berselang dua. Pola ini menjamin tidak ada kombinasi yang terlewat atau terulang."
+            },
+            {
+              "type": "NOTE",
+              "content": "Hanya satu baris yang menghasilkan salah, yaitu ketika p, q, dan r semuanya benar. Masuk akal: `p ∧ q` terpenuhi tetapi `¬r` tidak, dan itulah satu-satunya keadaan yang membuat implikasi gagal."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tiga nama yang perlu kamu kenal** berdasarkan kolom terakhirnya."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Tautologi      selalu benar, apa pun nilai proposisinya\nKontradiksi    selalu salah\nKontingensi    kadang benar kadang salah"
+            },
+            {
+              "type": "MATH",
+              "content": "p ∨ ¬p   tautologi\np ∧ ¬p   kontradiksi\np → q    kontingensi"
+            },
+            {
+              "type": "TEXT",
+              "content": "Tautologi penting karena menjadi dasar semua aturan penalaran yang sah. Kalau `A → B` adalah tautologi, maka menyimpulkan B dari A selalu dibenarkan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menyusunnya dengan kode.** Karena jumlah barisnya mengikuti perulangan bersarang, tabel kebenaran mudah dibangkitkan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def tampilkan(nama, rumus):\n    print(f\"p      q      {nama}\")\n    for p in [True, False]:\n        for q in [True, False]:\n            print(f\"{p!s:<6} {q!s:<6} {rumus(p, q)}\")\n\ntampilkan(\"p -> q\", lambda p, q: (not p) or q)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Untuk memeriksa apakah sesuatu tautologi, kumpulkan semua hasilnya lalu periksa apakah semuanya benar."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "from itertools import product\n\ndef tautologi(rumus, jumlah):\n    return all(rumus(*nilai) for nilai in product([True, False], repeat=jumlah))\n\nprint(tautologi(lambda p: p or not p, 1))              # True\nprint(tautologi(lambda p, q: (not p) or q, 2))         # False\nprint(tautologi(lambda p, q: p and q, 2))              # False"
+            },
+            {
+              "type": "TEXT",
+              "content": "`product` menghasilkan semua kombinasi nilai, persis seperti baris pada tabel kebenaran. `all` memeriksa apakah seluruhnya benar."
+            },
+            {
+              "type": "TASK",
+              "content": "Susun tabel kebenaran untuk `¬(p ∧ q)`, lalu bandingkan dengan tabel `¬p ∨ ¬q`. Apa yang kamu temukan?",
+              "solution": "```\np   q   p∧q   ¬(p∧q)    ¬p   ¬q   ¬p∨¬q\n\nB   B    B      S       S    S     S\nB   S    S      B       S    B     B\nS   B    S      B       B    S     B\nS   S    S      B       B    B     B\n```\n\nKolom `¬(p ∧ q)` dan `¬p ∨ ¬q` **persis sama** untuk semua baris. Keduanya setara.\n\nIni salah satu hukum De Morgan, dan akan dibahas lebih lanjut di bagian Ekuivalensi Logika. Bacanya: mengingkari \"keduanya\" sama dengan mengatakan \"setidaknya salah satu tidak\".\n\nContoh sehari-hari: mengingkari \"saya punya uang dan waktu\" berarti \"saya tidak punya uang, atau tidak punya waktu\", bukan \"saya tidak punya uang dan tidak punya waktu\"."
+            },
+            {
+              "type": "TASK",
+              "content": "Tentukan apakah `(p → q) ∧ (q → p)` termasuk tautologi, kontradiksi, atau kontingensi.",
+              "solution": "```\np   q   p→q   q→p   (p→q)∧(q→p)\n\nB   B    B     B         B\nB   S    S     B         S\nS   B    B     S         S\nS   S    B     B         B\n```\n\nHasilnya kadang benar kadang salah, jadi ini **kontingensi**.\n\nPerhatikan pernyataan ini bernilai benar tepat ketika `p` dan `q` bernilai sama. Itulah sebabnya bentuk ini punya nama sendiri, yaitu biimplikasi, ditulis `p ↔ q` dan dibaca \"p jika dan hanya jika q\"."
+            },
+            {
+              "type": "TASK",
+              "content": "Berapa baris yang dibutuhkan tabel kebenaran untuk pernyataan dengan 5 proposisi dasar? Dan dengan 10?",
+              "solution": "```\n5 proposisi   ->  2^5  = 32 baris\n10 proposisi  ->  2^10 = 1.024 baris\n```\n\nPertumbuhan berlipat dua ini punya akibat praktis. Memeriksa kesahihan dengan tabel kebenaran mudah untuk pernyataan kecil, tetapi cepat menjadi mustahil untuk yang besar.\n\nPersoalan menentukan apakah ada kombinasi nilai yang membuat sebuah pernyataan bernilai benar punya nama sendiri, yaitu persoalan kepuasan Boolean. Persoalan ini termasuk golongan sulit yang dibahas pada bagian P lawan NP di topik Pengantar Ilmu Komputer.\n\nItu sebabnya aturan inferensi, yang dibahas dua bagian lagi, menjadi penting: ia membuktikan kesahihan tanpa harus memeriksa semua kemungkinan."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan dan lengkapi kode berikut agar memeriksa apakah `(p ∧ (p → q)) → q` merupakan tautologi.\n\n```\nfrom itertools import product\n\ndef tautologi(rumus, jumlah):\n    return all(rumus(*n) for n in product([True, False], repeat=jumlah))\n\n# lengkapi di sini\n```",
+              "solution": "```\nfrom itertools import product\n\ndef tautologi(rumus, jumlah):\n    return all(rumus(*n) for n in product([True, False], repeat=jumlah))\n\nrumus = lambda p, q: (not (p and ((not p) or q))) or q\n\nprint(tautologi(rumus, 2))   # True\n```\n\nHasilnya `True`, jadi pernyataan ini memang tautologi.\n\nMenulisnya memang berliku karena setiap implikasi perlu diubah menjadi bentuk `not ... or ...`. Lebih mudah dibaca bila dipecah:\n\n```\ndef implikasi(a, b):\n    return (not a) or b\n\nrumus = lambda p, q: implikasi(p and implikasi(p, q), q)\nprint(tautologi(rumus, 2))   # True\n```\n\nTautologi ini punya nama: modus ponens. Ia menjadi dasar penalaran \"kalau p benar, dan p mengakibatkan q, maka q benar\", dan dibahas di bagian Aturan Inferensi."
+            }
+          ]
+        },
+        {
+          "title": "Ekuivalensi Logika",
+          "summary": "Dua pernyataan berbeda bentuk yang selalu bernilai sama.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Dua pernyataan disebut setara bila tabel kebenarannya persis sama untuk semua baris. Ditulis dengan lambang `≡`."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kesetaraan berguna karena memungkinkanmu mengganti pernyataan rumit dengan yang lebih sederhana, tanpa mengubah artinya sedikit pun."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Hukum De Morgan** adalah yang paling sering dipakai, termasuk saat menulis kode."
+            },
+            {
+              "type": "MATH",
+              "content": "¬(p ∧ q)  ≡  ¬p ∨ ¬q\n¬(p ∨ q)  ≡  ¬p ∧ ¬q"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bacanya: negasi menembus kurung, dan penghubungnya berbalik. Konjungsi menjadi disjungsi, begitu pula sebaliknya."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 560 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Hukum De Morgan, negasi menembus kurung dan membalik penghubung\">\n  <text x=\"280\" y=\"26\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12.5\" font-weight=\"600\"\n        fill=\"currentColor\" opacity=\"0.55\">NEGASI MENEMBUS KURUNG DAN MEMBALIK PENGHUBUNG</text>\n\n  <text x=\"150\" y=\"76\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"18\"\n        fill=\"currentColor\">&#172;(p &#8743; q)</text>\n  <text x=\"280\" y=\"76\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"18\"\n        fill=\"currentColor\" opacity=\"0.45\">&#8801;</text>\n  <text x=\"410\" y=\"76\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"18\"\n        fill=\"currentColor\">&#172;p &#8744; &#172;q</text>\n  <text x=\"248\" y=\"100\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\"\n        fill=\"var(--kunyit)\">&#8743; menjadi &#8744;</text>\n\n  <text x=\"150\" y=\"146\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"18\"\n        fill=\"currentColor\">&#172;(p &#8744; q)</text>\n  <text x=\"280\" y=\"146\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"18\"\n        fill=\"currentColor\" opacity=\"0.45\">&#8801;</text>\n  <text x=\"410\" y=\"146\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"18\"\n        fill=\"currentColor\">&#172;p &#8743; &#172;q</text>\n  <text x=\"248\" y=\"170\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\"\n        fill=\"var(--kunyit)\">&#8744; menjadi &#8743;</text>\n\n  <line x1=\"60\" y1=\"108\" x2=\"500\" y2=\"108\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n</svg>",
+              "solution": "Hukum De Morgan. Negasi menembus kurung, lalu penghubungnya berbalik."
+            },
+            {
+              "type": "TEXT",
+              "content": "Contoh sehari-hari membuatnya masuk akal. Mengingkari \"saya punya uang **dan** waktu\" berarti \"saya tidak punya uang, **atau** tidak punya waktu\". Cukup salah satu yang tidak ada."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "p = True\nq = False\n\nprint(not (p and q), (not p) or (not q))   # sama\nprint(not (p or q), (not p) and (not q))   # sama juga"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Hukum-hukum lain** yang sering terpakai."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Identitas       p ∧ B ≡ p            p ∨ S ≡ p\nDominasi        p ∨ B ≡ B            p ∧ S ≡ S\nIdempoten       p ∨ p ≡ p            p ∧ p ≡ p\nNegasi ganda    ¬(¬p) ≡ p\nKomutatif       p ∧ q ≡ q ∧ p\nAsosiatif       (p ∧ q) ∧ r ≡ p ∧ (q ∧ r)\nDistributif     p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)\nPenyerapan      p ∨ (p ∧ q) ≡ p\nImplikasi       p → q ≡ ¬p ∨ q"
+            },
+            {
+              "type": "NOTE",
+              "content": "Hukum terakhir itu yang paling berguna. Mengubah implikasi menjadi disjungsi memungkinkan kamu memakai De Morgan dan hukum lain yang hanya berlaku untuk konjungsi dan disjungsi."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menyederhanakan secara bertahap.** Kerjakan satu hukum setiap langkah, dan tulis nama hukumnya. Kebiasaan ini membuat kekeliruan mudah ditemukan."
+            },
+            {
+              "type": "MATH",
+              "content": "¬(p → q)\n≡ ¬(¬p ∨ q)        ubah implikasi\n≡ ¬(¬p) ∧ ¬q       De Morgan\n≡ p ∧ ¬q          negasi ganda"
+            },
+            {
+              "type": "TEXT",
+              "content": "Hasilnya masuk akal: mengingkari \"jika p maka q\" berarti menyatakan p terjadi tetapi q tidak. Itu persis satu-satunya baris yang membuat implikasi bernilai salah."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kegunaannya di dalam kode.** Syarat yang berbelit sering bisa dipendekkan tanpa mengubah perilakunya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "umur = 25\npunya_sim = True\n\n# berbelit\nif not (umur < 17 or not punya_sim):\n    print(\"boleh menyetir\")\n\n# setelah De Morgan dan negasi ganda\nif umur >= 17 and punya_sim:\n    print(\"boleh menyetir\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Versi kedua langsung menyatakan maksudnya. Pembaca tidak perlu membongkar negasi bertumpuk di kepalanya."
+            },
+            {
+              "type": "TASK",
+              "content": "Sederhanakan `¬(¬p ∧ q)` sampai bentuk paling pendek, sebutkan hukum di tiap langkah.",
+              "solution": "```\n¬(¬p ∧ q)\n≡ ¬(¬p) ∨ ¬q      De Morgan\n≡ p ∨ ¬q         negasi ganda\n```\n\nPeriksa dengan kode:\n\n```\nfor p in [True, False]:\n    for q in [True, False]:\n        kiri = not ((not p) and q)\n        kanan = p or (not q)\n        print(p, q, kiri, kanan, kiri == kanan)\n```\n\nKolom terakhir selalu `True`, jadi keduanya memang setara."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis ulang syarat berikut tanpa negasi di luar kurung.\n\n```\nif not (nilai >= 60 and kehadiran >= 80):\n    print(\"tidak lulus\")\n```",
+              "solution": "Terapkan De Morgan, lalu balik setiap pembandingnya.\n\n```\nif nilai < 60 or kehadiran < 80:\n    print(\"tidak lulus\")\n```\n\nPerhatikan dua perubahan sekaligus. `and` menjadi `or` karena De Morgan, dan `>=` menjadi `<` karena itulah negasi dari masing-masing perbandingan.\n\nVersi kedua lebih mudah dibaca: tidak lulus bila nilainya kurang, atau kehadirannya kurang."
+            },
+            {
+              "type": "TASK",
+              "content": "Buktikan `p ∨ (p ∧ q) ≡ p` dengan tabel kebenaran, lalu jelaskan artinya dalam bahasa biasa.",
+              "solution": "```\np   q   p∧q   p ∨ (p∧q)\n\nB   B    B        B\nB   S    S        B\nS   B    S        S\nS   S    S        S\n```\n\nKolom terakhir persis sama dengan kolom `p`, jadi keduanya setara. Hukum ini bernama penyerapan.\n\nArtinya dalam bahasa biasa: \"p, atau p sekaligus q\" tidak menambah apa pun di luar p. Kalau p sudah benar, bagian keduanya tidak berpengaruh. Kalau p salah, bagian keduanya juga pasti salah karena memuat p.\n\nDi dalam kode, ini berarti syarat seperti `x > 0 or (x > 0 and y > 0)` bisa dipendekkan menjadi `x > 0` saja."
+            },
+            {
+              "type": "TASK",
+              "content": "Seorang teman menulis syarat ini dan merasa ada yang salah, tapi tidak tahu di mana. Perbaiki.\n\n```\n# ingin: tolak kalau umur di bawah 17 atau tidak punya SIM\nif not umur >= 17 and not punya_sim:\n    print(\"ditolak\")\n```",
+              "solution": "Ia memakai `and` padahal maksudnya `or`.\n\nMaksudnya adalah mengingkari \"umur cukup **dan** punya SIM\":\n\n```\n¬(umur >= 17 ∧ punya_sim)\n≡ ¬(umur >= 17) ∨ ¬punya_sim      De Morgan\n≡ umur < 17 ∨ ¬punya_sim\n```\n\nJadi yang benar:\n\n```\nif umur < 17 or not punya_sim:\n    print(\"ditolak\")\n```\n\nKode aslinya hanya menolak orang yang **sekaligus** di bawah 17 **dan** tidak punya SIM. Orang berumur 15 yang entah bagaimana punya SIM akan lolos.\n\nLupa membalik penghubung saat menembus negasi adalah salah satu sumber bug paling halus, karena kodenya tetap berjalan tanpa pesan kesalahan apa pun."
+            }
+          ]
+        },
+        {
+          "title": "Argumen dan Aturan Inferensi",
+          "summary": "Kapan sebuah kesimpulan boleh ditarik.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Argumen adalah rangkaian pernyataan: beberapa premis, lalu sebuah kesimpulan. Pertanyaannya, kapan kesimpulan itu boleh ditarik?"
+            },
+            {
+              "type": "MATH",
+              "content": "Premis 1 : p → q\nPremis 2 : p\n-----------------\nKesimpulan: q"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Sahih bukan berarti benar.** Ini pembedaan yang menentukan, dan sering tertukar."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sebuah argumen disebut **sahih** bila bentuknya menjamin kesimpulan benar **seandainya** semua premisnya benar. Kesahihan mempersoalkan bentuk, bukan isi."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Argumen sahih dengan premis salah:\n\n  Semua burung bisa terbang       (salah, pinguin tidak)\n  Pinguin adalah burung           (benar)\n  ----------------------------\n  Pinguin bisa terbang            (salah)\n\nBentuknya sahih. Kesimpulannya salah karena\npremisnya salah, bukan karena penalarannya keliru."
+            },
+            {
+              "type": "NOTE",
+              "content": "Logika hanya menjaga penalaranmu, bukan kebenaran bahan bakunya. Premis yang keliru menghasilkan kesimpulan yang keliru meski penalarannya sempurna. Dalam ilmu komputer, ini sepadan dengan program yang benar tetapi diberi data yang salah."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Aturan inferensi** adalah bentuk argumen yang sudah terbukti sahih, jadi bisa langsung dipakai tanpa menyusun tabel kebenaran lagi."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Modus ponens          p → q,  p         ∴ q\nModus tollens         p → q,  ¬q        ∴ ¬p\nSilogisme hipotetis   p → q,  q → r     ∴ p → r\nSilogisme disjungtif  p ∨ q,  ¬p        ∴ q\nSimplifikasi          p ∧ q              ∴ p\nKonjungsi             p,  q              ∴ p ∧ q\nPenambahan            p                  ∴ p ∨ q"
+            },
+            {
+              "type": "TEXT",
+              "content": "Lambang `∴` dibaca \"maka\" atau \"jadi\"."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Modus ponens** adalah yang paling sering dipakai, dan paling sesuai dengan cara berpikir sehari-hari."
+            },
+            {
+              "type": "MATH",
+              "content": "Jika hujan maka jalanan basah\nHari ini hujan\n-----------------------------\nJadi jalanan basah"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Modus tollens** kurang akrab tapi sama sahihnya. Ia menarik kesimpulan dari akibat yang tidak terjadi."
+            },
+            {
+              "type": "MATH",
+              "content": "Jika hujan maka jalanan basah\nJalanan tidak basah\n-----------------------------\nJadi tidak hujan"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan ini sebenarnya modus ponens yang diterapkan pada kontraposisi. Karena `p → q` setara dengan `¬q → ¬p`, dan kita tahu `¬q`, maka `¬p` mengikuti."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Dua bentuk yang tampak mirip tapi tidak sahih.** Keduanya punya nama karena begitu sering dipakai orang tanpa sadar."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Penegasan konsekuen  (TIDAK SAHIH)\n  p → q,  q    ∴ p\n\n  Jika hujan maka jalanan basah\n  Jalanan basah\n  Jadi hujan                        ← belum tentu\n\nPengingkaran anteseden  (TIDAK SAHIH)\n  p → q,  ¬p   ∴ ¬q\n\n  Jika hujan maka jalanan basah\n  Tidak hujan\n  Jadi jalanan tidak basah          ← belum tentu"
+            },
+            {
+              "type": "TEXT",
+              "content": "Keduanya gagal karena alasan yang sama: implikasi tidak setara dengan konvers maupun inversnya. Jalanan bisa basah oleh sebab lain."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Memeriksa kesahihan dengan kode.** Sebuah argumen sahih bila tidak ada satu pun baris dengan semua premis benar tetapi kesimpulan salah."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "from itertools import product\n\ndef sahih(premis, kesimpulan, jumlah):\n    for nilai in product([True, False], repeat=jumlah):\n        if all(p(*nilai) for p in premis) and not kesimpulan(*nilai):\n            return False, nilai     # ditemukan penyangkal\n    return True, None\n\nimplikasi = lambda a, b: (not a) or b\n\n# modus ponens\nprint(sahih([lambda p, q: implikasi(p, q), lambda p, q: p],\n            lambda p, q: q, 2))\n\n# penegasan konsekuen\nprint(sahih([lambda p, q: implikasi(p, q), lambda p, q: q],\n            lambda p, q: p, 2))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Yang kedua mengembalikan penyangkalnya, yaitu kombinasi nilai yang membuat semua premis benar tetapi kesimpulannya salah. Satu penyangkal sudah cukup untuk membatalkan kesahihan."
+            },
+            {
+              "type": "TASK",
+              "content": "Apakah argumen berikut sahih? Jelaskan.\n\n```\nJika program ini benar, maka ujiannya lulus\nUjiannya lulus\n--------------------------------\nJadi program ini benar\n```",
+              "solution": "**Tidak sahih.** Ini penegasan konsekuen.\n\n```\np → q,  q    ∴ p      tidak sahih\n```\n\nPenyangkalnya: program bisa saja salah tetapi tetap lolos ujian, misalnya karena ujiannya tidak mencakup keadaan yang bermasalah.\n\nIni bukan contoh yang dibuat-buat. Justru inilah keterbatasan pengujian perangkat lunak yang terkenal: pengujian dapat menunjukkan adanya kesalahan, tetapi tidak dapat membuktikan ketiadaannya.\n\nYang **sahih** adalah kontraposisinya, yaitu modus tollens: kalau ujiannya tidak lulus, maka programnya pasti salah."
+            },
+            {
+              "type": "TASK",
+              "content": "Susun kesimpulan yang sah dari premis berikut, dan sebutkan aturan inferensi yang dipakai.\n\n```\nJika saya belajar, maka saya paham\nJika saya paham, maka saya lulus\nSaya belajar\n```",
+              "solution": "Dua langkah.\n\n```\nLangkah 1  p → q,  q → r   ∴ p → r     silogisme hipotetis\n           Jika saya belajar, maka saya lulus\n\nLangkah 2  p → r,  p       ∴ r         modus ponens\n           Saya lulus\n```\n\nKesimpulannya: saya lulus.\n\nBisa juga ditempuh dengan urutan lain, yaitu modus ponens dua kali berturut-turut. Dari \"saya belajar\" dan premis pertama diperoleh \"saya paham\", lalu dari situ dan premis kedua diperoleh \"saya lulus\". Hasilnya sama."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan pemeriksa kesahihan pada modus tollens, lalu pada pengingkaran anteseden. Apa bedanya keluarannya?",
+              "solution": "```\nfrom itertools import product\n\ndef sahih(premis, kesimpulan, jumlah):\n    for nilai in product([True, False], repeat=jumlah):\n        if all(p(*nilai) for p in premis) and not kesimpulan(*nilai):\n            return False, nilai\n    return True, None\n\nimplikasi = lambda a, b: (not a) or b\n\n# modus tollens: p->q, bukan q, maka bukan p\nprint(sahih([lambda p, q: implikasi(p, q), lambda p, q: not q],\n            lambda p, q: not p, 2))\n\n# pengingkaran anteseden: p->q, bukan p, maka bukan q\nprint(sahih([lambda p, q: implikasi(p, q), lambda p, q: not p],\n            lambda p, q: not q, 2))\n```\n\nKeluarannya:\n\n```\n(True, None)\n(False, (False, True))\n```\n\nModus tollens sahih, tidak ada penyangkal. Pengingkaran anteseden tidak sahih, dan penyangkalnya adalah `p` salah dengan `q` benar.\n\nDiterjemahkan: tidak hujan, tetapi jalanan tetap basah. Satu keadaan seperti ini sudah cukup membatalkan kesahihan argumen itu."
+            },
+            {
+              "type": "TASK",
+              "content": "Jelaskan perbedaan antara argumen yang sahih dan argumen yang kesimpulannya benar. Beri contoh argumen tidak sahih yang kesimpulannya kebetulan benar.",
+              "solution": "Kesahihan mempersoalkan **bentuk** penalaran, sedangkan kebenaran mempersoalkan **isi** pernyataannya. Keduanya berdiri sendiri.\n\nContoh argumen tidak sahih dengan kesimpulan yang kebetulan benar:\n\n```\nJika Jakarta di Jawa, maka Jakarta di Indonesia   (benar)\nJakarta di Indonesia                              (benar)\n------------------------------------------\nJadi Jakarta di Jawa                              (benar)\n```\n\nKesimpulannya memang benar, tetapi bukan karena penalarannya. Bentuknya adalah penegasan konsekuen yang tidak sahih.\n\nBuktinya, bentuk yang sama menghasilkan kesimpulan salah bila isinya diganti:\n\n```\nJika Medan di Jawa, maka Medan di Indonesia       (benar)\nMedan di Indonesia                                (benar)\n------------------------------------------\nJadi Medan di Jawa                                (SALAH)\n```\n\nInilah alasan logika memeriksa bentuk, bukan isi. Bentuk yang sahih menjamin hasilnya selamanya, bukan kebetulan pada satu contoh."
+            }
+          ]
+        },
+        {
+          "title": "Kuantor",
+          "summary": "Menyatakan sesuatu tentang semua atau sebagian anggota.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Di bagian pertama kita menyisihkan kalimat seperti `x + 1 = 5` karena nilainya bergantung pada `x`. Kalimat semacam ini disebut predikat, ditulis `P(x)`."
+            },
+            {
+              "type": "TEXT",
+              "content": "Predikat belum punya nilai kebenaran. Ia baru menjadi proposisi setelah `x` ditentukan, atau setelah diberi kuantor."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Dua kuantor** yang perlu kamu kuasai."
+            },
+            {
+              "type": "MATH",
+              "content": "∀x P(x)   untuk setiap x, P(x) benar\n∃x P(x)   ada x yang membuat P(x) benar"
+            },
+            {
+              "type": "TEXT",
+              "content": "Lambang `∀` berasal dari huruf A terbalik, untuk *all*. Lambang `∃` dari huruf E terbalik, untuk *exists*."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Misalkan semesta pembicaraannya mahasiswa di satu kelas\n\nL(x) : x lulus\n\n∀x L(x)   semua mahasiswa lulus\n∃x L(x)   ada mahasiswa yang lulus\n¬∀x L(x)  tidak semua mahasiswa lulus\n∃x ¬L(x)  ada mahasiswa yang tidak lulus"
+            },
+            {
+              "type": "NOTE",
+              "content": "Semesta pembicaraan menentukan segalanya. Pernyataan `∀x (x > 0)` bernilai salah bila semestanya semua bilangan bulat, tetapi benar bila semestanya bilangan asli. Menyebutkan semesta adalah bagian dari menyatakan proposisinya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mengingkari kuantor.** Inilah bagian yang paling sering keliru, dan aturannya sebenarnya pendek: negasi menembus kuantor, lalu kuantornya berbalik."
+            },
+            {
+              "type": "MATH",
+              "content": "¬∀x P(x)  ≡  ∃x ¬P(x)\n¬∃x P(x)  ≡  ∀x ¬P(x)"
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 560 170\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Pengingkaran kuantor, untuk semua menjadi ada yang tidak\">\n  <text x=\"280\" y=\"26\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12.5\" font-weight=\"600\"\n        fill=\"currentColor\" opacity=\"0.55\">MENGINGKARI KUANTOR</text>\n\n  <text x=\"140\" y=\"70\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"17\"\n        fill=\"currentColor\">&#172;&#8704;x P(x)</text>\n  <text x=\"250\" y=\"70\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"17\"\n        fill=\"currentColor\" opacity=\"0.45\">&#8801;</text>\n  <text x=\"370\" y=\"70\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"17\"\n        fill=\"currentColor\">&#8707;x &#172;P(x)</text>\n  <text x=\"140\" y=\"92\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\"\n        fill=\"currentColor\" opacity=\"0.6\">tidak semua lulus</text>\n  <text x=\"370\" y=\"92\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\"\n        fill=\"var(--nila)\">ada yang tidak lulus</text>\n\n  <text x=\"140\" y=\"132\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"17\"\n        fill=\"currentColor\">&#172;&#8707;x P(x)</text>\n  <text x=\"250\" y=\"132\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"17\"\n        fill=\"currentColor\" opacity=\"0.45\">&#8801;</text>\n  <text x=\"370\" y=\"132\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"17\"\n        fill=\"currentColor\">&#8704;x &#172;P(x)</text>\n  <text x=\"140\" y=\"154\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\"\n        fill=\"currentColor\" opacity=\"0.6\">tidak ada yang lulus</text>\n  <text x=\"370\" y=\"154\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\"\n        fill=\"var(--nila)\">semua tidak lulus</text>\n\n  <line x1=\"60\" y1=\"104\" x2=\"500\" y2=\"104\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n</svg>",
+              "solution": "Negasi menembus kuantor, dan kuantornya berbalik. Perhatikan bedanya dengan bentuk yang tampak mirip."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan baik-baik. Mengingkari \"semua lulus\" **bukan** \"semua tidak lulus\", melainkan \"ada yang tidak lulus\". Satu orang yang tidak lulus sudah cukup."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Pernyataan        : Semua mahasiswa lulus\nIngkaran benar    : Ada mahasiswa yang tidak lulus\nIngkaran keliru   : Semua mahasiswa tidak lulus     ← terlalu kuat"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bandingkan dengan hukum De Morgan di bagian sebelumnya. Polanya sama persis: negasi menembus, lalu penghubungnya berbalik. Kuantor universal berperilaku seperti konjungsi panjang, dan kuantor eksistensial seperti disjungsi panjang."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kuantor bersarang.** Urutannya menentukan arti, dan menukarnya mengubah makna sepenuhnya."
+            },
+            {
+              "type": "MATH",
+              "content": "∀x ∃y  C(x, y)   setiap orang punya seseorang yang ia sayangi\n∃y ∀x  C(x, y)   ada satu orang yang disayangi semua orang"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pernyataan pertama jauh lebih lemah. Pada yang kedua, `y` yang sama harus berlaku untuk semua `x`."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Di dalam kode**, kedua kuantor punya padanan langsung."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = [80, 75, 90, 65]\n\n# untuk setiap x, x >= 60\nprint(all(n >= 60 for n in nilai))    # True\n\n# ada x dengan x >= 85\nprint(any(n >= 85 for n in nilai))    # True\n\n# tidak semua di atas 70, sama dengan ada yang tidak di atas 70\nprint(not all(n > 70 for n in nilai))\nprint(any(not (n > 70) for n in nilai))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dua baris terakhir selalu memberi hasil sama. Itulah hukum pengingkaran kuantor yang berjalan di dalam kode."
+            },
+            {
+              "type": "NOTE",
+              "content": "`all` pada daftar kosong menghasilkan `True`, sedangkan `any` menghasilkan `False`. Ini sepadan dengan pernyataan benar secara hampa yang dibahas di bagian Implikasi: bila tidak ada anggota sama sekali, tidak ada yang bisa menyangkal `∀`."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis ingkaran dari pernyataan berikut dalam bahasa Indonesia yang wajar.\n\n\"Semua mahasiswa di kelas ini mengumpulkan tugas tepat waktu.\"",
+              "solution": "\"Ada mahasiswa di kelas ini yang tidak mengumpulkan tugas tepat waktu.\"\n\n```\nPernyataan  ∀x T(x)\nIngkaran    ¬∀x T(x)  ≡  ∃x ¬T(x)\n```\n\nKekeliruan yang umum adalah menulis \"semua mahasiswa tidak mengumpulkan tepat waktu\". Itu pernyataan yang jauh lebih kuat, dan bukan ingkaran dari aslinya.\n\nCara memeriksanya: untuk membantah \"semua\", kamu cukup menunjukkan **satu** contoh penyangkal."
+            },
+            {
+              "type": "TASK",
+              "content": "Terjemahkan ke lambang logika. Semestanya semua bilangan bulat.\n\n1. Setiap bilangan bulat punya bilangan bulat yang lebih besar\n2. Ada bilangan bulat yang lebih besar dari semua bilangan bulat lain",
+              "solution": "```\n1.  ∀x ∃y (y > x)      BENAR\n2.  ∃y ∀x (y > x)      SALAH\n```\n\nPernyataan pertama benar: berapa pun `x`, selalu ada `y = x + 1`.\n\nPernyataan kedua salah: tidak ada bilangan bulat terbesar. Lagi pula ia menuntut `y > y` untuk dirinya sendiri, yang mustahil.\n\nPerhatikan kedua pernyataan memakai bahan yang persis sama dan hanya berbeda urutan kuantornya, tetapi nilai kebenarannya berlawanan. Urutan kuantor bukan hal sepele."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut, lalu jelaskan kenapa baris terakhir menghasilkan `True`.\n\n```\nkosong = []\nprint(all(n > 100 for n in kosong))\n```",
+              "solution": "Menghasilkan `True`, dan ini bukan kekeliruan.\n\n`all` menanyakan \"apakah setiap anggota memenuhi syarat?\". Pada daftar kosong, tidak ada anggota yang bisa menyangkalnya, jadi jawabannya benar.\n\nIni bentuk lain dari pernyataan benar secara hampa yang kamu temui di bagian Implikasi. Pernyataan `∀x P(x)` pada semesta kosong selalu bernilai benar.\n\nSebaliknya, `any` pada daftar kosong menghasilkan `False`, karena `∃x P(x)` menuntut setidaknya satu anggota yang memenuhi, dan tidak ada anggota sama sekali.\n\nIni punya akibat praktis. Kode seperti `if all(nilai_valid(n) for n in data)` akan lolos ketika `data` kosong, dan itu mungkin bukan yang kamu inginkan. Periksa daftarnya tidak kosong lebih dulu bila memang penting."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah aturan berbunyi: \"Tidak ada mahasiswa yang boleh membawa makanan ke laboratorium.\" Tulis dalam lambang, lalu tulis bentuk setaranya memakai kuantor universal.",
+              "solution": "```\nM(x) : x membawa makanan ke laboratorium\n\nAturan        ¬∃x M(x)\nBentuk setara ∀x ¬M(x)\n```\n\nDibaca: tidak ada seorang pun yang membawa makanan, setara dengan setiap orang tidak membawa makanan.\n\nKeduanya menyatakan hal yang sama persis. Bentuk kedua kadang lebih mudah dipakai dalam pembuktian, karena kuantor universal bisa langsung diterapkan pada anggota mana pun yang dipilih."
+            }
+          ]
+        },
+        {
+          "title": "Logika di Dalam Kode",
+          "summary": "Menerapkan semuanya pada syarat yang kamu tulis sehari-hari.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Bagian terakhir ini menyatukan semuanya. Setiap `if` yang kamu tulis adalah proposisi, dan setiap hukum yang kamu pelajari berlaku padanya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Padanan lambang dan kode.**"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "¬p        not p\np ∧ q    p and q\np ∨ q    p or q\np → q    (not p) or q\np ↔ q    p == q\n∀x P(x) all(P(x) for x in data)\n∃x P(x) any(P(x) for x in data)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menyederhanakan syarat.** Syarat berbelit bukan sekadar jelek dipandang; ia sumber kesalahan yang nyata, karena pembaca harus membongkar negasi bertumpuk di kepalanya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = 75\nkehadiran = 90\n\n# berbelit\nif not (not (nilai >= 60) or not (kehadiran >= 80)):\n    print(\"lulus\")\n\n# setelah disederhanakan\nif nilai >= 60 and kehadiran >= 80:\n    print(\"lulus\")"
+            },
+            {
+              "type": "MATH",
+              "content": "¬(¬p ∨ ¬q)\n≡ ¬(¬p) ∧ ¬(¬q)    De Morgan\n≡ p ∧ q             negasi ganda"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Penilaian hubung singkat.** Python berhenti menilai begitu jawabannya sudah pasti, dan sifat ini bisa dipakai sebagai pengaman."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "data = []\n\n# aman: bagian kanan tidak dinilai bila daftarnya kosong\nif len(data) > 0 and data[0] > 10:\n    print(\"lebih dari sepuluh\")\n\n# berbahaya bila dibalik:\n# if data[0] > 10 and len(data) > 0:\n#     IndexError, karena data[0] dinilai lebih dulu"
+            },
+            {
+              "type": "NOTE",
+              "content": "Urutan syarat pada `and` dan `or` punya arti, berbeda dari logika murni di mana `p ∧ q` setara dengan `q ∧ p`. Di dalam kode, keduanya memberi hasil sama tetapi tidak selalu sama amannya. Letakkan pemeriksaan pengaman di sebelah kiri."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pola penjaga.** Daripada membungkus seluruh isi fungsi dalam percabangan bertumpuk, tolak keadaan yang tidak sah lebih dulu lalu keluar."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def nilai_huruf(angka):\n    # bertumpuk, sulit diikuti\n    if angka is not None:\n        if 0 <= angka <= 100:\n            if angka >= 85:\n                return \"A\"\n            else:\n                return \"B\"\n        else:\n            return \"tidak sah\"\n    else:\n        return \"kosong\"\n\ndef nilai_huruf_rapi(angka):\n    # pola penjaga\n    if angka is None:\n        return \"kosong\"\n    if not (0 <= angka <= 100):\n        return \"tidak sah\"\n    return \"A\" if angka >= 85 else \"B\"\n\nprint(nilai_huruf_rapi(90))\nprint(nilai_huruf_rapi(150))\nprint(nilai_huruf_rapi(None))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Versi kedua membaca turun lurus tanpa perlu mengingat sedang berada di dalam berapa lapis percabangan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kesalahan logika yang sering terjadi.** Tiga di antaranya menyangkut hal yang sudah kamu pelajari."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "umur = 25\n\n# 1. Rantai yang dikira berlaku\n#    SALAH: ini selalu True untuk umur apa pun\nif umur > 17 or umur > 60:\n    pass\n\n# 2. Perbandingan berantai yang keliru ditulis\n#    Python memperbolehkan ini, banyak bahasa lain tidak\nprint(17 <= umur <= 60)\n\n# 3. Negasi yang lupa membalik penghubung\n#    \"bukan (dewasa dan punya SIM)\"\npunya_sim = True\nprint(not (umur >= 17 and punya_sim))\nprint(umur < 17 or not punya_sim)     # sama"
+            },
+            {
+              "type": "TEXT",
+              "content": "Yang pertama patut diperhatikan. Syarat `umur > 17 or umur > 60` selalu bernilai sama dengan `umur > 17` saja, karena siapa pun yang di atas 60 sudah pasti di atas 17. Maksudnya mungkin `and`, atau mungkin memang ada kekeliruan berpikir."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menguji syaratmu sendiri.** Kalau sebuah syarat mulai rumit, bangun tabel kebenarannya dengan kode daripada menebak."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "from itertools import product\n\ndef tabel(nama, rumus, jumlah=2):\n    print(nama)\n    for nilai in product([True, False], repeat=jumlah):\n        print(\"  \", nilai, \"->\", rumus(*nilai))\n\ntabel(\"lama : not (a and b)\", lambda a, b: not (a and b))\ntabel(\"baru : (not a) or (not b)\", lambda a, b: (not a) or (not b))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau kedua tabelnya sama, penyederhanaanmu aman. Cara ini jauh lebih meyakinkan daripada merasa yakin."
+            },
+            {
+              "type": "TASK",
+              "content": "Sederhanakan syarat berikut, lalu buktikan kesetaraannya dengan kode.\n\n```\nif not (umur < 17 or not punya_sim):\n    print(\"boleh menyetir\")\n```",
+              "solution": "```\n¬(umur < 17 ∨ ¬punya_sim)\n≡ ¬(umur < 17) ∧ ¬(¬punya_sim)   De Morgan\n≡ umur >= 17 ∧ punya_sim        negasi ganda\n```\n\nJadi:\n\n```\nif umur >= 17 and punya_sim:\n    print(\"boleh menyetir\")\n```\n\nPembuktiannya:\n\n```\nfor umur in [15, 17, 25]:\n    for punya_sim in [True, False]:\n        lama = not (umur < 17 or not punya_sim)\n        baru = umur >= 17 and punya_sim\n        print(umur, punya_sim, lama, baru, lama == baru)\n```\n\nKolom terakhir selalu `True`."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis fungsi yang memeriksa apakah **semua** nilai di dalam daftar berada di antara 0 dan 100, memakai padanan kuantor universal.",
+              "solution": "```\ndef semua_sah(nilai):\n    return all(0 <= n <= 100 for n in nilai)\n\nprint(semua_sah([80, 75, 90]))    # True\nprint(semua_sah([80, 150]))       # False\nprint(semua_sah([]))              # True\n```\n\nBaris terakhir perlu diperhatikan. Daftar kosong menghasilkan `True` karena tidak ada anggota yang menyangkalnya, sesuai sifat kuantor universal pada semesta kosong.\n\nKalau daftar kosong seharusnya ditolak, nyatakan itu secara tegas:\n\n```\ndef semua_sah(nilai):\n    return len(nilai) > 0 and all(0 <= n <= 100 for n in nilai)\n```"
+            },
+            {
+              "type": "TASK",
+              "content": "Program berikut kadang gagal dengan `ZeroDivisionError`. Perbaiki tanpa menambah percabangan baru.\n\n```\nif total / jumlah > 70 and jumlah > 0:\n    print(\"di atas batas\")\n```",
+              "solution": "Balik urutan syaratnya, supaya pemeriksaan pengaman dinilai lebih dulu.\n\n```\nif jumlah > 0 and total / jumlah > 70:\n    print(\"di atas batas\")\n```\n\nPenilaian hubung singkat menjamin pembagian tidak pernah dikerjakan ketika `jumlah` bernilai nol, karena `and` sudah tahu jawabannya salah setelah menilai bagian kiri.\n\nSecara logika murni `p ∧ q` setara dengan `q ∧ p`, jadi kedua versi menghasilkan nilai yang sama. Tetapi di dalam kode, yang satu aman dan yang lain meledak. Inilah salah satu tempat logika dan pemrograman tidak sepenuhnya berimpit."
+            },
+            {
+              "type": "TASK",
+              "content": "Syarat berikut ditulis seorang teman. Apa yang keliru secara logika, dan apa yang kemungkinan ia maksud?\n\n```\nif nilai != 0 or nilai != 100:\n    print(\"nilai tidak di ujung\")\n```",
+              "solution": "Syarat itu **selalu** bernilai benar, berapa pun nilainya.\n\nPeriksa saja. Kalau `nilai` bernilai 0, bagian kedua benar karena 0 tidak sama dengan 100. Kalau bernilai 100, bagian pertama benar. Kalau bernilai lainnya, keduanya benar. Tidak ada angka yang bisa membuat keduanya salah sekaligus.\n\nYang ia maksud hampir pasti `and`:\n\n```\nif nilai != 0 and nilai != 100:\n    print(\"nilai tidak di ujung\")\n```\n\nAsalnya bisa dilacak lewat De Morgan. Maksudnya adalah mengingkari \"nilai sama dengan 0 atau 100\":\n\n```\n¬(nilai == 0 ∨ nilai == 100)\n≡ nilai != 0 ∧ nilai != 100\n```\n\nNegasi membalik `∨` menjadi `∧`. Melupakan pembalikan ini adalah sumber kekeliruan yang sangat sering, dan kodenya tetap berjalan tanpa pesan apa pun."
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "title": "Discrete Mathematics and Its Applications, bab 1: The Foundations, Logic and Proofs",
+          "author": "Kenneth H. Rosen",
+          "url": "https://www.mheducation.com/highered/product/discrete-mathematics-applications-rosen.html",
+          "note": "Buku teks acuan utama. Urutan topik ini mengikuti susunan babnya."
+        },
+        {
+          "title": "Making Sense of the Truth Table for Conditional Statements",
+          "author": "Cathery Yeh dan rekan",
+          "url": "https://www.researchgate.net/publication/271158881_Making_Sense_of_the_Truth_Table_for_Conditional_Statements",
+          "note": "Dasar pemilihan cara mengajar implikasi lewat contoh penyangkal, bukan lewat tabel yang disodorkan langsung."
+        },
+        {
+          "title": "Transitioning to Proof",
+          "author": "arXiv 1507.03680",
+          "url": "https://arxiv.org/pdf/1507.03680",
+          "note": "Melaporkan bahwa memperkenalkan implikasi lewat contoh penyangkal tidak menimbulkan penolakan seperti pendekatan tabel kebenaran."
+        },
+        {
+          "title": "Understanding mathematical conditionals",
+          "author": "Journal of Mathematical Behavior",
+          "url": "https://www.sciencedirect.com/science/article/pii/S073231232400110X",
+          "note": "Tinjauan kesulitan mahasiswa pada pernyataan bersyarat dari sisi filsafat, bahasa, dan psikologi."
+        },
+        {
+          "title": "Built-in Functions: all, any",
+          "author": "Python Software Foundation",
+          "url": "https://docs.python.org/3/library/functions.html",
+          "note": "Rujukan untuk padanan kuantor di dalam kode, termasuk perilakunya pada daftar kosong."
+        }
+      ]
     },
     {
       "code": "IF104",
