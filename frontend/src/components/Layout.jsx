@@ -54,6 +54,9 @@ export function Layout() {
           <span className="brand-mark">;</span>
           <span className="brand-name">Titik Koma Kode</span>
         </Link>
+        <Link to="/karier" className="topbar-tautan">
+          Jalur karier
+        </Link>
         <span className="topbar-spacer" />
         <button
           className="icon-btn"

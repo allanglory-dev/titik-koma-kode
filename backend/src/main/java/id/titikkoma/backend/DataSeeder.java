@@ -13,6 +13,10 @@ import org.springframework.stereotype.Component;
 
 import id.titikkoma.backend.area.Area;
 import id.titikkoma.backend.area.AreaRepository;
+import id.titikkoma.backend.career.CareerPath;
+import id.titikkoma.backend.career.CareerRepository;
+import id.titikkoma.backend.career.CareerStage;
+import id.titikkoma.backend.career.CareerStageRepository;
 import id.titikkoma.backend.block.Block;
 import id.titikkoma.backend.block.BlockRepository;
 import id.titikkoma.backend.block.BlockType;
@@ -21,6 +25,7 @@ import id.titikkoma.backend.course.CourseReference;
 import id.titikkoma.backend.course.CourseRepository;
 import id.titikkoma.backend.lesson.Lesson;
 import id.titikkoma.backend.lesson.LessonRepository;
+import id.titikkoma.backend.seed.SeedCareer;
 import id.titikkoma.backend.seed.SeedContent;
 import id.titikkoma.backend.seed.Slug;
 import tools.jackson.databind.ObjectMapper;
@@ -38,17 +43,23 @@ public class DataSeeder implements CommandLineRunner {
     private final CourseRepository courseRepository;
     private final LessonRepository lessonRepository;
     private final BlockRepository blockRepository;
+    private final CareerRepository careerRepository;
+    private final CareerStageRepository careerStageRepository;
     private final ObjectMapper objectMapper;
 
     public DataSeeder(AreaRepository areaRepository,
             CourseRepository courseRepository,
             LessonRepository lessonRepository,
             BlockRepository blockRepository,
+            CareerRepository careerRepository,
+            CareerStageRepository careerStageRepository,
             ObjectMapper objectMapper) {
         this.areaRepository = areaRepository;
         this.courseRepository = courseRepository;
         this.lessonRepository = lessonRepository;
         this.blockRepository = blockRepository;
+        this.careerRepository = careerRepository;
+        this.careerStageRepository = careerStageRepository;
         this.objectMapper = objectMapper;
     }
 
@@ -126,8 +137,79 @@ public class DataSeeder implements CommandLineRunner {
 
         periksaPrasyarat(seed);
 
+        int jalur = muatKarier();
+
+        log.info("Jalur karier dimuat: {} jalur.", jalur);
         log.info("Kurikulum dimuat: {} bidang, {} mata kuliah, {} SKS, {} pelajaran, {} blok isi.",
                 seed.areas.size(), seed.courses.size(), totalSks, lessonCount, blockCount);
+    }
+
+    /**
+     * Memuat jalur karier beserta tahapannya.
+     * Kode mata kuliah yang ditunjuk diperiksa agar tidak menggantung.
+     */
+    private int muatKarier() throws Exception {
+        SeedCareer seed;
+        try (InputStream in = new ClassPathResource("seed/karier.json").getInputStream()) {
+            seed = objectMapper.readValue(in, SeedCareer.class);
+        }
+
+        careerStageRepository.deleteAll();
+        careerRepository.deleteAll();
+
+        var kodeMataKuliah = courseRepository.findAll().stream()
+                .map(c -> c.getCode())
+                .collect(java.util.stream.Collectors.toSet());
+
+        for (SeedCareer.SeedPath sp : seed.paths) {
+            for (String kode : sp.coreCourses) {
+                periksaKode(sp.code, kode, kodeMataKuliah);
+            }
+            for (String kode : sp.supportCourses) {
+                periksaKode(sp.code, kode, kodeMataKuliah);
+            }
+
+            CareerPath path = new CareerPath();
+            path.setCode(sp.code);
+            path.setSlug(sp.slug);
+            path.setName(sp.name);
+            path.setTagline(sp.tagline);
+            path.setDescription(sp.description);
+            path.setDaily(sp.daily);
+            path.setDemand(sp.demand);
+            path.setEntry(sp.entry);
+            path.setSalary(sp.salary);
+            path.setOrderIndex(sp.orderIndex);
+            path.setCoreCourses(new ArrayList<>(sp.coreCourses));
+            path.setSupportCourses(new ArrayList<>(sp.supportCourses));
+            path.setBeyondCurriculum(new ArrayList<>(sp.beyondCurriculum));
+            path.setReferences(sp.references.stream()
+                    .map(r -> new CourseReference(r.title, r.author, r.url, r.note))
+                    .collect(java.util.stream.Collectors.toCollection(ArrayList::new)));
+            path = careerRepository.save(path);
+
+            int urutan = 1;
+            for (SeedCareer.SeedStage ss : sp.stages) {
+                CareerStage stage = new CareerStage();
+                stage.setName(ss.name);
+                stage.setNote(ss.note);
+                stage.setDuration(ss.duration);
+                stage.setOrderIndex(urutan++);
+                stage.setItems(new ArrayList<>(ss.items));
+                stage.setPath(path);
+                careerStageRepository.save(stage);
+            }
+        }
+
+        return seed.paths.size();
+    }
+
+    private static void periksaKode(String jalur, String kode, java.util.Set<String> sah) {
+        if (!sah.contains(kode)) {
+            throw new IllegalStateException(
+                    "Jalur karier " + jalur + " menunjuk mata kuliah " + kode
+                            + " yang tidak ada di kurikulum.");
+        }
     }
 
     /** Memastikan setiap prasyarat menunjuk kode mata kuliah yang benar-benar ada. */

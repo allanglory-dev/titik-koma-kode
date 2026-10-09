@@ -10,6 +10,8 @@ async function get(path) {
 
 export const api = {
   getAreas: () => get("/areas"),
+  getCareers: () => get("/careers"),
+  getCareer: (slug) => get(`/careers/${slug}`),
   getCourses: () => get("/courses"),
   getCourse: (courseSlug) => get(`/courses/${courseSlug}`),
   getLessons: (courseSlug) => get(`/courses/${courseSlug}/lessons`),
