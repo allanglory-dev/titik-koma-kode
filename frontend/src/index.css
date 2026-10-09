@@ -548,6 +548,39 @@ pre.code {
   color: var(--ink-faint);
 }
 
+/* ---------------- Diagram ---------------- */
+
+.diagram {
+  margin: 32px 0;
+  padding: 0;
+}
+
+.diagram-gambar {
+  display: flex;
+  justify-content: center;
+  padding: 22px 18px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--bg-raised);
+  overflow-x: auto;
+  /* Gambar mewarisi warna tulisan, jadi ikut berubah di mode gelap. */
+  color: var(--ink);
+}
+
+.diagram-gambar svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.diagram figcaption {
+  margin-top: 10px;
+  font-family: var(--f-judul);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
 /* ---------------- Latihan ---------------- */
 
 .task {

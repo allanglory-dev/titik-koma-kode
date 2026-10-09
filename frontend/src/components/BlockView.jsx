@@ -1,3 +1,4 @@
+import { Diagram } from "./Diagram";
 import { PyLab } from "./PyLab";
 import { TaskBlock } from "./TaskBlock";
 import { TryIt } from "./TryIt";
@@ -81,6 +82,9 @@ export function BlockView({ block, taskNumber }) {
 
     case "MATH":
       return <div className="block-math">{block.content}</div>;
+
+    case "DIAGRAM":
+      return <Diagram svg={block.content} caption={block.solution} />;
 
     case "TASK":
       return (

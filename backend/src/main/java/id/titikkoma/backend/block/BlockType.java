@@ -16,5 +16,8 @@ public enum BlockType {
     NOTE,
 
     /** Latihan soal. Jawabannya disimpan terpisah dan disembunyikan sampai diminta. */
-    TASK
+    TASK,
+
+    /** Gambar penjelas berupa SVG. Isinya ditulis sendiri, bukan diambil dari luar. */
+    DIAGRAM
 }
