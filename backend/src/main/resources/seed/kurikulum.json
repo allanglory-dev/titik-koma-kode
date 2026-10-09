@@ -4998,19 +4998,889 @@
     {
       "code": "IF106",
       "title": "Bahasa Inggris untuk Teknologi",
-      "description": "Membaca dokumentasi, memahami pesan kesalahan, dan menulis laporan teknis dalam bahasa Inggris.",
+      "description": "Membaca dokumentasi resmi, menguraikan pesan kesalahan, dan menulis laporan masalah, pesan commit, serta catatan perubahan dalam bahasa Inggris. Bukan kelas tata bahasa umum, melainkan bahasa Inggris yang dipakai di dokumentasi, isu, dan riwayat kode.",
       "semester": 1,
       "sks": 2,
       "level": "Pemula",
       "hours": 30,
       "area": "SEP",
       "outcomes": [
-        "Membaca dokumentasi resmi tanpa bergantung pada terjemahan.",
-        "Menguraikan pesan kesalahan dan jejak tumpukan.",
-        "Menulis isu, catatan perubahan, dan ringkasan teknis yang jelas."
+        "Membaca dokumentasi resmi dan entri rujukan API tanpa bergantung pada terjemahan.",
+        "Membedakan tingkat keharusan pada kata must, should, dan may.",
+        "Menguraikan pesan kesalahan dan jejak tumpukan, lalu mencarinya dengan kata kunci yang tepat.",
+        "Menulis kalimat teknis yang bebas dari kekeliruan artikel, jamak, kala waktu, dan preposisi.",
+        "Menyusun laporan masalah yang bisa diulang orang lain.",
+        "Menulis pesan commit dan catatan perubahan sesuai kesepakatan yang berlaku umum."
       ],
       "prerequisites": [],
-      "lessons": []
+      "lessons": [
+        {
+          "title": "Kosakata Inti",
+          "summary": "Membongkar kata panjang dan mengenali jebakan kembar palsu.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Dokumentasi resmi, pesan kesalahan, dan jawaban di forum hampir seluruhnya berbahasa Inggris. Menerjemahkan semuanya tidak mungkin: terjemahan mesin sering keliru persis di bagian yang menentukan, dan dokumentasi berubah lebih cepat daripada terjemahannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kabar baiknya, bahasa Inggris teknis jauh lebih sempit daripada bahasa Inggris umum. Kosakatanya berulang, kalimatnya pendek, dan tata bahasanya sederhana karena memang ditulis untuk pembaca yang bukan penutur asli."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Bongkar kata, jangan hafalkan kata.** Kata teknis yang panjang hampir selalu tersusun dari potongan yang bisa dikenali. Begitu kamu hafal potongannya, kata yang belum pernah kamu lihat pun bisa ditebak dengan cukup akurat."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Satu kata dasar diuraikan menjadi awalan, akar, dan akhiran, lalu dikembangkan menjadi keluarga kata\">\n  <text x=\"30\" y=\"30\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">BONGKAR SATU KATA</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"22\" fill=\"currentColor\">\n    <text x=\"30\" y=\"72\" fill=\"var(--kunyit)\">un</text>\n    <text x=\"64\" y=\"72\" fill=\"var(--nila)\">serializ</text>\n    <text x=\"178\" y=\"72\" fill=\"var(--kunyit)\">able</text>\n  </g>\n  <g stroke=\"currentColor\" stroke-opacity=\"0.3\">\n    <line x1=\"30\" y1=\"84\" x2=\"58\" y2=\"84\"/>\n    <line x1=\"64\" y1=\"84\" x2=\"172\" y2=\"84\"/>\n    <line x1=\"178\" y1=\"84\" x2=\"234\" y2=\"84\"/>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">\n    <text x=\"30\" y=\"102\">awalan</text>\n    <text x=\"64\" y=\"102\">akar</text>\n    <text x=\"178\" y=\"102\">akhiran</text>\n    <text x=\"30\" y=\"120\" opacity=\"0.85\">tidak</text>\n    <text x=\"64\" y=\"120\" opacity=\"0.85\">jadikan deret bita</text>\n    <text x=\"178\" y=\"120\" opacity=\"0.85\">bisa di-</text>\n  </g>\n  <text x=\"30\" y=\"150\" font-family=\"system-ui, sans-serif\" font-size=\"12.5\" fill=\"var(--nila)\">\"tidak bisa dijadikan deret bita\"</text>\n\n  <line x1=\"300\" y1=\"20\" x2=\"300\" y2=\"250\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n\n  <text x=\"330\" y=\"30\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">SATU AKAR, SATU KELUARGA</text>\n  <g stroke=\"var(--nila)\" stroke-opacity=\"0.5\" fill=\"none\">\n    <path d=\"M 364 56 L 364 86 L 400 86\"/>\n    <path d=\"M 364 86 L 364 116 L 400 116\"/>\n    <path d=\"M 364 116 L 364 146 L 400 146\"/>\n    <path d=\"M 364 146 L 364 176 L 400 176\"/>\n  </g>\n  <text x=\"330\" y=\"52\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"var(--nila)\">deprecate</text>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13.5\" fill=\"currentColor\" opacity=\"0.85\">\n    <text x=\"406\" y=\"91\">deprecated</text>\n    <text x=\"406\" y=\"121\">deprecating</text>\n    <text x=\"406\" y=\"151\">deprecation</text>\n    <text x=\"406\" y=\"181\">undeprecate</text>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.5\">\n    <text x=\"520\" y=\"91\">sifat</text>\n    <text x=\"520\" y=\"121\">proses</text>\n    <text x=\"520\" y=\"151\">kata benda</text>\n    <text x=\"520\" y=\"181\">kebalikannya</text>\n  </g>\n  <text x=\"330\" y=\"214\" font-family=\"system-ui, sans-serif\" font-size=\"11.5\" fill=\"currentColor\" opacity=\"0.6\">Hafal satu akar,</text>\n  <text x=\"330\" y=\"232\" font-family=\"system-ui, sans-serif\" font-size=\"11.5\" fill=\"currentColor\" opacity=\"0.6\">dapat empat kata.</text>\n</svg>",
+              "solution": "Satu kata panjang dibongkar menjadi awalan, akar, dan akhiran. Dari satu akar yang sama bisa tumbuh empat kata atau lebih, dan maknanya bergerak mengikuti imbuhannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Awalan yang paling sering muncul.** Enam ini menutup sebagian besar kata teknis berimbuhan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "un-     kebalikannya, belum, tidak\n        undefined, unresolved, unhandled, uncaught,\n        unreachable, unsupported\n\nde-     melepas, membatalkan\n        deprecate, deserialize, debug, decouple,\n        deallocate, decrypt\n\nre-     mengulang, mengerjakan lagi\n        refactor, rebase, retry, reload, resolve,\n        rerun, redeploy\n\nmis-    keliru\n        mismatch, misconfigured, misuse\n\nover-   melampaui, menimpa, di atas\n        overflow, overwrite, override, overload\n\nsub-    bagian dari, di bawah\n        subclass, subdirectory, subquery, subset"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Akhiran menentukan jenis katanya.** Ini yang membuatmu tahu sebuah kata berperan sebagai benda, sifat, atau kerja, bahkan tanpa tahu artinya."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "-able / -ible   bisa di-\n                iterable, callable, serializable,\n                readable, nullable, immutable\n\n-less           tanpa\n                stateless, headless, lossless, seamless\n\n-ful            punya, penuh\n                stateful, meaningful, successful\n\n-tion / -sion   kata benda dari kata kerja\n                deprecation, allocation, resolution,\n                migration, permission\n\n-er / -or       pelakunya\n                compiler, parser, handler, iterator,\n                validator, debugger"
+            },
+            {
+              "type": "TEXT",
+              "content": "Gabungkan keduanya dan kata asing jadi bisa dibaca. `unserializable` berarti \"tidak bisa dijadikan deret bita\". `misconfiguration` berarti \"keadaan salah atur\". `deallocator` berarti \"yang melepaskan alokasi\"."
+            },
+            {
+              "type": "NOTE",
+              "content": "Tebakan dari imbuhan tidak selalu tepat. `invaluable` justru berarti sangat berharga, bukan tidak berharga. `flammable` dan `inflammable` artinya sama, yaitu mudah terbakar. Pakai bongkar kata sebagai tebakan awal, lalu periksa di kamus kalau artinya terasa janggal di kalimatnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pasangan kata yang sering tertukar.** Ini bukan soal kosakata langka, melainkan soal kata yang sudah kamu kenal tetapi dipakai berbeda di dunia teknis. Salah paham di sini sering berbuntut panjang."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "parameter vs argument\n  parameter  nama di definisi fungsi\n  argument   nilai yang kamu kirim saat memanggil\n\noverride vs overload vs overwrite\n  override   mengganti perilaku metode induk\n  overload   satu nama, beberapa tanda tangan\n  overwrite  menimpa isi berkas atau nilai\n\ndeprecated vs removed vs obsolete\n  deprecated masih jalan, tidak dianjurkan,\n             akan dihapus nanti\n  removed    sudah tidak ada\n  obsolete   usang, ada penggantinya\n\nerror vs exception vs bug\n  error      keadaan salah\n  exception  objek yang dilempar saat terjadi error\n  bug        cacat pada kodenya\n\ninvalid vs malformed vs unsupported\n  invalid     tidak memenuhi aturan\n  malformed   bentuknya rusak, tidak bisa diurai\n  unsupported bentuknya benar, tapi belum didukung"
+            },
+            {
+              "type": "TEXT",
+              "content": "`deprecated` adalah yang paling sering disalahartikan. Fungsi yang deprecated **masih berjalan**. Peringatan itu memberi tahu bahwa fungsi tersebut akan dihapus di versi mendatang, jadi sebaiknya kamu pindah sekarang selagi tidak terdesak."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kembar palsu.** Beberapa kata Indonesia terlihat seperti kata Inggris tertentu padahal artinya bergeser. Penelitian tentang terjemahan Indonesia-Inggris mencatat ini sebagai sumber kekeliruan yang berulang."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Kata Indonesia   Terjemahan keliru   Yang benar\naktual           actual              current, latest\nkontrol          control             check, inspect\nsensitif         sensible            sensitive\nargumen          argument (debat)    argument (nilai)\nkomitmen         commit              commitment\n\nKata Inggris     Dikira berarti      Sebenarnya\neventually       mungkin             akhirnya, pada\n                                     akhirnya pasti\nactually         sebenarnya kini     sesungguhnya,\n                                     nyatanya\nlibrary          perpustakaan        kumpulan kode siap\n                                     pakai, pustaka"
+            },
+            {
+              "type": "TEXT",
+              "content": "`eventually` paling berbahaya. Dalam dokumentasi, \"the cache **will eventually** be cleared\" berarti cache itu **pasti** dibersihkan, cepat atau lambat, bukan \"mungkin dibersihkan\". Istilah *eventual consistency* pada basis data terdistribusi dibangun di atas makna ini."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Cara membaca tanpa menerjemahkan.** Menerjemahkan kalimat per kalimat di kepala itu lambat dan melelahkan. Latih tiga kebiasaan berikut."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "1. Lewati kata yang tidak kamu kenal\n   Baca satu paragraf sampai habis dulu. Sering kali\n   kata itu dijelaskan di kalimat berikutnya.\n\n2. Kenali kata penanda arah\n   however, instead, note that, by default,\n   unless, otherwise, in that case\n   Kata-kata ini menandai kelokan makna, dan jauh\n   lebih penting daripada kata benda teknisnya.\n\n3. Cari kata kerja utamanya dulu\n   Kalimat panjang jadi jinak begitu kamu tahu\n   siapa melakukan apa."
+            },
+            {
+              "type": "NOTE",
+              "content": "Kata penanda arah lebih menentukan daripada istilah teknis. \"This works for small files. **However**, for files over 2 GB you must use the streaming API.\" Melewatkan `however` membuatmu membaca kebalikan dari maksud penulisnya, padahal kedua kalimatnya kamu pahami."
+            },
+            {
+              "type": "TASK",
+              "content": "Tebak arti keenam kata berikut dengan membongkar imbuhannya, lalu sebutkan jenis katanya.\n\n```\nunhandled      serializable     misconfiguration\ndeallocator    stateless        overridable\n```",
+              "solution": "```\nunhandled         un + handle + ed\n                  \"tidak ditangani\", sifat\n                  dipakai pada: unhandled exception\n\nserializable      serializ + able\n                  \"bisa dijadikan deret bita\", sifat\n\nmisconfiguration  mis + configure + tion\n                  \"keadaan salah atur\", kata benda\n\ndeallocator       de + allocate + or\n                  \"yang melepaskan alokasi\", kata benda\n\nstateless         state + less\n                  \"tanpa keadaan tersimpan\", sifat\n                  dipakai pada: stateless protocol\n\noverridable       over + ride + able\n                  \"bisa diganti perilakunya\", sifat\n```\n\nPerhatikan bahwa akhiran sudah cukup untuk menentukan jenis kata tanpa tahu artinya. `-able` dan `-less` selalu sifat, `-tion` selalu benda, `-or` dan `-er` selalu pelaku.\n\nKemampuan ini yang membuatmu bisa membaca kalimat utuh meski ada satu dua kata yang belum kamu kenal."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah catatan rilis berbunyi:\n\n```\nThe findAll() method is deprecated and will be\nremoved in version 4.0. Use query() instead.\n```\n\nApakah kodemu yang memakai `findAll()` rusak sekarang? Apa yang perlu kamu lakukan?",
+              "solution": "Tidak rusak. `findAll()` **masih berjalan** pada versi sekarang.\n\n```\ndeprecated   masih jalan, tidak dianjurkan lagi\nremoved      sudah tidak ada\n```\n\nKalimat itu memberi dua keterangan terpisah. `is deprecated` berlaku sekarang, dan `will be removed in version 4.0` berlaku nanti.\n\nYang perlu kamu lakukan: ganti `findAll()` dengan `query()` sebelum menaikkan versi ke 4.0. Tidak mendesak, tetapi jangan ditunda sampai terpaksa.\n\nKata `instead` di kalimat terakhir menandai penggantinya. Tanpa kata itu, `query()` bisa dikira pilihan tambahan, bukan pengganti."
+            },
+            {
+              "type": "TASK",
+              "content": "Perbaiki kalimat bahasa Inggris berikut yang ditulis mahasiswa, lalu jelaskan kekeliruannya.\n\n```\nPlease check the actual version of this library.\n```",
+              "solution": "Maksud penulisnya hampir pasti \"versi terbaru\", tetapi yang tertulis bukan itu.\n\n```\nKeliru   Please check the actual version of this library.\nBenar    Please check the latest version of this library.\n         atau\n         Please check the current version of this library.\n```\n\n`actual` dalam bahasa Inggris berarti \"yang sesungguhnya\", bukan \"yang terkini\". Kalimat aslinya terbaca sebagai \"periksa versi yang sesungguhnya\", seolah ada versi palsu.\n\nIni kembar palsu dari kata Indonesia `aktual`, yang memang berarti terkini. Pasangan lain yang sejenis:\n\n```\naktual     → current, latest, up-to-date\naktualnya  → in fact, actually\n```\n\nBedanya halus tetapi nyata, dan pembaca penutur asli akan tersendat di situ."
+            },
+            {
+              "type": "TASK",
+              "content": "Baca paragraf berikut, lalu jawab: apakah penulisnya menganjurkan memakai `sync()`?\n\n```\nThe sync() method blocks until all pending writes\nhave completed. This is convenient for scripts.\nHowever, in a request handler it will stall the\nwhole worker. Use flush_async() there instead.\n```",
+              "solution": "Tergantung di mana. Jawaban \"ya\" atau \"tidak\" saja tidak cukup.\n\n```\nuntuk skrip          ya, dianjurkan  (\"convenient for scripts\")\nuntuk request handler tidak          (\"will stall the whole worker\")\n```\n\nKuncinya pada kata penanda arah `However` di kalimat ketiga. Kata itu membalik arah dari kalimat sebelumnya yang memuji, menjadi peringatan untuk keadaan tertentu.\n\nDua kata lain yang menentukan:\n\n```\nblocks until    menahan jalannya program sampai\nstall           membuat macet, berhenti sementara\ninstead         sebagai gantinya, bukan sebagai tambahan\n```\n\nKalau `However` dilewati, paragraf ini terbaca sebagai anjuran tanpa syarat, dan itu kebalikan dari maksud penulisnya. Inilah sebabnya kata penanda arah layak dihafal lebih dulu daripada istilah teknisnya."
+            }
+          ]
+        },
+        {
+          "title": "Membaca Dokumentasi",
+          "summary": "Memilih halaman yang tepat dan membaca entri rujukan API.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Dokumentasi bukan buku yang dibaca dari depan ke belakang. Ia disusun untuk dirujuk, dan tiap bagian punya tujuan berbeda. Mengetahui bagian mana yang sedang kamu buka menghemat lebih banyak waktu daripada menambah kosakata."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Empat jenis halaman** yang hampir selalu ada, dengan nama yang cukup seragam antar proyek."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Tutorial / Getting started\n  Dituntun langkah demi langkah sampai ada yang jalan.\n  Dibaca sekali, di awal.\n\nGuide / How-to\n  Cara menyelesaikan satu tugas tertentu.\n  Dibaca saat kamu punya persoalan nyata.\n\nReference / API\n  Daftar lengkap semua fungsi dan pilihannya.\n  Tidak dibaca, tapi dicari.\n\nExplanation / Concepts\n  Kenapa dirancang begitu.\n  Dibaca saat kamu bingung, bukan saat buru-buru."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kesalahan yang paling sering adalah membuka *Reference* ketika yang dibutuhkan *How-to*. Rujukan API menjawab \"fungsi ini menerima apa\", bukan \"bagaimana cara saya mengunggah berkas\"."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Membaca satu entri rujukan API.** Bentuknya seragam di hampir semua bahasa, jadi sekali hafal berlaku di mana-mana."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 310\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Satu entri rujukan API dibedah bagian per bagian: tanda tangan fungsi, parameter, nilai kembalian, dan pengecualian\">\n  <rect x=\"20\" y=\"20\" width=\"356\" height=\"270\" rx=\"4\" fill=\"var(--bg-sunken)\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12.5\" fill=\"currentColor\">\n    <text x=\"36\" y=\"48\" opacity=\"0.95\">open(file, mode='r', encoding=None)</text>\n    <text x=\"36\" y=\"80\" opacity=\"0.7\">Open file and return a stream.</text>\n\n    <text x=\"36\" y=\"116\" opacity=\"0.6\">Parameters:</text>\n    <text x=\"48\" y=\"138\" opacity=\"0.9\">file</text>\n    <text x=\"110\" y=\"138\" opacity=\"0.65\">path-like object</text>\n    <text x=\"48\" y=\"158\" opacity=\"0.9\">mode</text>\n    <text x=\"110\" y=\"158\" opacity=\"0.65\">str, optional</text>\n\n    <text x=\"36\" y=\"194\" opacity=\"0.6\">Returns:</text>\n    <text x=\"48\" y=\"216\" opacity=\"0.65\">a file object</text>\n\n    <text x=\"36\" y=\"252\" opacity=\"0.6\">Raises:</text>\n    <text x=\"48\" y=\"274\" opacity=\"0.65\">OSError</text>\n  </g>\n\n  <g stroke=\"var(--nila)\" stroke-opacity=\"0.55\" fill=\"none\">\n    <path d=\"M 376 44 L 416 44\"/>\n    <path d=\"M 376 76 L 416 76\"/>\n    <path d=\"M 376 130 L 416 130\"/>\n    <path d=\"M 376 210 L 416 210\"/>\n    <path d=\"M 376 268 L 416 268\"/>\n  </g>\n\n  <g font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">\n    <text x=\"424\" y=\"40\">Tanda tangan</text>\n    <text x=\"424\" y=\"72\">Satu kalimat inti</text>\n    <text x=\"424\" y=\"126\">Masukan</text>\n    <text x=\"424\" y=\"206\">Keluaran</text>\n    <text x=\"424\" y=\"264\">Kegagalan</text>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">\n    <text x=\"424\" y=\"56\">nama dan bawaan</text>\n    <text x=\"424\" y=\"88\">baca ini lebih dulu</text>\n    <text x=\"424\" y=\"142\">optional = boleh</text>\n    <text x=\"424\" y=\"158\">dilewat</text>\n    <text x=\"424\" y=\"222\">yang kamu terima</text>\n    <text x=\"424\" y=\"280\">yang perlu ditangkap</text>\n  </g>\n</svg>",
+              "solution": "Satu entri rujukan API dan lima bagiannya. Tanda tangan menyebut nama dan nilai bawaan, satu kalimat inti menjelaskan gunanya, lalu masukan, keluaran, dan kegagalan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kata yang muncul di bagian parameter.** Kelimanya menentukan apakah kamu boleh melewatkan sesuatu, dan apa yang terjadi kalau dilewatkan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "required          wajib diisi\noptional          boleh dilewat\ndefault           nilai yang dipakai kalau dilewat\ndeprecated        masih diterima, akan dihapus\npositional-only   harus urut, tidak boleh pakai nama\nkeyword-only      harus pakai nama, tidak boleh urut\n\nContoh membacanya:\n\n  mode (str, optional) - Defaults to 'r'.\n\n  Boleh tidak diisi. Kalau tidak diisi, dianggap 'r'."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kalimat baku yang berulang.** Dokumentasi memakai pola kalimat yang sangat terbatas. Sepuluh pola berikut menutup sebagian besar yang akan kamu temui."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Returns a list of ...        Mengembalikan daftar ...\nRaises ValueError if ...     Melempar ValueError kalau ...\nDefaults to 0.               Bawaannya 0.\nTakes precedence over ...    Mengalahkan ...\nHas no effect if ...         Tidak berpengaruh kalau ...\nIs ignored when ...          Diabaikan ketika ...\nApplies only to ...          Hanya berlaku untuk ...\nBehaves as if ...            Berperilaku seolah-olah ...\nFalls back to ...            Mundur ke ... kalau gagal\nIs subject to change.        Masih bisa berubah."
+            },
+            {
+              "type": "NOTE",
+              "content": "`Is subject to change` dan `experimental` adalah peringatan serius. Keduanya berarti bagian itu boleh berubah tanpa menaikkan nomor versi besar, jadi memakainya di kode produksi berisiko pecah pada pembaruan kecil. Dalam dokumentasi Python, `provisional` punya arti yang sama."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kotak peringatan.** Hampir semua proyek memakai empat label ini, dan urutan keseriusannya baku."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Note        keterangan tambahan, aman dilewat\nTip         cara yang lebih enak, bukan keharusan\nImportant   mudah terlewat, dan akan merepotkan\nWarning     bisa merusak data atau keamanan\nCaution     sama dengan Warning di sebagian proyek"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Bentuk kalimat perintah.** Panduan gaya Google dan Microsoft sama-sama meminta instruksi ditulis dalam bentuk perintah, dengan subjek \"you\" yang dihilangkan. Jadi dokumentasi terbaca seperti seseorang menyuruhmu, bukan menceritakan sesuatu."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Click Save.                  Klik Save.\nRun the following command.   Jalankan perintah berikut.\nDo not commit this file.     Jangan commit berkas ini.\n\nBandingkan dengan kalimat yang bukan perintah:\n\n  The file is created automatically.\n  Berkas itu dibuat otomatis.\n\n  Yang pertama menyuruh kamu bertindak.\n  Yang kedua memberi tahu perilaku programnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Google memisahkan keduanya secara tegas: orang kedua untuk apa yang **kamu** lakukan, orang ketiga untuk apa yang **programnya** lakukan. Begitu kamu peka pada pergantian ini, kamu bisa memindai halaman panjang dan langsung menemukan baris yang menuntut tindakan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Memindai, bukan membaca.** Untuk halaman panjang, urutan ini jauh lebih cepat daripada membaca dari atas."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "1. Baca judul dan daftar isi di samping\n2. Baca kalimat pertama tiap bagian\n3. Lihat contoh kodenya lebih dulu\n4. Baru baca paragraf di sekitar contoh yang cocok"
+            },
+            {
+              "type": "TEXT",
+              "content": "Contoh kode sering menjawab pertanyaanmu tanpa satu kalimat pun dibaca. Kalau contohnya cocok, paragraf di sekitarnya cukup dibaca untuk memastikan tidak ada syarat yang terlewat."
+            },
+            {
+              "type": "NOTE",
+              "content": "Gunakan `Ctrl+F` dengan kata kunci bahasa Inggris, bukan Indonesia. Cari nama galatnya, nama parameternya, atau pola kalimat baku seperti `Raises` atau `Defaults to`. Mencari di dalam satu halaman dokumentasi hampir selalu lebih cepat daripada mencari ulang di mesin pencari."
+            },
+            {
+              "type": "TASK",
+              "content": "Baca entri berikut, lalu jawab tiga pertanyaan di bawahnya.\n\n```\nsorted(iterable, *, key=None, reverse=False)\n\n  Return a new sorted list from the items in iterable.\n\n  key specifies a function of one argument that is\n  used to extract a comparison key from each element.\n  The default value is None (compare the elements\n  directly).\n\n  reverse is a boolean value. If set to True, then the\n  elements are sorted as if each comparison were\n  reversed.\n```\n\na. Apakah `key` wajib diisi?\nb. Apakah `sorted` mengubah daftar aslinya?\nc. Boleh tidak menulis `sorted(data, None, True)`?",
+              "solution": "```\na. Tidak wajib. \"The default value is None\" menandakan\n   ada nilai bawaan, jadi boleh dilewat.\n\nb. Tidak mengubah aslinya. Kata kuncinya \"Return a\n   NEW sorted list\". Kalau mengubah di tempat,\n   dokumentasinya akan menulis \"in place\".\n\nc. Tidak boleh.\n```\n\nJawaban (c) ada pada tanda `*` di tanda tangannya. Semua parameter setelah `*` bersifat **keyword-only**, jadi harus disebut namanya.\n\n```\nSalah   sorted(data, None, True)\nBenar   sorted(data, key=None, reverse=True)\n        sorted(data, reverse=True)\n```\n\nTanda `*` mudah terlewat karena bentuknya kecil, padahal ia menentukan cara memanggil fungsinya. Ini contoh bagian dokumentasi yang bukan kalimat, tetapi tetap harus dibaca."
+            },
+            {
+              "type": "TASK",
+              "content": "Kamu perlu tahu cara membatasi ukuran unggahan berkas pada sebuah pustaka web. Halaman mana yang kamu buka, dan kenapa?",
+              "solution": "Buka **How-to atau Guide**, dengan kata kunci seperti `file upload` atau `upload limit`.\n\n```\nTutorial    salah. isinya langkah awal pemasangan\nReference   salah. menjawab \"parameter apa saja\",\n            bukan \"bagaimana caranya\"\nHow-to      tepat. disusun per tugas\nExplanation salah. menjelaskan rancangan, bukan cara\n```\n\nSetelah menemukan nama pengaturannya di How-to, barulah buka Reference untuk melihat rinciannya: tipe datanya, nilai bawaannya, dan satuannya bita atau megabita.\n\nUrutan ini yang penting. Mulai dari Reference berarti kamu harus menebak nama pengaturannya lebih dulu, dan itu justru yang belum kamu tahu."
+            },
+            {
+              "type": "TASK",
+              "content": "Terjemahkan maksud ketiga kalimat dokumentasi berikut, lalu sebutkan konsekuensinya bagi kodemu.\n\n```\n1. This parameter is ignored when stream=True.\n2. The connection pool size takes precedence over\n   the per-host limit.\n3. This API is experimental and is subject to change.\n```",
+              "solution": "```\n1. Parameter ini diabaikan ketika stream=True.\n\n   Konsekuensi: menyetelnya tidak akan memunculkan\n   galat, tetapi juga tidak berpengaruh apa pun.\n   Ini jenis bug yang sulit dilacak karena tidak\n   ada yang mengeluh.\n\n2. Ukuran kolam koneksi mengalahkan batas per host.\n\n   Konsekuensi: kalau keduanya kamu setel dan\n   bertabrakan, yang menang adalah ukuran kolam.\n   Menyetel batas per host saja bisa jadi percuma.\n\n3. API ini masih percobaan dan bisa berubah.\n\n   Konsekuensi: jangan dipakai di kode produksi.\n   Bentuknya boleh berubah pada versi kecil\n   sekalipun, jadi pembaruan rutin bisa memecahkan\n   kodemu.\n```\n\nKetiganya memakai pola kalimat baku yang sama berulang kali di seluruh dokumentasi: `is ignored when`, `takes precedence over`, dan `is subject to change`. Menghafal polanya lebih berguna daripada menghafal kosakata lepas, karena polanya terbatas sementara kosakatanya tidak."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah halaman dokumentasi memuat dua kalimat berikut berurutan. Yang mana yang menuntut tindakan darimu?\n\n```\nSet the TOKEN environment variable before starting\nthe server. The server reads it once at startup.\n```",
+              "solution": "Kalimat pertama.\n\n```\nSet the TOKEN environment variable ...\n  bentuk perintah, subjek \"you\" dihilangkan\n  → kamu yang harus bertindak\n\nThe server reads it once at startup.\n  orang ketiga, menceritakan perilaku program\n  → tidak ada yang perlu kamu kerjakan\n```\n\nPembedaan ini dipakai panduan gaya Google secara sengaja: orang kedua untuk tindakan pembaca, orang ketiga untuk perilaku perangkat lunak.\n\nKalimat kedua tetap penting meski tidak menuntut tindakan. Kata `once at startup` memberitahumu bahwa mengubah nilai variabel itu saat server sudah berjalan tidak akan berpengaruh. Kamu harus memulai ulang servernya.\n\nJadi kalimat yang tidak menyuruh apa-apa pun bisa mengubah cara kerjamu."
+            }
+          ]
+        },
+        {
+          "title": "Tingkat Keharusan",
+          "summary": "Beda antara must, should, dan may, dan kenapa itu menentukan.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Satu kata bisa membedakan antara \"kalau tidak dilakukan, programmu tidak sah\" dan \"terserah kamu\". Dalam dokumentasi teknis, kata bantu seperti `must`, `should`, dan `may` punya arti yang disepakati, bukan sekadar nuansa."
+            },
+            {
+              "type": "TEXT",
+              "content": "**RFC 2119** menetapkan arti kata-kata ini untuk dokumen standar internet, dan kesepakatan itu menyebar jauh melampaui IETF. Sekarang hampir semua spesifikasi serius memakainya."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 290\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Tangga tingkat keharusan dari MUST sampai MUST NOT beserta padanan bahasa Indonesianya\">\n  <text x=\"30\" y=\"26\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">MAKIN KE ATAS, MAKIN MENGIKAT</text>\n\n  <g>\n    <rect x=\"30\" y=\"44\" width=\"300\" height=\"38\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.3\"/>\n    <rect x=\"30\" y=\"44\" width=\"300\" height=\"38\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\"/>\n    <text x=\"46\" y=\"68\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"var(--nila)\">MUST / REQUIRED / SHALL</text>\n    <text x=\"346\" y=\"62\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.85\">wajib, tanpa kecuali</text>\n    <text x=\"346\" y=\"78\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">tidak dipenuhi = tidak sesuai spesifikasi</text>\n  </g>\n\n  <g>\n    <rect x=\"30\" y=\"92\" width=\"300\" height=\"38\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.18\"/>\n    <rect x=\"30\" y=\"92\" width=\"300\" height=\"38\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.4\"/>\n    <text x=\"46\" y=\"116\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.9\">SHOULD / RECOMMENDED</text>\n    <text x=\"346\" y=\"110\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.85\">dianjurkan</text>\n    <text x=\"346\" y=\"126\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">boleh dilanggar kalau alasannya ditimbang</text>\n  </g>\n\n  <g>\n    <rect x=\"30\" y=\"140\" width=\"300\" height=\"38\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.07\"/>\n    <rect x=\"30\" y=\"140\" width=\"300\" height=\"38\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.3\"/>\n    <text x=\"46\" y=\"164\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.8\">MAY / OPTIONAL</text>\n    <text x=\"346\" y=\"158\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.85\">boleh, terserah</text>\n    <text x=\"346\" y=\"174\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">dipakai atau tidak, dua-duanya sah</text>\n  </g>\n\n  <g>\n    <rect x=\"30\" y=\"188\" width=\"300\" height=\"38\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.3\"/>\n    <text x=\"46\" y=\"212\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.8\">SHOULD NOT</text>\n    <text x=\"346\" y=\"212\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.85\">sebaiknya jangan</text>\n  </g>\n\n  <g>\n    <rect x=\"30\" y=\"236\" width=\"300\" height=\"38\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.14\"/>\n    <rect x=\"30\" y=\"236\" width=\"300\" height=\"38\" rx=\"3\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"1.5\"/>\n    <text x=\"46\" y=\"260\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"var(--kunyit)\">MUST NOT / SHALL NOT</text>\n    <text x=\"346\" y=\"260\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.85\">dilarang, tanpa kecuali</text>\n  </g>\n</svg>",
+              "solution": "Tangga tingkat keharusan menurut RFC 2119. Makin ke atas makin mengikat, dan tiap tingkat punya padanan yang cukup rapi dalam bahasa Indonesia."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bedanya `SHOULD` dan `MAY`, karena di sinilah pembaca paling sering salah. `SHOULD` berarti ada alasan kuat untuk mengikutinya, dan menyimpang boleh **asal kamu sudah menimbang akibatnya**. `MAY` berarti dua pilihan sama-sama sah dan tidak ada yang lebih dianjurkan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Clients MUST send the Host header.\n  Kalau tidak dikirim, permintaanmu tidak sah.\n\nClients SHOULD retry on a 503 response.\n  Dianjurkan. Boleh tidak, kalau kamu punya\n  alasan dan sudah tahu risikonya.\n\nClients MAY include a User-Agent header.\n  Terserah. Dua-duanya benar.\n\nServers MUST NOT send a body with a 204 response.\n  Dilarang. Tidak ada pengecualian."
+            },
+            {
+              "type": "NOTE",
+              "content": "**RFC 8174** menambahkan satu aturan penting pada 2017: arti khusus itu hanya berlaku kalau katanya ditulis dengan **huruf kapital semua**. `MUST` adalah keharusan mutlak, sedangkan `must` dengan huruf kecil hanyalah kata Inggris biasa. Jadi periksa hurufnya sebelum menarik kesimpulan tentang seberapa mengikat sebuah kalimat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Di luar spesifikasi, \"should\" justru ambigu.** Panduan gaya Google melarang pemakaian `should` dalam dokumentasi preskriptif karena pembaca tidak bisa menebak apakah itu anjuran atau keharusan yang dilunakkan. Google menganjurkan tiga kata ini sebagai gantinya."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "must    wajib\ncan     bisa, boleh\nmight   mungkin terjadi\n\nUntuk anjuran, tulis siapa yang menganjurkan:\n\n  We recommend using a connection pool.\n  (bukan: You should use a connection pool.)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dampaknya untukmu sebagai pembaca: ketika sebuah dokumentasi menulis `should` dengan huruf kecil, jangan anggap itu pasti sekadar saran. Cari konfirmasi di bagian lain, atau coba keduanya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kata bantu kemungkinan.** Kelompok ini menyatakan seberapa yakin penulisnya, dan sering salah dibaca sebagai izin."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "will      pasti terjadi\n          The cache will be cleared on restart.\n\nmay       bisa jadi terjadi, ATAU boleh\n          The request may fail.      (bisa gagal)\n          You may omit this field.   (boleh dilewat)\n\nmight     mungkin terjadi, kemungkinannya kecil\n          This might break on old browsers.\n\ncan       mampu, memungkinkan\n          This can handle 10,000 connections.\n\ncould     mampu dalam keadaan tertentu\n          This could slow down under load."
+            },
+            {
+              "type": "TEXT",
+              "content": "`may` memang bermakna ganda, dan hanya konteks yang memisahkannya. Kalau subjeknya **kamu**, biasanya izin. Kalau subjeknya **program atau kejadian**, biasanya kemungkinan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kalimat bersyarat.** Hampir semua peringatan penting berbentuk syarat, dan bentuknya cuma tiga."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "If X, then Y            kalau X, maka Y\nUnless X, Y             kecuali X, Y berlaku\nOtherwise, Y            kalau tidak, Y\n\nContoh yang perlu dibaca pelan:\n\n  Unless you set a timeout, the client will wait\n  forever.\n\n  Artinya: KALAU kamu TIDAK menyetel timeout,\n  klien menunggu selamanya."
+            },
+            {
+              "type": "NOTE",
+              "content": "`unless` berarti \"kecuali kalau\", dan ia memuat pengingkaran di dalamnya. Membacanya sebagai `if` membalik seluruh arti kalimat. Trik yang aman: ganti `unless X` menjadi `if not X`, lalu baca ulang."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kata yang menyatakan larangan bertingkat.** Sering dipakai di catatan keamanan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "never              jangan pernah, tanpa kecuali\navoid              hindari, ada kalanya terpaksa\ndo not             jangan\nprefer X over Y    utamakan X daripada Y\nconsider           pertimbangkan, paling lunak"
+            },
+            {
+              "type": "TASK",
+              "content": "Urutkan keempat kalimat berikut dari yang paling mengikat sampai yang paling longgar.\n\n```\na. Implementations MAY cache the result.\nb. Implementations SHOULD validate the signature.\nc. Implementations MUST reject expired tokens.\nd. Implementations SHOULD NOT log the raw token.\n```",
+              "solution": "Yang paling mengikat adalah yang memakai `MUST`, lalu dua yang memakai `SHOULD`, lalu `MAY`.\n\n```\n1. (c) MUST reject        wajib, tanpa kecuali\n2. (b) SHOULD validate    dianjurkan kuat\n   (d) SHOULD NOT log     dianjurkan kuat, arah larangan\n4. (a) MAY cache          terserah\n```\n\nButir (b) dan (d) setingkat. Keduanya `SHOULD`, hanya arahnya berbeda: satu menganjurkan melakukan, satu menganjurkan tidak melakukan.\n\nYang perlu diperhatikan, menyimpang dari (b) atau (d) **boleh** asal kamu sudah menimbang akibatnya. Menyimpang dari (c) membuat implementasimu tidak sesuai spesifikasi, dan sistem lain berhak menolaknya.\n\nSemua ditulis kapital, jadi arti RFC 2119 berlaku penuh."
+            },
+            {
+              "type": "TASK",
+              "content": "Terjemahkan kalimat berikut, lalu jawab: apa yang terjadi kalau kamu tidak menyetel `retries`?\n\n```\nUnless retries is set to a positive integer, the\nclient will not retry failed requests.\n```",
+              "solution": "Terjemahannya:\n\n```\nKecuali retries disetel ke bilangan bulat positif,\nklien tidak akan mengulang permintaan yang gagal.\n```\n\nKalau kamu **tidak** menyetelnya, klien **tidak mengulang** permintaan yang gagal.\n\nCara memeriksanya, ubah `unless` menjadi `if not`:\n\n```\nAsli    Unless retries is set ..., the client will not retry.\nUbah    If retries is NOT set ..., the client will not retry.\n```\n\nKedua pengingkaran itu yang membuat kalimatnya berat: `unless` membawa satu pengingkaran, dan `will not retry` membawa satu lagi.\n\nKekeliruan yang umum adalah membaca `unless` seperti `if`, lalu menyimpulkan \"kalau disetel, klien tidak mengulang\". Itu kebalikan dari maksudnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Dua kalimat berikut memakai `may`. Mana yang berarti izin, dan mana yang berarti kemungkinan?\n\n```\na. You may omit the port if it is the default.\nb. The connection may drop during a deployment.\n```",
+              "solution": "```\na. izin          \"Kamu boleh melewatkan portnya kalau\n                 itu port bawaan.\"\n\nb. kemungkinan   \"Koneksi bisa terputus saat\n                 penggelaran berlangsung.\"\n```\n\nPatokannya ada pada subjeknya.\n\n```\nSubjek \"you\"            → biasanya izin\nSubjek program/kejadian → biasanya kemungkinan\n```\n\nDalam (a), subjeknya `You`, dan kalimatnya memberi kelonggaran.\n\nDalam (b), subjeknya `The connection`. Koneksi bukan pihak yang bisa diberi izin, jadi satu-satunya pembacaan yang masuk akal adalah kemungkinan.\n\nPerbedaan ini menentukan tindakanmu. Pada (a) kamu boleh menyederhanakan kode. Pada (b) kamu harus menyiapkan penanganan kegagalan."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah dokumentasi internal menulis:\n\n```\nDevelopers should not commit secrets to the\nrepository.\n```\n\nKenapa kalimat ini bermasalah, dan bagaimana memperbaikinya?",
+              "solution": "Masalahnya pada `should not` dengan huruf kecil. Pembaca tidak bisa tahu apakah ini larangan keras atau anjuran yang boleh dilanggar.\n\n```\nshould not (huruf kecil)  anjuran biasa, bisa ditawar\nSHOULD NOT (kapital)      RFC 2119: boleh dilanggar\n                          kalau akibatnya ditimbang\n```\n\nUntuk rahasia yang bocor ke repositori, tidak ada keadaan yang membenarkannya. Jadi kata yang dipakai harus menutup celah itu.\n\n```\nPerbaikan\n  Never commit secrets to the repository.\n  atau\n  Do not commit secrets to the repository.\n```\n\nPanduan gaya Google memang menyarankan menghindari `should` dalam dokumentasi preskriptif persis karena alasan ini, dan memakai `must`, `can`, atau `might` yang tidak bermakna ganda.\n\nUntuk hal yang benar-benar hanya anjuran, sebutkan siapa yang menganjurkan:\n\n```\nWe recommend rotating the key every 90 days.\n```\n\nBentuk itu jujur: jelas ini anjuran, dan jelas dari siapa."
+            }
+          ]
+        },
+        {
+          "title": "Membaca Pesan Kesalahan",
+          "summary": "Menguraikan jejak tumpukan dan mencari galat dengan benar.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Pesan kesalahan adalah dokumentasi paling padat yang akan kamu temui: satu baris yang menyebutkan apa yang salah, di mana, dan sering kali kenapa. Banyak orang melewatinya dan langsung menyalin ke mesin pencari, padahal jawabannya sudah ada di layar."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Anatomi jejak tumpukan.** Urutan membacanya berbeda antar bahasa, dan ini sumber kebingungan yang nyata."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Jejak tumpukan Python dibedah, dengan panah yang menunjukkan bahwa membacanya dimulai dari baris paling bawah\">\n  <defs>\n    <marker id=\"en4-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"var(--kunyit)\"/>\n    </marker>\n  </defs>\n\n  <rect x=\"90\" y=\"20\" width=\"400\" height=\"212\" rx=\"4\" fill=\"var(--bg-sunken)\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11.5\" fill=\"currentColor\">\n    <text x=\"104\" y=\"46\" opacity=\"0.6\">Traceback (most recent call last):</text>\n    <text x=\"104\" y=\"70\" opacity=\"0.75\">  File \"app.py\", line 12, in &lt;module&gt;</text>\n    <text x=\"104\" y=\"88\" opacity=\"0.6\">    hitung_rata(data)</text>\n    <text x=\"104\" y=\"112\" opacity=\"0.75\">  File \"app.py\", line 7, in hitung_rata</text>\n    <text x=\"104\" y=\"130\" opacity=\"0.6\">    return total / len(angka)</text>\n    <text x=\"104\" y=\"154\" opacity=\"0.75\">            ~~~~~~^~~~~~~~~~~</text>\n    <text x=\"104\" y=\"190\" fill=\"var(--kunyit)\">ZeroDivisionError: division by zero</text>\n  </g>\n\n  <path d=\"M 72 190 L 72 60\" stroke=\"var(--kunyit)\" stroke-width=\"1.6\" marker-end=\"url(#en4-ujung)\"/>\n  <text x=\"18\" y=\"130\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--kunyit)\">baca</text>\n  <text x=\"18\" y=\"146\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--kunyit)\">dari</text>\n  <text x=\"18\" y=\"162\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--kunyit)\">bawah</text>\n\n  <g stroke=\"var(--nila)\" stroke-opacity=\"0.5\" fill=\"none\">\n    <path d=\"M 490 190 L 524 190\"/>\n    <path d=\"M 490 112 L 524 112\"/>\n    <path d=\"M 490 42 L 524 42\"/>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--nila)\">\n    <text x=\"530\" y=\"186\">apa</text>\n    <text x=\"530\" y=\"200\">salahnya</text>\n    <text x=\"530\" y=\"108\">di mana</text>\n    <text x=\"530\" y=\"122\">pecahnya</text>\n    <text x=\"530\" y=\"38\">siapa</text>\n    <text x=\"530\" y=\"52\">pemanggil</text>\n  </g>\n\n  <text x=\"90\" y=\"266\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.8\">most recent call last = panggilan terakhir ada di bawah</text>\n  <text x=\"90\" y=\"286\" font-family=\"system-ui, sans-serif\" font-size=\"11.5\" fill=\"currentColor\" opacity=\"0.55\">Java dan JavaScript kebalikannya: galatnya di baris pertama.</text>\n</svg>",
+              "solution": "Jejak tumpukan Python. Kalimat 'most recent call last' berarti baris terakhir adalah yang paling dekat dengan sumber masalah, jadi membacanya dimulai dari bawah."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Python      Traceback (most recent call last):\n            → baris terakhir = jenis dan pesan galat\n            → bingkai terbawah = tempat pecahnya\n            → baca dari bawah ke atas\n\nJava        Exception in thread \"main\" ...\n            → baris pertama = jenis dan pesan galat\n            → baris \"at\" pertama = tempat pecahnya\n            → baca dari atas ke bawah\n\nJavaScript  TypeError: ...\n            → sama dengan Java, galat di atas"
+            },
+            {
+              "type": "TEXT",
+              "content": "Jadi langkah pertamanya selalu sama: **temukan baris yang menyebut nama galatnya**, bukan membaca seluruh tumpukan. Di Python ia paling bawah, di Java dan JavaScript paling atas."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pola kalimat galat yang berulang.** Jumlahnya tidak banyak, dan hampir semua bahasa memakainya."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "expected X, got Y        seharusnya X, yang datang Y\nexpected X but found Y   sama artinya\nunexpected token Z       ada Z yang tidak diharapkan\n                         di posisi itu\nX is not defined         X belum pernah dibuat\ncannot resolve X         X tidak ketemu\nX has no attribute Y     X tidak punya anggota Y\nX is not callable        X bukan fungsi, tapi dipanggil\nindex out of range       nomor indeks melewati batas\nmissing required\n  argument: X            argumen wajib X tidak dikirim\nunsupported operand\n  type(s)                tipe datanya tidak bisa\n                         dioperasikan begitu"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pola `expected X, got Y` adalah yang paling sering muncul dan paling banyak isinya. Ia memberitahumu persis dua hal: apa yang diminta program, dan apa yang kamu berikan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "TypeError: expected str, got int\n\n  Diminta  teks\n  Diberi   bilangan bulat\n  Tindakan bungkus dengan str(), atau cari\n           dari mana bilangan itu datang"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pesan galat dari sistem dan jaringan.** Kelompok ini tidak datang dari bahasamu, melainkan dari sistem operasi, dan kata-katanya baku."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "No such file or directory  berkas atau folder tidak ada\nPermission denied          izin ditolak\nConnection refused         tidak ada yang menerima\n                           di alamat dan port itu\nConnection timed out       tersambung tapi tidak dijawab\nAddress already in use     port itu sudah dipakai\n                           program lain\nName or service not known  nama domain tidak bisa\n                           diterjemahkan ke alamat IP\nOut of memory              memori habis\nToo many open files        batas berkas terbuka tercapai"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bedakan `Connection refused` dari `Connection timed out`. Yang pertama berarti mesinnya menjawab \"tidak ada layanan di sini\", biasanya karena servernya mati atau portnya salah. Yang kedua berarti tidak ada jawaban sama sekali, biasanya karena tembok api atau alamat yang salah."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Peringatan bukan galat.** `Warning` artinya program tetap berjalan. Yang paling sering muncul adalah peringatan tentang fungsi yang akan dihapus."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "DeprecationWarning: the 'verify' parameter is\ndeprecated and will be removed in 3.0; use\n'verify_mode' instead\n\n  Program tetap jalan sekarang.\n  Yang perlu kamu lakukan ada di kata 'instead'."
+            },
+            {
+              "type": "TEXT",
+              "content": "Mari lihat galat sungguhan. Jalankan kode berikut dan baca pesannya, jangan hanya melihat bahwa ia merah."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def hitung_rata(angka):\n    total = sum(angka)\n    return total / len(angka)\n\ndata = []\nprint(hitung_rata(data))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Panel di atas meringkas jejak tumpukannya menjadi dua keterangan: nomor baris dan baris galatnya. Itu sudah cukup. `Baris 3` menunjuk `return total / len(angka)`, dan `ZeroDivisionError: division by zero` memberi tahu pembaginya nol. Berarti `len(angka)` bernilai nol, dan daftarnya kosong."
+            },
+            {
+              "type": "NOTE",
+              "content": "Panel di halaman ini sengaja memangkas bingkai tumpukannya supaya ringkas. Di terminalmu sendiri, galat yang sama muncul dalam bentuk penuh seperti pada diagram di atas, lengkap dengan rantai pemanggilnya. Cara membacanya sama: cari baris yang menyebut nama galatnya lebih dulu, lalu runut ke atas."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Dua galat lain yang pesannya sangat informatif.\n# Jalankan satu per satu dengan memberi tanda pagar\n# pada yang lain.\n\npengguna = {\"nama\": \"Ani\"}\nprint(pengguna[\"umur\"])\n\n# nilai = \"7\"\n# print(nilai + 1)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mencari galat di internet dengan benar.** Menyalin seluruh pesan mentah-mentah jarang berhasil, karena di dalamnya ada bagian yang hanya milikmu."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Buang bagian yang khas milikmu:\n  nama berkas dan jalur folder\n  nomor baris\n  nama variabel buatanmu\n  angka dan id acak\n\nSisakan bagian yang baku:\n  nama galatnya\n  kalimat tetapnya\n\nContoh\n\n  Mentah\n    TypeError: unsupported operand type(s) for +:\n    'int' and 'str' in C:\\kerja\\tugas3\\main.py line 42\n\n  Siap dicari\n    TypeError unsupported operand type(s) for +\n    'int' and 'str'"
+            },
+            {
+              "type": "NOTE",
+              "content": "Tambahkan nama pustaka dan versinya ke pencarianmu, bukan nama berkasmu. `pandas 2.2 TypeError unsupported operand` jauh lebih menemukan sasaran daripada menyalin jejak tumpukan utuh, karena hasil pencarian jadi terbatas pada orang yang memakai pustaka dan versi yang sama."
+            },
+            {
+              "type": "TASK",
+              "content": "Baca jejak tumpukan berikut, lalu sebutkan jenis galatnya, baris yang memicunya, dan sebabnya.\n\n```\nTraceback (most recent call last):\n  File \"main.py\", line 18, in <module>\n    kirim_semua(daftar)\n  File \"main.py\", line 11, in kirim_semua\n    kirim(orang[\"email\"])\nKeyError: 'email'\n```",
+              "solution": "```\nJenis galat   KeyError\nBaris pemicu  main.py baris 11\nSebab         kamus \"orang\" tidak punya kunci 'email'\n```\n\nCara membacanya, mulai dari bawah.\n\n```\nbaris terakhir   KeyError: 'email'\n                 → kunci 'email' tidak ada\n\nbingkai terbawah File \"main.py\", line 11\n                 → di sinilah pecahnya\n\nbingkai di atas  File \"main.py\", line 18\n                 → ini cuma pemanggilnya, bukan\n                   tempat kesalahannya\n```\n\n`KeyError` selalu menyebut kunci yang dicari di dalam tanda kutip, jadi `'email'` itu kuncinya, bukan nilainya.\n\nLangkah berikutnya adalah memeriksa dari mana `daftar` datang, lalu memastikan tiap anggotanya memang punya kunci `email`. Baris 18 berguna untuk melacak asal datanya, meski bukan baris yang salah."
+            },
+            {
+              "type": "TASK",
+              "content": "Jelaskan beda ketiga pesan berikut, dan sebutkan satu kemungkinan penyebab masing-masing.\n\n```\na. Connection refused\nb. Connection timed out\nc. Name or service not known\n```",
+              "solution": "```\na. Connection refused\n   Mesin tujuan terjangkau dan menjawab, tetapi\n   tidak ada layanan di port itu.\n   Kemungkinan: servernya belum dinyalakan, atau\n   nomor portnya salah.\n\nb. Connection timed out\n   Tidak ada jawaban sama sekali sampai batas waktu.\n   Kemungkinan: tembok api membuang paketnya diam-\n   diam, atau alamat IP-nya tidak ada isinya.\n\nc. Name or service not known\n   Nama domainnya gagal diterjemahkan ke alamat IP.\n   Kemungkinan: salah ketik nama host, atau\n   pengaturan DNS bermasalah.\n```\n\nUrutan kegagalannya menunjukkan sejauh mana permintaanmu sampai.\n\n```\n(c) gagal paling awal   nama belum jadi alamat\n(b) gagal di tengah     alamat ada, tidak ada balasan\n(a) gagal paling akhir  sampai ke mesinnya, ditolak\n```\n\nMembedakan ketiganya menghemat banyak waktu. Memeriksa pengaturan server pada kasus (c) percuma, karena permintaanmu bahkan belum keluar dari mesinmu."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut, lalu uraikan pesan galatnya kata per kata.\n\n```\nnilai = \"7\"\nprint(nilai + 1)\n```",
+              "solution": "Pesannya:\n\n```\nTypeError: can only concatenate str (not \"int\") to str\n```\n\nUraikan per bagian:\n\n```\nTypeError      galat tipe data, bukan galat nilai\ncan only       hanya bisa\nconcatenate    menyambung (khusus teks)\nstr            tipe teks\n(not \"int\")    bukan bilangan bulat\nto str         ke teks\n```\n\nTerjemahan utuhnya: \"hanya bisa menyambung teks ke teks, bukan bilangan bulat\".\n\nPerhatikan kata `concatenate`. Python memakainya karena `+` pada teks berarti **menyambung**, bukan menjumlahkan. Pesan ini sekaligus memberitahumu bahwa `nilai` dibaca sebagai teks, bukan angka.\n\nDua perbaikan yang mungkin, dan artinya berbeda:\n\n```\nint(nilai) + 1   → 8     memperlakukan \"7\" sebagai angka\nnilai + str(1)   → \"71\"  menyambung dua teks\n```\n\nMemilih yang mana bukan urusan pesan galatnya, melainkan urusan maksud programmu."
+            },
+            {
+              "type": "TASK",
+              "content": "Siapkan pesan galat berikut untuk dicari di internet.\n\n```\nModuleNotFoundError: No module named 'requests'\n  File \"C:\\Users\\Ani\\skripsi\\bab4\\ambil_data.py\",\n  line 3, in <module>\n```",
+              "solution": "Yang dicari:\n\n```\nModuleNotFoundError No module named 'requests'\n```\n\nYang dibuang dan alasannya:\n\n```\nC:\\Users\\Ani\\skripsi\\bab4\\ambil_data.py\n  jalur folder di komputermu. Tidak ada orang lain\n  yang punya jalur ini, jadi hasil pencariannya nol.\n\nline 3, in <module>\n  nomor baris di berkasmu. Tidak berarti bagi\n  orang lain.\n```\n\nYang **dipertahankan** dan alasannya:\n\n```\nModuleNotFoundError   nama galatnya\nNo module named       kalimat baku dari Python\n'requests'            nama pustakanya, dan ini justru\n                      yang membuat pencarian mengena\n```\n\nNama pustaka memang khas, tetapi berbeda dari jalur folder: ia dipakai banyak orang, jadi menyempitkan hasil ke arah yang benar.\n\nUntuk galat ini, pencarian pun sebenarnya tidak perlu. Pesannya sudah lengkap: modul `requests` belum terpasang, jadi pasang dengan `pip install requests`."
+            }
+          ]
+        },
+        {
+          "title": "Menulis Kalimat Teknis",
+          "summary": "Artikel, jamak, kala waktu, dan preposisi yang sering menjatuhkan.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Menulis bahasa Inggris teknis tidak menuntut kosakata luas atau kalimat indah. Yang dituntut hanya kalimat pendek yang tidak bisa disalahpahami. Tetapi ada beberapa titik yang hampir selalu menjatuhkan penulis Indonesia, dan semuanya bisa diperbaiki dengan daftar periksa."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kenapa justru titik-titik ini.** Bahasa Indonesia tidak punya artikel, tidak menandai jamak dengan akhiran, dan tidak mengubah kata kerja menurut waktu atau pelaku. Ketiga ketiadaan itu terbawa saat menulis bahasa Inggris. Satu studi tentang kesalahan mahasiswa Indonesia menemukan kesalahan kata kerja sebagai yang terbanyak, disusul artikel, preposisi, dan kesesuaian subjek dengan kata kerja."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Artikel: a, an, the, atau tanpa artikel.** Ini yang paling sering dilewat karena tidak ada padanannya dalam bahasa Indonesia."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Bagan keputusan untuk memilih antara a, an, the, atau tanpa artikel\">\n  <defs>\n    <marker id=\"en5-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"currentColor\"/>\n    </marker>\n  </defs>\n\n  <rect x=\"20\" y=\"30\" width=\"180\" height=\"44\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\"/>\n  <text x=\"110\" y=\"50\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">Bisa dihitung?</text>\n  <text x=\"110\" y=\"66\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">a file / *a memory</text>\n\n  <path d=\"M 110 74 L 110 110\" stroke=\"currentColor\" stroke-opacity=\"0.5\" marker-end=\"url(#en5-ujung)\"/>\n  <text x=\"118\" y=\"96\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">ya</text>\n\n  <path d=\"M 200 52 L 330 52\" stroke=\"currentColor\" stroke-opacity=\"0.5\" marker-end=\"url(#en5-ujung)\"/>\n  <text x=\"250\" y=\"44\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">tidak</text>\n  <rect x=\"336\" y=\"30\" width=\"200\" height=\"44\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.12\"/>\n  <rect x=\"336\" y=\"30\" width=\"200\" height=\"44\" rx=\"3\" fill=\"none\" stroke=\"var(--kunyit)\"/>\n  <text x=\"436\" y=\"50\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--kunyit)\">tanpa artikel</text>\n  <text x=\"436\" y=\"66\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.6\">Memory is limited.</text>\n\n  <rect x=\"20\" y=\"110\" width=\"180\" height=\"44\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\"/>\n  <text x=\"110\" y=\"130\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">Jamak?</text>\n  <text x=\"110\" y=\"146\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">files / file</text>\n\n  <path d=\"M 200 132 L 330 132\" stroke=\"currentColor\" stroke-opacity=\"0.5\" marker-end=\"url(#en5-ujung)\"/>\n  <text x=\"250\" y=\"124\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">ya, umum</text>\n  <rect x=\"336\" y=\"110\" width=\"200\" height=\"44\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.12\"/>\n  <rect x=\"336\" y=\"110\" width=\"200\" height=\"44\" rx=\"3\" fill=\"none\" stroke=\"var(--kunyit)\"/>\n  <text x=\"436\" y=\"130\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--kunyit)\">tanpa artikel</text>\n  <text x=\"436\" y=\"146\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.6\">Arrays store elements.</text>\n\n  <path d=\"M 110 154 L 110 190\" stroke=\"currentColor\" stroke-opacity=\"0.5\" marker-end=\"url(#en5-ujung)\"/>\n  <text x=\"118\" y=\"176\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">tidak</text>\n\n  <rect x=\"20\" y=\"190\" width=\"180\" height=\"44\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\"/>\n  <text x=\"110\" y=\"210\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">Pembaca tahu</text>\n  <text x=\"110\" y=\"226\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">yang mana?</text>\n\n  <path d=\"M 200 212 L 330 212\" stroke=\"currentColor\" stroke-opacity=\"0.5\" marker-end=\"url(#en5-ujung)\"/>\n  <text x=\"250\" y=\"204\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">ya</text>\n  <rect x=\"336\" y=\"190\" width=\"200\" height=\"44\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.18\"/>\n  <rect x=\"336\" y=\"190\" width=\"200\" height=\"44\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\"/>\n  <text x=\"436\" y=\"210\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--nila)\">the</text>\n  <text x=\"436\" y=\"226\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.6\">Open the file you created.</text>\n\n  <path d=\"M 110 234 L 110 274 L 330 274\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.5\" marker-end=\"url(#en5-ujung)\"/>\n  <text x=\"118\" y=\"258\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">tidak</text>\n  <rect x=\"336\" y=\"254\" width=\"200\" height=\"40\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.18\"/>\n  <rect x=\"336\" y=\"254\" width=\"200\" height=\"40\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\"/>\n  <text x=\"436\" y=\"272\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--nila)\">a / an</text>\n  <text x=\"436\" y=\"288\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.6\">Create a file named x.</text>\n</svg>",
+              "solution": "Bagan keputusan untuk memilih artikel. Tiga pertanyaan berurutan: bisa dihitung, jamak, dan apakah pembaca sudah tahu yang mana."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Pertama kali disebut, satu di antara banyak\n  Create a file named config.json.\n  An error occurred.\n\nSudah disebut, atau cuma ada satu\n  Open the file you just created.\n  The server is running on port 8080.\n\nJamak dan umum, tanpa artikel\n  Arrays store elements in order.\n  Functions can return multiple values.\n\nTak terhitung, tanpa artikel\n  Memory is limited.\n  This code has poor performance."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan pasangan ini, karena bedanya sering menentukan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Salah   I got error when running the test.\nBenar   I got an error when running the test.\n\nSalah   The function returns a boolean values.\nBenar   The function returns a boolean value.\n        The function returns boolean values.\n\nSalah   Please check a documentation.\nBenar   Please check the documentation.\n        (dokumentasi proyek ini, pembaca tahu\n         yang mana)"
+            },
+            {
+              "type": "NOTE",
+              "content": "`a` atau `an` ditentukan oleh **bunyi** huruf pertama, bukan hurufnya. `an hour` karena `h`-nya tidak dibunyikan. `a user` karena `u` di situ berbunyi \"yu\". Di dunia teknis ini muncul pada singkatan: `an SQL query` kalau kamu membacanya \"es-ku-el\", `a URL` karena \"yu-ar-el\"."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Jamak.** Bahasa Indonesia menandai jamak dengan kata bantu atau pengulangan, jadi akhiran `-s` mudah terlupa."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Salah   There are three error in the log.\nBenar   There are three errors in the log.\n\nSalah   All the file is corrupted.\nBenar   All the files are corrupted.\n\nPerhatikan kata yang menuntut bentuk jamak:\n  three, many, several, all, both, few\n  a number of, a couple of"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Akhiran -s pada kata kerja.** Dalam bahasa Inggris, kata kerja berubah kalau pelakunya tunggal dan orang ketiga. Aturannya sempit tetapi pelanggarannya sangat kentara."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "I / you / we / they  return\nhe / she / it        returns\n\nDalam kalimat teknis, subjeknya hampir selalu\norang ketiga tunggal:\n\n  The function returns a list.\n  This method throws an exception.\n  The server listens on port 8080.\n  It depends on the configuration.\n\nSalah   The function return a list.\nSalah   This method throw an exception."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kala waktu.** Aturan praktisnya cuma dua, dan menutup hampir semua kebutuhan menulis teknis."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Present tense  untuk perilaku program\n               Perilaku itu berlaku terus-menerus.\n\n  The API returns 404 when the user is not found.\n  This flag enables debug logging.\n\nPast tense     untuk apa yang kamu kerjakan\n               Kejadian sekali, sudah lewat.\n\n  I upgraded to 2.4.1 and the build failed.\n  I tried clearing the cache, but nothing changed."
+            },
+            {
+              "type": "TEXT",
+              "content": "Campuran keduanya justru yang benar dalam laporan masalah: ceritakan tindakanmu dengan bentuk lampau, lalu jelaskan perilaku programnya dengan bentuk sekarang."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Preposisi.** Tidak ada aturannya, harus dihafal per pasangan. Berikut yang paling sering dipakai dalam konteks teknis."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "in a file          di dalam berkas\nin a function      di dalam fungsi\non line 42         di baris 42\non a branch        di cabang\non port 8080       di port 8080\non Windows         di Windows\nat startup         saat program mulai\nat runtime         saat program berjalan\n\ndepends on         bergantung pada\nlistens on         mendengarkan di\nconnects to        tersambung ke\npush to / pull from\nfails with an error  gagal dengan galat\nmerge into main    gabungkan ke main"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kalimat pendek dan kalimat aktif.** Panduan gaya Google dan Microsoft sama-sama meminta kalimat aktif, dengan alasan praktis: pada kalimat pasif, pembaca sering tidak tahu siapa yang harus bertindak."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Pasif   The configuration file should be edited.\n        Siapa yang mengedit? Tidak jelas.\n\nAktif   Edit the configuration file.\n        Jelas, kamu.\n\nPasif   An error was encountered by the parser.\nAktif   The parser encountered an error."
+            },
+            {
+              "type": "NOTE",
+              "content": "Kalimat pasif tidak selalu salah. Ia tepat ketika pelakunya memang tidak penting atau tidak diketahui, misalnya `The token is signed with HS256`. Yang bermasalah adalah pasif yang menyembunyikan siapa yang harus bertindak dalam sebuah instruksi."
+            },
+            {
+              "type": "TASK",
+              "content": "Perbaiki artikel pada kelima kalimat berikut.\n\n```\n1. I found bug in the login page.\n2. Please open the terminal and run a command below.\n3. The server returns error when request is invalid.\n4. Arrays are the data structure that stores elements.\n5. This is known issue, see #412.\n```",
+              "solution": "```\n1. I found a bug in the login page.\n   Pertama kali disebut, satu di antara banyak.\n\n2. Please open the terminal and run the command below.\n   \"below\" menunjuk perintah tertentu, jadi \"the\".\n\n3. The server returns an error when the request is\n   invalid.\n   Dua perbaikan: \"an error\" karena pertama disebut,\n   dan \"the request\" karena menunjuk permintaan yang\n   sedang dibahas.\n\n4. Arrays are a data structure that stores elements.\n   atau\n   An array is a data structure that stores elements.\n   \"the data structure\" salah karena array bukan\n   satu-satunya struktur data.\n\n5. This is a known issue, see #412.\n   Pertama kali disebut.\n```\n\nNomor 4 yang paling halus. Memakai `the` di situ membuat kalimatnya mengklaim array adalah satu-satunya struktur data yang menyimpan elemen, dan itu tidak benar."
+            },
+            {
+              "type": "TASK",
+              "content": "Perbaiki kesesuaian kata kerja dan bentuk jamak pada paragraf berikut.\n\n```\nThe function take two argument and return a boolean.\nIf the input are empty, it throw an exception. All\nthe test is passing now.\n```",
+              "solution": "```\nThe function takes two arguments and returns a\nboolean. If the input is empty, it throws an\nexception. All the tests are passing now.\n```\n\nRincian perbaikannya:\n\n```\ntake     → takes      subjek \"The function\", tunggal\nargument → arguments  didahului \"two\"\nreturn   → returns    subjek masih \"The function\"\nare      → is         subjek \"the input\", tunggal\nthrow    → throws     subjek \"it\", tunggal\ntest     → tests      didahului \"All\"\nis       → are        subjek \"All the tests\", jamak\n```\n\nPerhatikan bahwa `is` dan `are` bergerak berlawanan di dua tempat. Pada `the input is`, subjeknya tunggal. Pada `All the tests are`, subjeknya jamak.\n\nPatokan yang menghemat waktu: temukan subjeknya dulu, baru tentukan bentuk kata kerjanya. Subjek sering tidak persis di sebelah kata kerjanya."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis ulang ketiga kalimat berikut menjadi kalimat aktif.\n\n```\n1. The cache should be cleared before testing.\n2. An exception is thrown by the parser when the\n   input is malformed.\n3. It is recommended that the timeout be increased.\n```",
+              "solution": "```\n1. Clear the cache before testing.\n\n2. The parser throws an exception when the input\n   is malformed.\n\n3. We recommend increasing the timeout.\n```\n\nPerubahan yang terjadi:\n\n```\n(1) perintah      pelakunya kamu, jadi pakai bentuk\n                  perintah dan buang \"should\"\n(2) tukar posisi  pelaku \"the parser\" maju ke depan\n(3) sebut pelaku  siapa yang menganjurkan? \"We\"\n```\n\nNomor 1 dan 3 juga menunjukkan kenapa panduan gaya Google menghindari `should`: dalam (1) pembaca tidak tahu apakah itu wajib, dan dalam (3) tidak ada yang bertanggung jawab atas anjurannya.\n\nNomor 3 sekaligus membuang bentuk subjungtif `the timeout be increased`, yang benar secara tata bahasa tetapi tidak perlu dalam tulisan teknis."
+            },
+            {
+              "type": "TASK",
+              "content": "Perbaiki preposisi dan kala waktu pada laporan berikut.\n\n```\nI upgrade to version 2.4 yesterday. Now the server\nfail at an error in startup, and it does not listen\nto port 8080 anymore. The error happens in line 31\nat config.py.\n```",
+              "solution": "```\nI upgraded to version 2.4 yesterday. Now the server\nfails with an error at startup, and it does not\nlisten on port 8080 anymore. The error happens on\nline 31 in config.py.\n```\n\nRincian perbaikannya:\n\n```\nupgrade → upgraded   kejadian kemarin, bentuk lampau\nfail    → fails      subjek \"the server\", tunggal\nfail at → fails with gagal DENGAN galat\nin startup → at startup   saat mulai, pakai \"at\"\nlisten to → listen on     port memakai \"on\"\nin line 31 → on line 31   baris memakai \"on\"\nat config.py → in config.py  di dalam berkas, \"in\"\n```\n\nPerhatikan percampuran kala waktu yang **benar** di sini. Kalimat pertama memakai bentuk lampau karena menceritakan tindakanmu kemarin. Kalimat berikutnya memakai bentuk sekarang karena menjelaskan keadaan server saat ini.\n\nPasangan `on line` dan `in file` sering tertukar. Patokannya: berkas itu wadah, jadi `in`. Baris itu posisi pada daftar, jadi `on`, sama seperti `on page 7`."
+            }
+          ]
+        },
+        {
+          "title": "Menulis Laporan Masalah",
+          "summary": "Menyusun isu yang bisa diulang orang lain.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Laporan masalah yang baik bukan soal sopan santun, melainkan soal kecukupan keterangan. Simon Tatham merumuskannya dalam satu kalimat: tujuan sebuah laporan adalah membuat pengembangnya bisa **melihat sendiri** program itu gagal."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dari situ seluruh isinya bisa diturunkan. Apa pun yang membantu orang lain mengulang kegagalanmu layak ditulis, dan apa pun yang tidak membantu sebaiknya dibuang."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 320\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Kerangka laporan masalah dengan lima bagian: judul, langkah, yang diharapkan, yang terjadi, dan lingkungan\">\n  <rect x=\"20\" y=\"20\" width=\"370\" height=\"282\" rx=\"4\" fill=\"var(--bg-sunken)\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n\n  <text x=\"36\" y=\"46\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12.5\" fill=\"var(--nila)\">Upload fails with 413 for files over 2 MB</text>\n  <line x1=\"36\" y1=\"58\" x2=\"374\" y2=\"58\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\">\n    <text x=\"36\" y=\"82\" opacity=\"0.6\">Steps to reproduce</text>\n    <text x=\"36\" y=\"100\" opacity=\"0.85\">1. Sign in as any user.</text>\n    <text x=\"36\" y=\"116\" opacity=\"0.85\">2. Open /settings/avatar.</text>\n    <text x=\"36\" y=\"132\" opacity=\"0.85\">3. Upload a 3 MB PNG file.</text>\n\n    <text x=\"36\" y=\"164\" opacity=\"0.6\">Expected</text>\n    <text x=\"36\" y=\"182\" opacity=\"0.85\">The avatar is saved.</text>\n\n    <text x=\"36\" y=\"214\" opacity=\"0.6\">Actual</text>\n    <text x=\"36\" y=\"232\" opacity=\"0.85\">The page shows \"413 Payload</text>\n    <text x=\"36\" y=\"248\" opacity=\"0.85\">Too Large\" and nothing is saved.</text>\n\n    <text x=\"36\" y=\"280\" opacity=\"0.6\">Environment</text>\n    <text x=\"36\" y=\"296\" opacity=\"0.85\">v2.4.1, Chrome 141, Windows 11</text>\n  </g>\n\n  <g stroke=\"var(--nila)\" stroke-opacity=\"0.5\" fill=\"none\">\n    <path d=\"M 390 42 L 420 42\"/>\n    <path d=\"M 390 100 L 420 100\"/>\n    <path d=\"M 390 178 L 420 178\"/>\n    <path d=\"M 390 228 L 420 228\"/>\n    <path d=\"M 390 288 L 420 288\"/>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"11.5\" fill=\"var(--nila)\">\n    <text x=\"428\" y=\"38\">Judul</text>\n    <text x=\"428\" y=\"96\">Langkah</text>\n    <text x=\"428\" y=\"174\">Harapan</text>\n    <text x=\"428\" y=\"224\">Kenyataan</text>\n    <text x=\"428\" y=\"284\">Lingkungan</text>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">\n    <text x=\"428\" y=\"54\">gejala + syaratnya</text>\n    <text x=\"428\" y=\"112\">perintah, bernomor,</text>\n    <text x=\"428\" y=\"126\">cukup untuk diulang</text>\n    <text x=\"428\" y=\"190\">satu kalimat</text>\n    <text x=\"428\" y=\"240\">kutip pesannya</text>\n    <text x=\"428\" y=\"254\">persis, jangan</text>\n    <text x=\"428\" y=\"268\">diparafrase</text>\n    <text x=\"428\" y=\"300\">versi, peramban, OS</text>\n  </g>\n</svg>",
+              "solution": "Lima bagian baku sebuah laporan masalah. Judul menyebut gejala beserta syaratnya, langkah ditulis sebagai perintah bernomor, dan pesan galatnya dikutip persis."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Judul.** Satu baris yang menyebut gejala dan syaratnya. Judul inilah yang dibaca orang saat memindai ratusan isu, jadi ia harus bisa berdiri sendiri."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Buruk   Upload not working\n        Tidak ada keterangan apa pun.\n\nBuruk   Help! urgent bug!!!\n        Tidak menyebut apa yang rusak.\n\nBaik    Upload fails with 413 for files over 2 MB\n\nBaik    Login redirects to /404 when the email\n        contains a plus sign"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pola yang bisa kamu pakai: **apa yang gagal + bagaimana gagalnya + dalam keadaan apa**. Ketiganya muat dalam satu baris kalau kata-katanya hemat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Langkah untuk mengulang.** Ditulis sebagai perintah bernomor, dalam bentuk yang sama dengan dokumentasi: kata kerja di depan, subjek \"you\" dihilangkan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Steps to reproduce\n\n1. Sign in as any user.\n2. Open /settings/avatar.\n3. Upload a PNG file larger than 2 MB.\n4. Click Save.\n\nKata kerja pembuka yang sering dipakai:\n  Open, Run, Click, Enter, Create, Install,\n  Set, Select, Navigate to, Sign in"
+            },
+            {
+              "type": "TEXT",
+              "content": "Uji langkahmu sendiri dari keadaan bersih sebelum mengirimnya. Langkah yang hanya berhasil di komputermu karena ada berkas sisa percobaan kemarin akan menyesatkan orang lain."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Harapan dan kenyataan.** Dua bagian terpisah, masing-masing satu kalimat. Inilah bagian yang paling sering digabung menjadi satu kalimat kabur."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Expected\n  The avatar is saved and shown in the header.\n\nActual\n  The page shows \"413 Payload Too Large\" and the\n  avatar is unchanged.\n\nPola kalimatnya:\n  I expected X, but Y happened instead.\n  Expected X. Got Y."
+            },
+            {
+              "type": "NOTE",
+              "content": "Kutip pesan galatnya **persis**, jangan diparafrase dan jangan diterjemahkan. Panduan Stack Overflow menyebut ini secara khusus. Pesan yang kamu tulis ulang dengan kata-katamu sendiri tidak bisa dicari di dalam kode sumber, dan satu kata yang berubah bisa menunjuk ke sebab yang sama sekali berbeda."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Lingkungan.** Versi dan tempat berjalannya. Kalau tidak ditulis, pertanyaan pertama yang kamu terima pasti menanyakan ini."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Environment\n  Library version: 2.4.1\n  Python: 3.12.4\n  OS: Windows 11\n  Browser: Chrome 141\n\nUntuk aplikasi web, sebut juga:\n  peramban dan versinya, ukuran layar kalau\n  tampilannya yang bermasalah"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Contoh terkecil yang bisa diulang.** Stack Overflow menyebutnya *minimal reproducible example*, dan menuntut tiga sifat."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Minimal      sesedikit mungkin kode, tetapi masih\n             memunculkan masalah yang sama\nComplete     lengkap, bisa dijalankan orang lain\n             tanpa menebak bagian yang hilang\nReproducible sudah kamu uji, dan memang gagal"
+            },
+            {
+              "type": "TEXT",
+              "content": "Cara membuatnya: buang kode sedikit demi sedikit sampai masalahnya hilang, lalu kembalikan potongan terakhir. Yang tersisa itulah penyebabnya. Proses ini sering menemukan sendiri sumber masalahmu sebelum laporannya sempat dikirim."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pisahkan fakta dari dugaan.** Ini nasihat Tatham yang paling sering dilanggar. Dugaanmu boleh ditulis, tetapi jangan sampai menggantikan fakta."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Buruk   The cache is broken.\n        Ini dugaan yang disamarkan sebagai fakta.\n        Kalau dugaanmu meleset, pembaca ikut\n        tersesat.\n\nBaik    The response still shows the old title\n        after I update it. I suspect the cache,\n        but I have not verified that.\n\nKata penanda dugaan:\n  I suspect ...      Saya menduga ...\n  It looks like ...  Sepertinya ...\n  This may be\n  related to ...     Ini mungkin berkaitan dengan ..."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kalimat sopan yang baku.** Tidak perlu panjang, tetapi nada yang netral membuat percakapan selanjutnya lebih lancar."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Membuka\n  I ran into an issue with ...\n  I am seeing unexpected behavior when ...\n\nMengakui ketidakpastian\n  I may be misunderstanding this, but ...\n  Apologies if this is already known.\n\nMenawarkan bantuan\n  I am happy to submit a pull request if this\n  is a valid bug.\n  Let me know if you need more details."
+            },
+            {
+              "type": "NOTE",
+              "content": "Hindari kata `urgent`, `ASAP`, atau tanda seru bertumpuk pada proyek sumber terbuka. Tatham mengingatkan bahwa banyak pengembang mengerjakan proyeknya atas kemauan sendiri, tanpa dibayar. Keterangan yang cukup membuat masalahmu diperbaiki lebih cepat; desakan tidak."
+            },
+            {
+              "type": "TASK",
+              "content": "Perbaiki judul isu berikut.\n\n```\na. Doesn't work\nb. BUG!!! please fix\nc. Problem with the date function\n```",
+              "solution": "```\na. Doesn't work\n   → Export to CSV produces an empty file on Safari\n\nb. BUG!!! please fix\n   → App crashes on startup when the config file\n     is missing\n\nc. Problem with the date function\n   → parseDate() returns the previous day for dates\n     in the Asia/Jakarta timezone\n```\n\nKetiga perbaikan memakai pola yang sama:\n\n```\napa yang gagal  +  bagaimana gagalnya  +  kapan\n```\n\nJudul (c) yang paling mengelabui. Ia terdengar seperti judul yang baik karena menyebut fungsi tertentu, padahal `Problem with` tidak memberi tahu apa pun. Bandingkan dengan `returns the previous day`, yang langsung bisa dinilai orang lain tanpa membuka isunya.\n\nNama fungsi dan kata galat yang persis juga membuat isumu bisa ditemukan orang yang mencari masalah serupa nanti."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis bagian Expected dan Actual untuk keadaan berikut, masing-masing satu kalimat.\n\nKamu menyimpan pengaturan bahasa ke Indonesia. Halaman memuat ulang, tetapi tampilannya tetap bahasa Inggris. Setelah keluar dan masuk lagi, barulah berubah.",
+              "solution": "```\nExpected\n  The interface switches to Indonesian immediately\n  after I save the language setting.\n\nActual\n  The interface stays in English until I sign out\n  and sign in again.\n```\n\nDua hal yang membuat pasangan ini berguna:\n\nPertama, keduanya **kalimat lengkap** yang bisa dibaca terpisah. \"Expected: Indonesian\" terlalu pendek untuk dipakai.\n\nKedua, bagian Actual memuat keterangan yang menyempitkan sebabnya: masalahnya hilang setelah masuk ulang. Itu menunjuk ke sesi atau singgahan, bukan ke penyimpanan datanya. Pengembang akan langsung melihatnya.\n\nPerhatikan kala waktunya. Keduanya memakai bentuk sekarang karena menjelaskan perilaku program yang berulang, bukan satu kejadian yang sudah lewat."
+            },
+            {
+              "type": "TASK",
+              "content": "Laporan berikut ditolak dengan permintaan keterangan tambahan. Sebutkan apa saja yang kurang.\n\n```\nTitle: Upload error\n\nThe upload is broken since the last update. I think\nthe server is rejecting the file because of a CORS\nproblem. Please fix it quickly, this blocks my work.\n```",
+              "solution": "Yang kurang:\n\n```\n1. Langkah untuk mengulang\n   Tidak ada satu pun. Pembaca tidak tahu berkas\n   apa, halaman mana, dan dalam keadaan apa.\n\n2. Harapan dan kenyataan\n   \"broken\" tidak menjelaskan apa pun. Apa yang\n   muncul di layar? Apa pesan galatnya?\n\n3. Pesan galat yang dikutip persis\n   Sama sekali tidak ada.\n\n4. Lingkungan\n   \"the last update\" itu versi berapa? Peramban\n   apa? Sistem operasi apa?\n\n5. Pemisahan fakta dari dugaan\n   \"I think the server is rejecting the file\n   because of a CORS problem\" adalah dugaan, dan\n   ia menempati seluruh ruang yang seharusnya\n   diisi fakta.\n```\n\nMasalah terbesarnya nomor 5. Kalau dugaan CORS itu meleset, pembaca akan menghabiskan waktu di tempat yang salah, dan fakta yang sebenarnya tidak pernah disebutkan.\n\nKalimat terakhir, `Please fix it quickly, this blocks my work`, tidak menambah keterangan apa pun dan hanya menambah tekanan. Buang saja, lalu pakai ruangnya untuk menulis langkah mengulangnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Kodemu yang 300 baris gagal dengan `IndexError`. Jelaskan langkah membuat contoh terkecil yang bisa diulang, dan kenapa cara ini sering menyelesaikan masalahmu sendiri.",
+              "solution": "Langkahnya:\n\n```\n1. Salin kodenya ke berkas baru.\n   Jangan mengutak-atik yang asli.\n\n2. Buang satu bagian besar, lalu jalankan.\n   Masih galat?  → bagian itu tidak terlibat,\n                   biarkan terbuang\n   Sudah tidak?  → kembalikan, bagian itu terlibat\n\n3. Ulangi dengan bagian yang makin kecil.\n\n4. Berhenti ketika membuang satu baris lagi\n   membuat galatnya hilang.\n\n5. Ganti data asli dengan data contoh yang pendek\n   dan tidak rahasia.\n```\n\nKenapa cara ini sering menyelesaikan masalahnya sendiri: setiap kali kamu membuang sesuatu dan galatnya **tetap ada**, kamu baru saja membuktikan bagian itu tidak bersalah. Ruang pencarianmu menyempit setiap langkah.\n\nKetika tinggal lima baris, biasanya sebabnya sudah terlihat tanpa perlu dipikirkan.\n\nSatu hal yang perlu dijaga: jangan korbankan kejelasan demi kependekan. Kode lima baris yang nama variabelnya `a`, `b`, `c` memang pendek, tetapi jadi sulit dibaca orang lain. Stack Overflow menyebut ini secara khusus dalam panduannya."
+            }
+          ]
+        },
+        {
+          "title": "Pesan Commit dan Catatan Perubahan",
+          "summary": "Menulis riwayat yang masih berguna bertahun-tahun kemudian.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Pesan commit adalah tulisan yang paling sering kamu buat dan paling jarang kamu pikirkan. Ia dibaca orang lain saat mencari penyebab sebuah bug, sering kali bertahun-tahun kemudian, ketika kamu sudah lupa dan tidak bisa ditanya."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 290\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Pesan commit dibedah menjadi jenis, cakupan, ringkasan, badan, dan catatan kaki\">\n  <rect x=\"20\" y=\"20\" width=\"368\" height=\"250\" rx=\"4\" fill=\"var(--bg-sunken)\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12.5\">\n    <text x=\"36\" y=\"48\" fill=\"var(--nila)\">feat</text>\n    <text x=\"68\" y=\"48\" fill=\"var(--kunyit)\">(upload)</text>\n    <text x=\"134\" y=\"48\" fill=\"currentColor\" opacity=\"0.5\">:</text>\n    <text x=\"146\" y=\"48\" fill=\"currentColor\" opacity=\"0.95\">accept files up to 10 MB</text>\n  </g>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11.5\" fill=\"currentColor\" opacity=\"0.75\">\n    <text x=\"36\" y=\"92\">The previous 2 MB limit came from the</text>\n    <text x=\"36\" y=\"110\">default nginx body size, not from a</text>\n    <text x=\"36\" y=\"128\">product decision. Users hit it on any</text>\n    <text x=\"36\" y=\"146\">photo taken with a modern phone.</text>\n  </g>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11.5\" fill=\"currentColor\" opacity=\"0.6\">\n    <text x=\"36\" y=\"190\">Closes #482</text>\n    <text x=\"36\" y=\"226\">BREAKING CHANGE: the upload endpoint</text>\n    <text x=\"36\" y=\"244\">now rejects requests without a</text>\n    <text x=\"36\" y=\"262\">Content-Length header.</text>\n  </g>\n\n  <line x1=\"36\" y1=\"64\" x2=\"374\" y2=\"64\" stroke=\"currentColor\" stroke-opacity=\"0.12\"/>\n  <line x1=\"36\" y1=\"164\" x2=\"374\" y2=\"164\" stroke=\"currentColor\" stroke-opacity=\"0.12\"/>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.35\" fill=\"none\">\n    <path d=\"M 388 44 L 414 44\"/>\n    <path d=\"M 388 110 L 414 110\"/>\n    <path d=\"M 388 210 L 414 210\"/>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"11.5\" fill=\"currentColor\" opacity=\"0.8\">\n    <text x=\"422\" y=\"40\">Ringkasan</text>\n    <text x=\"422\" y=\"106\">Badan</text>\n    <text x=\"422\" y=\"206\">Catatan kaki</text>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">\n    <text x=\"422\" y=\"56\">kata perintah,</text>\n    <text x=\"422\" y=\"70\">tanpa titik,</text>\n    <text x=\"422\" y=\"84\">maksimal 50 huruf</text>\n    <text x=\"422\" y=\"122\">menjelaskan</text>\n    <text x=\"422\" y=\"136\">kenapa, bukan apa</text>\n    <text x=\"422\" y=\"222\">isu dan perubahan</text>\n    <text x=\"422\" y=\"236\">yang mematahkan</text>\n  </g>\n</svg>",
+              "solution": "Pesan commit dan bagian-bagiannya. Ringkasan memakai kata perintah dan dibatasi sekitar 50 huruf, badan menjelaskan alasan, dan catatan kaki menampung rujukan isu serta perubahan yang mematahkan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Ringkasan memakai bentuk perintah.** Panduan kontributor Git sendiri meminta ini: tulis seolah kamu memerintahkan kode untuk berubah, bukan menceritakan apa yang sudah kamu lakukan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Benar   Add retry logic to the upload client\nSalah   Added retry logic to the upload client\nSalah   Adds retry logic to the upload client\nSalah   Adding retry logic to the upload client\nSalah   I added retry logic to the upload client"
+            },
+            {
+              "type": "TEXT",
+              "content": "Alasannya praktis, bukan selera. Git sendiri membuat pesan dalam bentuk perintah ketika menghasilkan commit otomatis, misalnya `Merge branch 'main'` dan `Revert \"Add retry logic\"`. Memakai bentuk yang sama membuat riwayatmu terbaca seragam."
+            },
+            {
+              "type": "TEXT",
+              "content": "Cara mengujinya: sisipkan pesanmu ke dalam kalimat berikut, dan lihat apakah terdengar wajar."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "If applied, this commit will <ringkasanmu>.\n\n  ... will Add retry logic to the upload client   ✓\n  ... will Added retry logic to the upload client ✗\n  ... will Fix crash on empty input               ✓\n  ... will Fixed crash on empty input             ✗"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Aturan bentuk.** Tiga hal yang disebut panduan Git secara khusus."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Panjang       sekitar 50 huruf untuk baris pertama\nTitik         tidak pakai titik di akhir ringkasan\nBaris kosong  satu baris kosong antara ringkasan\n              dan badan, kalau ada badannya\n\nContoh lengkap:\n\n  Fix crash when the config file is empty\n  <baris kosong>\n  The parser assumed at least one section. An\n  empty file produced an IndexError before the\n  error message was ever shown."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Badan menjelaskan kenapa, bukan apa.** Perubahan apa saja sudah terlihat dari diff. Yang tidak terlihat dari diff adalah alasannya, dan itulah yang hilang kalau tidak kamu tulis."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Kurang berguna\n  Change the timeout from 5 to 30 seconds.\n  Ini sudah terbaca dari diff-nya.\n\nBerguna\n  The 5 second timeout was copied from the\n  internal API, which responds in milliseconds.\n  The payment provider takes up to 20 seconds\n  during peak hours, so legitimate requests were\n  being cancelled."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Conventional Commits.** Banyak proyek memakai kesepakatan penulisan ini supaya catatan perubahan bisa disusun otomatis dan nomor versi bisa ditentukan dari riwayatnya."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "<jenis>[cakupan opsional]: <ringkasan>\n\nfeat     fitur baru          → naikkan angka tengah\nfix      perbaikan bug       → naikkan angka terakhir\ndocs     dokumentasi saja\nrefactor ubah bentuk, perilaku tetap\ntest     menambah atau memperbaiki pengujian\nperf     perbaikan kinerja\nchore    pekerjaan rumah tangga\n\nContoh:\n  feat(upload): accept files up to 10 MB\n  fix: reject tokens that expired exactly now\n  docs: explain the retry backoff"
+            },
+            {
+              "type": "TEXT",
+              "content": "Spesifikasinya sendiri hanya menetapkan `feat` dan `fix`. Sisanya kesepakatan yang berkembang dari konvensi Angular, jadi daftarnya bisa sedikit berbeda antar proyek. Periksa berkas panduan kontribusi sebelum ikut menulis."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Perubahan yang mematahkan.** Ini bagian yang paling penting dan paling sering lupa ditulis."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Dua cara menandainya:\n\n  feat(api)!: require Content-Length on uploads\n\natau lewat catatan kaki:\n\n  feat(api): require Content-Length on uploads\n\n  BREAKING CHANGE: the upload endpoint now\n  rejects requests without a Content-Length\n  header.\n\nKeduanya menaikkan angka versi paling depan."
+            },
+            {
+              "type": "NOTE",
+              "content": "`BREAKING CHANGE` ditulis kapital semua dan diikuti titik dua. Perkakas yang menyusun catatan perubahan mencarinya persis dalam bentuk itu, jadi `Breaking change:` atau `BREAKING-CHANGES:` tidak akan terbaca. Ini salah satu dari sedikit tempat di mana huruf besar-kecil benar-benar menentukan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Catatan perubahan.** Berbeda dari riwayat commit, catatan perubahan ditulis untuk pengguna. Panduan *Keep a Changelog* merumuskannya tegas: catatan perubahan dibuat untuk manusia, bukan mesin."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Enam bagian bakunya:\n\nAdded       yang baru\nChanged     yang berubah perilakunya\nDeprecated  yang akan dihapus nanti\nRemoved     yang sudah dihapus\nFixed       bug yang diperbaiki\nSecurity    perbaikan celah keamanan\n\nContoh:\n\n  ## [2.5.0] - 2026-10-09\n\n  ### Added\n  - Support for uploading files up to 10 MB.\n\n  ### Fixed\n  - Tokens expiring at the exact boundary were\n    accepted. They are now rejected.\n\n  ### Deprecated\n  - `findAll()`. Use `query()` instead. It will\n    be removed in 4.0."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bedanya dengan pesan commit. Di sini bentuk perintah **tidak** dipakai, karena pembacanya bukan kode melainkan orang yang ingin tahu apa yang berubah untuknya. Tanggalnya ditulis `YYYY-MM-DD` supaya tidak ambigu antar negara."
+            },
+            {
+              "type": "NOTE",
+              "content": "Bagian paling atas sebuah catatan perubahan biasanya `## [Unreleased]`, tempat menampung perubahan yang sudah masuk tetapi belum dirilis. Panduan *Keep a Changelog* juga memperingatkan agar riwayat commit tidak dituang mentah-mentah ke dalamnya: commit `fix typo` tidak berarti apa pun bagi pengguna."
+            },
+            {
+              "type": "TASK",
+              "content": "Perbaiki kelima pesan commit berikut.\n\n```\na. fixed bug\nb. Updated the README file.\nc. changes\nd. I refactored the user service to use the new\n   repository pattern\ne. WIP\n```",
+              "solution": "```\na. fixed bug\n   → fix: reject empty passwords on sign-up\n   Bentuk perintah, dan sebutkan bug yang mana.\n\nb. Updated the README file.\n   → docs: add installation steps for Windows\n   Bentuk perintah, buang titik, dan sebutkan\n   bagian mana yang berubah.\n\nc. changes\n   → refactor(auth): extract token parsing into\n     a helper\n   Tidak memberi keterangan apa pun sama sekali.\n\nd. I refactored the user service to use the new\n   repository pattern\n   → refactor(user): use the repository pattern\n   Buang \"I\", ubah ke bentuk perintah, dan\n   pendekkan agar muat 50 huruf.\n\ne. WIP\n   → jangan dikirim. Gabungkan dulu dengan commit\n     berikutnya, atau tulis apa yang sudah jadi.\n```\n\nUji semuanya dengan kalimat `If applied, this commit will ...`. Hanya bentuk perintah yang lolos.\n\nButir (d) menunjukkan bahwa pesan yang panjang pun belum tentu baik. Yang penting bukan jumlah katanya, melainkan apakah pembaca bisa menebak isi perubahannya."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis badan pesan commit untuk perubahan berikut, dalam bahasa Inggris.\n\nKamu mengubah batas unggahan dari 2 MB menjadi 10 MB. Batas 2 MB ternyata berasal dari nilai bawaan nginx, bukan keputusan produk. Pengguna selalu kena batas itu karena foto dari ponsel sekarang biasanya lebih dari 2 MB.",
+              "solution": "```\nfeat(upload): raise the file size limit to 10 MB\n\nThe 2 MB limit was never a product decision. It\ncame from the default client_max_body_size in\nnginx, which nobody changed when the upload\nfeature shipped.\n\nPhotos taken with current phones are routinely\nlarger than 2 MB, so most users hit the limit on\ntheir first attempt.\n```\n\nYang membuat badan ini berguna:\n\n```\n1. Menyebut asal batasnya     bawaan nginx\n2. Menyebut kenapa itu salah  bukan keputusan produk\n3. Menyebut dampaknya         kena pada percobaan\n                              pertama\n```\n\nKetiganya **tidak terlihat dari diff**. Diff hanya menunjukkan angka 2 berubah menjadi 10.\n\nPerhatikan kala waktunya. Bentuk lampau untuk menjelaskan keadaan sebelumnya, bentuk sekarang untuk menjelaskan kenyataan yang masih berlaku.\n\nRingkasannya tetap bentuk perintah dan muat dalam 48 huruf."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah commit mengubah fungsi `login(email, password)` menjadi `login(credentials)`. Tulis pesan commit lengkapnya.",
+              "solution": "```\nfeat(auth)!: take a credentials object in login()\n\nAdding each new sign-in method meant adding\nanother positional parameter. Passing a single\nobject keeps the signature stable as we add\nsingle sign-on.\n\nBREAKING CHANGE: login() now takes one object\ninstead of two positional arguments. Replace\nlogin(email, password) with\nlogin({ email, password }).\n```\n\nTiga hal yang wajib ada di sini:\n\n```\n1. Tanda !             menandai perubahan yang\n                       mematahkan di ringkasannya\n\n2. BREAKING CHANGE:    kapital semua, diikuti\n                       titik dua\n\n3. Cara berpindah      tunjukkan bentuk lama dan\n                       bentuk barunya\n```\n\nButir ketiga yang paling sering dilupakan. Memberi tahu bahwa sesuatu pecah tanpa memberi tahu cara memperbaikinya memaksa setiap pengguna menebak sendiri.\n\nTanda `!` dan catatan kaki `BREAKING CHANGE` sebenarnya saling menggantikan menurut spesifikasinya. Menulis keduanya tidak salah, dan membuat perubahan ini terlihat baik saat memindai daftar maupun saat membaca isinya."
+            },
+            {
+              "type": "TASK",
+              "content": "Susun catatan perubahan untuk rilis 3.1.0 tanggal 9 Oktober 2026, dari tiga commit berikut.\n\n```\nfix: accept tokens that expire exactly at the boundary\nfeat(export): add CSV output\nchore: bump eslint to 9.14\n```",
+              "solution": "```markdown\n## [3.1.0] - 2026-10-09\n\n### Added\n- CSV output for exports.\n\n### Fixed\n- Tokens expiring at the exact boundary were\n  rejected. They are now accepted.\n```\n\nDua keputusan yang perlu dijelaskan.\n\n**Commit `chore` tidak dimasukkan.** Menaikkan versi eslint tidak mengubah apa pun bagi pengguna. Panduan *Keep a Changelog* menegaskan catatan perubahan ditulis untuk manusia yang memakai perangkat lunaknya, bukan sebagai salinan riwayat commit.\n\n**Kalimatnya ditulis ulang, bukan disalin.** Bandingkan:\n\n```\nCommit     fix: accept tokens that expire exactly\n           at the boundary\nChangelog  Tokens expiring at the exact boundary\n           were rejected. They are now accepted.\n```\n\nPesan commit ditulis untuk pengembang, dalam bentuk perintah, dan menjelaskan perubahan kodenya. Entri catatan perubahan ditulis untuk pengguna, dalam bentuk pernyataan, dan menjelaskan apa yang dulu salah serta apa yang sekarang benar.\n\nNomor versinya naik ke 3.1.0 karena ada `feat` tetapi tidak ada perubahan yang mematahkan."
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "title": "Google developer documentation style guide",
+          "author": "Google",
+          "url": "https://developers.google.com/style",
+          "note": "Sumber untuk aturan orang kedua, bentuk perintah pada instruksi, kalimat aktif, dan alasan menghindari kata should dalam dokumentasi preskriptif."
+        },
+        {
+          "title": "Microsoft Writing Style Guide",
+          "author": "Microsoft",
+          "url": "https://learn.microsoft.com/en-us/style-guide/welcome/",
+          "note": "Acuan kedua untuk modus kalimat: indikatif untuk pernyataan, imperatif untuk prosedur, dan anjuran memakai kalimat aktif."
+        },
+        {
+          "title": "RFC 2119: Key words for use in RFCs to Indicate Requirement Levels",
+          "author": "S. Bradner, IETF (BCP 14)",
+          "url": "https://www.rfc-editor.org/rfc/rfc2119",
+          "note": "Penetapan arti MUST, SHOULD, MAY, dan pasangan negatifnya. Dasar seluruh bagian Tingkat Keharusan."
+        },
+        {
+          "title": "RFC 8174: Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words",
+          "author": "B. Leiba, IETF",
+          "url": "https://www.rfc-editor.org/rfc/rfc8174",
+          "note": "Menegaskan bahwa arti khusus itu hanya berlaku untuk penulisan dengan huruf kapital."
+        },
+        {
+          "title": "How to Report Bugs Effectively",
+          "author": "Simon Tatham",
+          "url": "https://www.chiark.greenend.org.uk/~sgtatham/bugs.html",
+          "note": "Sumber untuk gagasan bahwa tujuan laporan adalah membuat pengembang melihat sendiri kegagalannya, dan untuk pemisahan fakta dari dugaan."
+        },
+        {
+          "title": "How to create a Minimal, Reproducible Example",
+          "author": "Stack Overflow",
+          "url": "https://stackoverflow.com/help/minimal-reproducible-example",
+          "note": "Tiga syarat contoh terkecil, cara membuang kode bertahap, dan peringatan agar kejelasan tidak dikorbankan demi kependekan."
+        },
+        {
+          "title": "SubmittingPatches",
+          "author": "Proyek Git",
+          "url": "https://git-scm.com/docs/SubmittingPatches",
+          "note": "Sumber untuk aturan bentuk perintah pada ringkasan commit, batas sekitar 50 huruf, dan tanpa titik di akhir."
+        },
+        {
+          "title": "Conventional Commits 1.0.0",
+          "author": "conventionalcommits.org",
+          "url": "https://www.conventionalcommits.org/en/v1.0.0/",
+          "note": "Bentuk jenis dan cakupan, hubungan feat dan fix dengan nomor versi, serta dua cara menandai perubahan yang mematahkan."
+        },
+        {
+          "title": "Keep a Changelog",
+          "author": "Olivier Lacan dan kontributor",
+          "url": "https://keepachangelog.com/",
+          "note": "Enam bagian baku, format tanggal, bagian Unreleased, dan peringatan agar riwayat commit tidak dituang mentah-mentah."
+        },
+        {
+          "title": "Error Analysis of English Sentences Written by Indonesian College Students",
+          "author": "Jurnal penelitian pengajaran bahasa",
+          "url": "https://www.researchgate.net/publication/343480093_Error_Analysis_of_English_Sentences_Written_by_Indonesian_College_Students",
+          "note": "Dasar pemilihan titik tata bahasa yang dibahas: kata kerja, artikel, preposisi, dan kesesuaian subjek adalah empat kesalahan terbanyak mahasiswa Indonesia."
+        },
+        {
+          "title": "Errors and Exceptions",
+          "author": "Python Software Foundation",
+          "url": "https://docs.python.org/3/tutorial/errors.html",
+          "note": "Rujukan untuk bentuk jejak tumpukan Python dan arti kalimat most recent call last."
+        }
+      ]
     },
     {
       "code": "IF201",
