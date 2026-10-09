@@ -25,48 +25,54 @@
       "beyondCurriculum": [],
       "stages": [
         {
-          "name": "Fondasi",
-          "note": "Bisa membuat halaman statis yang rapi tanpa kerangka kerja apa pun.",
-          "duration": "2 sampai 3 bulan",
-          "items": [
-            "HTML yang tepat makna dan dapat diakses pembaca layar",
-            "CSS: tata letak dengan Flexbox dan Grid, tampilan untuk layar kecil",
-            "JavaScript dasar: variabel, fungsi, array, dan objek",
-            "Git dan GitHub untuk menyimpan riwayat pekerjaan"
-          ]
+          "course": "IF102",
+          "heading": "Membangun cara berpikir",
+          "reason": "Sebelum menyentuh kerangka kerja apa pun, kamu perlu terbiasa memecah persoalan menjadi langkah. Tanpa ini, React hanya akan terasa seperti mantra yang dihafal."
         },
         {
-          "name": "Halaman yang hidup",
-          "note": "Halaman menanggapi tindakan pengguna dan mengambil data dari luar.",
-          "duration": "2 sampai 3 bulan",
-          "items": [
-            "Memanipulasi DOM dan menangani kejadian",
-            "Kode tak sinkron: janji, async dan await",
-            "Mengambil data dari REST API dengan fetch",
-            "Menangani keadaan memuat, kosong, dan gagal"
-          ]
+          "course": "IF205",
+          "heading": "Menyusun isi halaman",
+          "reason": "HTML menentukan makna tiap bagian halaman. Penanda yang tepat membuat halamanmu terbaca pembaca layar dan mesin pencari, bukan sekadar terlihat rapi."
         },
         {
-          "name": "Kerangka kerja",
-          "note": "Membangun aplikasi berhalaman banyak dengan komponen yang dapat dipakai ulang.",
-          "duration": "3 sampai 4 bulan",
-          "items": [
-            "Satu kerangka kerja sampai lancar, biasanya React",
-            "Perutean di sisi klien",
-            "Pengelolaan keadaan antarkomponen",
-            "TypeScript untuk menangkap kesalahan lebih awal"
-          ]
+          "course": "KT01",
+          "heading": "Menyimpan riwayat pekerjaan",
+          "reason": "Mulai pakai Git sejak proyek pertama, bukan nanti. Hampir semua lowongan menganggapnya kemampuan dasar, dan kebiasaannya perlu waktu untuk terbentuk."
         },
         {
-          "name": "Siap melamar",
-          "note": "Punya bukti kerja yang bisa dibuka orang lain.",
-          "duration": "2 sampai 3 bulan",
-          "items": [
-            "Dua sampai tiga proyek yang sudah terbit dan bisa diakses",
-            "Pengujian dasar dan alur penerbitan otomatis",
-            "Memperhatikan kecepatan muat dan keterjangkauan",
-            "Kode tertata rapi di GitHub dengan README yang jelas"
-          ]
+          "course": "KT10",
+          "heading": "Menghidupkan halaman",
+          "reason": "JavaScript membuat halaman menanggapi pengguna. Di sini juga kamu bertemu kode tak sinkron, yang menjadi dasar semua pengambilan data nanti."
+        },
+        {
+          "course": "KT04",
+          "heading": "Memahami percakapan web",
+          "reason": "Sebelum mengambil data dari server, pahami dulu apa yang sebenarnya dikirim dan diterima. Banyak kebingungan frontend berakar di sini."
+        },
+        {
+          "course": "KT11",
+          "heading": "Menangkap kesalahan lebih awal",
+          "reason": "TypeScript kini hampir menjadi syarat di lowongan frontend. Jenis data menangkap kekeliruan sebelum programmu dijalankan."
+        },
+        {
+          "course": "KT12",
+          "heading": "Membangun dengan komponen",
+          "reason": "React adalah kerangka kerja yang paling banyak diminta. Di sini seluruh bekal sebelumnya dipakai sekaligus."
+        },
+        {
+          "course": "IF404",
+          "heading": "Merancang untuk manusia",
+          "reason": "Antarmuka yang benar secara teknis tetap bisa menyusahkan. Mata kuliah ini mengajarkan menguji rancangan pada pengguna sungguhan."
+        },
+        {
+          "course": "KT13",
+          "heading": "Menjaga agar tetap bekerja",
+          "reason": "Tanpa pengujian otomatis, setiap perubahan berisiko merusak yang sudah jalan. Ini yang membedakan proyek latihan dari pekerjaan nyata."
+        },
+        {
+          "course": "IF304",
+          "heading": "Menyatukan semuanya",
+          "reason": "Membangun aplikasi web utuh, dari tampilan sampai sambungannya ke layanan di belakang."
         }
       ],
       "references": [
@@ -127,48 +133,69 @@
       "beyondCurriculum": [],
       "stages": [
         {
-          "name": "Fondasi",
-          "note": "Bisa menulis program yang benar dan menyimpan data dengan rapi.",
-          "duration": "3 sampai 4 bulan",
-          "items": [
-            "Satu bahasa pemrograman sampai nyaman dipakai",
-            "Struktur data dan algoritma dasar",
-            "SQL: gabungan tabel, pengelompokan, dan indeks",
-            "Perancangan basis data dan normalisasi"
-          ]
+          "course": "IF102",
+          "heading": "Membangun cara berpikir",
+          "reason": "Dasar menyusun langkah penyelesaian. Semua yang datang setelah ini bersandar padanya."
         },
         {
-          "name": "Membangun layanan",
-          "note": "Bisa membuat API yang dipakai aplikasi lain.",
-          "duration": "3 sampai 4 bulan",
-          "items": [
-            "Satu kerangka kerja web, misalnya Spring Boot",
-            "REST API beserta penanganan kesalahannya",
-            "Autentikasi dan hak akses",
-            "Pengujian unit dan pengujian integrasi"
-          ]
+          "course": "IF201",
+          "heading": "Memilih cara menyimpan data",
+          "reason": "Pilihan struktur data menentukan cepat lambatnya program. Ini bekal yang paling sering diuji saat wawancara backend."
         },
         {
-          "name": "Menjalankan di dunia nyata",
-          "note": "Aplikasi tetap hidup ketika dipakai banyak orang.",
-          "duration": "3 sampai 4 bulan",
-          "items": [
-            "Docker dan dasar penerbitan",
-            "Pencatatan jejak dan pemantauan",
-            "Penembolokan dan penalaan kueri",
-            "Celah keamanan yang paling umum menurut OWASP"
-          ]
+          "course": "KT01",
+          "heading": "Menyimpan riwayat pekerjaan",
+          "reason": "Git dipakai setiap hari di tim mana pun. Biasakan sejak awal supaya tidak kelabakan saat masuk kerja."
         },
         {
-          "name": "Siap melamar",
-          "note": "Punya satu layanan utuh yang bisa ditunjukkan dan dijelaskan.",
-          "duration": "2 sampai 3 bulan",
-          "items": [
-            "Satu API utuh yang sudah terbit dan berdokumentasi",
-            "Pembahasan rancangan basis datanya",
-            "Alur integrasi dan penerbitan otomatis",
-            "Mampu menjelaskan keputusan teknis saat diwawancarai"
-          ]
+          "course": "IF202",
+          "heading": "Menyusun program sebagai objek",
+          "reason": "Hampir semua kerangka kerja backend berdiri di atas gagasan ini. Tanpa memahaminya, Spring Boot akan terasa ajaib."
+        },
+        {
+          "course": "IF302",
+          "heading": "Merancang penyimpanan data",
+          "reason": "Rancangan tabel yang keliru akan menghantui proyekmu sampai akhir. Normalisasi dipelajari di sini."
+        },
+        {
+          "course": "KT03",
+          "heading": "Menguasai SQL",
+          "reason": "SQL adalah perkakas sehari-hari backend. Bukan sekadar SELECT, tapi gabungan tabel, pengelompokan, dan penalaan kueri yang lambat."
+        },
+        {
+          "course": "KT04",
+          "heading": "Memahami percakapan web",
+          "reason": "Metode, kode status, dan header. Inilah yang akan kamu sediakan untuk dipakai aplikasi lain."
+        },
+        {
+          "course": "KT20",
+          "heading": "Membangun layanan",
+          "reason": "Spring Boot adalah kerangka kerja Java yang paling banyak dipakai perusahaan di Indonesia. Di sini seluruh bekal sebelumnya dirangkai."
+        },
+        {
+          "course": "KT21",
+          "heading": "Merancang API yang enak dipakai",
+          "reason": "API yang dirancang asal akan menyusahkan semua orang yang memakainya, termasuk dirimu enam bulan lagi."
+        },
+        {
+          "course": "KT22",
+          "heading": "Mengamankan layanan",
+          "reason": "Autentikasi yang keliru adalah celah keamanan yang paling sering ditemui. Pelajari sebelum layananmu dipakai orang sungguhan."
+        },
+        {
+          "course": "IF601",
+          "heading": "Memastikan tetap bekerja",
+          "reason": "Pengujian otomatis membuatmu berani mengubah kode. Tanpa itu, setiap perubahan terasa menakutkan."
+        },
+        {
+          "course": "KT30",
+          "heading": "Mengemas aplikasi",
+          "reason": "Docker menghapus kalimat jalan di komputer saya. Juga menjadi syarat untuk hampir semua cara penerbitan modern."
+        },
+        {
+          "course": "KT23",
+          "heading": "Menjaga tetap cepat",
+          "reason": "Saat pemakainya bertambah, penembolokan dan antrean yang menyelamatkan. Pelajari setelah dasarnya kokoh, bukan sebelumnya."
         }
       ],
       "references": [
@@ -231,33 +258,64 @@
       "beyondCurriculum": [],
       "stages": [
         {
-          "name": "Pilih satu sisi lebih dulu",
-          "note": "Jangan mempelajari keduanya sekaligus dari nol.",
-          "duration": "4 sampai 6 bulan",
-          "items": [
-            "Dalami frontend atau backend sampai benar-benar nyaman",
-            "Bangun beberapa proyek pada sisi itu"
-          ]
+          "course": "IF102",
+          "heading": "Membangun cara berpikir",
+          "reason": "Dasar yang dipakai kedua sisi, tampilan maupun layanan."
         },
         {
-          "name": "Rambah sisi satunya",
-          "note": "Cukup sampai bisa menyambung keduanya sendiri.",
-          "duration": "3 sampai 4 bulan",
-          "items": [
-            "Dasar sisi yang belum dikuasai",
-            "Menyambungkan tampilan dengan API buatan sendiri",
-            "Menangani autentikasi dari ujung ke ujung"
-          ]
+          "course": "IF205",
+          "heading": "Menyusun isi halaman",
+          "reason": "Fondasi sisi tampilan. Mulai dari sini karena hasilnya langsung terlihat."
         },
         {
-          "name": "Satukan",
-          "note": "Satu aplikasi utuh yang kamu bangun seluruhnya.",
-          "duration": "3 bulan",
-          "items": [
-            "Aplikasi lengkap dengan basis data, API, dan tampilan",
-            "Penerbitan ke layanan hosting",
-            "Dokumentasi yang memudahkan orang lain menjalankannya"
-          ]
+          "course": "KT01",
+          "heading": "Menyimpan riwayat pekerjaan",
+          "reason": "Satu repositori untuk dua sisi sekaligus menuntut kebiasaan Git yang rapi."
+        },
+        {
+          "course": "KT10",
+          "heading": "Menghidupkan halaman",
+          "reason": "JavaScript dipakai di sisi tampilan, dan pemahamannya terbawa saat belajar bahasa lain."
+        },
+        {
+          "course": "IF201",
+          "heading": "Memilih cara menyimpan data",
+          "reason": "Mulai menyeberang ke sisi layanan. Struktur data adalah jembatannya."
+        },
+        {
+          "course": "IF302",
+          "heading": "Merancang penyimpanan data",
+          "reason": "Rancangan basis data menentukan bentuk API dan tampilan sekaligus."
+        },
+        {
+          "course": "KT03",
+          "heading": "Menguasai SQL",
+          "reason": "Sisi layanan berbicara dengan basis data lewat SQL hampir setiap saat."
+        },
+        {
+          "course": "KT04",
+          "heading": "Memahami percakapan web",
+          "reason": "Titik temu kedua sisi. Memahaminya membuatmu bisa memutuskan apa dikerjakan di mana."
+        },
+        {
+          "course": "KT12",
+          "heading": "Membangun dengan komponen",
+          "reason": "React untuk sisi tampilan yang sudah tersambung ke data sungguhan."
+        },
+        {
+          "course": "KT20",
+          "heading": "Membangun layanan",
+          "reason": "Spring Boot untuk menyediakan data yang dipakai tampilanmu sendiri."
+        },
+        {
+          "course": "KT30",
+          "heading": "Mengemas aplikasi",
+          "reason": "Menjalankan tampilan, layanan, dan basis data sekaligus di satu perintah."
+        },
+        {
+          "course": "IF401",
+          "heading": "Bekerja secara terkelola",
+          "reason": "Mengerjakan dua sisi sendirian menuntut disiplin. Mata kuliah ini memberi caranya."
         }
       ],
       "references": [
@@ -315,34 +373,44 @@
       "beyondCurriculum": [],
       "stages": [
         {
-          "name": "Fondasi",
-          "note": "Memahami pemrograman berorientasi objek dan daur hidup aplikasi.",
-          "duration": "3 bulan",
-          "items": [
-            "Kotlin atau Dart sampai nyaman",
-            "Daur hidup layar dan penanganan keadaan",
-            "Tata letak yang menyesuaikan ukuran layar"
-          ]
+          "course": "IF102",
+          "heading": "Membangun cara berpikir",
+          "reason": "Dasar menyusun langkah, berlaku sama di mana pun kamu menulis kode."
         },
         {
-          "name": "Aplikasi yang terhubung",
-          "note": "Aplikasi mengambil dan menyimpan data.",
-          "duration": "3 bulan",
-          "items": [
-            "Memanggil REST API dari aplikasi",
-            "Penyimpanan lokal dengan basis data di perangkat",
-            "Menangani keadaan luring"
-          ]
+          "course": "IF202",
+          "heading": "Menyusun program sebagai objek",
+          "reason": "Android dan iOS keduanya berakar kuat pada pemrograman berorientasi objek."
         },
         {
-          "name": "Siap rilis",
-          "note": "Aplikasi layak diunggah ke toko aplikasi.",
-          "duration": "2 sampai 3 bulan",
-          "items": [
-            "Pengujian pada berbagai ukuran layar dan versi sistem",
-            "Penandatanganan dan penerbitan aplikasi",
-            "Pemantauan kegagalan setelah rilis"
-          ]
+          "course": "KT01",
+          "heading": "Menyimpan riwayat pekerjaan",
+          "reason": "Git sejak awal, supaya percobaanmu tidak hilang saat mencoba hal baru."
+        },
+        {
+          "course": "KT04",
+          "heading": "Memahami percakapan web",
+          "reason": "Hampir semua aplikasi mengambil data dari server. Pahami percakapannya lebih dulu."
+        },
+        {
+          "course": "KT50",
+          "heading": "Membangun untuk Android",
+          "reason": "Kotlin dan Compose adalah cara resmi membangun aplikasi Android sekarang."
+        },
+        {
+          "course": "IF404",
+          "heading": "Merancang untuk layar kecil",
+          "reason": "Layar ponsel menuntut pertimbangan berbeda: jempol, perhatian yang terpecah, dan jaringan yang tidak stabil."
+        },
+        {
+          "course": "KT51",
+          "heading": "Menjangkau dua sistem sekaligus",
+          "reason": "Flutter memungkinkan satu basis kode untuk Android dan iOS. Pelajari setelah paham satu sistem secara mendalam."
+        },
+        {
+          "course": "IF406",
+          "heading": "Menyatukan semuanya",
+          "reason": "Membangun aplikasi utuh yang layak diunggah ke toko aplikasi."
         }
       ],
       "references": [
@@ -396,35 +464,44 @@
       "beyondCurriculum": [],
       "stages": [
         {
-          "name": "Fondasi data",
-          "note": "Bisa mengambil dan meringkas data sendiri.",
-          "duration": "2 sampai 3 bulan",
-          "items": [
-            "SQL: gabungan tabel, pengelompokan, dan fungsi jendela",
-            "Statistika deskriptif dan dasar peluang",
-            "Spreadsheet sampai lancar, masih banyak dipakai"
-          ]
+          "course": "IF102",
+          "heading": "Membangun cara berpikir",
+          "reason": "Analisis data tetap menuntut kemampuan menyusun langkah dan menulis kode."
         },
         {
-          "name": "Mengolah dan menyajikan",
-          "note": "Bisa membersihkan data berantakan lalu menyajikannya.",
-          "duration": "3 bulan",
-          "items": [
-            "Python dengan Pandas",
-            "Pembersihan data dan penanganan nilai kosong",
-            "Visualisasi dan papan pantau"
-          ]
+          "course": "IF302",
+          "heading": "Memahami bentuk data",
+          "reason": "Sebelum menanyai data, pahami dulu bagaimana data itu disusun dan dihubungkan."
         },
         {
-          "name": "Menjawab pertanyaan nyata",
-          "note": "Analisis yang berujung pada keputusan, bukan sekadar grafik.",
-          "duration": "2 sampai 3 bulan",
-          "items": [
-            "Merumuskan pertanyaan yang bisa dijawab data",
-            "Pengujian hipotesis sederhana",
-            "Dua sampai tiga analisis utuh sebagai portofolio",
-            "Latihan menjelaskan temuan tanpa istilah teknis"
-          ]
+          "course": "KT03",
+          "heading": "Menguasai SQL",
+          "reason": "Ini perkakas utama seorang data analyst. Sebagian besar pekerjaan sehari-hari berupa kueri."
+        },
+        {
+          "course": "IF204",
+          "heading": "Menakar ketidakpastian",
+          "reason": "Tanpa statistika, kamu akan menarik kesimpulan dari pola yang sebenarnya kebetulan."
+        },
+        {
+          "course": "KT40",
+          "heading": "Mengolah data dengan Python",
+          "reason": "Ketika SQL tidak lagi cukup, Python mengambil alih untuk pembersihan dan pengolahan."
+        },
+        {
+          "course": "KT41",
+          "heading": "Membersihkan dan meringkas",
+          "reason": "Data dunia nyata jarang rapi. Pandas adalah perkakas yang dipakai setiap hari."
+        },
+        {
+          "course": "KT42",
+          "heading": "Menyajikan temuan",
+          "reason": "Analisis yang tidak bisa dijelaskan tidak akan dipakai siapa pun. Di sini kamu belajar menyampaikannya."
+        },
+        {
+          "course": "IF306",
+          "heading": "Menimbang dampaknya",
+          "reason": "Data menyangkut orang sungguhan. Privasi dan bias bukan urusan sampingan."
         }
       ],
       "references": [
@@ -481,44 +558,54 @@
       "beyondCurriculum": [],
       "stages": [
         {
-          "name": "Matematikanya dulu",
-          "note": "Tanpa ini, kamu hanya memanggil pustaka tanpa paham.",
-          "duration": "4 sampai 6 bulan",
-          "items": [
-            "Aljabar linear: vektor, matriks, nilai eigen",
-            "Statistika dan peluang",
-            "Kalkulus dasar untuk memahami penurunan gradien"
-          ]
+          "course": "IF102",
+          "heading": "Membangun cara berpikir",
+          "reason": "Dasar menulis kode, yang akan dipakai sepanjang jalur ini."
         },
         {
-          "name": "Pembelajaran mesin klasik",
-          "note": "Menguasai model yang masih paling sering dipakai di industri.",
-          "duration": "3 sampai 4 bulan",
-          "items": [
-            "Regresi, klasifikasi, dan pengelompokan",
-            "Rekayasa fitur dan penyiapan data",
-            "Pengukuran model dan validasi silang"
-          ]
+          "course": "IF204",
+          "heading": "Menakar ketidakpastian",
+          "reason": "Statistika adalah fondasi pembelajaran mesin. Melewatinya berarti memakai model tanpa tahu batasnya."
         },
         {
-          "name": "Pendalaman",
-          "note": "Masuk ke jaringan saraf dan bidang terapannya.",
-          "duration": "4 bulan",
-          "items": [
-            "Jaringan saraf dan pembelajaran mendalam",
-            "Satu bidang terapan: teks, citra, atau deret waktu",
-            "Membaca makalah dan mencoba ulang hasilnya"
-          ]
+          "course": "IF203",
+          "heading": "Memahami ruang dan transformasi",
+          "reason": "Aljabar linear menjelaskan apa yang sebenarnya dikerjakan sebuah model di balik layar."
         },
         {
-          "name": "Siap melamar",
-          "note": "Bukti bahwa kamu bisa menyelesaikan persoalan nyata.",
-          "duration": "3 bulan",
-          "items": [
-            "Dua sampai tiga proyek berujung model yang bisa dipakai",
-            "Catatan analisis yang bisa diulang orang lain",
-            "Mampu menjelaskan keterbatasan model secara jujur"
-          ]
+          "course": "KT40",
+          "heading": "Mengolah data dengan Python",
+          "reason": "Python adalah bahasa utama bidang ini. NumPy menjadi dasar hampir semua pustakanya."
+        },
+        {
+          "course": "KT41",
+          "heading": "Membersihkan dan meringkas",
+          "reason": "Menyiapkan data biasanya memakan porsi terbesar pekerjaan, jauh melebihi melatih model."
+        },
+        {
+          "course": "IF402",
+          "heading": "Memahami penalaran mesin",
+          "reason": "Pencarian dan representasi pengetahuan, dasar sebelum masuk ke model yang belajar sendiri."
+        },
+        {
+          "course": "IF501",
+          "heading": "Melatih model",
+          "reason": "Regresi, klasifikasi, dan pengelompokan beserta cara menilainya dengan jujur."
+        },
+        {
+          "course": "KT43",
+          "heading": "Menerapkannya",
+          "reason": "Dari teori ke scikit-learn, termasuk kebocoran data yang membuat model tampak hebat tapi gagal di dunia nyata."
+        },
+        {
+          "course": "KT42",
+          "heading": "Menyajikan temuan",
+          "reason": "Model yang tidak bisa dijelaskan tidak akan dipercaya pengambil keputusan."
+        },
+        {
+          "course": "IF603",
+          "heading": "Menyatukan semuanya",
+          "reason": "Dari pertanyaan usaha sampai model yang benar-benar dipakai."
         }
       ],
       "references": [
@@ -574,34 +661,54 @@
       "beyondCurriculum": [],
       "stages": [
         {
-          "name": "Fondasi",
-          "note": "Menguasai basis data lebih dalam daripada sekadar memakainya.",
-          "duration": "3 sampai 4 bulan",
-          "items": [
-            "SQL tingkat lanjut dan perancangan skema",
-            "Python untuk mengolah data",
-            "Dasar Linux dan baris perintah"
-          ]
+          "course": "IF102",
+          "heading": "Membangun cara berpikir",
+          "reason": "Dasar menulis kode yang akan menjadi saluran datamu."
         },
         {
-          "name": "Membangun saluran",
-          "note": "Data mengalir sendiri tanpa dijalankan manual.",
-          "duration": "3 sampai 4 bulan",
-          "items": [
-            "Proses ekstraksi, transformasi, dan pemuatan",
-            "Penjadwalan dan penanganan kegagalan",
-            "Pemodelan gudang data"
-          ]
+          "course": "IF302",
+          "heading": "Merancang penyimpanan data",
+          "reason": "Pemahaman mendalam tentang basis data adalah inti pekerjaan ini."
         },
         {
-          "name": "Skala besar",
-          "note": "Saluran tetap jalan ketika datanya membesar.",
-          "duration": "4 bulan",
-          "items": [
-            "Pengolahan arus data",
-            "Layanan data di awan",
-            "Pemantauan mutu data"
-          ]
+          "course": "KT03",
+          "heading": "Menguasai SQL",
+          "reason": "Bukan sekadar menanyai data, tapi juga menalanya saat datanya berukuran besar."
+        },
+        {
+          "course": "KT02",
+          "heading": "Bekerja di server",
+          "reason": "Saluran data berjalan di server tanpa antarmuka grafis. Linux adalah tempat tinggalmu."
+        },
+        {
+          "course": "KT40",
+          "heading": "Mengolah data dengan Python",
+          "reason": "Bahasa yang dipakai menulis hampir semua saluran data."
+        },
+        {
+          "course": "IF405",
+          "heading": "Menala basis data",
+          "reason": "Pengindeksan dan penalaan kueri menjadi penting begitu datanya membesar."
+        },
+        {
+          "course": "KT30",
+          "heading": "Mengemas aplikasi",
+          "reason": "Saluran data dijalankan sebagai kontainer di hampir semua tempat kerja."
+        },
+        {
+          "course": "KT34",
+          "heading": "Memanfaatkan awan",
+          "reason": "Gudang data modern hampir selalu berada di awan. Biayanya juga perlu kamu pahami."
+        },
+        {
+          "course": "KT44",
+          "heading": "Membangun saluran",
+          "reason": "Menyatukan semuanya: mengambil, mengubah, memuat, dan menjadwalkannya."
+        },
+        {
+          "course": "IF502",
+          "heading": "Menghadapi skala besar",
+          "reason": "Ketika satu mesin tidak lagi cukup, kamu perlu memahami sistem terdistribusi."
         }
       ],
       "references": [
@@ -659,34 +766,59 @@
       "beyondCurriculum": [],
       "stages": [
         {
-          "name": "Kuasai mesinnya",
-          "note": "Nyaman bekerja tanpa antarmuka grafis.",
-          "duration": "3 bulan",
-          "items": [
-            "Linux, baris perintah, dan skrip shell",
-            "Jaringan: DNS, HTTP, firewall",
-            "Git dan alur kerja bercabang"
-          ]
+          "course": "IF102",
+          "heading": "Membangun cara berpikir",
+          "reason": "DevOps tetap menuntut kemampuan menulis kode, terutama untuk otomasi."
         },
         {
-          "name": "Otomasi",
-          "note": "Yang berulang dikerjakan mesin, bukan manusia.",
-          "duration": "3 sampai 4 bulan",
-          "items": [
-            "Docker dan pengemasan aplikasi",
-            "Alur integrasi berkelanjutan",
-            "Infrastruktur sebagai kode"
-          ]
+          "course": "KT02",
+          "heading": "Bekerja di server",
+          "reason": "Linux adalah tempat hampir semua aplikasi berjalan. Ini bekal paling dasar."
         },
         {
-          "name": "Menjalankan di skala besar",
-          "note": "Sistem tetap hidup dan terpantau.",
-          "duration": "4 bulan",
-          "items": [
-            "Kubernetes dan orkestrasi",
-            "Pemantauan, pencatatan jejak, dan peringatan",
-            "Penerbitan bertahap dan pemulihan"
-          ]
+          "course": "KT01",
+          "heading": "Menyimpan riwayat pekerjaan",
+          "reason": "Git bukan hanya untuk kode aplikasi, tapi juga untuk infrastruktur dan alur kerja."
+        },
+        {
+          "course": "IF206",
+          "heading": "Memahami mesinnya",
+          "reason": "Proses, memori, dan berkas. Tanpa ini kamu hanya menebak saat sistem bermasalah."
+        },
+        {
+          "course": "IF303",
+          "heading": "Memahami jaringan",
+          "reason": "Sebagian besar persoalan produksi berakar di jaringan. DNS, TLS, dan perutean."
+        },
+        {
+          "course": "KT30",
+          "heading": "Mengemas aplikasi",
+          "reason": "Kontainer adalah satuan kerja sehari-hari seorang DevOps."
+        },
+        {
+          "course": "KT32",
+          "heading": "Mengotomatiskan rilis",
+          "reason": "Membuat penerbitan menjadi hal biasa, bukan peristiwa menegangkan tiap bulan."
+        },
+        {
+          "course": "KT34",
+          "heading": "Memanfaatkan awan",
+          "reason": "Hampir semua infrastruktur kini disewa, bukan dimiliki."
+        },
+        {
+          "course": "KT31",
+          "heading": "Mengatur banyak mesin",
+          "reason": "Kubernetes dipelajari setelah Docker benar-benar dikuasai, bukan sebelumnya."
+        },
+        {
+          "course": "KT33",
+          "heading": "Menuliskan infrastruktur",
+          "reason": "Infrastruktur yang diklik tidak bisa ditelaah maupun diulang. Terraform menjawabnya."
+        },
+        {
+          "course": "IF403",
+          "heading": "Mengamankannya",
+          "reason": "Otomasi yang bocor menyebarkan masalah lebih cepat daripada manual."
         }
       ],
       "references": [
@@ -745,34 +877,54 @@
       "beyondCurriculum": [],
       "stages": [
         {
-          "name": "Pahami sistemnya dulu",
-          "note": "Tidak bisa mengamankan yang tidak kamu pahami.",
-          "duration": "4 bulan",
-          "items": [
-            "Jaringan dan protokol TCP/IP",
-            "Sistem operasi, terutama Linux",
-            "Dasar pemrograman dan cara aplikasi web bekerja"
-          ]
+          "course": "IF102",
+          "heading": "Membangun cara berpikir",
+          "reason": "Kamu tidak bisa mengamankan sesuatu yang cara kerjanya tidak kamu pahami."
         },
         {
-          "name": "Keamanan terapan",
-          "note": "Mengenali celah yang paling sering ditemui.",
-          "duration": "4 bulan",
-          "items": [
-            "Celah pada aplikasi web menurut OWASP",
-            "Kriptografi dan pengelolaan kunci",
-            "Kendali akses dan autentikasi"
-          ]
+          "course": "KT02",
+          "heading": "Bekerja di server",
+          "reason": "Hampir semua perkakas keamanan berjalan di Linux lewat baris perintah."
         },
         {
-          "name": "Berlatih dengan izin",
-          "note": "Semua latihan dilakukan di lingkungan yang memang disediakan.",
-          "duration": "4 bulan",
-          "items": [
-            "Tantangan tangkap bendera dan laboratorium latihan",
-            "Menyusun laporan temuan yang bisa ditindaklanjuti",
-            "Mengikuti perkembangan celah yang baru diumumkan"
-          ]
+          "course": "IF206",
+          "heading": "Memahami mesinnya",
+          "reason": "Banyak celah berakar pada cara sistem operasi mengelola proses dan hak akses."
+        },
+        {
+          "course": "IF303",
+          "heading": "Memahami jaringan",
+          "reason": "Protokol dan lalu lintas jaringan adalah medan kerja utama bidang ini."
+        },
+        {
+          "course": "KT04",
+          "heading": "Memahami percakapan web",
+          "reason": "Sebagian besar serangan masa kini menyasar aplikasi web lewat HTTP."
+        },
+        {
+          "course": "IF403",
+          "heading": "Mengenali ancaman",
+          "reason": "Kriptografi, kendali akses, dan cara menyusun model ancaman."
+        },
+        {
+          "course": "KT60",
+          "heading": "Menutup celah",
+          "reason": "Daftar OWASP dan cara memperbaikinya pada kode sendiri."
+        },
+        {
+          "course": "IF604",
+          "heading": "Mendalami sisi web",
+          "reason": "Pendalaman celah aplikasi web beserta pengujiannya."
+        },
+        {
+          "course": "KT61",
+          "heading": "Menguji dengan izin",
+          "reason": "Uji penetsasi hanya sah pada lingkungan yang memang disediakan. Batas hukumnya dibahas lebih dulu."
+        },
+        {
+          "course": "IF306",
+          "heading": "Menimbang tanggung jawabnya",
+          "reason": "Kemampuan menembus sistem menuntut pertimbangan etis yang jelas."
         }
       ],
       "references": [
@@ -826,34 +978,44 @@
       "beyondCurriculum": [],
       "stages": [
         {
-          "name": "Dasar pengujian",
-          "note": "Tahu apa yang perlu diuji dan kenapa.",
-          "duration": "2 bulan",
-          "items": [
-            "Jenis pengujian dan kapan masing-masing dipakai",
-            "Menyusun kasus uji dari kebutuhan",
-            "Menulis laporan kegagalan yang jelas"
-          ]
+          "course": "IF102",
+          "heading": "Membangun cara berpikir",
+          "reason": "Menulis pengujian tetap menulis kode. Dasarnya sama."
         },
         {
-          "name": "Otomasi",
-          "note": "Pengujian berjalan sendiri setiap kali kode berubah.",
-          "duration": "3 sampai 4 bulan",
-          "items": [
-            "Pemrograman secukupnya untuk menulis pengujian",
-            "Pengujian antarmuka dan pengujian API",
-            "Menjalankan pengujian di alur integrasi"
-          ]
+          "course": "KT01",
+          "heading": "Menyimpan riwayat pekerjaan",
+          "reason": "Pengujian disimpan bersama kode yang diujinya."
         },
         {
-          "name": "Mutu menyeluruh",
-          "note": "Mutu dijaga sejak perancangan, bukan di akhir.",
-          "duration": "3 bulan",
-          "items": [
-            "Pengujian beban dan ketahanan",
-            "Pengujian keamanan dasar",
-            "Ikut menelaah rancangan sejak awal"
-          ]
+          "course": "IF401",
+          "heading": "Memahami cara perangkat lunak dibangun",
+          "reason": "Mutu dijaga sejak perancangan, bukan ditambahkan di akhir."
+        },
+        {
+          "course": "KT04",
+          "heading": "Memahami percakapan web",
+          "reason": "Sebagian besar pengujian otomatis menyasar API, bukan tampilan."
+        },
+        {
+          "course": "IF601",
+          "heading": "Memahami pengujian",
+          "reason": "Jenis pengujian, kapan masing-masing dipakai, dan apa yang layak diuji."
+        },
+        {
+          "course": "KT70",
+          "heading": "Mengotomatiskan pengujian",
+          "reason": "Pengujian yang berjalan sendiri setiap kali kode berubah."
+        },
+        {
+          "course": "KT13",
+          "heading": "Menguji tampilan",
+          "reason": "Menelusuri alur pengguna secara otomatis di peramban sungguhan."
+        },
+        {
+          "course": "IF604",
+          "heading": "Menguji keamanannya",
+          "reason": "Celah keamanan adalah cacat mutu yang paling mahal bila lolos."
         }
       ],
       "references": [

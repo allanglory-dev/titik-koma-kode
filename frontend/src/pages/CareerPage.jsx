@@ -3,30 +3,48 @@ import { Link, useParams } from "react-router-dom";
 import { api } from "../api";
 import { useFetch } from "../useFetch";
 
-/** Mengubah daftar kode mata kuliah menjadi tautan ke halaman topiknya. */
-function DaftarMataKuliah({ kode, semua }) {
-  if (kode.length === 0) {
-    return <p className="progress-label">Tidak ada</p>;
-  }
-  return (
-    <div>
-      {kode.map((k) => {
-        const c = semua.find((x) => x.code === k);
-        if (!c) return null;
-        return (
-          <Link key={k} to={`/kursus/${c.slug}`} className="row">
-            <span className="row-num">
-              {c.lessonCount > 0 ? "siap" : "—"}
-            </span>
-            <span className="row-title">{c.title}</span>
-            <span className="row-desc">{c.description}</span>
-            <span className="row-meta">
-              {c.semester ? `Semester ${c.semester}` : `${c.hours} jam`}
-            </span>
-          </Link>
-        );
-      })}
+/** Satu langkah: kartu kursus di kiri, alasan di kanan. */
+function Langkah({ nomor, langkah }) {
+  const adaBab = langkah.chapterCount > 0;
+  const siap = langkah.writtenCount > 0;
+  const tuntas = adaBab && langkah.writtenCount === langkah.chapterCount;
+
+  const kartu = (
+    <div className="langkah-kartu">
+      <span className="langkah-label">Langkah {nomor}</span>
+      <h3>{langkah.courseTitle}</h3>
+      <div className="langkah-angka">
+        <span>{langkah.courseHours} jam</span>
+        <span>{langkah.courseLevel}</span>
+        {adaBab && <span>{langkah.chapterCount} bab</span>}
+      </div>
+      <span className={siap ? "langkah-tanda siap" : "langkah-tanda"}>
+        {tuntas
+          ? "materi lengkap"
+          : siap
+          ? `${langkah.writtenCount} dari ${langkah.chapterCount} bab ditulis`
+          : adaBab
+          ? "bab sudah disusun, isinya belum ditulis"
+          : "belum disusun"}
+      </span>
     </div>
+  );
+
+  return (
+    <li className="langkah">
+      <span className="langkah-titik">{nomor}</span>
+      {siap ? (
+        <Link to={`/kursus/${langkah.courseSlug}`} className="langkah-tautan">
+          {kartu}
+        </Link>
+      ) : (
+        <div className="langkah-tautan mati">{kartu}</div>
+      )}
+      <div className="langkah-alasan">
+        <h4>{langkah.heading}</h4>
+        <p>{langkah.reason}</p>
+      </div>
+    </li>
   );
 }
 
@@ -34,7 +52,7 @@ export function CareerPage() {
   const { careerSlug } = useParams();
 
   const { data, error, loading } = useFetch(
-    () => Promise.all([api.getCareer(careerSlug), api.getCourses()]),
+    () => api.getCareer(careerSlug),
     [careerSlug]
   );
 
@@ -46,75 +64,49 @@ export function CareerPage() {
     return <div className="state error">Jalur karier tidak ditemukan.</div>;
   }
 
-  const [path, courses] = data;
-  const jamModul = path.skillCourses.reduce(
-    (n, k) => n + (courses.find((c) => c.code === k)?.hours ?? 0),
-    0
-  );
-  const siap = path.coreCourses.filter(
-    (k) => (courses.find((c) => c.code === k)?.lessonCount ?? 0) > 0
-  ).length;
+  const path = data;
+  const totalJam = path.stages.reduce((n, s) => n + (s.courseHours ?? 0), 0);
+  const siap = path.stages.filter((s) => s.writtenCount > 0).length;
 
   return (
-    <main className="reader">
-      <span className="chapter-mark">
-        Permintaan {path.demand} · Masuk {path.entry}
-      </span>
-      <h1>{path.name}</h1>
-      <p className="lead">{path.tagline}</p>
+    <main className="wide">
+      <header style={{ maxWidth: "46rem", marginBottom: 56 }}>
+        <span className="chapter-mark">
+          Permintaan {path.demand} · Masuk {path.entry}
+        </span>
+        <h1>{path.name}</h1>
+        <p className="lead">{path.tagline}</p>
+        <p className="block-text">{path.description}</p>
 
-      <p className="block-text">{path.description}</p>
+        <h2>Sehari-hari mengerjakan apa</h2>
+        <p className="block-text">{path.daily}</p>
 
-      <h2>Sehari-hari mengerjakan apa</h2>
-      <p className="block-text">{path.daily}</p>
+        <aside className="block-note">
+          <span className="block-note-label">Gaji</span>
+          {path.salary}
+        </aside>
+      </header>
 
-      <aside className="block-note">
-        <span className="block-note-label">Gaji</span>
-        {path.salary}
-      </aside>
-
-      <h2>Tahapannya</h2>
-      <p className="progress-label" style={{ marginBottom: 20 }}>
-        Perkiraan waktu dihitung untuk belajar sambil kuliah, bukan penuh waktu.
+      <div className="shelf-head">
+        <h2>Alur belajar</h2>
+        <p>
+          {path.stages.length} langkah · sekitar {totalJam} jam
+        </p>
+      </div>
+      <p className="progress-label" style={{ margin: "14px 0 32px" }}>
+        Urutannya disusun supaya tiap langkah memakai bekal dari langkah
+        sebelumnya. {siap} dari {path.stages.length} langkah sudah ada materinya
+        di sini.
       </p>
 
-      {path.stages.map((s, i) => (
-        <section key={i} className="tahap">
-          <div className="tahap-kepala">
-            <span className="tahap-num">{String(i + 1).padStart(2, "0")}</span>
-            <div>
-              <h3>{s.name}</h3>
-              <p className="tahap-catatan">{s.note}</p>
-            </div>
-            <span className="tahap-lama">{s.duration}</span>
-          </div>
-          <ul className="tahap-isi">
-            {s.items.map((x, j) => (
-              <li key={j}>{x}</li>
-            ))}
-          </ul>
-        </section>
-      ))}
-
-      <h2>Mata kuliah yang menyiapkanmu</h2>
-      <p className="progress-label" style={{ marginBottom: 18 }}>
-        {siap} dari {path.coreCourses.length} mata kuliah inti sudah ada
-        materinya di sini.
-      </p>
-      <DaftarMataKuliah kode={path.coreCourses} semua={courses} />
-
-      <h2>Pendukung</h2>
-      <DaftarMataKuliah kode={path.supportCourses} semua={courses} />
-
-      <h2>Modul keterampilan</h2>
-      <p className="progress-label" style={{ marginBottom: 18 }}>
-        Perkakas yang dituntut industri tapi jarang diajarkan di kelas.
-        {jamModul > 0 && ` Totalnya sekitar ${jamModul} jam.`}
-      </p>
-      <DaftarMataKuliah kode={path.skillCourses} semua={courses} />
+      <ol className="alur">
+        {path.stages.map((s, i) => (
+          <Langkah key={s.id} nomor={i + 1} langkah={s} />
+        ))}
+      </ol>
 
       {path.references.length > 0 && (
-        <>
+        <div style={{ maxWidth: "46rem" }}>
           <h2>Sumber</h2>
           <ol className="sumber">
             {path.references.map((r, i) => (
@@ -133,7 +125,7 @@ export function CareerPage() {
               </li>
             ))}
           </ol>
-        </>
+        </div>
       )}
 
       <p style={{ marginTop: 56 }}>

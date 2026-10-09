@@ -27,9 +27,8 @@ public class SeedCareer {
     }
 
     public static class SeedStage {
-        public String name;
-        public String note;
-        public String duration;
-        public List<String> items = List.of();
+        public String course;
+        public String heading;
+        public String reason;
     }
 }

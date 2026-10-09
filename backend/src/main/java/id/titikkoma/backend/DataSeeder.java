@@ -205,12 +205,13 @@ public class DataSeeder implements CommandLineRunner {
 
             int urutan = 1;
             for (SeedCareer.SeedStage ss : sp.stages) {
+                periksaKode(sp.code, ss.course, kodeMataKuliah);
+
                 CareerStage stage = new CareerStage();
-                stage.setName(ss.name);
-                stage.setNote(ss.note);
-                stage.setDuration(ss.duration);
                 stage.setOrderIndex(urutan++);
-                stage.setItems(new ArrayList<>(ss.items));
+                stage.setCourseCode(ss.course);
+                stage.setHeading(ss.heading);
+                stage.setReason(ss.reason);
                 stage.setPath(path);
                 careerStageRepository.save(stage);
             }
