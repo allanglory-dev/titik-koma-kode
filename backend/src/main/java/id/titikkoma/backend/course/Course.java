@@ -69,6 +69,12 @@ public class Course {
     @Column(name = "prerequisite_code", length = 12)
     private List<String> prerequisites = new ArrayList<>();
 
+    /** Sumber yang dipakai menyusun materi, ditampilkan di akhir halaman topik. */
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "course_reference", joinColumns = @JoinColumn(name = "course_id"))
+    @OrderColumn(name = "position")
+    private List<CourseReference> references = new ArrayList<>();
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "area_id")
@@ -172,6 +178,14 @@ public class Course {
 
     public List<String> getPrerequisites() {
         return prerequisites;
+    }
+
+    public List<CourseReference> getReferences() {
+        return references;
+    }
+
+    public void setReferences(List<CourseReference> references) {
+        this.references = references;
     }
 
     public void setPrerequisites(List<String> prerequisites) {

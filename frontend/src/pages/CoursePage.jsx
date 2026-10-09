@@ -131,6 +131,32 @@ export function CoursePage() {
         </>
       )}
 
+      {course.references.length > 0 && (
+        <>
+          <h2>Sumber</h2>
+          <p className="progress-label" style={{ marginBottom: 18 }}>
+            Materi topik ini disusun dari sumber berikut.
+          </p>
+          <ol className="sumber">
+            {course.references.map((r, i) => (
+              <li key={i}>
+                <span className="sumber-judul">
+                  {r.url ? (
+                    <a href={r.url} target="_blank" rel="noreferrer noopener">
+                      {r.title}
+                    </a>
+                  ) : (
+                    r.title
+                  )}
+                </span>
+                {r.author && <span className="sumber-penulis">{r.author}</span>}
+                {r.note && <span className="sumber-catatan">{r.note}</span>}
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+
       <p style={{ marginTop: 56 }}>
         <Link className="btn ghost" to="/">
           ← Semua topik

@@ -477,6 +477,58 @@ pre.code {
   font-style: italic;
 }
 
+/* ---------------- Daftar sumber ---------------- */
+
+.sumber {
+  max-width: 46rem;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: sumber;
+}
+
+.sumber li {
+  position: relative;
+  counter-increment: sumber;
+  padding: 14px 0 14px 38px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.sumber li::before {
+  content: "[" counter(sumber) "]";
+  position: absolute;
+  left: 0;
+  top: 17px;
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+.sumber-judul {
+  display: block;
+  font-family: var(--f-judul);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.sumber-penulis {
+  display: block;
+  margin-top: 2px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.sumber-catatan {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--f-judul);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
 /* ---------------- Latihan ---------------- */
 
 .task {

@@ -17,6 +17,7 @@ import id.titikkoma.backend.block.Block;
 import id.titikkoma.backend.block.BlockRepository;
 import id.titikkoma.backend.block.BlockType;
 import id.titikkoma.backend.course.Course;
+import id.titikkoma.backend.course.CourseReference;
 import id.titikkoma.backend.course.CourseRepository;
 import id.titikkoma.backend.lesson.Lesson;
 import id.titikkoma.backend.lesson.LessonRepository;
@@ -93,6 +94,9 @@ public class DataSeeder implements CommandLineRunner {
                     area);
             course.setOutcomes(new ArrayList<>(seedCourse.outcomes));
             course.setPrerequisites(new ArrayList<>(seedCourse.prerequisites));
+            course.setReferences(seedCourse.references.stream()
+                    .map(r -> new CourseReference(r.title, r.author, r.url, r.note))
+                    .collect(java.util.stream.Collectors.toCollection(ArrayList::new)));
             course = courseRepository.save(course);
 
             totalSks += seedCourse.sks == null ? 0 : seedCourse.sks;

@@ -38,7 +38,15 @@ public class SeedContent {
         public String area;
         public List<String> outcomes = List.of();
         public List<String> prerequisites = List.of();
+        public List<SeedReference> references = List.of();
         public List<SeedLesson> lessons = List.of();
+    }
+
+    public static class SeedReference {
+        public String title;
+        public String author;
+        public String url;
+        public String note;
     }
 
     public static class SeedLesson {

@@ -936,6 +936,32 @@
             }
           ]
         }
+      ],
+      "references": [
+        {
+          "title": "Think Python, edisi kedua",
+          "author": "Allen B. Downey",
+          "url": "https://greenteapress.com/wp/think-python-2e/",
+          "note": "Urutan penyajian materi mengikuti buku ini."
+        },
+        {
+          "title": "The Python Tutorial",
+          "author": "Python Software Foundation",
+          "url": "https://docs.python.org/3/tutorial/",
+          "note": "Rujukan resmi untuk tata bahasa dan pesan kesalahan."
+        },
+        {
+          "title": "Thinking out of the box: comparing metaphors for variables in programming education",
+          "author": "Felienne Hermans dkk.",
+          "url": "https://www.felienne.com/wp-content/uploads/2018/08/box-label-vars.pdf",
+          "note": "Dasar pemilihan metafora label, bukan kotak, pada bagian Variabel."
+        },
+        {
+          "title": "Students' Misconceptions and Other Difficulties in Introductory Programming: A Literature Review",
+          "author": "Yizhou Qian dan James Lehman",
+          "url": "https://dl.acm.org/doi/10.1145/3077618",
+          "note": "Sumber daftar kesalahpahaman yang dibahas di bagian perulangan dan penugasan nilai."
+        }
       ]
     },
     {
@@ -1558,6 +1584,26 @@
             }
           ]
         }
+      ],
+      "references": [
+        {
+          "title": "Essence of Linear Algebra",
+          "author": "Grant Sanderson (3Blue1Brown)",
+          "url": "https://www.3blue1brown.com/topics/linear-algebra",
+          "note": "Urutan geometris yang dipakai topik ini berasal dari seri ini."
+        },
+        {
+          "title": "18.06 Linear Algebra",
+          "author": "Gilbert Strang, MIT OpenCourseWare",
+          "url": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/",
+          "note": "Acuan untuk bagian perhitungan dan sistem persamaan."
+        },
+        {
+          "title": "NumPy user guide",
+          "author": "NumPy developers",
+          "url": "https://numpy.org/doc/stable/user/",
+          "note": "Rujukan untuk contoh kode di tiap bagian."
+        }
       ]
     },
     {
@@ -1919,6 +1965,20 @@
               "content": "Dulu tabel dipakai untuk mengatur tata letak halaman. Kebiasaan itu ditinggalkan karena pembaca layar akan mengumumkan hubungan baris dan kolom yang sebenarnya tidak ada. Untuk tata letak, pakai CSS."
             }
           ]
+        }
+      ],
+      "references": [
+        {
+          "title": "MDN Web Docs: Structuring content with HTML",
+          "author": "Mozilla",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content",
+          "note": "Seluruh materi HTML disusun dari rujukan ini."
+        },
+        {
+          "title": "HTML Living Standard",
+          "author": "WHATWG",
+          "url": "https://html.spec.whatwg.org/multipage/",
+          "note": "Rujukan resmi bila ada perbedaan tafsir."
         }
       ]
     },
