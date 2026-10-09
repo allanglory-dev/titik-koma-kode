@@ -3763,19 +3763,1220 @@
     {
       "code": "IF104",
       "title": "Matematika Diskrit",
-      "description": "Himpunan, relasi, fungsi, kombinatorik, dan teori graf. Bahasa matematika yang dipakai hampir semua mata kuliah setelahnya.",
+      "description": "Himpunan, relasi, fungsi, induksi, kombinatorik, dan teori graf. Bahasa matematika yang dipakai hampir semua mata kuliah setelahnya, mulai dari struktur data sampai basis data dan kecerdasan artifisial.",
       "semester": 1,
       "sks": 3,
       "level": "Pemula",
       "hours": 45,
       "area": "MSF",
       "outcomes": [
-        "Mengoperasikan himpunan, relasi, dan fungsi.",
-        "Menghitung banyaknya kemungkinan dengan kaidah kombinatorik.",
-        "Memodelkan persoalan sebagai graf dan membaca sifat-sifatnya."
+        "Mengoperasikan himpunan, relasi, dan fungsi beserta sifat-sifatnya.",
+        "Membuktikan pernyataan tentang bilangan asli dengan induksi matematika.",
+        "Menghitung banyaknya kemungkinan dengan kaidah pencacahan, permutasi, dan kombinasi.",
+        "Memodelkan persoalan sebagai graf dan membaca sifat-sifatnya dari derajat dan keterhubungannya.",
+        "Membedakan pohon dari graf biasa serta memilih penyajian data yang sesuai."
       ],
       "prerequisites": [],
-      "lessons": []
+      "lessons": [
+        {
+          "title": "Himpunan",
+          "summary": "Wadah paling dasar dalam matematika diskrit.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Hampir semua yang kamu temui di sisa kuliah informatika dibangun di atas satu gagasan: **himpunan**, yaitu kumpulan objek yang tidak berurutan dan tidak punya anggota kembar. Tipe data `set` di Python, tabel di basis data, dan daftar hak akses pengguna semuanya himpunan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Objek di dalam himpunan disebut **anggota** atau **elemen**. Cara paling langsung menuliskan himpunan adalah mendaftar anggotanya di antara kurung kurawal."
+            },
+            {
+              "type": "MATH",
+              "content": "A = {1, 2, 3, 4, 5}\nV = {a, e, i, o, u}\nW = {merah, kuning, hijau}"
+            },
+            {
+              "type": "TEXT",
+              "content": "Keanggotaan ditulis dengan lambang `∈`, dibaca \"anggota dari\". Lawannya `∉`."
+            },
+            {
+              "type": "MATH",
+              "content": "3 ∈ A        3 adalah anggota A\n7 ∉ A        7 bukan anggota A"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Urutan dan pengulangan tidak berpengaruh.** Ketiga penulisan berikut menyatakan himpunan yang sama persis."
+            },
+            {
+              "type": "MATH",
+              "content": "{1, 2, 3}  =  {3, 1, 2}  =  {1, 1, 2, 3, 3}"
+            },
+            {
+              "type": "TEXT",
+              "content": "Inilah bedanya himpunan dengan daftar. `[1, 2, 3]` dan `[3, 1, 2]` adalah dua daftar yang berbeda, tetapi sebagai himpunan keduanya identik. Kalau kamu butuh urutan atau butuh menyimpan nilai kembar, himpunan bukan wadah yang tepat."
+            },
+            {
+              "type": "TEXT",
+              "content": "Untuk himpunan yang anggotanya banyak atau tak hingga, mendaftar satu per satu tidak praktis. Pakai **notasi pembentuk himpunan**: sebutkan syarat yang harus dipenuhi anggotanya."
+            },
+            {
+              "type": "MATH",
+              "content": "G = { x | x bilangan bulat, x genap, 0 < x < 10 }\n  = { 2, 4, 6, 8 }\n\nDibaca: \"himpunan semua x sedemikian hingga x bilangan\nbulat genap antara 0 dan 10\"."
+            },
+            {
+              "type": "TEXT",
+              "content": "Tanda `|` dibaca \"sedemikian hingga\". Sebagian buku memakai titik dua, jadi `{ x : x genap }` berarti hal yang sama."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Himpunan yang punya nama baku.** Lima ini akan terus kamu jumpai, jadi hafalkan lambangnya."
+            },
+            {
+              "type": "MATH",
+              "content": "N  bilangan asli        1, 2, 3, 4, …\nZ  bilangan bulat       …, −2, −1, 0, 1, 2, …\nQ  bilangan rasional    pecahan a/b dengan b ≠ 0\nR  bilangan real        termasuk √2 dan π\nC  bilangan kompleks    melibatkan √−1"
+            },
+            {
+              "type": "NOTE",
+              "content": "Sebagian buku memasukkan 0 ke dalam `N`, sebagian tidak. Rosen memakai `N = {0, 1, 2, …}`, sementara banyak buku Indonesia memulai dari 1. Tidak ada yang salah; yang penting kamu menyebutkan kesepakatan yang kamu pakai. Di materi ini `N` dimulai dari 1."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 560 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Himpunan bersarang: bilangan asli di dalam bulat, di dalam rasional, di dalam real\">\n  <rect x=\"20\" y=\"20\" width=\"330\" height=\"210\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.35\"/>\n  <text x=\"34\" y=\"42\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.6\">R &#8212; real</text>\n\n  <rect x=\"44\" y=\"56\" width=\"282\" height=\"158\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.45\"/>\n  <text x=\"58\" y=\"78\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.7\">Q &#8212; rasional</text>\n\n  <rect x=\"68\" y=\"92\" width=\"234\" height=\"106\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\"/>\n  <text x=\"82\" y=\"114\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.8\">Z &#8212; bulat</text>\n\n  <rect x=\"92\" y=\"128\" width=\"186\" height=\"54\" rx=\"4\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\"/>\n  <text x=\"106\" y=\"150\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">N &#8212; asli</text>\n  <text x=\"106\" y=\"170\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--nila)\">1, 2, 3, 4, &#8230;</text>\n\n  <text x=\"250\" y=\"150\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.75\">&#8722;5</text>\n  <text x=\"250\" y=\"190\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.7\">2/3</text>\n  <text x=\"60\" y=\"208\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.6\">&#960;</text>\n\n  <text x=\"390\" y=\"100\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.8\">N &#8838; Z</text>\n  <text x=\"390\" y=\"126\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.8\">Z &#8838; Q</text>\n  <text x=\"390\" y=\"152\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.8\">Q &#8838; R</text>\n  <text x=\"390\" y=\"186\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">makin ke dalam,</text>\n  <text x=\"390\" y=\"202\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">makin sempit</text>\n</svg>",
+              "solution": "Setiap bilangan asli juga bilangan bulat, setiap bilangan bulat juga rasional, dan seterusnya. Pengurungan inilah yang disebut himpunan bagian."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Himpunan bagian.** `A` disebut **himpunan bagian** dari `B`, ditulis `A ⊆ B`, kalau setiap anggota `A` juga anggota `B`."
+            },
+            {
+              "type": "MATH",
+              "content": "{1, 2}     ⊆  {1, 2, 3}      benar\n{1, 2, 7}  ⊆  {1, 2, 3}      salah, 7 tidak ada di kanan\n{1, 2, 3}  ⊆  {1, 2, 3}      benar, himpunan adalah bagian dari dirinya"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau `A ⊆ B` tetapi `A ≠ B`, maka `A` adalah **himpunan bagian sejati**, ditulis `A ⊂ B`. Dari sini muncul cara baku membuktikan dua himpunan sama: tunjukkan `A ⊆ B` dan `B ⊆ A`."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Himpunan kosong.** Himpunan tanpa anggota, ditulis `∅` atau `{ }`. Himpunan kosong adalah himpunan bagian dari himpunan apa pun, termasuk dirinya sendiri."
+            },
+            {
+              "type": "NOTE",
+              "content": "`∅` dan `{∅}` bukan hal yang sama, dan ini keliru yang paling sering dicatat Rosen dalam daftar kesalahan umumnya. `∅` tidak punya anggota. `{∅}` punya satu anggota, yaitu himpunan kosong itu sendiri. Bandingkan dengan kardus: kardus kosong berbeda dengan kardus yang berisi satu kardus kosong."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kardinalitas** adalah banyaknya anggota, ditulis dengan dua garis tegak."
+            },
+            {
+              "type": "MATH",
+              "content": "|{1, 2, 3}|   = 3\n|∅|           = 0\n|{∅}|         = 1\n|{1, 1, 2}|   = 2      karena duplikat tidak dihitung"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Himpunan kuasa.** `P(A)` adalah himpunan yang anggotanya seluruh himpunan bagian dari `A`. Perhatikan bahwa anggotanya himpunan, bukan elemen biasa."
+            },
+            {
+              "type": "MATH",
+              "content": "A = {1, 2}\n\nP(A) = { ∅, {1}, {2}, {1, 2} }\n\n|P(A)| = 4"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau `|A| = n`, maka `|P(A)| = 2ⁿ`. Alasannya nanti akan jelas di bagian pencacahan: untuk setiap anggota kamu punya dua pilihan, ikut atau tidak ikut."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Di dalam kode.** Python punya tipe `set` yang perilakunya mengikuti definisi di atas."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "A = {1, 2, 3, 4, 5}\n\nprint(3 in A)          # keanggotaan\nprint(7 in A)\nprint(len(A))          # kardinalitas\n\nprint({1, 2, 3} == {3, 1, 2, 2})   # urutan dan duplikat diabaikan\nprint({1, 2} <= A)     # himpunan bagian\nprint(set() <= A)      # himpunan kosong selalu bagian\n\n# duplikat hilang sendiri saat dimasukkan\nprint(set([1, 1, 2, 2, 2, 3]))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Sifat \"tidak boleh kembar\" inilah yang membuat `set` jadi alat pembersih data yang pertama dicari orang. Mengubah daftar menjadi himpunan membuang semua nilai kembar dalam satu langkah."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "email = [\"a@x.id\", \"b@x.id\", \"a@x.id\", \"c@x.id\", \"b@x.id\"]\nprint(len(email))        # 5 baris\nprint(len(set(email)))   # 3 orang"
+            },
+            {
+              "type": "NOTE",
+              "content": "Anggota `set` di Python wajib **hashable**, jadi daftar tidak bisa dimasukkan ke dalamnya. Kalau kamu butuh himpunan yang anggotanya himpunan, pakai `frozenset`, yaitu himpunan yang tidak bisa diubah. Ini batasan teknis Python, bukan batasan matematikanya."
+            },
+            {
+              "type": "TASK",
+              "content": "Tentukan benar atau salah untuk setiap pernyataan, dan jelaskan yang salah.\n\n```\n1. 2 ∈ {1, 2, 3}\n2. {2} ∈ {1, 2, 3}\n3. {2} ⊆ {1, 2, 3}\n4. ∅ ∈ {1, 2, 3}\n5. ∅ ⊆ {1, 2, 3}\n```",
+              "solution": "```\n1. benar    2 memang salah satu anggotanya\n2. salah    anggota {1,2,3} adalah 1, 2, dan 3, bukan {2}\n3. benar    setiap anggota {2}, yaitu 2, ada di {1,2,3}\n4. salah    ∅ bukan salah satu dari ketiga anggotanya\n5. benar    ∅ adalah himpunan bagian dari himpunan apa pun\n```\n\nYang paling sering tertukar adalah nomor 2 dan 3. Lambang `∈` membandingkan **anggota dengan himpunan**, sedangkan `⊆` membandingkan **himpunan dengan himpunan**. `{2}` adalah himpunan, jadi hanya `⊆` yang cocok untuknya.\n\nNomor 4 dan 5 bekerja dengan logika yang sama."
+            },
+            {
+              "type": "TASK",
+              "content": "Tuliskan himpunan berikut dengan cara mendaftar anggotanya.\n\n```\nA = { x | x ∈ Z, x² = 4 }\nB = { x | x ∈ N, x² = 4 }\nC = { x | x ∈ Z, x² = 2 }\n```",
+              "solution": "```\nA = {−2, 2}\nB = {2}\nC = ∅\n```\n\n`A` berisi dua anggota karena `(−2)² = 4` juga. Ini sering terlewat.\n\n`B` hanya berisi 2 karena `−2` bukan bilangan asli, jadi syarat `x ∈ N` menyaringnya.\n\n`C` kosong karena `√2` bukan bilangan bulat. Kalau syaratnya diganti `x ∈ R`, hasilnya `{−√2, √2}`. Perhatikan bahwa himpunan semestanya ikut menentukan hasil, bukan cuma persamaannya."
+            },
+            {
+              "type": "TASK",
+              "content": "Daftarkan seluruh anggota `P(A)` untuk `A = {a, b, c}`, lalu periksa apakah jumlahnya sesuai dengan `2ⁿ`.",
+              "solution": "```\nP(A) = { ∅,\n         {a}, {b}, {c},\n         {a,b}, {a,c}, {b,c},\n         {a,b,c} }\n```\n\nJumlahnya 8, dan `2³ = 8`. Cocok.\n\nCara aman mendaftarnya adalah mengelompokkan menurut ukuran: satu himpunan berukuran 0, tiga berukuran 1, tiga berukuran 2, satu berukuran 3. Pola `1, 3, 3, 1` ini akan muncul lagi sebagai baris ketiga segitiga Pascal di bagian permainan hitung nanti.\n\nDua anggota yang paling sering tertinggal adalah `∅` dan `A` itu sendiri."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut. Kenapa dua baris terakhir hasilnya berbeda?\n\n```\nkosong = set()\nberisi = {frozenset()}\n\nprint(len(kosong))\nprint(len(berisi))\n```",
+              "solution": "Keluarannya `0` lalu `1`.\n\n`kosong` adalah `∅`, himpunan tanpa anggota. `berisi` adalah `{∅}`, himpunan dengan tepat satu anggota, dan anggota itu kebetulan berupa himpunan kosong.\n\n```\nkosong  →  ∅        kardinalitas 0\nberisi  →  {∅}      kardinalitas 1\n```\n\nIni versi kode dari keliru yang disebut di catatan tadi. `frozenset()` dipakai, bukan `set()`, karena anggota sebuah `set` harus hashable sementara `set` biasa tidak.\n\nPerhatikan juga bahwa `{}` di Python bukan himpunan kosong melainkan **dict** kosong. Himpunan kosong hanya bisa ditulis `set()`."
+            }
+          ]
+        },
+        {
+          "title": "Operasi Himpunan",
+          "summary": "Menggabungkan, memotong, dan mengurangi himpunan.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Satu himpunan jarang berguna sendirian. Yang dipakai sehari-hari adalah **menggabungkan** dua himpunan: siapa yang ada di keduanya, siapa yang hanya ada di satu, siapa yang hilang."
+            },
+            {
+              "type": "TEXT",
+              "content": "Semua operasi berikut dikerjakan di dalam sebuah **himpunan semesta** `U`, yaitu himpunan semua objek yang sedang dibicarakan. Kalau yang dibahas mahasiswa satu kelas, maka `U` adalah seluruh mahasiswa kelas itu."
+            },
+            {
+              "type": "MATH",
+              "content": "U = {1, 2, 3, 4, 5, 6, 7, 8}\nA = {1, 2, 3, 4}\nB = {3, 4, 5, 6}"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Gabungan** `A ∪ B` berisi anggota yang ada di `A` **atau** di `B`, termasuk yang ada di keduanya."
+            },
+            {
+              "type": "MATH",
+              "content": "A ∪ B = {1, 2, 3, 4, 5, 6}"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Irisan** `A ∩ B` berisi anggota yang ada di `A` **dan** juga di `B`."
+            },
+            {
+              "type": "MATH",
+              "content": "A ∩ B = {3, 4}"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau irisannya kosong, kedua himpunan disebut **saling lepas** atau disjoin."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Selisih** `A − B` berisi anggota `A` yang tidak ada di `B`. Sebagian buku menulisnya `A \\ B`."
+            },
+            {
+              "type": "MATH",
+              "content": "A − B = {1, 2}\nB − A = {5, 6}"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bahwa `A − B` dan `B − A` berbeda. Selisih tidak komutatif, sama seperti pengurangan bilangan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Komplemen** `Aᶜ` berisi semua anggota semesta yang tidak ada di `A`. Jadi komplemen hanyalah selisih dengan semesta."
+            },
+            {
+              "type": "MATH",
+              "content": "Aᶜ = U − A = {5, 6, 7, 8}"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Beda simetris** `A ⊕ B` berisi anggota yang ada di salah satu himpunan tetapi tidak di keduanya."
+            },
+            {
+              "type": "MATH",
+              "content": "A ⊕ B = (A − B) ∪ (B − A) = {1, 2, 5, 6}"
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 620 200\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Empat operasi himpunan digambar dengan diagram Venn: gabungan, irisan, selisih, dan beda simetris\">\n  <defs>\n    <clipPath id=\"md2-klipA\"><circle cx=\"58\" cy=\"92\" r=\"40\"/></clipPath>\n    <mask id=\"md2-mAB\">\n      <circle cx=\"58\" cy=\"92\" r=\"40\" fill=\"white\"/>\n      <circle cx=\"104\" cy=\"92\" r=\"40\" fill=\"black\"/>\n    </mask>\n    <mask id=\"md2-mBA\">\n      <circle cx=\"104\" cy=\"92\" r=\"40\" fill=\"white\"/>\n      <circle cx=\"58\" cy=\"92\" r=\"40\" fill=\"black\"/>\n    </mask>\n  </defs>\n\n  <g>\n    <circle cx=\"58\" cy=\"92\" r=\"40\" fill=\"var(--nila)\" opacity=\"0.35\"/>\n    <circle cx=\"104\" cy=\"92\" r=\"40\" fill=\"var(--nila)\" opacity=\"0.35\" mask=\"url(#md2-mBA)\"/>\n    <circle cx=\"58\" cy=\"92\" r=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.55\"/>\n    <circle cx=\"104\" cy=\"92\" r=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.55\"/>\n    <text x=\"81\" y=\"166\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.85\">A &#8746; B</text>\n    <text x=\"81\" y=\"186\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">gabungan</text>\n  </g>\n\n  <g transform=\"translate(155,0)\">\n    <circle cx=\"104\" cy=\"92\" r=\"40\" fill=\"var(--nila)\" opacity=\"0.45\" clip-path=\"url(#md2-klipA)\"/>\n    <circle cx=\"58\" cy=\"92\" r=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.55\"/>\n    <circle cx=\"104\" cy=\"92\" r=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.55\"/>\n    <text x=\"81\" y=\"166\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.85\">A &#8745; B</text>\n    <text x=\"81\" y=\"186\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">irisan</text>\n  </g>\n\n  <g transform=\"translate(310,0)\">\n    <circle cx=\"58\" cy=\"92\" r=\"40\" fill=\"var(--nila)\" opacity=\"0.35\" mask=\"url(#md2-mAB)\"/>\n    <circle cx=\"58\" cy=\"92\" r=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.55\"/>\n    <circle cx=\"104\" cy=\"92\" r=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.55\"/>\n    <text x=\"81\" y=\"166\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.85\">A &#8722; B</text>\n    <text x=\"81\" y=\"186\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">selisih</text>\n  </g>\n\n  <g transform=\"translate(465,0)\">\n    <circle cx=\"58\" cy=\"92\" r=\"40\" fill=\"var(--nila)\" opacity=\"0.35\" mask=\"url(#md2-mAB)\"/>\n    <circle cx=\"104\" cy=\"92\" r=\"40\" fill=\"var(--nila)\" opacity=\"0.35\" mask=\"url(#md2-mBA)\"/>\n    <circle cx=\"58\" cy=\"92\" r=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.55\"/>\n    <circle cx=\"104\" cy=\"92\" r=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.55\"/>\n    <text x=\"81\" y=\"166\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.85\">A &#8853; B</text>\n    <text x=\"81\" y=\"186\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">beda simetris</text>\n  </g>\n</svg>",
+              "solution": "Empat operasi dasar. Bagian yang tergelap adalah hasilnya. Diagram seperti ini disebut diagram Venn, dan sangat membantu memeriksa dugaan sebelum kamu mencoba membuktikannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Hukum-hukum yang perlu kamu kenali.** Bentuknya mirip aljabar biasa, dan tiga di antaranya mirip dengan hukum logika yang sudah kamu pelajari di Logika Informatika. Kemiripan itu bukan kebetulan, karena `∪` bekerja seperti \"atau\" dan `∩` seperti \"dan\"."
+            },
+            {
+              "type": "MATH",
+              "content": "Komutatif      A ∪ B = B ∪ A\n               A ∩ B = B ∩ A\n\nAsosiatif      (A ∪ B) ∪ C = A ∪ (B ∪ C)\n               (A ∩ B) ∩ C = A ∩ (B ∩ C)\n\nDistributif    A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)\n               A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)\n\nDe Morgan      (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ\n               (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ\n\nIdentitas      A ∪ ∅ = A        A ∩ U = A\nDominasi       A ∪ U = U        A ∩ ∅ = ∅\nIdempoten      A ∪ A = A        A ∩ A = A\nKomplemen      (Aᶜ)ᶜ = A"
+            },
+            {
+              "type": "TEXT",
+              "content": "Hukum De Morgan paling sering dipakai dalam kode, biasanya untuk membalik sebuah kondisi tanpa mengubah artinya. \"Bukan (admin atau pemilik)\" sama dengan \"bukan admin dan bukan pemilik\"."
+            },
+            {
+              "type": "NOTE",
+              "content": "`A ∩ B ∪ C` **tidak punya arti yang pasti.** Berbeda dari perkalian dan penjumlahan, tidak ada kesepakatan bahwa `∩` dikerjakan lebih dulu daripada `∪`. Rosen mencatat ini sebagai kesalahan umum yang terbawa dari kebiasaan sekolah: menganggap setiap operasi punya urutan baku. Selalu tulis tanda kurungnya. Hasil `(A ∩ B) ∪ C` dan `A ∩ (B ∪ C)` memang berbeda."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Perkalian kartesius.** Operasi ini berbeda sifatnya dari yang lain karena hasilnya bukan kumpulan elemen, melainkan kumpulan **pasangan terurut**."
+            },
+            {
+              "type": "MATH",
+              "content": "A = {1, 2}\nB = {x, y}\n\nA × B = { (1,x), (1,y), (2,x), (2,y) }\n\n|A × B| = |A| · |B| = 2 · 2 = 4"
+            },
+            {
+              "type": "TEXT",
+              "content": "Di sini urutan penting: `(1,x)` dan `(x,1)` adalah dua pasangan yang berbeda, sehingga `A × B ≠ B × A`. Perkalian kartesius adalah fondasi dari relasi dan fungsi, dua topik berikutnya, jadi pastikan bagian ini mantap."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Di dalam kode.** Python memakai lambang operator untuk setiap operasi himpunan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "A = {1, 2, 3, 4}\nB = {3, 4, 5, 6}\n\nprint(A | B)    # gabungan      {1, 2, 3, 4, 5, 6}\nprint(A & B)    # irisan        {3, 4}\nprint(A - B)    # selisih       {1, 2}\nprint(B - A)    # selisih lain  {5, 6}\nprint(A ^ B)    # beda simetris {1, 2, 5, 6}\n\nprint(A.isdisjoint({9, 10}))   # saling lepas?"
+            },
+            {
+              "type": "TEXT",
+              "content": "Mari periksa salah satu hukum De Morgan dengan cara mencoba semua kemungkinan, bukan dengan percaya pada rumusnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import itertools\n\nU = {1, 2, 3, 4, 5}\n\ndef komplemen(X):\n    return U - X\n\n# coba setiap pasangan himpunan bagian dari U\nbagian = []\nfor n in range(len(U) + 1):\n    for komb in itertools.combinations(sorted(U), n):\n        bagian.append(set(komb))\n\ngagal = 0\nfor A in bagian:\n    for B in bagian:\n        if komplemen(A | B) != komplemen(A) & komplemen(B):\n            gagal += 1\n\nprint(\"pasangan diuji:\", len(bagian) ** 2)\nprint(\"yang gagal     :\", gagal)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Nol kegagalan dari seribuan pasangan bukan bukti matematis, tetapi cukup untuk meyakinkan diri bahwa kamu tidak salah tulis rumus. Pembuktian yang sebenarnya dilakukan dengan menunjukkan kedua himpunan saling memuat."
+            },
+            {
+              "type": "NOTE",
+              "content": "Kalau kamu pernah menulis `SELECT ... UNION`, `INTERSECT`, atau `EXCEPT` di SQL, kamu sedang memakai gabungan, irisan, dan selisih. Basis data relasional memang dirancang di atas teori himpunan, dan itulah sebabnya hasil query tidak dijamin berurutan kecuali kamu menulis `ORDER BY`."
+            },
+            {
+              "type": "TASK",
+              "content": "Diketahui `U = {1,…,10}`, `A = {1,2,3,4,5}`, `B = {4,5,6,7}`. Hitung keenam hasil berikut.\n\n```\nA ∪ B        A ∩ B        A − B\nB − A        Aᶜ           A ⊕ B\n```",
+              "solution": "```\nA ∪ B = {1, 2, 3, 4, 5, 6, 7}\nA ∩ B = {4, 5}\nA − B = {1, 2, 3}\nB − A = {6, 7}\nAᶜ    = {6, 7, 8, 9, 10}\nA ⊕ B = {1, 2, 3, 6, 7}\n```\n\nPeriksa ulang dengan hubungan yang harus selalu berlaku:\n\n```\n|A ∪ B| = |A| + |B| − |A ∩ B|\n        = 5 + 4 − 2 = 7      cocok\n```\n\nPerhatikan juga bahwa `A ⊕ B` sama dengan `(A ∪ B) − (A ∩ B)`, yaitu gabungan dikurangi bagian yang tumpang tindih."
+            },
+            {
+              "type": "TASK",
+              "content": "Apakah `(A ∩ B) ∪ C` sama dengan `A ∩ (B ∪ C)`? Kalau tidak, berikan contoh penyangkalnya.",
+              "solution": "Tidak sama. Contoh penyangkal yang paling sederhana:\n\n```\nA = {1}      B = {1}      C = {2}\n\n(A ∩ B) ∪ C = {1} ∪ {2} = {1, 2}\nA ∩ (B ∪ C) = {1} ∩ {1, 2} = {1}\n```\n\nHasilnya berbeda, jadi menulis `A ∩ B ∪ C` tanpa tanda kurung memang ambigu.\n\nCara cepat menemukan penyangkal: pilih sesuatu yang ada di `C` tetapi tidak ada di `A`. Anggota itu akan masuk ke ruas kiri karena bergabung lewat `∪ C`, tetapi tersaring di ruas kanan karena harus lolos `A ∩ …`."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah kelas berisi 40 mahasiswa. 22 orang mengambil Basis Data, 18 orang mengambil Jaringan, dan 9 orang mengambil keduanya. Berapa orang yang tidak mengambil keduanya?",
+              "solution": "Pakai hubungan gabungan yang tadi.\n\n```\n|D ∪ J| = |D| + |J| − |D ∩ J|\n        = 22 + 18 − 9\n        = 31\n```\n\nYang tidak mengambil keduanya adalah sisanya:\n\n```\n40 − 31 = 9 orang\n```\n\nKalau kamu menjumlahkan 22 + 18 = 40 lalu menyimpulkan tidak ada yang luput, kamu menghitung 9 orang pengambil keduanya **dua kali**. Itu sebabnya `|D ∩ J|` harus dikurangkan. Aturan ini bernama prinsip inklusi-eksklusi, dan akan dibahas lebih lanjut di bagian pencacahan."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah sistem menyimpan daftar hak akses tiap peran. Tulis kode yang menjawab tiga pertanyaan: hak yang dimiliki semua peran, hak yang hanya dimiliki `editor`, dan seluruh hak yang ada.\n\n```\nadmin  = {\"baca\", \"tulis\", \"hapus\", \"undang\"}\neditor = {\"baca\", \"tulis\", \"terbitkan\"}\ntamu   = {\"baca\"}\n```",
+              "solution": "```python\nadmin  = {\"baca\", \"tulis\", \"hapus\", \"undang\"}\neditor = {\"baca\", \"tulis\", \"terbitkan\"}\ntamu   = {\"baca\"}\n\nprint(admin & editor & tamu)        # irisan ketiganya\nprint(editor - admin - tamu)        # hanya milik editor\nprint(admin | editor | tamu)        # gabungan ketiganya\n```\n\nKeluarannya:\n\n```\n{'baca'}\n{'terbitkan'}\n{'baca', 'tulis', 'hapus', 'undang', 'terbitkan'}\n```\n\nBaris kedua bisa juga ditulis `editor - (admin | tamu)`, dan hasilnya sama karena hukum De Morgan. Bentuk mana pun boleh, pilih yang paling jelas dibaca.\n\nPola seperti ini dipakai pada hampir semua sistem perizinan: hak seorang pengguna adalah gabungan hak dari semua peran yang ia pegang."
+            }
+          ]
+        },
+        {
+          "title": "Relasi",
+          "summary": "Menyatakan apa yang berhubungan dengan apa.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Himpunan menyatakan *apa yang ada*. **Relasi** menyatakan *apa yang berhubungan dengan apa*. Hampir semua struktur data yang menyimpan kaitan antar objek, dari tabel basis data sampai daftar pertemanan, adalah relasi."
+            },
+            {
+              "type": "TEXT",
+              "content": "Definisinya ringkas: **relasi dari `A` ke `B` adalah himpunan bagian dari `A × B`.** Tidak lebih dari itu. Sebuah relasi hanyalah kumpulan pasangan terurut yang kamu anggap berhubungan."
+            },
+            {
+              "type": "MATH",
+              "content": "A = {1, 2, 3}\nB = {x, y}\n\nA × B = { (1,x),(1,y),(2,x),(2,y),(3,x),(3,y) }\n\nR = { (1,x), (2,y), (3,x) }        salah satu relasi\nS = { (1,x), (1,y) }               relasi lain\n∅                                  juga relasi yang sah"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau `(a, b) ∈ R`, kita tulis `a R b` dan baca \"a berelasi dengan b\". Kalau `A` dan `B` himpunan yang sama, `R` disebut **relasi pada `A`**."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Contoh yang sudah kamu kenal.** Relasi tidak harus abstrak; banyak hal yang kamu pakai sehari-hari adalah relasi."
+            },
+            {
+              "type": "MATH",
+              "content": "\"habis dibagi\"   { (a,b) | a, b ∈ N, b habis dibagi a }\n                 memuat (2,4), (3,9), (5,100)\n\n\"lebih kecil\"    { (a,b) | a < b }\n                 memuat (1,2), (1,5), (7,8)\n\n\"mengikuti\"      { (p,q) | p mengikuti akun q }\n                 isi tabel di media sosial"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Empat sifat yang perlu kamu periksa.** Ketika sebuah relasi bekerja pada satu himpunan, empat sifat berikut menentukan bagaimana relasi itu berperilaku."
+            },
+            {
+              "type": "MATH",
+              "content": "Refleksif      setiap a berelasi dengan dirinya\n               ∀a ∈ A, (a,a) ∈ R\n\nSimetris       arah tidak penting\n               (a,b) ∈ R ⇒ (b,a) ∈ R\n\nAntisimetris   dua arah hanya boleh kalau a = b\n               (a,b) ∈ R dan (b,a) ∈ R ⇒ a = b\n\nTransitif      kaitan bisa dirantai\n               (a,b) ∈ R dan (b,c) ∈ R ⇒ (a,c) ∈ R"
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 230\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Tiga sifat relasi digambar sebagai graf berarah: refleksif, simetris, dan transitif\">\n  <defs>\n    <marker id=\"md3-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"var(--nila)\"/>\n    </marker>\n  </defs>\n\n  <g>\n    <circle cx=\"90\" cy=\"100\" r=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\"/>\n    <text x=\"90\" y=\"105\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">a</text>\n    <path d=\"M 78 86 A 22 22 0 1 1 104 88\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\"\n          marker-end=\"url(#md3-ujung)\"/>\n    <text x=\"90\" y=\"170\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.75\">refleksif</text>\n    <text x=\"90\" y=\"188\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">a R a</text>\n  </g>\n\n  <g transform=\"translate(160,0)\">\n    <circle cx=\"60\" cy=\"100\" r=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\"/>\n    <text x=\"60\" y=\"105\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">a</text>\n    <circle cx=\"160\" cy=\"100\" r=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\"/>\n    <text x=\"160\" y=\"105\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">b</text>\n    <path d=\"M 78 92 L 142 92\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\" marker-end=\"url(#md3-ujung)\"/>\n    <path d=\"M 142 110 L 78 110\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\" marker-end=\"url(#md3-ujung)\"/>\n    <text x=\"110\" y=\"170\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.75\">simetris</text>\n    <text x=\"110\" y=\"188\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">a R b &#8658; b R a</text>\n  </g>\n\n  <g transform=\"translate(390,0)\">\n    <circle cx=\"20\" cy=\"130\" r=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\"/>\n    <text x=\"20\" y=\"135\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">a</text>\n    <circle cx=\"90\" cy=\"50\" r=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\"/>\n    <text x=\"90\" y=\"55\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">b</text>\n    <circle cx=\"160\" cy=\"130\" r=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\"/>\n    <text x=\"160\" y=\"135\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">c</text>\n    <path d=\"M 32 117 L 76 64\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\" marker-end=\"url(#md3-ujung)\"/>\n    <path d=\"M 104 64 L 148 117\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\" marker-end=\"url(#md3-ujung)\"/>\n    <path d=\"M 38 136 L 142 136\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\"\n          stroke-dasharray=\"4 3\" marker-end=\"url(#md3-ujung)\"/>\n    <text x=\"90\" y=\"170\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.75\">transitif</text>\n    <text x=\"90\" y=\"188\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">sisi putus-putus wajib ada</text>\n  </g>\n</svg>",
+              "solution": "Relasi digambar sebagai graf berarah: simpul untuk anggota, panah untuk pasangan. Refleksif berarti setiap simpul punya panah ke dirinya sendiri, simetris berarti setiap panah punya pasangan balik, dan transitif berarti setiap jalur dua langkah punya jalan pintas."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan contohnya supaya tidak hanya hafal definisi."
+            },
+            {
+              "type": "MATH",
+              "content": "Relasi \"=\"       refleksif, simetris, antisimetris, transitif\nRelasi \"≤\"       refleksif, antisimetris, transitif\nRelasi \"<\"       antisimetris, transitif. Tidak refleksif\nRelasi \"saudara\" simetris, transitif. Tidak refleksif"
+            },
+            {
+              "type": "NOTE",
+              "content": "Simetris dan antisimetris **bukan** dua pilihan yang saling meniadakan. Relasi `=` memenuhi keduanya, sementara relasi \"mengikuti\" di media sosial tidak memenuhi salah satu pun: A bisa mengikuti B tanpa dibalas, jadi tidak simetris, dan dua akun bisa saling mengikuti meski berbeda orang, jadi tidak antisimetris. Nama \"anti\" di sini menyesatkan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Relasi ekuivalensi.** Relasi yang refleksif, simetris, dan transitif sekaligus punya nama sendiri dan sifat yang sangat berguna: ia memotong himpunan menjadi kelompok-kelompok yang tidak tumpang tindih."
+            },
+            {
+              "type": "TEXT",
+              "content": "Contoh paling jelas adalah sisa pembagian. Dua bilangan dianggap berelasi kalau sisanya sama ketika dibagi 3."
+            },
+            {
+              "type": "MATH",
+              "content": "a ≡ b (mod 3)   berarti a dan b punya sisa yang sama\n\nKelompok yang terbentuk:\n\n  sisa 0 : …, 0, 3, 6, 9, 12, …\n  sisa 1 : …, 1, 4, 7, 10, 13, …\n  sisa 2 : …, 2, 5, 8, 11, 14, …"
+            },
+            {
+              "type": "TEXT",
+              "content": "Setiap bilangan bulat masuk ke tepat satu kelompok, dan tidak ada kelompok yang beririsan. Pembagian semacam ini disebut **partisi**, dan setiap relasi ekuivalensi selalu menghasilkan partisi. Ini persis cara kerja tabel hash: fungsi hash memetakan kunci ke nomor keranjang, dan kunci-kunci dengan nomor sama masuk ke keranjang yang sama."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Penyajian dengan matriks.** Relasi pada himpunan berhingga bisa ditulis sebagai matriks nol-satu. Baris mewakili asal, kolom mewakili tujuan, dan isinya 1 kalau berelasi."
+            },
+            {
+              "type": "MATH",
+              "content": "A = {1, 2, 3}\nR = { (1,1), (1,2), (2,3), (3,1) }\n\n      1  2  3\n   1  1  1  0\n   2  0  0  1\n   3  1  0  0"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dari bentuk matriks, sifat-sifatnya bisa dibaca langsung. Refleksif berarti seluruh diagonal utama bernilai 1. Simetris berarti matriksnya sama dengan transposnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Di dalam kode.** Relasi paling wajar diwakili sebagai himpunan tupel."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "A = {1, 2, 3, 4}\nR = {(1, 1), (1, 2), (2, 2), (2, 3), (3, 3), (4, 4)}\n\ndef refleksif(R, A):\n    return all((a, a) in R for a in A)\n\ndef simetris(R):\n    return all((b, a) in R for (a, b) in R)\n\ndef transitif(R):\n    return all((a, c) in R\n               for (a, b) in R\n               for (c_asal, c) in R\n               if b == c_asal)\n\nprint(\"refleksif :\", refleksif(R, A))\nprint(\"simetris  :\", simetris(R))\nprint(\"transitif :\", transitif(R))"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Relasi ekuivalensi \"sisa sama ketika dibagi 3\"\n# dan partisi yang dihasilkannya\nkelompok = {0: [], 1: [], 2: []}\nfor n in range(15):\n    kelompok[n % 3].append(n)\n\nfor sisa, isi in kelompok.items():\n    print(\"sisa\", sisa, \":\", isi)"
+            },
+            {
+              "type": "NOTE",
+              "content": "Istilah \"basis data relasional\" berasal dari sini. Satu tabel dengan kolom `(nim, nama, jurusan)` adalah himpunan bagian dari `NIM × Nama × Jurusan`, jadi secara matematis tabel itu sebuah relasi. Operasi `JOIN` di SQL adalah cara menggabungkan dua relasi lewat kolom yang bersesuaian."
+            },
+            {
+              "type": "TASK",
+              "content": "Periksa keempat sifat untuk relasi `R` pada `A = {1, 2, 3}` berikut.\n\n```\nR = { (1,1), (1,2), (2,1), (2,2), (3,3) }\n```",
+              "solution": "```\nRefleksif     ya. (1,1), (2,2), (3,3) ketiganya ada\nSimetris      ya. (1,2) ada dan (2,1) juga ada\nAntisimetris  tidak. (1,2) dan (2,1) ada padahal 1 ≠ 2\nTransitif     ya. tidak ada rantai yang jalan pintasnya hilang\n```\n\nKarena refleksif, simetris, dan transitif, `R` adalah relasi ekuivalensi. Partisi yang dihasilkannya:\n\n```\n{1, 2}   dan   {3}\n```\n\nDalam bentuk matriks, diagonalnya penuh satu dan matriksnya simetris terhadap diagonal itu, sesuai dengan dua sifat pertama."
+            },
+            {
+              "type": "TASK",
+              "content": "Relasi `S` pada himpunan manusia didefinisikan sebagai \"x adalah ayah dari y\". Periksa keempat sifatnya.",
+              "solution": "```\nRefleksif     tidak. tidak ada orang yang ayah dirinya sendiri\nSimetris      tidak. kalau x ayah y, y bukan ayah x\nAntisimetris  ya, tetapi karena alasan yang kosong\nTransitif     tidak. ayah dari ayah adalah kakek, bukan ayah\n```\n\nAntisimetris terpenuhi karena syaratnya tidak pernah terjadi: tidak ada pasangan `(x,y)` dan `(y,x)` yang dua-duanya ada di `S`. Implikasi dengan syarat yang selalu salah bernilai benar, seperti yang kamu pelajari di Logika Informatika. Ini disebut benar secara hampa.\n\nYang paling sering salah adalah transitif. Hati-hati, \"ayah\" tidak transitif, tetapi \"keturunan dari\" transitif."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah relasi pada `A = {a, b, c}` diwakili matriks berikut. Tuliskan daftar pasangannya, lalu tentukan apakah relasinya refleksif dan simetris.\n\n```\n      a  b  c\n   a  1  0  1\n   b  0  1  0\n   c  1  0  1\n```",
+              "solution": "Daftar pasangannya dibaca per baris:\n\n```\nR = { (a,a), (a,c), (b,b), (c,a), (c,c) }\n```\n\n```\nRefleksif   ya. diagonal utama seluruhnya 1\nSimetris    ya. matriksnya sama dengan transposnya\n```\n\nIa juga transitif, jadi ini relasi ekuivalensi dengan partisi `{a, c}` dan `{b}`.\n\nMembaca sifat dari matriks jauh lebih cepat daripada dari daftar pasangan. Refleksif cukup dilihat dari diagonalnya, dan simetris cukup dilihat dari cerminan terhadap diagonal itu."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis kode yang memeriksa apakah relasi \"habis dibagi\" pada `{1,…,10}` bersifat antisimetris dan transitif.",
+              "solution": "```python\nA = range(1, 11)\nR = {(a, b) for a in A for b in A if b % a == 0}\n\nantisimetris = all(a == b for (a, b) in R if (b, a) in R)\ntransitif = all((a, c) in R\n                for (a, b) in R\n                for (x, c) in R\n                if b == x)\n\nprint(\"pasangan     :\", len(R))\nprint(\"antisimetris :\", antisimetris)\nprint(\"transitif    :\", transitif)\n```\n\nKeduanya bernilai `True`.\n\nAntisimetris terpenuhi karena kalau `a` habis membagi `b` dan `b` habis membagi `a`, satu-satunya kemungkinan adalah `a = b`. Transitif terpenuhi karena kalau `b = ka` dan `c = mb`, maka `c = (mk)a`.\n\nRelasi ini juga refleksif, karena setiap bilangan habis dibagi dirinya sendiri. Relasi yang refleksif, antisimetris, dan transitif disebut **urutan parsial**, dan itulah dasar dari penyusunan topologis yang dipakai sistem pemasang paket untuk menentukan urutan pemasangan."
+            }
+          ]
+        },
+        {
+          "title": "Fungsi",
+          "summary": "Relasi dengan satu aturan tambahan yang mengubah segalanya.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "**Fungsi** adalah relasi dengan satu aturan tambahan: setiap anggota himpunan asal dipasangkan dengan **tepat satu** anggota himpunan tujuan. Tidak boleh nol, tidak boleh dua."
+            },
+            {
+              "type": "MATH",
+              "content": "f : A → B\n\nA disebut daerah asal atau domain\nB disebut daerah kawan atau kodomain\n\nf(a) = b    berarti f memasangkan a dengan b"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan apa yang dilarang oleh definisi itu."
+            },
+            {
+              "type": "MATH",
+              "content": "A = {1, 2, 3}, B = {x, y}\n\n{ (1,x), (2,y), (3,x) }    fungsi\n{ (1,x), (2,y) }           bukan, 3 tidak punya pasangan\n{ (1,x), (1,y), (2,y) }    bukan, 1 punya dua pasangan\n{ (1,x), (2,x), (3,x) }    fungsi, boleh semua ke tujuan sama"
+            },
+            {
+              "type": "TEXT",
+              "content": "Baris terakhir sering mengejutkan. Beberapa anggota asal boleh menuju tujuan yang sama; yang dilarang adalah satu anggota asal menuju dua tujuan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Daerah hasil** atau range adalah himpunan nilai yang benar-benar terpakai. Ia belum tentu sama dengan kodomain."
+            },
+            {
+              "type": "MATH",
+              "content": "f : Z → Z,   f(x) = x²\n\nkodomain    : seluruh Z\ndaerah hasil: {0, 1, 4, 9, 16, …}\n\nBilangan negatif ada di kodomain tetapi tidak\npernah menjadi hasil."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tiga jenis fungsi** yang harus kamu bisa bedakan, karena dari sinilah muncul gagasan fungsi balikan."
+            },
+            {
+              "type": "MATH",
+              "content": "Injektif    tidak ada dua asal yang hasilnya sama\n            f(a) = f(b) ⇒ a = b\n            juga disebut satu-satu\n\nSurjektif   setiap anggota kodomain terpakai\n            daerah hasil = kodomain\n            juga disebut onto\n\nBijektif    injektif dan surjektif sekaligus\n            setiap tujuan dipakai tepat sekali"
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 620 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Tiga jenis fungsi: injektif, surjektif, dan bijektif, digambar dengan panah antara dua himpunan\">\n  <defs>\n    <marker id=\"md4-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"var(--nila)\"/>\n    </marker>\n  </defs>\n\n  <g>\n    <rect x=\"14\" y=\"30\" width=\"56\" height=\"150\" rx=\"26\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.35\"/>\n    <rect x=\"124\" y=\"30\" width=\"56\" height=\"150\" rx=\"26\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.35\"/>\n    <circle cx=\"42\" cy=\"68\" r=\"4\" fill=\"currentColor\"/><circle cx=\"42\" cy=\"105\" r=\"4\" fill=\"currentColor\"/>\n    <circle cx=\"42\" cy=\"142\" r=\"4\" fill=\"currentColor\"/>\n    <circle cx=\"152\" cy=\"58\" r=\"4\" fill=\"currentColor\"/><circle cx=\"152\" cy=\"92\" r=\"4\" fill=\"currentColor\"/>\n    <circle cx=\"152\" cy=\"126\" r=\"4\" fill=\"currentColor\"/>\n    <circle cx=\"152\" cy=\"160\" r=\"4\" fill=\"currentColor\" opacity=\"0.3\"/>\n    <path d=\"M 50 68 L 142 58\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md4-ujung)\"/>\n    <path d=\"M 50 105 L 142 92\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md4-ujung)\"/>\n    <path d=\"M 50 142 L 142 126\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md4-ujung)\"/>\n    <text x=\"97\" y=\"208\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.8\">injektif</text>\n    <text x=\"97\" y=\"226\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">tak ada tujuan kembar,</text>\n    <text x=\"97\" y=\"241\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">satu tujuan tak terpakai</text>\n  </g>\n\n  <g transform=\"translate(212,0)\">\n    <rect x=\"14\" y=\"30\" width=\"56\" height=\"150\" rx=\"26\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.35\"/>\n    <rect x=\"124\" y=\"30\" width=\"56\" height=\"150\" rx=\"26\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.35\"/>\n    <circle cx=\"42\" cy=\"58\" r=\"4\" fill=\"currentColor\"/><circle cx=\"42\" cy=\"92\" r=\"4\" fill=\"currentColor\"/>\n    <circle cx=\"42\" cy=\"126\" r=\"4\" fill=\"currentColor\"/><circle cx=\"42\" cy=\"160\" r=\"4\" fill=\"currentColor\"/>\n    <circle cx=\"152\" cy=\"75\" r=\"4\" fill=\"currentColor\"/><circle cx=\"152\" cy=\"112\" r=\"4\" fill=\"currentColor\"/>\n    <circle cx=\"152\" cy=\"149\" r=\"4\" fill=\"currentColor\"/>\n    <path d=\"M 50 58 L 142 73\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md4-ujung)\"/>\n    <path d=\"M 50 92 L 142 77\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md4-ujung)\"/>\n    <path d=\"M 50 126 L 142 112\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md4-ujung)\"/>\n    <path d=\"M 50 160 L 142 149\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md4-ujung)\"/>\n    <text x=\"97\" y=\"208\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.8\">surjektif</text>\n    <text x=\"97\" y=\"226\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">semua tujuan terpakai,</text>\n    <text x=\"97\" y=\"241\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">ada tujuan kembar</text>\n  </g>\n\n  <g transform=\"translate(424,0)\">\n    <rect x=\"14\" y=\"30\" width=\"56\" height=\"150\" rx=\"26\" fill=\"none\" stroke=\"var(--nila)\" stroke-opacity=\"0.5\"/>\n    <rect x=\"124\" y=\"30\" width=\"56\" height=\"150\" rx=\"26\" fill=\"none\" stroke=\"var(--nila)\" stroke-opacity=\"0.5\"/>\n    <circle cx=\"42\" cy=\"68\" r=\"4\" fill=\"currentColor\"/><circle cx=\"42\" cy=\"105\" r=\"4\" fill=\"currentColor\"/>\n    <circle cx=\"42\" cy=\"142\" r=\"4\" fill=\"currentColor\"/>\n    <circle cx=\"152\" cy=\"68\" r=\"4\" fill=\"currentColor\"/><circle cx=\"152\" cy=\"105\" r=\"4\" fill=\"currentColor\"/>\n    <circle cx=\"152\" cy=\"142\" r=\"4\" fill=\"currentColor\"/>\n    <path d=\"M 50 68 L 142 68\" stroke=\"var(--nila)\" stroke-width=\"1.6\" marker-end=\"url(#md4-ujung)\"/>\n    <path d=\"M 50 105 L 142 105\" stroke=\"var(--nila)\" stroke-width=\"1.6\" marker-end=\"url(#md4-ujung)\"/>\n    <path d=\"M 50 142 L 142 142\" stroke=\"var(--nila)\" stroke-width=\"1.6\" marker-end=\"url(#md4-ujung)\"/>\n    <text x=\"97\" y=\"208\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">bijektif</text>\n    <text x=\"97\" y=\"226\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">satu lawan satu penuh,</text>\n    <text x=\"97\" y=\"241\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">punya invers</text>\n  </g>\n</svg>",
+              "solution": "Injektif melarang dua panah bertemu di satu titik tujuan. Surjektif melarang ada titik tujuan yang tidak kena panah. Bijektif melarang keduanya, sehingga panahnya bisa dibalik."
+            },
+            {
+              "type": "TEXT",
+              "content": "Hanya fungsi bijektif yang punya **fungsi balikan** `f⁻¹`. Alasannya langsung terlihat dari gambar: kalau dua panah bertemu di satu tujuan, membalik arahnya menghasilkan satu asal dengan dua tujuan, dan itu bukan fungsi."
+            },
+            {
+              "type": "MATH",
+              "content": "f : R → R,  f(x) = 2x + 3\n\nBijektif, jadi baliknya ada:\n\n  y = 2x + 3\n  x = (y − 3) / 2\n\nf⁻¹(y) = (y − 3) / 2"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Komposisi** menjalankan dua fungsi berturut-turut. Tulisannya dibaca dari kanan ke kiri, karena yang ditulis paling dekat dengan `x` dikerjakan lebih dulu."
+            },
+            {
+              "type": "MATH",
+              "content": "(g ∘ f)(x) = g(f(x))\n\nf(x) = x + 1\ng(x) = x²\n\n(g ∘ f)(3) = g(4) = 16\n(f ∘ g)(3) = f(9) = 10"
+            },
+            {
+              "type": "TEXT",
+              "content": "Hasilnya berbeda, jadi komposisi tidak komutatif. Urutan pemanggilan menentukan hasil, persis seperti urutan pemanggilan fungsi di dalam kode."
+            },
+            {
+              "type": "NOTE",
+              "content": "Penelitian tentang pemahaman fungsi menemukan bahwa kesulitan paling sering muncul saat mahasiswa harus memutuskan apakah sebuah grafik atau tabel mewakili fungsi. Rosen mencatat akar persoalannya: fungsi perlu dipandang sebagai **satu objek utuh** yang bisa dioperasikan, bukan sekadar rumus untuk menghitung. Begitu kamu bisa memperlakukan fungsi sebagai nilai, gagasan seperti komposisi, fungsi balikan, dan fungsi yang mengembalikan fungsi jadi masuk akal."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Fungsi di dalam kode.** Pandangan \"fungsi sebagai objek\" ini bukan kemewahan teori. Di Python, fungsi memang nilai yang bisa disimpan dan dilempar ke fungsi lain."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def tambah_satu(x):\n    return x + 1\n\ndef kuadrat(x):\n    return x * x\n\ndef komposisi(g, f):\n    return lambda x: g(f(x))\n\ngf = komposisi(kuadrat, tambah_satu)\nfg = komposisi(tambah_satu, kuadrat)\n\nprint(gf(3))   # kuadrat(4)      = 16\nprint(fg(3))   # tambah_satu(9)  = 10"
+            },
+            {
+              "type": "TEXT",
+              "content": "`dict` di Python adalah fungsi berhingga yang ditulis secara eksplisit: daftar pasangan asal dan tujuan, dengan jaminan setiap kunci muncul sekali."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = {\"Ani\": 85, \"Budi\": 90, \"Citra\": 85}\n\nprint(nilai[\"Ani\"])\nprint(len(nilai))                  # ukuran domain\nprint(set(nilai.values()))         # daerah hasil, {85, 90}\n\n# tidak injektif: Ani dan Citra bernilai sama\nprint(len(nilai) != len(set(nilai.values())))"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Fungsi hash.** Ini contoh penerapan yang paling padat gunanya. Fungsi hash memetakan data berukuran sembarang ke bilangan dalam rentang tetap."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def hash_sederhana(teks, keranjang=8):\n    jumlah = 0\n    for huruf in teks:\n        jumlah += ord(huruf)\n    return jumlah % keranjang\n\nfor nama in [\"ani\", \"budi\", \"citra\", \"dewi\", \"ina\"]:\n    print(nama, \"->\", hash_sederhana(nama))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Fungsi ini **tidak mungkin injektif**: domainnya tak hingga, sementara kodomainnya cuma delapan nilai. Dua kunci berbeda pasti bisa jatuh ke keranjang yang sama, dan peristiwa itu disebut **tabrakan**. Semua implementasi tabel hash harus menyiapkan cara menanganinya. Kenapa tabrakan tidak bisa dihindari akan terbukti rapi di bagian pencacahan lewat prinsip sarang merpati."
+            },
+            {
+              "type": "TASK",
+              "content": "Tentukan mana yang fungsi, dan untuk yang bukan jelaskan aturan mana yang dilanggar. Domainnya `{1, 2, 3}`, kodomainnya `{a, b, c}`.\n\n```\nf = { (1,a), (2,b), (3,c) }\ng = { (1,a), (2,a), (3,a) }\nh = { (1,a), (2,b) }\nk = { (1,a), (1,b), (2,c), (3,a) }\n```",
+              "solution": "```\nf   fungsi, dan bijektif\ng   fungsi. tidak injektif, tidak surjektif\nh   bukan fungsi. 3 tidak punya pasangan\nk   bukan fungsi. 1 punya dua pasangan\n```\n\n`g` sah sebagai fungsi karena aturannya hanya melarang satu asal punya dua tujuan. Semua asal menuju `a` tidak melanggar apa pun. Daerah hasilnya `{a}`, lebih kecil dari kodomainnya, jadi tidak surjektif.\n\nDua pelanggaran pada `h` dan `k` adalah dua sisi dari definisi yang sama: **tepat satu**. `h` gagal di sisi \"satu\", `k` gagal di sisi \"tepat\"."
+            },
+            {
+              "type": "TASK",
+              "content": "Untuk setiap fungsi, tentukan apakah ia injektif, surjektif, atau bijektif. Perhatikan domain dan kodomainnya.\n\n```\nf : Z → Z,   f(x) = 2x\ng : Z → Z,   g(x) = x + 1\nh : R → R,   h(x) = x²\n```",
+              "solution": "```\nf(x) = 2x    injektif. tidak surjektif\ng(x) = x + 1 injektif dan surjektif, jadi bijektif\nh(x) = x²    tidak injektif, tidak surjektif\n```\n\n`f` injektif karena `2a = 2b` memaksa `a = b`. Tidak surjektif karena bilangan ganjil seperti 3 tidak pernah menjadi hasil, sebab `3/2` bukan bilangan bulat.\n\n`g` bijektif, dan baliknya `g⁻¹(y) = y − 1`.\n\n`h` tidak injektif karena `h(2) = h(−2) = 4`. Tidak surjektif karena hasilnya tidak pernah negatif.\n\nPerhatikan bahwa jawabannya bergantung pada domain dan kodomain, bukan hanya rumusnya. Fungsi `h` menjadi bijektif kalau kamu tulis `h : R⁺ → R⁺`, membatasi keduanya ke bilangan positif."
+            },
+            {
+              "type": "TASK",
+              "content": "Diketahui `f(x) = 3x − 1` dan `g(x) = x + 4`. Hitung `(f ∘ g)(2)` dan `(g ∘ f)(2)`, lalu tuliskan rumus umum keduanya.",
+              "solution": "```\n(f ∘ g)(2) = f(g(2)) = f(6)  = 3·6 − 1  = 17\n(g ∘ f)(2) = g(f(2)) = g(5)  = 5 + 4    = 9\n```\n\nRumus umumnya:\n\n```\n(f ∘ g)(x) = f(x + 4)   = 3(x + 4) − 1 = 3x + 11\n(g ∘ f)(x) = g(3x − 1)  = (3x − 1) + 4 = 3x + 3\n```\n\nPeriksa dengan memasukkan `x = 2`: `3·2 + 11 = 17` dan `3·2 + 3 = 9`. Cocok.\n\nKekeliruan yang paling sering terjadi adalah mengerjakan dari kiri. `f ∘ g` berarti `g` dulu, karena `g` yang menempel langsung pada `x`."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut, lalu jelaskan kenapa tidak ada nilai `keranjang` yang bisa membuat fungsi ini injektif.\n\n```\ndef hash_sederhana(teks, keranjang=8):\n    return sum(ord(h) for h in teks) % keranjang\n\nprint(hash_sederhana(\"abc\"))\nprint(hash_sederhana(\"cba\"))\nprint(hash_sederhana(\"bbb\"))\n```",
+              "solution": "Ketiganya menghasilkan nilai yang sama.\n\nAda dua lapis persoalan di sini.\n\nPertama, fungsi ini hanya menjumlahkan kode huruf, sehingga urutan huruf hilang. `\"abc\"`, `\"cba\"`, dan `\"bbb\"` punya jumlah yang identik yaitu 294, jadi hasilnya selalu sama berapa pun nilai `keranjang`.\n\n```\nord('a')+ord('b')+ord('c') = 97 + 98 + 99 = 294\nord('b')·3                 = 98 · 3       = 294\n```\n\nKedua, dan ini yang lebih penting, **tidak ada** fungsi hash yang bisa injektif. Teks yang mungkin ada tak terhingga banyaknya, sementara keranjangnya terbatas. Memaksa yang tak hingga masuk ke yang berhingga pasti menghasilkan tabrakan. Memperbesar `keranjang` hanya menjarangkan tabrakan, tidak menghapusnya.\n\nFungsi hash yang baik tetap membedakan `\"abc\"` dari `\"cba\"`, biasanya dengan mengalikan posisi huruf, sehingga tabrakannya tersebar merata dan sulit dipicu dengan sengaja."
+            }
+          ]
+        },
+        {
+          "title": "Induksi Matematika",
+          "summary": "Membuktikan pernyataan untuk semua bilangan asli dengan dua langkah.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Bagaimana kamu membuktikan sebuah pernyataan benar untuk **semua** bilangan asli? Mencobanya satu per satu tidak mungkin selesai. **Induksi matematika** menyelesaikan persoalan ini dengan dua langkah berhingga."
+            },
+            {
+              "type": "MATH",
+              "content": "Untuk membuktikan P(n) benar bagi setiap n ≥ 1:\n\n1. Basis\n   Tunjukkan P(1) benar.\n\n2. Langkah induksi\n   Tunjukkan bahwa jika P(k) benar,\n   maka P(k+1) juga benar.\n\nKesimpulan: P(n) benar untuk semua n ≥ 1."
+            },
+            {
+              "type": "TEXT",
+              "content": "Anggapan \"P(k) benar\" pada langkah kedua disebut **hipotesis induksi**. Kamu tidak sedang mengandaikan kesimpulan; kamu sedang membuktikan sebuah implikasi, dan boleh memakai anteseden implikasi itu."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 580 210\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Rantai kartu domino: satu kartu didorong, lalu tiap kartu menjatuhkan kartu berikutnya\">\n  <defs>\n    <marker id=\"md5-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"var(--nila)\"/>\n    </marker>\n  </defs>\n\n  <rect x=\"36\" y=\"56\" width=\"18\" height=\"76\" rx=\"2\" fill=\"var(--nila)\" opacity=\"0.3\"\n        stroke=\"var(--nila)\" stroke-width=\"1.4\" transform=\"rotate(-26 45 132)\"/>\n  <text x=\"34\" y=\"156\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--nila)\">P(1)</text>\n  <text x=\"34\" y=\"176\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">basis</text>\n  <path d=\"M 10 70 L 28 80\" stroke=\"currentColor\" stroke-opacity=\"0.6\" stroke-width=\"1.4\"\n        marker-end=\"url(#md5-ujung)\"/>\n  <text x=\"2\" y=\"58\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">dorong</text>\n\n  <g>\n    <rect x=\"110\" y=\"56\" width=\"18\" height=\"76\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\" stroke-width=\"1.4\"/>\n    <text x=\"119\" y=\"156\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.8\">P(2)</text>\n    <rect x=\"190\" y=\"56\" width=\"18\" height=\"76\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\" stroke-width=\"1.4\"/>\n    <text x=\"199\" y=\"156\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.8\">P(3)</text>\n    <rect x=\"270\" y=\"56\" width=\"18\" height=\"76\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\" stroke-width=\"1.4\"/>\n    <text x=\"279\" y=\"156\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.8\">P(4)</text>\n    <rect x=\"350\" y=\"56\" width=\"18\" height=\"76\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\" stroke-width=\"1.4\"/>\n    <text x=\"359\" y=\"156\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.8\">P(5)</text>\n    <text x=\"430\" y=\"100\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"16\" fill=\"currentColor\" opacity=\"0.5\">&#8230;</text>\n  </g>\n\n  <path d=\"M 60 40 Q 90 26 106 40\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md5-ujung)\"/>\n  <path d=\"M 132 40 Q 162 26 186 40\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md5-ujung)\"/>\n  <path d=\"M 212 40 Q 242 26 266 40\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md5-ujung)\"/>\n  <path d=\"M 292 40 Q 322 26 346 40\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md5-ujung)\"/>\n  <path d=\"M 372 40 Q 402 26 424 40\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.4\" marker-end=\"url(#md5-ujung)\"/>\n  <text x=\"470\" y=\"60\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">P(k) &#8658; P(k+1)</text>\n  <text x=\"470\" y=\"78\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">langkah induksi</text>\n\n  <line x1=\"24\" y1=\"134\" x2=\"446\" y2=\"134\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n</svg>",
+              "solution": "Basis mendorong kartu pertama. Langkah induksi memastikan setiap kartu menjatuhkan kartu berikutnya. Dua hal itu bersama-sama menjatuhkan seluruh barisan, sepanjang apa pun."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Contoh pertama.** Buktikan bahwa jumlah `n` bilangan asli pertama sama dengan `n(n+1)/2`."
+            },
+            {
+              "type": "MATH",
+              "content": "P(n) :  1 + 2 + 3 + … + n = n(n+1)/2\n\nBasis, n = 1\n  ruas kiri  = 1\n  ruas kanan = 1·2/2 = 1          cocok\n\nLangkah induksi\n  Andaikan P(k) benar, yaitu\n    1 + 2 + … + k = k(k+1)/2\n\n  Tambahkan (k+1) ke kedua ruas:\n    1 + 2 + … + k + (k+1)\n      = k(k+1)/2 + (k+1)\n      = (k+1) · (k/2 + 1)\n      = (k+1)(k+2)/2\n\n  Itu persis bentuk P(k+1).                 ∎"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan pola kerjanya: mulai dari ruas kiri `P(k+1)`, pisahkan bagian yang sudah diketahui lewat hipotesis induksi, lalu rapikan aljabarnya sampai berbentuk ruas kanan `P(k+1)`."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Contoh kedua, kali ini melibatkan pertidaksamaan.** Buktikan `2ⁿ > n` untuk setiap `n ≥ 1`."
+            },
+            {
+              "type": "MATH",
+              "content": "Basis, n = 1\n  2¹ = 2 > 1                      cocok\n\nLangkah induksi\n  Andaikan 2ᵏ > k\n\n  2ᵏ⁺¹ = 2 · 2ᵏ\n       > 2 · k            dari hipotesis\n       = k + k\n       ≥ k + 1            karena k ≥ 1\n\n  Jadi 2ᵏ⁺¹ > k + 1.                        ∎"
+            },
+            {
+              "type": "NOTE",
+              "content": "Langkah `2ᵏ⁺¹ = 2 · 2ᵏ` adalah manipulasi yang paling sering menyandung mahasiswa, dan itu terdokumentasi dalam penelitian pendidikan matematika. Hambatannya bukan pada gagasan induksinya, melainkan pada aljabar dasar eksponen. Kalau langkah induksimu macet, periksa dulu apakah persoalannya di aljabar sebelum menuduh induksinya yang salah."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kenapa basisnya tidak boleh dilewat.** Inilah bagian yang paling sering dianggap formalitas. Perhatikan \"pembuktian\" berikut."
+            },
+            {
+              "type": "MATH",
+              "content": "Klaim palsu: n = n + 1 untuk semua n\n\nLangkah induksi\n  Andaikan k = k + 1\n  Tambahkan 1 ke kedua ruas:\n    k + 1 = k + 2\n  Itu bentuk P(k+1).\n\nLangkah induksinya sah sempurna.\nTetapi P(1) salah: 1 ≠ 2.\nRantainya tidak pernah mulai."
+            },
+            {
+              "type": "TEXT",
+              "content": "Langkah induksi hanya menjanjikan \"kalau yang ini benar, yang berikutnya juga benar\". Tanpa satu titik awal yang benar, janji itu tidak pernah ditagih. Penelitian berulang kali menemukan bahwa mahasiswa memeriksa basis karena diminta dosen, bukan karena memahami perannya. Contoh di atas adalah cara tercepat melihat perannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Basis tidak harus dari 1.** Kalau pernyataannya baru benar mulai `n = 4`, buktikan `P(4)` sebagai basisnya, dan kesimpulannya berlaku untuk `n ≥ 4`."
+            },
+            {
+              "type": "MATH",
+              "content": "Klaim: 2ⁿ > n² untuk n ≥ 5\n\nn = 1   2  >  1    benar\nn = 2   4  =  4    salah\nn = 3   8  <  9    salah\nn = 4  16  = 16    salah\nn = 5  32  > 25    benar ← basis di sini"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Hubungannya dengan kode.** Induksi dan rekursi adalah dua sisi dari gagasan yang sama. Fungsi rekursif punya kasus dasar dan kasus rekursif, dan keduanya berpasangan dengan basis serta langkah induksi."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def jumlah(n):\n    if n == 1:          # kasus dasar  ~ basis\n        return 1\n    return n + jumlah(n - 1)   # kasus rekursif ~ langkah induksi\n\n# Bandingkan dengan rumus tertutupnya\nfor n in [1, 5, 10, 100]:\n    print(n, jumlah(n), n * (n + 1) // 2)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Fungsi rekursif tanpa kasus dasar akan memanggil dirinya terus sampai tumpukan panggilan penuh. Itulah versi kode dari pembuktian induksi tanpa basis: aturannya benar, tetapi tidak ada tempat untuk berhenti."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Memeriksa dugaan sebelum repot membuktikannya\ndef kiri(n):\n    return sum(i * i for i in range(1, n + 1))\n\ndef kanan(n):\n    return n * (n + 1) * (2 * n + 1) // 6\n\ncocok = all(kiri(n) == kanan(n) for n in range(1, 201))\nprint(\"dugaan bertahan sampai n = 200:\", cocok)\nprint(kiri(10), kanan(10))"
+            },
+            {
+              "type": "NOTE",
+              "content": "Memeriksa dua ratus kasus **bukan** pembuktian. Dugaan bisa bertahan ribuan kasus lalu gugur. Tetapi memeriksa dengan kode sangat berguna sebagai penyaring: kalau dugaanmu sudah gagal di `n = 7`, tidak ada gunanya menghabiskan satu jam mencoba membuktikannya."
+            },
+            {
+              "type": "TASK",
+              "content": "Buktikan dengan induksi bahwa `1 + 3 + 5 + … + (2n − 1) = n²` untuk setiap `n ≥ 1`.",
+              "solution": "```\nBasis, n = 1\n  ruas kiri  = 1\n  ruas kanan = 1² = 1             cocok\n\nLangkah induksi\n  Andaikan 1 + 3 + … + (2k − 1) = k²\n\n  Suku berikutnya adalah 2(k+1) − 1 = 2k + 1.\n\n  1 + 3 + … + (2k − 1) + (2k + 1)\n    = k² + 2k + 1          dari hipotesis\n    = (k + 1)²\n\n  Itu persis bentuk P(k+1).                 ∎\n```\n\nLangkah yang paling mudah keliru adalah menentukan suku berikutnya. Suku ke-`n` adalah `2n − 1`, jadi suku ke-`(k+1)` adalah `2(k+1) − 1 = 2k + 1`, bukan `2k − 1`.\n\nPernyataan ini juga punya gambaran yang rapi: menyusun 1, lalu 3, lalu 5 batu bata selalu membentuk persegi."
+            },
+            {
+              "type": "TASK",
+              "content": "Buktikan bahwa `n³ − n` habis dibagi 3 untuk setiap `n ≥ 1`.",
+              "solution": "```\nBasis, n = 1\n  1³ − 1 = 0, dan 0 habis dibagi 3     cocok\n\nLangkah induksi\n  Andaikan k³ − k habis dibagi 3,\n  jadi k³ − k = 3m untuk suatu bilangan bulat m.\n\n  (k+1)³ − (k+1)\n    = k³ + 3k² + 3k + 1 − k − 1\n    = (k³ − k) + 3k² + 3k\n    = 3m + 3(k² + k)\n    = 3(m + k² + k)\n\n  Hasilnya 3 dikali bilangan bulat,\n  jadi habis dibagi 3.                      ∎\n```\n\nKuncinya adalah menuliskan hipotesis sebagai `k³ − k = 3m`. Bentuk itu membuat sisanya bisa dikumpulkan menjadi faktor 3.\n\nLangkah `= (k³ − k) + 3k² + 3k` adalah inti pengerjaannya: pisahkan bagian yang sudah kamu ketahui dari bagian yang tersisa."
+            },
+            {
+              "type": "TASK",
+              "content": "Berikut sebuah \"pembuktian\" bahwa semua kuda berwarna sama. Di mana letak kesalahannya?\n\n```\nP(n): dalam kumpulan n kuda, semuanya berwarna sama.\n\nBasis: P(1) benar, satu kuda tentu sewarna dirinya.\n\nLangkah: ambil k+1 kuda. Buang satu kuda terakhir,\nsisa k kuda sewarna menurut hipotesis. Kembalikan,\nlalu buang kuda pertama, sisa k kuda juga sewarna.\nKarena keduanya tumpang tindih, semuanya sewarna.\n```",
+              "solution": "Kesalahannya pada langkah induksi, ketika `k = 1`.\n\nLangkah itu bersandar pada asumsi bahwa kedua kelompok berukuran `k` saling tumpang tindih. Untuk `k ≥ 2` itu benar. Tetapi saat membuktikan `P(2)` dari `P(1)`:\n\n```\n2 kuda: {A, B}\n\nbuang B  →  {A}    sewarna\nbuang A  →  {B}    sewarna\n\nTidak ada kuda yang sama-sama ada di keduanya,\njadi tidak ada yang menghubungkan warna A dan B.\n```\n\nRantainya putus di sambungan pertama, jadi tidak pernah mencapai `n = 3` dan seterusnya.\n\nPelajarannya: langkah induksi harus berlaku untuk **setiap** `k`, bukan untuk `k` yang besar saja. Argumen yang terdengar mulus sering menyelipkan asumsi tentang ukuran, dan sambungan paling awal adalah tempat pertama yang harus kamu periksa."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis fungsi rekursif untuk `2ⁿ`, lalu pasangkan tiap bagiannya dengan bagian pembuktian induksi.",
+              "solution": "```python\ndef pangkat_dua(n):\n    if n == 0:              # kasus dasar\n        return 1\n    return 2 * pangkat_dua(n - 1)   # kasus rekursif\n\nfor n in range(6):\n    print(n, pangkat_dua(n), 2 ** n)\n```\n\nPemasangannya:\n\n```\nkasus dasar     n == 0 → 1        ~  basis P(0)\nkasus rekursif  2 · f(n−1)        ~  P(k) ⇒ P(k+1)\n```\n\nPembuktian bahwa fungsi ini benar persis mengikuti bentuk induksi. Basisnya: `pangkat_dua(0)` mengembalikan 1, dan `2⁰ = 1`. Langkah induksinya: kalau `pangkat_dua(k)` mengembalikan `2ᵏ`, maka `pangkat_dua(k+1)` mengembalikan `2 · 2ᵏ = 2ᵏ⁺¹`.\n\nInilah alasan induksi penting bagi orang yang menulis kode, bukan hanya bagi matematikawan. Setiap kali kamu meyakinkan diri bahwa sebuah fungsi rekursif benar, kamu sedang menyusun pembuktian induksi, entah kamu menyebutnya begitu atau tidak."
+            }
+          ]
+        },
+        {
+          "title": "Kaidah Pencacahan",
+          "summary": "Menghitung banyaknya kemungkinan tanpa mendaftar satu per satu.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "\"Berapa banyak kemungkinan?\" terdengar sepele sampai kamu mencoba menghitungnya. Pertanyaan ini muncul saat menaksir kekuatan kata sandi, memperkirakan ukuran ruang pencarian, atau menilai apakah sebuah algoritma mungkin mencoba semua kemungkinan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kaidah perkalian.** Kalau sebuah pekerjaan terdiri dari dua tahap, tahap pertama punya `m` pilihan dan tahap kedua punya `n` pilihan, maka seluruhnya ada `m · n` cara."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 580 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Pohon pilihan: tiga pilihan baju dikali dua pilihan celana menghasilkan enam kombinasi\">\n  <text x=\"30\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">baju</text>\n  <text x=\"170\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">celana</text>\n  <text x=\"320\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">hasil</text>\n\n  <circle cx=\"30\" cy=\"130\" r=\"5\" fill=\"var(--nila)\"/>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.45\" fill=\"none\">\n    <path d=\"M 35 130 L 110 56\"/><path d=\"M 35 130 L 110 130\"/><path d=\"M 35 130 L 110 204\"/>\n  </g>\n  <text x=\"116\" y=\"60\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">merah</text>\n  <text x=\"116\" y=\"134\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">putih</text>\n  <text x=\"116\" y=\"208\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">hitam</text>\n\n  <g stroke=\"var(--nila)\" stroke-opacity=\"0.6\" fill=\"none\">\n    <path d=\"M 172 56 L 240 40\"/><path d=\"M 172 56 L 240 76\"/>\n    <path d=\"M 172 130 L 240 114\"/><path d=\"M 172 130 L 240 150\"/>\n    <path d=\"M 172 204 L 240 188\"/><path d=\"M 172 204 L 240 224\"/>\n  </g>\n  <text x=\"248\" y=\"44\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.7\">jins</text>\n  <text x=\"248\" y=\"80\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.7\">kain</text>\n  <text x=\"248\" y=\"118\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.7\">jins</text>\n  <text x=\"248\" y=\"154\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.7\">kain</text>\n  <text x=\"248\" y=\"192\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.7\">jins</text>\n  <text x=\"248\" y=\"228\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.7\">kain</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.6\">\n    <text x=\"320\" y=\"44\">merah &#183; jins</text>\n    <text x=\"320\" y=\"80\">merah &#183; kain</text>\n    <text x=\"320\" y=\"118\">putih &#183; jins</text>\n    <text x=\"320\" y=\"154\">putih &#183; kain</text>\n    <text x=\"320\" y=\"192\">hitam &#183; jins</text>\n    <text x=\"320\" y=\"228\">hitam &#183; kain</text>\n  </g>\n\n  <line x1=\"300\" y1=\"30\" x2=\"300\" y2=\"238\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n  <text x=\"470\" y=\"126\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"var(--nila)\">3 &#215; 2 = 6</text>\n  <text x=\"470\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">cabang di tiap</text>\n  <text x=\"470\" y=\"163\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">tingkat dikalikan</text>\n</svg>",
+              "solution": "Setiap cabang di tingkat pertama bercabang lagi sebanyak pilihan di tingkat kedua. Menghitung daun pohonnya sama dengan mengalikan banyaknya pilihan di setiap tingkat."
+            },
+            {
+              "type": "MATH",
+              "content": "Plat nomor: 1 huruf diikuti 3 angka\n\n  huruf  : 26 pilihan\n  angka  : 10 pilihan, tiga kali\n\n  total = 26 · 10 · 10 · 10 = 26.000"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kaidah penjumlahan.** Kalau sebuah pekerjaan bisa dilakukan lewat `m` cara dari kelompok pertama atau `n` cara dari kelompok kedua, dan kedua kelompok tidak beririsan, maka seluruhnya ada `m + n` cara."
+            },
+            {
+              "type": "MATH",
+              "content": "Memilih satu wakil dari 12 mahasiswa atau 9 dosen\n\n  total = 12 + 9 = 21"
+            },
+            {
+              "type": "TEXT",
+              "content": "Memilih antara mengalikan dan menjumlahkan adalah keputusan pertama dan paling menentukan. Patokannya sederhana: **\"dan\" mengalikan, \"atau\" menjumlahkan.** Kalau semua tahap harus dikerjakan, kalikan. Kalau kamu memilih salah satu jalan, jumlahkan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menghitung kata sandi.** Contoh ini memakai keduanya sekaligus, dan menjelaskan mengapa menambah panjang sandi lebih berpengaruh daripada menambah jenis karakternya."
+            },
+            {
+              "type": "MATH",
+              "content": "Huruf kecil saja (26 karakter):\n\n  8 karakter  : 26⁸  ≈ 2,1 × 10¹¹\n  12 karakter : 26¹² ≈ 9,5 × 10¹⁶\n\nHuruf besar-kecil, angka, simbol (94 karakter):\n\n  8 karakter  : 94⁸  ≈ 6,1 × 10¹⁵\n  12 karakter : 94¹² ≈ 4,8 × 10²³"
+            },
+            {
+              "type": "TEXT",
+              "content": "Menambah empat karakter pada sandi huruf kecil mengalikan ruangnya sekitar 450 ribu kali. Panjang masuk ke eksponen, sementara ragam karakter hanya menjadi basisnya, dan eksponen selalu menang."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menghitung dengan cara mengurangi.** Sering kali jauh lebih mudah menghitung kebalikannya lalu mengurangkannya dari total."
+            },
+            {
+              "type": "MATH",
+              "content": "Berapa sandi 4 huruf kecil yang memuat\nsedikitnya satu huruf \"a\"?\n\n  semua sandi        : 26⁴ = 456.976\n  tanpa \"a\" sama sekali : 25⁴ = 390.625\n\n  yang memuat \"a\" = 456.976 − 390.625\n                  = 66.351"
+            },
+            {
+              "type": "TEXT",
+              "content": "Menghitung langsung akan memaksamu memilah kasus satu \"a\", dua \"a\", dan seterusnya, lalu berhati-hati agar tidak ada yang terhitung dua kali. Menghitung kebalikannya memerlukan satu pengurangan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Prinsip inklusi-eksklusi.** Kalau dua kelompok beririsan, menjumlahkannya langsung akan menghitung bagian irisan dua kali."
+            },
+            {
+              "type": "MATH",
+              "content": "|A ∪ B| = |A| + |B| − |A ∩ B|\n\n|A ∪ B ∪ C| = |A| + |B| + |C|\n            − |A∩B| − |A∩C| − |B∩C|\n            + |A∩B∩C|"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pola tandanya bergantian: tambah tunggal, kurang pasangan, tambah tripel. Untuk tiga himpunan ada tujuh suku; untuk empat himpunan ada lima belas. Di sinilah pencatatan harus rapi, karena jumlah sukunya tumbuh cepat."
+            },
+            {
+              "type": "MATH",
+              "content": "Dari 100 mahasiswa:\n  45 ikut klub Basis Data\n  38 ikut klub Jaringan\n  30 ikut klub Keamanan\n  18 ikut BD dan Jaringan\n  12 ikut BD dan Keamanan\n  10 ikut Jaringan dan Keamanan\n   5 ikut ketiganya\n\n|B ∪ J ∪ K| = 45 + 38 + 30 − 18 − 12 − 10 + 5\n            = 78\n\nTidak ikut klub apa pun = 100 − 78 = 22"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Prinsip sarang merpati.** Kalau `n` benda dimasukkan ke dalam `k` kotak dan `n > k`, maka ada kotak yang berisi sedikitnya dua benda."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pernyataannya terdengar remeh, tetapi daya buktinya besar. Prinsip ini sudah ditulis Dirichlet pada 1834 dengan nama *Schubfachprinzip*, yang berarti asas lemari."
+            },
+            {
+              "type": "MATH",
+              "content": "Bentuk umumnya:\n\n  n benda, k kotak  ⇒  ada kotak dengan\n                       sedikitnya ⌈n/k⌉ benda\n\n367 orang, 366 kemungkinan tanggal lahir\n  ⇒ pasti ada dua orang yang tanggal lahirnya sama\n\n30 mahasiswa, 12 bulan\n  ⇒ ada bulan dengan sedikitnya ⌈30/12⌉ = 3 orang"
+            },
+            {
+              "type": "TEXT",
+              "content": "Prinsip ini juga menjawab pertanyaan yang tertunda dari bagian fungsi: **tabrakan hash tidak bisa dihindari.** Kunci yang mungkin jauh lebih banyak daripada keranjang yang tersedia, jadi pasti ada dua kunci yang menempati keranjang sama. Tidak ada fungsi hash cerdik yang bisa mengakalinya."
+            },
+            {
+              "type": "NOTE",
+              "content": "Bedakan \"pasti ada\" dari \"besar kemungkinan ada\". Sarang merpati memberi jaminan mutlak: 367 orang **pasti** memuat dua tanggal lahir yang sama. Hitungan peluang memberi hal lain: dengan 23 orang saja, peluang ada dua tanggal lahir yang sama sudah melewati 50 persen. Yang pertama perkara pencacahan, yang kedua perkara peluang."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import math\n\n# Peluang ada dua orang dengan tanggal lahir sama\ndef peluang_sama(n, hari=365):\n    beda = 1.0\n    for i in range(n):\n        beda *= (hari - i) / hari\n    return 1 - beda\n\nfor n in [10, 23, 30, 50, 70]:\n    print(n, \"orang ->\", round(peluang_sama(n) * 100, 1), \"%\")"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Memeriksa kaidah perkalian dengan mendaftar seluruhnya\nimport itertools\n\nhuruf = \"ABC\"\nangka = \"12\"\nsemua = list(itertools.product(huruf, angka))\n\nprint(len(huruf), \"x\", len(angka), \"=\", len(huruf) * len(angka))\nprint(\"hasil pendaftaran:\", len(semua))\nfor pasang in semua:\n    print(\"\".join(pasang), end=\" \")"
+            },
+            {
+              "type": "TASK",
+              "content": "Berapa banyak kata sandi 6 karakter yang bisa dibentuk dari huruf kecil dan angka, jika karakter boleh berulang? Berapa di antaranya yang memuat sedikitnya satu angka?",
+              "solution": "```\nKarakter yang tersedia: 26 huruf + 10 angka = 36\n\nSemua sandi 6 karakter:\n  36⁶ = 2.176.782.336\n\nTanpa angka sama sekali, berarti huruf saja:\n  26⁶ = 308.915.776\n\nYang memuat sedikitnya satu angka:\n  2.176.782.336 − 308.915.776 = 1.867.866.560\n```\n\nJadi sekitar 86 persen dari seluruh kemungkinan memuat sedikitnya satu angka.\n\nMengerjakannya lewat kebalikan jauh lebih singkat daripada memilah kasus satu angka, dua angka, dan seterusnya. Setiap kali kamu melihat kata \"sedikitnya satu\", coba dulu hitung kebalikannya."
+            },
+            {
+              "type": "TASK",
+              "content": "Dari 200 pelanggan, 120 memakai aplikasi Android, 95 memakai iOS, dan 35 memakai keduanya. Berapa pelanggan yang tidak memakai satu pun aplikasi?",
+              "solution": "```\n|A ∪ I| = |A| + |I| − |A ∩ I|\n        = 120 + 95 − 35\n        = 180\n\nTidak memakai apa pun = 200 − 180 = 20\n```\n\nKalau 35 orang pemakai keduanya tidak dikurangkan, hasilnya 215, lebih besar dari jumlah pelanggan. Hasil yang melebihi total adalah tanda paling jelas bahwa ada yang terhitung dua kali.\n\nSelalu periksa kelayakan hasil pencacahan terhadap batas atasnya. Angka yang mustahil langsung menunjuk letak kesalahannya."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah kelas berisi 25 mahasiswa. Buktikan bahwa pasti ada dua mahasiswa yang nama depannya dimulai dengan huruf yang sama.",
+              "solution": "Pakai prinsip sarang merpati.\n\n```\nbenda : 25 mahasiswa\nkotak : 26 huruf awal yang mungkin\n\n25 < 26\n```\n\nDengan angka ini sarang merpati **tidak** memberikan jaminan. Dua puluh lima mahasiswa bisa saja punya dua puluh lima huruf awal yang berbeda.\n\nJadi pernyataan di soal tidak terbukti, dan memang tidak bisa dibuktikan. Supaya jaminannya berlaku, jumlah mahasiswa harus sedikitnya 27.\n\nSoal ini sengaja dipasang sebagai jebakan. Prinsip sarang merpati hanya bekerja kalau bendanya **lebih banyak** daripada kotaknya. Langkah pertama selalu menghitung kedua angka itu dan membandingkannya, bukan langsung menyimpulkan.\n\nCatatan: dalam kenyataan tentu sangat mungkin ada yang sama, karena nama tidak tersebar merata di seluruh abjad. Tetapi \"sangat mungkin\" bukan \"pasti\", dan sarang merpati hanya berurusan dengan yang pasti."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode peluang tanggal lahir di atas, lalu jelaskan kenapa 23 orang sudah cukup untuk melewati 50 persen padahal setahun ada 365 hari.",
+              "solution": "Keluarannya kira-kira:\n\n```\n10 orang -> 11.7 %\n23 orang -> 50.7 %\n30 orang -> 70.6 %\n50 orang -> 97.0 %\n70 orang -> 99.9 %\n```\n\nPenyebabnya adalah yang dihitung bukan banyaknya **orang**, melainkan banyaknya **pasangan** orang.\n\n```\n23 orang → C(23,2) = 253 pasangan\n```\n\nDua ratus lima puluh tiga kesempatan untuk bertabrakan, bukan dua puluh tiga. Jumlah pasangan tumbuh kira-kira kuadrat terhadap jumlah orang, jadi ia melampaui 365 jauh lebih cepat daripada yang diperkirakan orang.\n\nPertanyaan yang dijawab juga sering tertukar. \"Ada dua orang sembarang yang tanggal lahirnya sama\" berbeda dari \"ada orang yang tanggal lahirnya sama dengan tanggal lahirmu\". Untuk yang kedua, 23 orang hanya memberi peluang sekitar 6 persen.\n\nPerhitungan ini punya akibat nyata di keamanan: fungsi hash dengan keluaran `n` bit mulai rawan tabrakan di sekitar `2^(n/2)` masukan, bukan `2ⁿ`. Serangannya pun dinamai serangan hari lahir."
+            }
+          ]
+        },
+        {
+          "title": "Permutasi dan Kombinasi",
+          "summary": "Menghitung susunan dan pilihan, dengan dan tanpa urutan.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Kaidah perkalian bekerja selama pilihan di setiap tahap tidak berubah. Begitu barang yang sudah dipakai tidak boleh dipakai lagi, kamu butuh dua alat khusus: **permutasi** dan **kombinasi**."
+            },
+            {
+              "type": "TEXT",
+              "content": "Satu pertanyaan memisahkan keduanya, dan jawab pertanyaan ini sebelum menulis rumus apa pun: **apakah urutan penting?**"
+            },
+            {
+              "type": "MATH",
+              "content": "Urutan penting      → permutasi\nUrutan tidak penting → kombinasi\n\nPeringkat juara 1, 2, 3    urutan penting\nAnggota tim beranggota 3   urutan tidak penting\nKata sandi                 urutan penting\nTangan kartu               urutan tidak penting"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Permutasi.** Banyaknya cara menyusun `r` benda dari `n` benda, dengan memperhatikan urutan."
+            },
+            {
+              "type": "MATH",
+              "content": "P(n, r) = n! / (n − r)!\n\nP(5, 3) = 5! / 2! = 120 / 2 = 60\n\nUntuk r = n, seluruh benda disusun:\n  P(n, n) = n!\n  P(5, 5) = 120"
+            },
+            {
+              "type": "TEXT",
+              "content": "Alasan rumusnya begitu bisa dilihat langsung tanpa menghafal. Untuk memilih tiga dari lima secara berurutan: lima pilihan untuk posisi pertama, empat untuk posisi kedua, tiga untuk posisi ketiga."
+            },
+            {
+              "type": "MATH",
+              "content": "5 · 4 · 3 = 60\n\nBentuk faktorialnya hanya cara ringkas menulis itu:\n\n  5 · 4 · 3 = (5 · 4 · 3 · 2 · 1) / (2 · 1)\n            = 5! / 2!"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kombinasi.** Banyaknya cara memilih `r` benda dari `n` benda, tanpa memperhatikan urutan."
+            },
+            {
+              "type": "MATH",
+              "content": "C(n, r) = n! / ( r! · (n − r)! )\n\nDitulis juga sebagai (n r) atau nCr.\n\nC(5, 3) = 120 / (6 · 2) = 10"
+            },
+            {
+              "type": "TEXT",
+              "content": "Hubungan antara keduanya menjelaskan dari mana `r!` di penyebut datang. Setiap pilihan beranggota tiga bisa disusun dalam `3! = 6` urutan berbeda, dan permutasi menghitung keenamnya sebagai hal yang berbeda."
+            },
+            {
+              "type": "MATH",
+              "content": "C(n, r) = P(n, r) / r!\n\nC(5, 3) = 60 / 6 = 10\n\nPilihan {A, B, C} dihitung enam kali oleh permutasi:\n  ABC  ACB  BAC  BCA  CAB  CBA\ntetapi sekali saja oleh kombinasi."
+            },
+            {
+              "type": "NOTE",
+              "content": "Penelitian tentang pembelajaran kombinatorik mencatat bahwa kesulitan terbesar bukan pada rumusnya, melainkan pada memutuskan rumus mana yang dipakai, terutama membedakan kapan urutan penting. Satu studi melaporkan hanya 41 persen soal pencacahan yang dijawab benar pada percobaan pertama oleh mahasiswa matematika. Kesalahan yang paling sering adalah menghitung satu susunan lebih dari sekali. Kalau ragu, daftarkan kasus kecilnya dengan tangan; itu jauh lebih cepat daripada menebak rumus."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Dua sifat yang menghemat pekerjaan.**"
+            },
+            {
+              "type": "MATH",
+              "content": "Simetri\n  C(n, r) = C(n, n − r)\n  C(10, 7) = C(10, 3) = 120\n\n  Memilih 7 dari 10 sama saja dengan\n  memilih 3 yang ditinggalkan.\n\nRumus Pascal\n  C(n, r) = C(n−1, r−1) + C(n−1, r)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Rumus Pascal punya penjelasan yang bisa dirasakan. Perhatikan satu benda tertentu, misalnya benda pertama. Pilihanmu pasti memuatnya atau tidak. Kalau memuatnya, sisanya memilih `r−1` dari `n−1` benda lain. Kalau tidak, sisanya memilih `r` dari `n−1` benda lain. Dua kemungkinan yang tidak beririsan, jadi dijumlahkan."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Segitiga Pascal sampai baris keenam, dengan dua bilangan di baris atas yang dijumlahkan menjadi satu bilangan di bawahnya\">\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"currentColor\" opacity=\"0.8\" text-anchor=\"middle\">\n    <text x=\"300\" y=\"36\">1</text>\n\n    <text x=\"272\" y=\"72\">1</text><text x=\"328\" y=\"72\">1</text>\n\n    <text x=\"244\" y=\"108\">1</text><text x=\"300\" y=\"108\">2</text><text x=\"356\" y=\"108\">1</text>\n\n    <text x=\"216\" y=\"144\">1</text><text x=\"272\" y=\"144\">3</text>\n    <text x=\"328\" y=\"144\">3</text><text x=\"384\" y=\"144\">1</text>\n\n    <text x=\"188\" y=\"180\">1</text>\n    <text x=\"244\" y=\"180\" fill=\"var(--nila)\" opacity=\"1\">4</text>\n    <text x=\"300\" y=\"180\" fill=\"var(--nila)\" opacity=\"1\">6</text>\n    <text x=\"356\" y=\"180\">4</text><text x=\"412\" y=\"180\">1</text>\n\n    <text x=\"160\" y=\"216\">1</text><text x=\"216\" y=\"216\">5</text>\n    <text x=\"272\" y=\"216\" fill=\"var(--nila)\" opacity=\"1\">10</text>\n    <text x=\"328\" y=\"216\">10</text><text x=\"384\" y=\"216\">5</text><text x=\"440\" y=\"216\">1</text>\n\n    <text x=\"132\" y=\"252\">1</text><text x=\"188\" y=\"252\">6</text><text x=\"244\" y=\"252\">15</text>\n    <text x=\"300\" y=\"252\">20</text><text x=\"356\" y=\"252\">15</text><text x=\"412\" y=\"252\">6</text>\n    <text x=\"468\" y=\"252\">1</text>\n  </g>\n\n  <path d=\"M 248 188 L 268 208\" stroke=\"var(--nila)\" stroke-width=\"1.4\" opacity=\"0.8\"/>\n  <path d=\"M 296 188 L 276 208\" stroke=\"var(--nila)\" stroke-width=\"1.4\" opacity=\"0.8\"/>\n\n  <g font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\" text-anchor=\"end\">\n    <text x=\"112\" y=\"36\">baris 0</text><text x=\"112\" y=\"72\">baris 1</text>\n    <text x=\"112\" y=\"108\">baris 2</text><text x=\"112\" y=\"144\">baris 3</text>\n    <text x=\"112\" y=\"180\">baris 4</text><text x=\"112\" y=\"216\">baris 5</text>\n    <text x=\"112\" y=\"252\">baris 6</text>\n  </g>\n\n  <text x=\"492\" y=\"176\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">4 + 6 = 10</text>\n  <text x=\"492\" y=\"196\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">C(4,1)+C(4,2)</text>\n  <text x=\"492\" y=\"212\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">= C(5,2)</text>\n</svg>",
+              "solution": "Segitiga Pascal. Baris ke-n memuat C(n,0) sampai C(n,n), dan setiap bilangan adalah jumlah dua bilangan di atasnya. Simetrinya terlihat langsung dari bentuk segitiganya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Baris-baris segitiga Pascal juga menjawab pertanyaan yang tertunda dari bagian pertama: kenapa `|P(A)| = 2ⁿ`. Jumlahkan satu baris penuh dan kamu mendapatkan jumlah seluruh himpunan bagian dari segala ukuran."
+            },
+            {
+              "type": "MATH",
+              "content": "Baris 4 : 1  4  6  4  1\nJumlah  : 16 = 2⁴\n\nArtinya himpunan dengan 4 anggota punya\n  1 himpunan bagian berukuran 0\n  4 berukuran 1\n  6 berukuran 2\n  4 berukuran 3\n  1 berukuran 4"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Ketika benda boleh berulang.** Dua varian berikut sering diperlukan dan mudah tertukar."
+            },
+            {
+              "type": "MATH",
+              "content": "Permutasi dengan pengulangan bebas\n  nʳ\n  Kata sandi 4 angka: 10⁴ = 10.000\n\nPermutasi benda yang sebagian sama\n  n! / (n₁! · n₂! · … )\n  Susunan huruf \"MATEMATIKA\" (10 huruf,\n  A tiga kali, M dua kali, T dua kali):\n  10! / (3! · 2! · 2!) = 151.200"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Di dalam kode.** Python menyediakan keduanya, baik untuk menghitung maupun untuk mendaftar."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import math\nimport itertools\n\nprint(math.perm(5, 3))    # P(5,3) = 60\nprint(math.comb(5, 3))    # C(5,3) = 10\n\nbenda = \"ABCDE\"\npermutasi = list(itertools.permutations(benda, 3))\nkombinasi = list(itertools.combinations(benda, 3))\n\nprint(len(permutasi), len(kombinasi))\nprint(\"permutasi:\", [\"\".join(p) for p in permutasi[:6]])\nprint(\"kombinasi:\", [\"\".join(k) for k in kombinasi])"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import math\n\n# Segitiga Pascal, dan buktinya bahwa tiap baris berjumlah 2^n\nfor n in range(7):\n    baris = [math.comb(n, r) for r in range(n + 1)]\n    print(str(baris).ljust(34), \"jumlah =\", sum(baris), \"= 2^\" + str(n))"
+            },
+            {
+              "type": "TASK",
+              "content": "Dari 10 mahasiswa akan dipilih pengurus. Hitung kedua kasus berikut dan jelaskan mengapa hasilnya berbeda.\n\n```\na. Ketua, sekretaris, dan bendahara\nb. Tiga orang anggota tim tanpa jabatan\n```",
+              "solution": "```\na. Urutan penting, karena jabatannya berbeda\n   P(10, 3) = 10 · 9 · 8 = 720\n\nb. Urutan tidak penting\n   C(10, 3) = 720 / 3! = 120\n```\n\nPerbandingannya `720 / 120 = 6 = 3!`. Setiap tim beranggota tiga orang bisa dibagi jabatan dalam enam cara, dan kasus (a) menghitung keenamnya sebagai hasil yang berbeda.\n\n```\nTim {Ani, Budi, Citra} pada kasus (a):\n  Ani ketua,  Budi sekretaris, Citra bendahara\n  Ani ketua,  Citra sekretaris, Budi bendahara\n  Budi ketua, Ani sekretaris,  Citra bendahara\n  … dan tiga susunan lainnya\n```\n\nPatokan praktisnya: kalau menukar dua orang menghasilkan keadaan yang berbeda, urutannya penting."
+            },
+            {
+              "type": "TASK",
+              "content": "Hitung `C(12, 9)` dengan cara yang paling sedikit perhitungannya.",
+              "solution": "Pakai sifat simetri.\n\n```\nC(12, 9) = C(12, 12 − 9) = C(12, 3)\n\nC(12, 3) = (12 · 11 · 10) / (3 · 2 · 1)\n         = 1320 / 6\n         = 220\n```\n\nMenghitung `C(12, 9)` langsung berarti berurusan dengan `12!` dan `9!`, dua bilangan besar yang mudah salah tulis. Lewat simetri, cukup tiga perkalian dan satu pembagian.\n\nPatokannya: kalau `r` lebih dari setengah `n`, ganti dengan `n − r` lebih dulu. Secara nalar, memilih 9 orang yang masuk dari 12 sama persis dengan memilih 3 orang yang tidak masuk."
+            },
+            {
+              "type": "TASK",
+              "content": "Berapa banyak susunan huruf berbeda yang bisa dibentuk dari kata \"INFORMATIKA\"?",
+              "solution": "Hitung dulu hurufnya.\n\n```\nINFORMATIKA → 11 huruf\n\nI : 2 kali\nN : 1\nF : 1\nO : 1\nR : 1\nM : 1\nA : 2 kali\nT : 1\nK : 1\n```\n\nPakai rumus permutasi dengan benda sebagian sama:\n\n```\n11! / (2! · 2!) = 39.916.800 / 4\n                = 9.979.200\n```\n\nPembaginya muncul karena menukar dua huruf `I` tidak menghasilkan susunan yang kelihatan berbeda, demikian pula dua huruf `A`. Tanpa pembagi itu, setiap susunan akan terhitung empat kali.\n\nKekeliruan yang sering terjadi adalah salah menghitung huruf yang kembar. Hitung dulu dengan teliti sebelum menyentuh rumusnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis kode yang memeriksa rumus Pascal `C(n,r) = C(n−1,r−1) + C(n−1,r)` untuk semua `n` sampai 20.",
+              "solution": "```python\nimport math\n\ngagal = []\nfor n in range(1, 21):\n    for r in range(1, n):\n        kiri = math.comb(n, r)\n        kanan = math.comb(n - 1, r - 1) + math.comb(n - 1, r)\n        if kiri != kanan:\n            gagal.append((n, r))\n\nprint(\"pasangan diuji:\", sum(n - 1 for n in range(1, 21)))\nprint(\"yang gagal    :\", gagal)\n```\n\nKeluarannya menunjukkan nol kegagalan.\n\nPerhatikan bahwa `r` dimulai dari 1 dan berhenti sebelum `n`. Di luar rentang itu, rumusnya membutuhkan `C(n−1, −1)` atau `C(n−1, n)` yang keduanya bernilai 0, dan `math.comb` di Python menolak `r` negatif dengan galat.\n\nTepi seperti ini adalah tempat kesalahan paling sering bersembunyi, baik dalam kode maupun dalam pengerjaan di atas kertas. Rumus Pascal berlaku untuk seluruh bagian dalam segitiga, dan tepinya yang berisi angka 1 ditetapkan terpisah."
+            }
+          ]
+        },
+        {
+          "title": "Pengantar Graf",
+          "summary": "Memodelkan hubungan sebagai titik dan garis.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Pada 1736 Leonhard Euler menyelesaikan pertanyaan warga kota Königsberg: mungkinkah menyeberangi ketujuh jembatan kota itu tepat sekali masing-masing? Jawabannya tidak, dan cara ia membuktikannya melahirkan satu cabang matematika."
+            },
+            {
+              "type": "TEXT",
+              "content": "Langkah Euler adalah membuang semua yang tidak perlu. Bentuk daratan tidak penting, panjang jembatan tidak penting. Yang penting hanya **apa terhubung dengan apa**. Setiap daratan menjadi satu titik, setiap jembatan menjadi satu garis."
+            },
+            {
+              "type": "TEXT",
+              "content": "Hasilnya disebut **graf**, yaitu pasangan dua himpunan."
+            },
+            {
+              "type": "MATH",
+              "content": "G = (V, E)\n\nV  himpunan simpul (vertex), tidak boleh kosong\nE  himpunan sisi (edge), tiap sisi menghubungkan\n   dua simpul\n\nV = {A, B, C, D}\nE = { {A,B}, {A,C}, {B,C}, {C,D} }"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Istilah yang perlu kamu kuasai.** Istilah-istilah ini akan dipakai di mata kuliah struktur data, algoritma, dan jaringan komputer."
+            },
+            {
+              "type": "MATH",
+              "content": "Bertetangga    dua simpul yang dihubungkan satu sisi\nDerajat        banyaknya sisi yang menempel pada\n               sebuah simpul, ditulis deg(v)\nLintasan       deret simpul yang tersambung sisi\nSirkuit        lintasan yang kembali ke simpul awal\nTerhubung      ada lintasan antara setiap pasang simpul\nGraf sederhana tidak ada sisi ganda dan tidak ada\n               sisi yang menghubungkan simpul ke dirinya"
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 620 280\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Graf dengan lima simpul di sebelah kiri dan matriks ketetanggaannya di sebelah kanan\">\n  <g stroke=\"currentColor\" stroke-opacity=\"0.5\" stroke-width=\"1.6\">\n    <line x1=\"60\" y1=\"70\" x2=\"170\" y2=\"42\"/>\n    <line x1=\"60\" y1=\"70\" x2=\"100\" y2=\"160\"/>\n    <line x1=\"170\" y1=\"42\" x2=\"100\" y2=\"160\"/>\n    <line x1=\"170\" y1=\"42\" x2=\"218\" y2=\"138\"/>\n    <line x1=\"100\" y1=\"160\" x2=\"218\" y2=\"138\"/>\n    <line x1=\"218\" y1=\"138\" x2=\"160\" y2=\"226\"/>\n  </g>\n  <g fill=\"var(--nila)\">\n    <circle cx=\"60\" cy=\"70\" r=\"15\"/><circle cx=\"170\" cy=\"42\" r=\"15\"/>\n    <circle cx=\"100\" cy=\"160\" r=\"15\"/><circle cx=\"218\" cy=\"138\" r=\"15\"/>\n    <circle cx=\"160\" cy=\"226\" r=\"15\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">\n    <text x=\"60\" y=\"75\">A</text><text x=\"170\" y=\"47\">B</text><text x=\"100\" y=\"165\">C</text>\n    <text x=\"218\" y=\"143\">D</text><text x=\"160\" y=\"231\">E</text>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.5\" text-anchor=\"middle\">\n    <text x=\"42\" y=\"56\">2</text><text x=\"188\" y=\"30\">3</text><text x=\"82\" y=\"178\">3</text>\n    <text x=\"240\" y=\"130\">3</text><text x=\"160\" y=\"252\">1</text>\n  </g>\n  <text x=\"140\" y=\"272\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">angka kecil = derajat simpul</text>\n\n  <line x1=\"290\" y1=\"30\" x2=\"290\" y2=\"250\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\">\n    <g opacity=\"0.55\" text-anchor=\"middle\">\n      <text x=\"400\" y=\"52\">A</text><text x=\"436\" y=\"52\">B</text><text x=\"472\" y=\"52\">C</text>\n      <text x=\"508\" y=\"52\">D</text><text x=\"544\" y=\"52\">E</text>\n    </g>\n    <g opacity=\"0.55\">\n      <text x=\"350\" y=\"84\">A</text><text x=\"350\" y=\"116\">B</text><text x=\"350\" y=\"148\">C</text>\n      <text x=\"350\" y=\"180\">D</text><text x=\"350\" y=\"212\">E</text>\n    </g>\n    <g text-anchor=\"middle\" opacity=\"0.85\">\n      <text x=\"400\" y=\"84\">0</text><text x=\"436\" y=\"84\">1</text><text x=\"472\" y=\"84\">1</text><text x=\"508\" y=\"84\">0</text><text x=\"544\" y=\"84\">0</text>\n      <text x=\"400\" y=\"116\">1</text><text x=\"436\" y=\"116\">0</text><text x=\"472\" y=\"116\">1</text><text x=\"508\" y=\"116\">1</text><text x=\"544\" y=\"116\">0</text>\n      <text x=\"400\" y=\"148\">1</text><text x=\"436\" y=\"148\">1</text><text x=\"472\" y=\"148\">0</text><text x=\"508\" y=\"148\">1</text><text x=\"544\" y=\"148\">0</text>\n      <text x=\"400\" y=\"180\">0</text><text x=\"436\" y=\"180\">1</text><text x=\"472\" y=\"180\">1</text><text x=\"508\" y=\"180\">0</text><text x=\"544\" y=\"180\">1</text>\n      <text x=\"400\" y=\"212\">0</text><text x=\"436\" y=\"212\">0</text><text x=\"472\" y=\"212\">0</text><text x=\"508\" y=\"212\">1</text><text x=\"544\" y=\"212\">0</text>\n    </g>\n  </g>\n  <line x1=\"372\" y1=\"62\" x2=\"564\" y2=\"62\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n  <line x1=\"376\" y1=\"38\" x2=\"376\" y2=\"226\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n  <text x=\"468\" y=\"252\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">matriks ketetanggaan, simetris terhadap diagonal</text>\n</svg>",
+              "solution": "Graf yang sama disajikan dua cara: sebagai gambar dan sebagai matriks ketetanggaan. Gambar lebih mudah dibaca manusia, matriks lebih mudah diolah komputer."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Teorema jabat tangan.** Jumlahkan derajat seluruh simpul dan kamu selalu mendapatkan dua kali jumlah sisinya."
+            },
+            {
+              "type": "MATH",
+              "content": "Σ deg(v) = 2 · |E|\n\nPada graf di diagram:\n  2 + 3 + 3 + 3 + 1 = 12 = 2 · 6        ✓"
+            },
+            {
+              "type": "TEXT",
+              "content": "Alasannya hanya satu baris: setiap sisi punya dua ujung, jadi setiap sisi menyumbang tepat 2 ke jumlah derajat. Euler sendiri mencatat kenyataan ini pada makalah Königsberg-nya, meski nama \"jabat tangan\" baru dipakai jauh kemudian."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dari situ muncul akibat yang sering dipakai: **banyaknya simpul berderajat ganjil selalu genap.** Jumlah derajat adalah bilangan genap, dan derajat yang genap tidak mengubah keganjilan, jadi yang ganjil harus berpasangan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Inilah yang menyelesaikan persoalan Königsberg. Siapa pun yang masuk ke sebuah daratan harus keluar lagi, jadi tiap daratan perantara butuh jembatan dalam jumlah genap. Di Königsberg keempat daratan berderajat ganjil, sehingga perjalanan yang diminta mustahil."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Graf berarah.** Kalau sisinya punya arah, grafnya disebut berarah atau digraf, dan sisinya menjadi pasangan terurut. Di sini setiap simpul punya dua derajat."
+            },
+            {
+              "type": "MATH",
+              "content": "Derajat masuk   deg⁻(v)   sisi yang menuju v\nDerajat keluar  deg⁺(v)   sisi yang keluar dari v\n\nContoh pemakaian:\n  \"mengikuti\" di media sosial    berarah\n  \"berteman\" di media sosial     tak berarah\n  tautan antar halaman web       berarah\n  kabel jaringan                 tak berarah"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Graf berbobot.** Setiap sisi diberi angka: jarak, biaya, waktu tempuh, atau kapasitas. Aplikasi peta memakai graf berbobot, dan pencarian rute terpendek berarti mencari lintasan dengan jumlah bobot terkecil."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Beberapa graf yang punya nama.**"
+            },
+            {
+              "type": "MATH",
+              "content": "Kₙ   graf lengkap\n     setiap simpul bertetangga dengan semua\n     simpul lain. Sisinya C(n,2) = n(n−1)/2\n\nCₙ   graf lingkaran\n     n simpul tersusun melingkar, n sisi\n\nKₘ,ₙ graf bipartit lengkap\n     simpul terbagi dua kelompok, sisi hanya\n     menghubungkan antar kelompok"
+            },
+            {
+              "type": "TEXT",
+              "content": "Graf bipartit muncul di mana-mana: mahasiswa dan mata kuliah yang diambil, pengguna dan film yang ditonton, pekerja dan tugas yang bisa dikerjakan. Persoalan perjodohan pada graf bipartit adalah dasar sistem penjadwalan dan penugasan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Dua cara menyimpan graf di komputer.** Pilihan ini memengaruhi kecepatan dan pemakaian memori program kamu, jadi bukan soal selera."
+            },
+            {
+              "type": "MATH",
+              "content": "Matriks ketetanggaan\n  ruang   : O(|V|²)\n  cek sisi: O(1)\n  cocok   : graf padat, banyak sisi\n\nSenarai ketetanggaan\n  ruang   : O(|V| + |E|)\n  cek sisi: O(derajat)\n  cocok   : graf jarang, sedikit sisi"
+            },
+            {
+              "type": "TEXT",
+              "content": "Sebagian besar graf nyata jarang. Jejaring sosial dengan sejuta akun hanya punya ratusan tetangga per akun, bukan sejuta. Matriksnya akan menghabiskan satu triliun sel yang hampir semuanya nol, jadi senarai ketetanggaan hampir selalu jadi pilihan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Senarai ketetanggaan: dict dari simpul ke himpunan tetangga\ngraf = {\n    \"A\": {\"B\", \"C\"},\n    \"B\": {\"A\", \"C\", \"D\"},\n    \"C\": {\"A\", \"B\", \"D\"},\n    \"D\": {\"B\", \"C\", \"E\"},\n    \"E\": {\"D\"},\n}\n\nprint(\"simpul:\", len(graf))\nprint(\"sisi  :\", sum(len(t) for t in graf.values()) // 2)\n\nfor simpul, tetangga in graf.items():\n    print(simpul, \"derajat\", len(tetangga), \"->\", sorted(tetangga))\n\njumlah_derajat = sum(len(t) for t in graf.values())\nprint(\"teorema jabat tangan:\", jumlah_derajat, \"= 2 x\", jumlah_derajat // 2)"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Penelusuran melebar: mencari lintasan terpendek\n# dalam graf tanpa bobot\nfrom collections import deque\n\ngraf = {\n    \"A\": {\"B\", \"C\"}, \"B\": {\"A\", \"C\", \"D\"}, \"C\": {\"A\", \"B\", \"D\"},\n    \"D\": {\"B\", \"C\", \"E\"}, \"E\": {\"D\"},\n}\n\ndef lintasan(graf, awal, tujuan):\n    antre = deque([[awal]])\n    dikunjungi = {awal}\n    while antre:\n        jalur = antre.popleft()\n        if jalur[-1] == tujuan:\n            return jalur\n        for tetangga in sorted(graf[jalur[-1]]):\n            if tetangga not in dikunjungi:\n                dikunjungi.add(tetangga)\n                antre.append(jalur + [tetangga])\n    return None\n\nprint(lintasan(graf, \"A\", \"E\"))"
+            },
+            {
+              "type": "NOTE",
+              "content": "Graf adalah struktur yang paling sering muncul di wawancara kerja teknis, dan alasannya praktis. Jejaring sosial, rute pengiriman, ketergantungan antar paket, riwayat commit Git, hubungan antar tabel basis data, dan alur kendali di dalam kompilator semuanya graf. Menguasai istilah di bagian ini membuat semua topik itu terasa seperti satu hal yang sama."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah graf punya 6 simpul dengan derajat berurutan `3, 3, 2, 2, 1, 1`. Berapa sisinya? Lalu periksa apakah graf dengan derajat `3, 3, 3, 3, 3` mungkin ada.",
+              "solution": "Kasus pertama, pakai teorema jabat tangan.\n\n```\nΣ deg(v) = 3+3+2+2+1+1 = 12\n|E| = 12 / 2 = 6 sisi\n```\n\nKasus kedua:\n\n```\nΣ deg(v) = 3+3+3+3+3 = 15\n\n|E| = 15 / 2 = 7,5\n```\n\nMustahil, karena jumlah sisi harus bilangan bulat.\n\nCara lain melihatnya lewat akibat teorema itu: banyaknya simpul berderajat ganjil harus genap. Di sini ada lima simpul berderajat ganjil, dan lima adalah bilangan ganjil, jadi graf semacam itu tidak bisa ada.\n\nPemeriksaan ini sangat murah dan patut dijadikan langkah pertama setiap kali sebuah soal memberimu daftar derajat."
+            },
+            {
+              "type": "TASK",
+              "content": "Berapa banyak sisi pada graf lengkap `K₈`? Jelaskan hubungannya dengan kombinasi.",
+              "solution": "```\n|E| = C(8, 2) = (8 · 7) / 2 = 28\n```\n\nHubungannya langsung: setiap sisi pada graf lengkap adalah satu pilihan dua simpul dari delapan yang ada, dan urutan tidak penting karena sisi `{A,B}` sama dengan `{B,A}`. Jadi menghitung sisi sama dengan menghitung kombinasi.\n\nPemeriksaan lewat jabat tangan:\n\n```\nSetiap simpul berderajat 7, karena bertetangga\ndengan tujuh simpul lainnya.\n\nΣ deg(v) = 8 · 7 = 56\n|E| = 56 / 2 = 28          cocok\n```\n\nRumus umumnya `n(n−1)/2`, yang tumbuh kira-kira kuadrat. Inilah sebabnya jejaring yang menghubungkan semua pihak secara langsung tidak terskala: seratus titik butuh 4.950 sambungan."
+            },
+            {
+              "type": "TASK",
+              "content": "Tentukan apakah graf berikut terhubung, lalu sebutkan derajat setiap simpulnya.\n\n```\nV = {A, B, C, D, E, F}\nE = { {A,B}, {B,C}, {A,C}, {D,E}, {E,F} }\n```",
+              "solution": "Grafnya **tidak terhubung**.\n\n```\nKomponen 1: {A, B, C}   membentuk sirkuit\nKomponen 2: {D, E, F}   membentuk lintasan\n```\n\nTidak ada sisi yang menyambungkan kedua kelompok, jadi tidak ada lintasan dari `A` ke `D`.\n\nDerajat setiap simpul:\n\n```\ndeg(A) = 2     deg(D) = 1\ndeg(B) = 2     deg(E) = 2\ndeg(C) = 2     deg(F) = 1\n```\n\nPeriksa: `2+2+2+1+2+1 = 10 = 2 · 5`. Ada lima sisi. Cocok.\n\nCatatan penting: derajat tidak bisa dipakai untuk menguji keterhubungan. Di sini semua simpul berderajat sedikitnya 1, tetapi grafnya tetap terpecah dua. Keterhubungan harus diperiksa dengan penelusuran, misalnya penelusuran melebar seperti pada kode di atas."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis kode yang mengubah senarai ketetanggaan menjadi matriks ketetanggaan, lalu bandingkan pemakaian ruang keduanya untuk graf dengan 1000 simpul dan 3000 sisi.",
+              "solution": "```python\ngraf = {\n    \"A\": {\"B\", \"C\"}, \"B\": {\"A\", \"C\", \"D\"}, \"C\": {\"A\", \"B\", \"D\"},\n    \"D\": {\"B\", \"C\", \"E\"}, \"E\": {\"D\"},\n}\n\nsimpul = sorted(graf)\nindeks = {s: i for i, s in enumerate(simpul)}\n\nmatriks = [[0] * len(simpul) for _ in simpul]\nfor s, tetangga in graf.items():\n    for t in tetangga:\n        matriks[indeks[s]][indeks[t]] = 1\n\nprint(\"   \", \" \".join(simpul))\nfor s in simpul:\n    print(s, \"  \", \" \".join(str(x) for x in matriks[indeks[s]]))\n```\n\nPerbandingan ruang untuk 1000 simpul dan 3000 sisi:\n\n```\nMatriks    1000 x 1000 = 1.000.000 sel\nSenarai    1000 + 2 x 3000 = 7.000 catatan\n\nPerbandingan kira-kira 1 : 143\n```\n\nMatriksnya akan berisi 6.000 angka satu dan 994.000 angka nol. Lebih dari 99 persen ruangnya menyimpan ketidakhadiran sisi.\n\nMatriks tetap menang pada satu hal: memeriksa apakah dua simpul bertetangga butuh satu kali akses, sedangkan senarai harus menelusuri daftar tetangga. Kalau program kamu lebih banyak memeriksa keberadaan sisi daripada menelusuri tetangga, dan grafnya padat, matriks bisa jadi pilihan yang tepat."
+            }
+          ]
+        },
+        {
+          "title": "Pohon",
+          "summary": "Graf tanpa sirkuit, bentuk yang paling sering kamu pakai.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Di antara semua graf, satu bentuk muncul jauh lebih sering daripada yang lain: **pohon**. Sistem berkas, struktur halaman web, indeks basis data, dan hampir setiap berkas konfigurasi adalah pohon."
+            },
+            {
+              "type": "TEXT",
+              "content": "Definisinya ringkas: **pohon adalah graf terhubung yang tidak punya sirkuit.**"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dari definisi itu muncul beberapa sifat yang setara, dan boleh kamu pakai sebagai cara memeriksa."
+            },
+            {
+              "type": "MATH",
+              "content": "Untuk graf dengan n simpul, keempat pernyataan\nberikut setara:\n\n  G adalah pohon\n  G terhubung dan punya tepat n − 1 sisi\n  G tidak bersirkuit dan punya tepat n − 1 sisi\n  ada tepat satu lintasan antara setiap dua simpul"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pernyataan terakhir itu yang paling sering dipakai. Pada pohon, jalan dari satu titik ke titik lain selalu ada dan selalu hanya satu. Itulah sebabnya sebuah berkas punya tepat satu alamat di dalam sistem berkas."
+            },
+            {
+              "type": "MATH",
+              "content": "Pohon dengan 7 simpul punya 6 sisi.\n\nMenambah satu sisi mana pun  → muncul sirkuit\nMembuang satu sisi mana pun  → terpecah dua"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pohon berdiri di titik paling rapuh: ia terhubung dengan sisi sesedikit mungkin. Satu sisi lagi membuatnya bersirkuit, satu sisi kurang membuatnya terpecah."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pohon berakar.** Begitu satu simpul ditetapkan sebagai **akar**, seluruh sisi mendapat arah, yaitu menjauhi akar. Dari situ muncul kosakata kekerabatan."
+            },
+            {
+              "type": "MATH",
+              "content": "Akar        simpul yang ditetapkan sebagai pangkal\nAnak        simpul tepat di bawah sebuah simpul\nOrang tua   simpul tepat di atas sebuah simpul\nDaun        simpul tanpa anak\nKedalaman   jarak sebuah simpul dari akar\nTinggi      kedalaman terbesar di dalam pohon\nSubpohon    sebuah simpul beserta seluruh keturunannya"
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 280\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Pohon berakar dengan istilah akar, anak, orang tua, daun, dan tinggi\">\n  <g stroke=\"currentColor\" stroke-opacity=\"0.45\" stroke-width=\"1.6\">\n    <line x1=\"230\" y1=\"48\" x2=\"130\" y2=\"118\"/>\n    <line x1=\"230\" y1=\"48\" x2=\"330\" y2=\"118\"/>\n    <line x1=\"130\" y1=\"118\" x2=\"70\" y2=\"190\"/>\n    <line x1=\"130\" y1=\"118\" x2=\"190\" y2=\"190\"/>\n    <line x1=\"330\" y1=\"118\" x2=\"330\" y2=\"190\"/>\n    <line x1=\"190\" y1=\"190\" x2=\"190\" y2=\"252\"/>\n  </g>\n  <g fill=\"var(--nila)\">\n    <circle cx=\"230\" cy=\"48\" r=\"16\"/><circle cx=\"130\" cy=\"118\" r=\"16\"/><circle cx=\"330\" cy=\"118\" r=\"16\"/>\n    <circle cx=\"70\" cy=\"190\" r=\"16\"/><circle cx=\"190\" cy=\"190\" r=\"16\"/><circle cx=\"330\" cy=\"190\" r=\"16\"/>\n    <circle cx=\"190\" cy=\"252\" r=\"16\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\">\n    <text x=\"230\" y=\"53\">a</text><text x=\"130\" y=\"123\">b</text><text x=\"330\" y=\"123\">c</text>\n    <text x=\"70\" y=\"195\">d</text><text x=\"190\" y=\"195\">e</text><text x=\"330\" y=\"195\">f</text>\n    <text x=\"190\" y=\"257\">g</text>\n  </g>\n\n  <g font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">\n    <text x=\"256\" y=\"44\">akar</text>\n    <text x=\"156\" y=\"112\">anak dari a, orang tua d dan e</text>\n    <text x=\"36\" y=\"222\">daun</text>\n    <text x=\"356\" y=\"194\">daun</text>\n    <text x=\"212\" y=\"282\">daun, kedalaman 3</text>\n  </g>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.25\" stroke-dasharray=\"3 3\">\n    <line x1=\"430\" y1=\"48\" x2=\"470\" y2=\"48\"/><line x1=\"430\" y1=\"118\" x2=\"470\" y2=\"118\"/>\n    <line x1=\"430\" y1=\"190\" x2=\"470\" y2=\"190\"/><line x1=\"430\" y1=\"252\" x2=\"470\" y2=\"252\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">\n    <text x=\"476\" y=\"52\">kedalaman 0</text><text x=\"476\" y=\"122\">kedalaman 1</text>\n    <text x=\"476\" y=\"194\">kedalaman 2</text><text x=\"476\" y=\"256\">kedalaman 3</text>\n  </g>\n  <line x1=\"450\" y1=\"48\" x2=\"450\" y2=\"252\" stroke=\"var(--nila)\" stroke-width=\"1.4\"/>\n  <text x=\"396\" y=\"156\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">tinggi 3</text>\n</svg>",
+              "solution": "Pohon berakar dengan tujuh simpul dan enam sisi. Akarnya di atas, daunnya di bawah, dan tinggi pohonnya sama dengan kedalaman daun terdalam."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pohon m-ary.** Kalau setiap simpul punya paling banyak `m` anak, pohonnya disebut `m`-ary. Untuk `m = 2` namanya pohon biner, bentuk yang paling banyak dipakai dalam struktur data."
+            },
+            {
+              "type": "MATH",
+              "content": "Pohon m-ary dengan tinggi h:\n\n  daun paling banyak        mʰ\n  simpul paling banyak      (m^(h+1) − 1) / (m − 1)\n\nPohon biner tinggi 10:\n  daun paling banyak        2¹⁰ = 1.024\n  simpul paling banyak      2.047"
+            },
+            {
+              "type": "TEXT",
+              "content": "Hubungan ini menjelaskan dari mana `O(log n)` berasal. Kalau `n` data disimpan dalam pohon biner yang seimbang, tingginya sekitar `log₂ n`. Mencari satu data berarti menuruni satu jalur dari akar ke daun, jadi langkahnya sebanding dengan tinggi, bukan dengan jumlah data."
+            },
+            {
+              "type": "MATH",
+              "content": "1.000 data        tinggi ≈ 10\n1.000.000 data    tinggi ≈ 20\n1.000.000.000     tinggi ≈ 30\n\nData seribu kali lebih banyak hanya\nmenambah sepuluh langkah pencarian."
+            },
+            {
+              "type": "NOTE",
+              "content": "Yang menjamin perilaku itu adalah kata **seimbang**. Pohon biner yang semua simpulnya punya satu anak berubah menjadi rantai dengan tinggi `n − 1`, dan pencariannya kembali `O(n)`. Karena itu struktur nyata seperti AVL, pohon merah-hitam, dan B-tree menyimpan aturan tambahan untuk menjaga keseimbangannya setiap kali data masuk atau keluar."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Penelusuran pohon.** Ada tiga urutan baku untuk mengunjungi seluruh simpul, dan bedanya cuma pada kapan simpul itu sendiri diproses."
+            },
+            {
+              "type": "MATH",
+              "content": "Praurut (preorder)\n  simpul, lalu subpohon kiri, lalu kanan\n\nTerurut (inorder)\n  subpohon kiri, lalu simpul, lalu kanan\n\nPascaurut (postorder)\n  subpohon kiri, lalu kanan, lalu simpul"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pilihan urutan bukan soal selera. Terurut pada pohon pencarian biner mengeluarkan data dalam keadaan terurut. Pascaurut dipakai saat sebuah simpul butuh hasil anak-anaknya lebih dulu, misalnya menghitung ukuran total sebuah direktori. Praurut dipakai saat menyalin struktur."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "pohon = {\n    \"a\": [\"b\", \"c\"],\n    \"b\": [\"d\", \"e\"],\n    \"c\": [\"f\"],\n    \"d\": [], \"e\": [\"g\"], \"f\": [], \"g\": [],\n}\n\ndef praurut(simpul):\n    hasil = [simpul]\n    for anak in pohon[simpul]:\n        hasil += praurut(anak)\n    return hasil\n\ndef pascaurut(simpul):\n    hasil = []\n    for anak in pohon[simpul]:\n        hasil += pascaurut(anak)\n    return hasil + [simpul]\n\ndef tinggi(simpul):\n    if not pohon[simpul]:\n        return 0\n    return 1 + max(tinggi(a) for a in pohon[simpul])\n\nprint(\"praurut   :\", praurut(\"a\"))\nprint(\"pascaurut :\", pascaurut(\"a\"))\nprint(\"tinggi    :\", tinggi(\"a\"))\nprint(\"daun      :\", [s for s in pohon if not pohon[s]])"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bahwa ketiga fungsi itu rekursif, dan masing-masing punya kasus dasar berupa daun. Pembuktian bahwa fungsi-fungsi ini benar dilakukan dengan induksi pada tinggi pohon, persis pola yang kamu pelajari di bagian induksi."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Pohon pencarian biner: penelusuran terurut\n# mengeluarkan data dalam keadaan terurut\nbst = {\n    8: (3, 10), 3: (1, 6), 10: (None, 14),\n    1: (None, None), 6: (4, 7), 14: (13, None),\n    4: (None, None), 7: (None, None), 13: (None, None),\n}\n\ndef terurut(simpul):\n    if simpul is None:\n        return []\n    kiri, kanan = bst[simpul]\n    return terurut(kiri) + [simpul] + terurut(kanan)\n\nprint(terurut(8))"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Di mana pohon muncul.** Daftar ini bukan sekadar contoh; semuanya kemungkinan besar akan kamu sentuh."
+            },
+            {
+              "type": "MATH",
+              "content": "Sistem berkas       direktori dan berkas\nDOM                 struktur halaman web\nIndeks basis data   B-tree pada hampir semua mesin\nJSON dan XML        data bersarang\nKode terurai        pohon sintaksis di kompilator\nHuffman             pohon untuk pemampatan berkas\nPohon keputusan     model pada pembelajaran mesin"
+            },
+            {
+              "type": "NOTE",
+              "content": "Riwayat commit Git **bukan** pohon, meskipun orang sering menyebutnya begitu. Penggabungan cabang membuat satu commit punya dua orang tua, dan itu melanggar definisi pohon. Bentuk yang tepat adalah graf berarah tanpa sirkuit, atau DAG. Perbedaan ini penting kalau kamu pernah bertanya-tanya mengapa `git log` punya begitu banyak pilihan untuk mengatur urutan tampilannya."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah pohon punya 15 simpul. Berapa sisinya? Kalau satu sisi dibuang, apa yang terjadi?",
+              "solution": "```\n|E| = n − 1 = 15 − 1 = 14 sisi\n```\n\nKalau satu sisi dibuang, pohonnya terpecah menjadi **dua komponen** yang masing-masing juga pohon.\n\nAlasannya kembali ke sifat pohon: ada tepat satu lintasan antara setiap dua simpul. Membuang sebuah sisi menghapus satu-satunya jalan yang melewatinya, sehingga simpul-simpul di kedua sisi terputus hubungan.\n\n```\n15 simpul, 14 sisi    → terhubung\n15 simpul, 13 sisi    → tidak mungkin terhubung\n```\n\nPohon memakai sisi sesedikit mungkin untuk tetap terhubung, jadi tidak ada sisi yang bisa dikorbankan. Graf yang punya sifat ini juga disebut minimal terhubung."
+            },
+            {
+              "type": "TASK",
+              "content": "Berapa tinggi minimum pohon biner yang menyimpan 1000 simpul? Lalu berapa tinggi maksimumnya?",
+              "solution": "**Tinggi minimum.** Pohon biner dengan tinggi `h` memuat paling banyak `2^(h+1) − 1` simpul.\n\n```\n2^(h+1) − 1 ≥ 1000\n2^(h+1)     ≥ 1001\nh + 1       ≥ 10          karena 2¹⁰ = 1024\nh           ≥ 9\n```\n\nJadi tinggi minimumnya **9**.\n\n**Tinggi maksimum.** Kalau setiap simpul hanya punya satu anak, pohonnya menjadi rantai.\n\n```\nh = 1000 − 1 = 999\n```\n\nSelisih antara 9 dan 999 inilah seluruh alasan keberadaan pohon seimbang. Struktur yang sama bisa menjawab pencarian dalam 9 langkah atau 999 langkah, bergantung pada bentuknya saja.\n\nPatokan yang perlu diingat: untuk pohon biner seimbang, `h ≈ log₂ n`."
+            },
+            {
+              "type": "TASK",
+              "content": "Tuliskan hasil penelusuran praurut, terurut, dan pascaurut untuk pohon biner berikut.\n\n```\n        A\n       / \\\n      B   C\n     / \\   \\\n    D   E   F\n```",
+              "solution": "```\nPraurut    A B D E C F\nTerurut    D B E A C F\nPascaurut  D E B F C A\n```\n\nCara mengerjakannya, satu urutan satu kali jalan:\n\n```\nPraurut   : cetak simpul dulu, baru turun\n            A, lalu subpohon B, lalu subpohon C\n            B → cetak B, lalu D, lalu E\n            C → cetak C, lalu F\n\nTerurut   : turun kiri dulu, cetak, baru kanan\n            subpohon B dulu → D, B, E\n            lalu A\n            lalu subpohon C → C, F  (C tak punya anak kiri)\n\nPascaurut : cetak simpul paling akhir\n            D, E, lalu B\n            F, lalu C\n            terakhir A\n```\n\nPerhatikan bahwa akar `A` muncul di awal pada praurut, di tengah pada terurut, dan di akhir pada pascaurut. Itu satu-satunya hal yang berubah di antara ketiganya, dan cukup untuk mengingat ketiga urutan tanpa menghafal daftarnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis fungsi yang menghitung banyaknya daun pada sebuah pohon, lalu periksa hasilnya pada pohon di contoh kode.",
+              "solution": "```python\npohon = {\n    \"a\": [\"b\", \"c\"], \"b\": [\"d\", \"e\"], \"c\": [\"f\"],\n    \"d\": [], \"e\": [\"g\"], \"f\": [], \"g\": [],\n}\n\ndef hitung_daun(simpul):\n    if not pohon[simpul]:       # kasus dasar: daun\n        return 1\n    return sum(hitung_daun(a) for a in pohon[simpul])\n\nprint(hitung_daun(\"a\"))\nprint(sorted(s for s in pohon if not pohon[s]))\n```\n\nKeluarannya `3` dan `['d', 'f', 'g']`.\n\nTelusuri rekursinya supaya jelas dari mana angka itu datang:\n\n```\nhitung_daun(a) = hitung_daun(b) + hitung_daun(c)\n\n  hitung_daun(b) = hitung_daun(d) + hitung_daun(e)\n                 = 1             + hitung_daun(g)\n                 = 1             + 1\n                 = 2\n\n  hitung_daun(c) = hitung_daun(f) = 1\n\nhitung_daun(a) = 2 + 1 = 3\n```\n\nDua cara yang berbeda memberi jawaban yang sama, dan itulah gunanya menghitung ulang dengan cara lain. Fungsi rekursifnya menuruni pohon, sedangkan baris terakhir cukup menyaring simpul yang daftar anaknya kosong.\n\nPerhatikan kasus dasarnya. Daun mengembalikan 1, bukan 0, dan simpul bercabang tidak menambah apa pun untuk dirinya sendiri. Kalau kasus dasarnya diubah menjadi 0, hasilnya selalu 0 berapa pun pohonnya.\n\nKebenaran fungsi ini dibuktikan dengan induksi pada tinggi pohon: benar untuk tinggi 0 karena pohonnya hanya satu daun, dan benar untuk tinggi `h+1` karena jumlah daun sebuah simpul adalah jumlah daun seluruh subpohonnya."
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "title": "Discrete Mathematics and Its Applications, bab 2, 5, 6, 9, 10, dan 11",
+          "author": "Kenneth H. Rosen",
+          "url": "https://www.mheducation.com/highered/product/discrete-mathematics-applications-rosen.html",
+          "note": "Buku teks acuan utama. Urutan topik di sini mengikuti susunan babnya, dengan bab 1 dilewati karena sudah dibahas di Logika Informatika."
+        },
+        {
+          "title": "Matematika Diskrit",
+          "author": "Rinaldi Munir, Institut Teknologi Bandung",
+          "url": "https://informatika.stei.itb.ac.id/~rinaldi.munir/Buku/Matematika%20Diskrit/BukuMatdis.htm",
+          "note": "Acuan baku mata kuliah Matematika Diskrit di Indonesia. Dipakai untuk menyelaraskan istilah bahasa Indonesia seperti simpul, sisi, dan kombinatorial."
+        },
+        {
+          "title": "Common Mistakes in Discrete Mathematics",
+          "author": "Kenneth H. Rosen",
+          "url": "https://highered.mheducation.com/sites/dl/free/0073383090/299355/Rosen_SSG_CommonMistakes.pdf",
+          "note": "Sumber langsung untuk catatan tentang kekeliruan yang sering terjadi, termasuk beda antara himpunan kosong dan himpunan yang memuatnya, serta ambiguitas operasi himpunan tanpa tanda kurung."
+        },
+        {
+          "title": "Patterns, Sets of Outcomes, and Combinatorial Justification",
+          "author": "Journal for Research in Undergraduate Mathematics Education",
+          "url": "https://link.springer.com/article/10.1007/s40753-015-0001-2",
+          "note": "Melaporkan bahwa hambatan utama pada pencacahan adalah memilih pendekatan, bukan menghitung. Memuat angka 41 persen soal yang dijawab benar pada percobaan pertama."
+        },
+        {
+          "title": "Addressing the Cognitive Gap in Mathematical Induction",
+          "author": "International Journal of Research in Undergraduate Mathematics Education",
+          "url": "https://www.vt.edu/content/dam/math_vt_edu/proofs-project/papers/IJRUME%202022.pdf",
+          "note": "Dasar pemilihan cara mengajar induksi lewat contoh pembuktian palsu tanpa basis, karena mahasiswa cenderung memandang basis sebagai formalitas."
+        },
+        {
+          "title": "Leonhard Euler's Solution to the Konigsberg Bridge Problem",
+          "author": "Mathematical Association of America",
+          "url": "https://www.maa.org/node/116604",
+          "note": "Sumber untuk tahun 1736, untuk argumen keganjilan derajat, dan untuk catatan bahwa teorema jabat tangan sudah ada di makalah Euler meski namanya baru muncul kemudian."
+        },
+        {
+          "title": "Pigeonhole principle",
+          "author": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Pigeonhole_principle",
+          "note": "Rujukan untuk penyebutan Dirichlet 1834 dan istilah Schubfachprinzip."
+        },
+        {
+          "title": "Built-in Types: set, frozenset",
+          "author": "Python Software Foundation",
+          "url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
+          "note": "Rujukan untuk perilaku tipe himpunan di Python, termasuk syarat hashable yang membuat frozenset diperlukan."
+        },
+        {
+          "title": "itertools dan math: perm, comb, combinations, permutations",
+          "author": "Python Software Foundation",
+          "url": "https://docs.python.org/3/library/itertools.html",
+          "note": "Rujukan untuk contoh kode pencacahan dan pendaftaran susunan."
+        }
+      ]
     },
     {
       "code": "IF105",

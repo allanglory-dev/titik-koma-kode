@@ -311,14 +311,21 @@ h3 {
   margin-bottom: 5px;
 }
 
-/* Di layar lebar, catatan pindah ke margin kanan seperti anotasi buku */
-@media (min-width: 1240px) {
+/* Di layar lebar, catatan pindah ke margin kanan seperti anotasi buku.
+   Ruang yang tersedia di kanan badan pelajaran dihitung begini:
+     lebar .lesson terkunci 1320, dikurangi padding 2 x 40  = 1240
+     dikurangi rel bab 216 dan jarak 56                     =  968
+     dikurangi badan pelajaran 704                          =  264
+   Jadi tarikan ke kanan tidak boleh lebih dari 264, kalau tidak
+   catatannya menonjol keluar wadah dan memunculkan gulir mendatar.
+   Lebar 224 ditambah jarak 32 menyisakan 8 piksel kelonggaran. */
+@media (min-width: 1336px) {
   /* Hanya di badan pelajaran. Di halaman lain catatan tetap mengalir biasa. */
   .lesson-body > .block-note {
     float: right;
     clear: right;
-    width: 232px;
-    margin: 6px -272px 20px 40px;
+    width: 224px;
+    margin: 6px -256px 20px 32px;
   }
 }
 
