@@ -4981,19 +4981,1433 @@
     {
       "code": "IF105",
       "title": "Organisasi Komputer",
-      "description": "Susunan mesin di balik program: representasi biner, gerbang logika, memori, dan daur instruksi prosesor.",
+      "description": "Susunan mesin di balik program: representasi bilangan dan teks, aljabar Boolean, rangkaian kombinasional dan sekuensial, memori dan tembolok, kumpulan instruksi, pipeline, serta cara mengukur kinerja. Melanjutkan pengenalan di Pengantar Ilmu Komputer sampai ke tingkat yang bisa dihitung dan dibangun sendiri.",
       "semester": 1,
       "sks": 3,
       "level": "Pemula",
       "hours": 45,
       "area": "AR",
       "outcomes": [
-        "Mengubah bilangan antara basis dua, sepuluh, dan enam belas.",
-        "Merancang rangkaian logika sederhana dari gerbang dasar.",
-        "Menjelaskan daur ambil, pecah, dan jalankan pada prosesor."
+        "Mengubah bilangan antara basis dua, sepuluh, dan enam belas, serta membaca pola bitnya.",
+        "Menjelaskan komplemen dua, luapan, dan penyajian IEEE 754 beserta akibatnya pada kode.",
+        "Menyederhanakan rumus Boolean dan merancang rangkaian kombinasional dari gerbang dasar.",
+        "Menjelaskan cara kerja flip-flop, register, dan peran detak pada rangkaian sekuensial.",
+        "Menghitung pengaruh perataan alamat, lokalitas, dan rasio temu tembolok terhadap kecepatan.",
+        "Membaca bentuk instruksi mesin dan menelusuri daur ambil, pecah, serta kerjakan.",
+        "Menghitung waktu prosesor dengan persamaan CPI dan menerapkan hukum Amdahl."
       ],
       "prerequisites": [],
-      "lessons": []
+      "lessons": [
+        {
+          "title": "Sistem Bilangan",
+          "summary": "Satu aturan posisi yang berlaku untuk semua basis.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Di Pengantar Ilmu Komputer kamu sudah melihat kenapa mesin memakai dua keadaan. Sekarang kita turun ke rinciannya: bagaimana mengubah bilangan antar basis dengan cepat, dan kenapa heksadesimal terus muncul di alamat memori, kode warna, dan pesan galat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Satu aturan untuk semua basis.** Nilai sebuah angka ditentukan oleh posisinya, dan tiap langkah ke kiri dikali basisnya."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 260\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Nilai tiap posisi angka pada basis sepuluh, dua, dan enam belas\">\n  <text x=\"26\" y=\"28\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">NILAI TIAP POSISI, DARI KANAN</text>\n\n  <g font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">\n    <text x=\"26\" y=\"64\">Basis 10</text>\n    <text x=\"26\" y=\"140\">Basis 2</text>\n    <text x=\"26\" y=\"216\">Basis 16</text>\n  </g>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"15\" fill=\"currentColor\" text-anchor=\"middle\">\n    <text x=\"470\" y=\"64\">1</text><text x=\"396\" y=\"64\">10</text>\n    <text x=\"322\" y=\"64\">100</text><text x=\"248\" y=\"64\">1000</text>\n    <text x=\"174\" y=\"64\">10000</text>\n\n    <text x=\"470\" y=\"140\">1</text><text x=\"396\" y=\"140\">2</text>\n    <text x=\"322\" y=\"140\">4</text><text x=\"248\" y=\"140\">8</text>\n    <text x=\"174\" y=\"140\">16</text>\n\n    <text x=\"470\" y=\"216\">1</text><text x=\"396\" y=\"216\">16</text>\n    <text x=\"322\" y=\"216\">256</text><text x=\"248\" y=\"216\">4096</text>\n    <text x=\"174\" y=\"216\">65536</text>\n  </g>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"middle\">\n    <text x=\"470\" y=\"82\">10&#8304;</text><text x=\"396\" y=\"82\">10&#185;</text>\n    <text x=\"322\" y=\"82\">10&#178;</text><text x=\"248\" y=\"82\">10&#179;</text><text x=\"174\" y=\"82\">10&#8308;</text>\n    <text x=\"470\" y=\"158\">2&#8304;</text><text x=\"396\" y=\"158\">2&#185;</text>\n    <text x=\"322\" y=\"158\">2&#178;</text><text x=\"248\" y=\"158\">2&#179;</text><text x=\"174\" y=\"158\">2&#8308;</text>\n    <text x=\"470\" y=\"234\">16&#8304;</text><text x=\"396\" y=\"234\">16&#185;</text>\n    <text x=\"322\" y=\"234\">16&#178;</text><text x=\"248\" y=\"234\">16&#179;</text><text x=\"174\" y=\"234\">16&#8308;</text>\n  </g>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.12\">\n    <line x1=\"120\" y1=\"92\" x2=\"510\" y2=\"92\"/>\n    <line x1=\"120\" y1=\"168\" x2=\"510\" y2=\"168\"/>\n  </g>\n\n  <g stroke=\"var(--kunyit)\" stroke-opacity=\"0.55\" fill=\"none\" stroke-dasharray=\"3 3\">\n    <path d=\"M 470 46 L 470 36 L 396 36\"/>\n    <path d=\"M 470 122 L 470 112 L 396 112\"/>\n    <path d=\"M 470 198 L 470 188 L 396 188\"/>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10\" fill=\"var(--kunyit)\" text-anchor=\"end\">\n    <text x=\"392\" y=\"32\">x10</text>\n    <text x=\"392\" y=\"108\">x2</text>\n    <text x=\"392\" y=\"184\">x16</text>\n  </g>\n  <text x=\"26\" y=\"250\" font-family=\"system-ui, sans-serif\" font-size=\"11.5\" fill=\"currentColor\" opacity=\"0.6\">Aturannya satu: tiap langkah ke kiri dikali basisnya.</text>\n</svg>",
+              "solution": "Nilai tiap posisi pada tiga basis. Aturannya identik, yang berbeda cuma pengalinya. Mengerti satu berarti mengerti semuanya."
+            },
+            {
+              "type": "MATH",
+              "content": "Basis 2    1 0 1 1 0 1\n           32 16 8 4 2 1\n         = 32 + 8 + 4 + 1 = 45\n\nBasis 16   2 D\n           16  1\n         = 2×16 + 13 = 45\n\nBasis 10   4 5\n           10  1\n         = 45"
+            },
+            {
+              "type": "TEXT",
+              "content": "Ketiganya menuliskan bilangan yang sama. Yang berbeda hanya berapa banyak lambang yang tersedia per posisi: dua, enam belas, atau sepuluh."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Desimal ke biner, cara bagi dua.** Bagi berulang, lalu baca sisanya dari bawah ke atas."
+            },
+            {
+              "type": "MATH",
+              "content": "45 : 2 = 22  sisa 1   ↑\n22 : 2 = 11  sisa 0   │\n11 : 2 =  5  sisa 1   │  baca\n 5 : 2 =  2  sisa 1   │  ke atas\n 2 : 2 =  1  sisa 0   │\n 1 : 2 =  0  sisa 1   │\n\n45 = 101101₂"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Desimal ke biner, cara kurangi.** Sering lebih cepat kalau kamu hafal pangkat dua. Ambil pangkat dua terbesar yang masih muat, kurangkan, ulangi."
+            },
+            {
+              "type": "MATH",
+              "content": "45 − 32 = 13   pakai 32   bit 32 = 1\n13 −  8 =  5   pakai  8   bit 16 = 0, bit 8 = 1\n 5 −  4 =  1   pakai  4   bit 4  = 1\n 1 −  1 =  0   pakai  1   bit 2  = 0, bit 1 = 1\n\n           32 16  8  4  2  1\n            1  0  1  1  0  1"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Heksadesimal itu biner yang dipadatkan.** Satu angka heksadesimal persis mewakili empat bit, jadi penerjemahannya tidak butuh hitungan sama sekali, cuma pengelompokan."
+            },
+            {
+              "type": "MATH",
+              "content": "Kelompokkan empat-empat dari kanan:\n\n  1011 0010 1111 0001\n     B    2    F    1\n\n  = B2F1₁₆\n\nDan sebaliknya, satu angka hex jadi empat bit:\n\n  0 0000   4 0100   8 1000   C 1100\n  1 0001   5 0101   9 1001   D 1101\n  2 0010   6 0110   A 1010   E 1110\n  3 0011   7 0111   B 1011   F 1111"
+            },
+            {
+              "type": "TEXT",
+              "content": "Inilah sebabnya alamat memori, kode warna, dan nilai register selalu ditulis dalam heksadesimal. `0xFF` lebih enak dibaca daripada `11111111`, dan penerjemahannya tetap sepele."
+            },
+            {
+              "type": "NOTE",
+              "content": "Basis delapan atau oktal masih muncul di satu tempat yang akan sering kamu temui: izin berkas di Unix. `chmod 755` berarti tiga kelompok tiga bit, yaitu `111 101 101`, dengan urutan baca, tulis, jalankan. Angka 7 berarti ketiganya menyala, angka 5 berarti baca dan jalankan saja."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Geseran bit.** Menggeser ke kiri satu posisi mengalikan dua, menggeser ke kanan membagi dua dan membuang sisanya. Operasi ini jauh lebih murah bagi prosesor daripada perkalian."
+            },
+            {
+              "type": "MATH",
+              "content": "     5 = 00000101\n 5 << 1 = 00001010 = 10\n 5 << 3 = 00101000 = 40      5 × 2³\n\n    20 = 00010100\n20 >> 2 = 00000101 = 5       20 ÷ 2²"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Di dalam kode.** Python menyediakan semuanya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "n = 45\nprint(bin(n))      # 0b101101\nprint(oct(n))      # 0o55\nprint(hex(n))      # 0x2d\n\n# kembali ke desimal, basisnya disebut sebagai argumen kedua\nprint(int(\"101101\", 2))\nprint(int(\"2d\", 16))\nprint(int(\"0x2d\", 0))     # 0 berarti \"tebak dari awalannya\"\n\n# tanpa awalan, dengan lebar tetap\nprint(format(45, \"08b\"))  # 00101101\nprint(format(45, \"04x\"))  # 002d"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Geseran, dan kenapa mesin menyukainya\nn = 5\nfor g in range(5):\n    print(f\"{n} << {g} = {n << g:>4}   {n << g:012b}\")\n\nprint()\nprint(20 >> 2, 20 // 4)      # sama hasilnya\nprint(-7 >> 1, -7 // 2)      # geser kanan membulatkan ke bawah"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Satuan: kenapa 1 KiB = 1024 bita, bukan 1000\nfor n in range(0, 41, 10):\n    print(f\"2^{n:<2} = {2**n:>15,}\")"
+            },
+            {
+              "type": "NOTE",
+              "content": "Produsen cakram memakai 1 GB = 1.000.000.000 bita, sementara sistem operasi sering menampilkan 1 GiB = 1.073.741.824 bita. Itu sebabnya cakram 1 TB tampil sebagai sekitar 931 GB. Tidak ada yang berbohong; satuannya saja yang berbeda. Lambang resminya KiB, MiB, dan GiB untuk kelipatan 1024."
+            },
+            {
+              "type": "TASK",
+              "content": "Ubah ketiga bilangan berikut tanpa kalkulator.\n\n```\na. 202 ke biner\nb. 11010110₂ ke desimal\nc. 11010110₂ ke heksadesimal\n```",
+              "solution": "```\na. 202 ke biner\n\n   202 − 128 = 74    bit 128 = 1\n    74 −  64 = 10    bit  64 = 1\n    10 −   8 =  2    bit  32 = 0, bit 16 = 0, bit 8 = 1\n     2 −   2 =  0    bit   4 = 0, bit 2 = 1, bit 1 = 0\n\n   202 = 11001010₂\n\nb. 11010110₂\n\n   128 + 64 + 16 + 4 + 2 = 214\n\nc. 11010110₂ ke heksadesimal\n\n   Kelompokkan empat-empat:  1101 0110\n                                D    6\n   = D6₁₆\n```\n\nPeriksa (b) dan (c): `D6₁₆ = 13×16 + 6 = 208 + 6 = 214`. Cocok.\n\nButir (c) adalah alasan heksadesimal dipakai. Mengubah biner ke desimal butuh penjumlahan, sedangkan ke heksadesimal cuma butuh pengelompokan."
+            },
+            {
+              "type": "TASK",
+              "content": "Berapa nilai terbesar yang muat dalam 12 bit? Lalu berapa bit yang dibutuhkan untuk menyimpan bilangan sampai 1.000.000?",
+              "solution": "```\n12 bit menyimpan 2¹² = 4.096 nilai berbeda,\nyaitu 0 sampai 4.095.\n```\n\nUntuk 1.000.000, cari pangkat dua terkecil yang melampauinya.\n\n```\n2¹⁹ =   524.288     kurang\n2²⁰ = 1.048.576     cukup\n\nJadi perlu 20 bit.\n```\n\nKekeliruan yang sering terjadi adalah menjawab 4.096 untuk pertanyaan pertama. Banyaknya **nilai** memang 4.096, tetapi nilai **terbesarnya** 4.095, karena hitungannya dimulai dari nol.\n\nPembedaan ini yang menjadi sumber bug satu-lebih di mana-mana, dari batas larik sampai batas tanggal."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut, lalu jelaskan kenapa `-7 >> 1` tidak sama dengan `-7 // 2` dibulatkan ke nol.\n\n```\nprint(7 >> 1, 7 // 2)\nprint(-7 >> 1, -7 // 2)\nprint(int(-7 / 2))\n```",
+              "solution": "Keluarannya:\n\n```\n3 3\n-4 -4\n-3\n```\n\n`-7 >> 1` dan `-7 // 2` sama-sama memberi `-4`, sedangkan `int(-7 / 2)` memberi `-3`.\n\nBedanya pada arah pembulatan.\n\n```\ngeser kanan dan //   membulatkan ke bawah\n                     −3,5 → −4\n\nint()                memotong ke arah nol\n                     −3,5 → −3\n```\n\nGeser kanan membulatkan ke bawah karena yang dibuang adalah bit paling kanan, dan membuang bit selalu mengecilkan nilainya pada penyajian komplemen dua.\n\n```\n  -7 = ...11111001\n  -7 >> 1 = ...11111100 = -4\n```\n\nJadi geser kanan **bukan** pengganti pembagian yang selalu aman untuk bilangan negatif. Untuk bilangan tak bertanda ia selalu setara."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah warna ditulis `#1E90FF`. Uraikan menjadi tiga nilai merah, hijau, dan biru dalam desimal, lalu tulis nilai hijaunya dalam biner 8 bit.",
+              "solution": "```\n#1E 90 FF\n  R  G  B\n\nR = 1E₁₆ = 1×16 + 14 =  30\nG = 90₁₆ = 9×16 +  0 = 144\nB = FF₁₆ = 15×16 + 15 = 255\n```\n\nNilai hijau dalam biner 8 bit:\n\n```\n144 = 10010000₂\n\nPeriksa: 128 + 16 = 144\n```\n\nPerhatikan bahwa tiap pasangan angka heksadesimal persis mengisi satu bita, dan satu bita menyimpan 0 sampai 255. Itulah sebabnya kode warna selalu enam angka heksadesimal: tiga saluran, masing-masing satu bita.\n\nDalam kode:\n\n```python\nwarna = 0x1E90FF\nprint((warna >> 16) & 0xFF)   # merah\nprint((warna >>  8) & 0xFF)   # hijau\nprint( warna        & 0xFF)   # biru\n```\n\nPola `geser lalu topeng` ini akan kamu pakai terus setiap kali mengambil sebagian bit dari sebuah nilai."
+            }
+          ]
+        },
+        {
+          "title": "Bilangan Bertanda dan Luapan",
+          "summary": "Menyimpan tanda minus tanpa punya tempat untuk menaruhnya.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Semua yang sudah kita bahas mengandaikan bilangan tidak bernegatif. Tetapi mesin harus bisa menyimpan bilangan negatif, dan tidak ada tempat untuk menaruh tanda minus. Yang tersedia cuma bit."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tiga cara pernah dicoba.** Memahami kenapa dua yang pertama kalah membuat cara ketiga jadi masuk akal, bukan sekadar hafalan."
+            },
+            {
+              "type": "MATH",
+              "content": "Tanda-besaran    bit tertinggi jadi tanda\n                 0000 0101 =  5\n                 1000 0101 = −5\n\nKomplemen satu   balik semua bit\n                 0000 0101 =  5\n                 1111 1010 = −5\n\nKomplemen dua    balik semua bit, lalu tambah 1\n                 0000 0101 =  5\n                 1111 1011 = −5"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dua cara pertama punya cacat yang sama: ada **dua pola untuk nol**. Pada tanda-besaran, `0000 0000` dan `1000 0000` dua-duanya nol. Rangkaian pembanding jadi harus memeriksa dua kemungkinan setiap kali, dan satu pola bit terbuang."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Komplemen dua menang** karena satu alasan yang menentukan: penjumlahan biasa langsung bekerja untuk bilangan negatif. Tidak perlu rangkaian terpisah."
+            },
+            {
+              "type": "MATH",
+              "content": "   5 + (−5) dalam komplemen dua\n\n     0000 0101      5\n   + 1111 1011     −5\n   ───────────\n   1 0000 0000\n\n   Bit ke-9 dibuang, sisanya 0000 0000 = 0  ✓"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pengurangan pun jadi gratis. `A − B` dikerjakan sebagai `A + (−B)`, dan membuat `−B` cuma butuh pembalik bit serta penambahan satu, yang sudah ada di penjumlahnya."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 310\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Roda nilai 8 bit: pola bit disusun melingkar sehingga 127 bersambung langsung ke minus 128\">\n  <circle cx=\"200\" cy=\"155\" r=\"112\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n  <circle cx=\"200\" cy=\"155\" r=\"112\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"2.5\"\n          stroke-dasharray=\"26 678\" stroke-dashoffset=\"-339\" transform=\"rotate(-90 200 155)\"/>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" text-anchor=\"middle\">\n    <text x=\"200\" y=\"30\" opacity=\"0.9\">0</text>\n    <text x=\"200\" y=\"22\" opacity=\"0.45\" font-size=\"10\">00000000</text>\n\n    <text x=\"312\" y=\"160\" opacity=\"0.9\">63</text>\n    <text x=\"312\" y=\"174\" opacity=\"0.45\" font-size=\"10\">00111111</text>\n\n    <text x=\"200\" y=\"290\" fill=\"var(--kunyit)\">127</text>\n    <text x=\"200\" y=\"304\" opacity=\"0.45\" font-size=\"10\">01111111</text>\n\n    <text x=\"88\" y=\"160\" opacity=\"0.9\">&#8722;64</text>\n    <text x=\"88\" y=\"174\" opacity=\"0.45\" font-size=\"10\">11000000</text>\n  </g>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" text-anchor=\"middle\" fill=\"var(--kunyit)\">\n    <text x=\"268\" y=\"278\">&#8722;128</text>\n  </g>\n  <text x=\"268\" y=\"292\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"middle\">10000000</text>\n  <text x=\"130\" y=\"278\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.9\" text-anchor=\"middle\">&#8722;1</text>\n  <text x=\"130\" y=\"292\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"middle\">11111111</text>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.3\">\n    <line x1=\"200\" y1=\"43\" x2=\"200\" y2=\"55\"/>\n    <line x1=\"300\" y1=\"155\" x2=\"288\" y2=\"155\"/>\n    <line x1=\"200\" y1=\"267\" x2=\"200\" y2=\"255\"/>\n    <line x1=\"100\" y1=\"155\" x2=\"112\" y2=\"155\"/>\n  </g>\n\n  <text x=\"200\" y=\"150\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.5\" text-anchor=\"middle\">bit tertinggi</text>\n  <text x=\"200\" y=\"168\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.5\" text-anchor=\"middle\">= tanda</text>\n  <line x1=\"200\" y1=\"43\" x2=\"200\" y2=\"267\" stroke=\"currentColor\" stroke-opacity=\"0.12\" stroke-dasharray=\"4 4\"/>\n  <text x=\"252\" y=\"112\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"middle\">positif</text>\n  <text x=\"148\" y=\"112\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"middle\">negatif</text>\n\n  <g font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\">\n    <text x=\"352\" y=\"90\" fill=\"var(--kunyit)\">Titik putus</text>\n    <text x=\"352\" y=\"112\" opacity=\"0.7\">127 + 1 memberi &#8722;128.</text>\n    <text x=\"352\" y=\"130\" opacity=\"0.7\">Rodanya berputar, dan</text>\n    <text x=\"352\" y=\"148\" opacity=\"0.7\">inilah yang disebut luapan.</text>\n\n    <text x=\"352\" y=\"188\" fill=\"var(--nila)\">Lawannya murah</text>\n    <text x=\"352\" y=\"210\" opacity=\"0.7\">Balik semua bit, tambah 1.</text>\n    <text x=\"352\" y=\"228\" opacity=\"0.7\">Tidak perlu rangkaian</text>\n    <text x=\"352\" y=\"246\" opacity=\"0.7\">pengurang terpisah.</text>\n  </g>\n</svg>",
+              "solution": "Pola bit 8 bit disusun melingkar. Bit tertinggi memisahkan sisi positif dari negatif, dan 127 bersambung langsung ke minus 128. Sambungan itulah titik luapan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Jangkauan tidak simetris.** Inilah akibat dari hanya punya satu pola nol."
+            },
+            {
+              "type": "MATH",
+              "content": "n bit bertanda  :  −2ⁿ⁻¹  sampai  2ⁿ⁻¹ − 1\nn bit tak bertanda:    0  sampai  2ⁿ − 1\n\n 8 bit  : −128 .. 127        0 .. 255\n16 bit  : −32.768 .. 32.767  0 .. 65.535\n32 bit  : ±2,1 miliar        0 .. 4,29 miliar\n64 bit  : ±9,2 × 10¹⁸        0 .. 1,8 × 10¹⁹"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bahwa sisi negatif punya satu anggota lebih banyak. Akibatnya `−128` tidak punya lawan dalam 8 bit: menegasikannya menghasilkan `−128` lagi."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Cara cepat menegasikan: balik bit, tambah satu\ndef negasi8(n):\n    return ((~n) + 1) & 0xFF\n\nfor n in (5, 1, 0, 127, 128):\n    print(f\"{n:>4} -> {negasi8(n):>4}   {format(negasi8(n), '08b')}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Luapan.** Ketika hasil penjumlahan melewati jangkauan, bitnya berputar seperti pada roda di diagram. Nilai yang keluar tetap sah sebagai pola bit, tetapi salah sebagai bilangan."
+            },
+            {
+              "type": "MATH",
+              "content": " 127 + 1 dalam 8 bit bertanda\n\n   0111 1111      127\n + 0000 0001        1\n ───────────\n   1000 0000     −128     ✗ luapan\n\nTandanya: dua bilangan positif dijumlahkan,\nhasilnya negatif. Itu mustahil, jadi pasti luapan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Aturan pendeteksiannya ringkas: **luapan terjadi kalau kedua operan bertanda sama dan hasilnya bertanda beda**. Menjumlahkan positif dengan negatif tidak pernah meluap."
+            },
+            {
+              "type": "NOTE",
+              "content": "Luapan bilangan bulat bukan kesalahan teoretis. Penerbangan perdana roket Ariane 5 pada 1996 gagal karena sebuah bilangan pecahan 64 bit dipaksa masuk ke bilangan bulat bertanda 16 bit, dan nilainya tidak muat. Banyak bahasa, termasuk C dan Java, membiarkan luapan terjadi diam-diam tanpa peringatan apa pun."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Mesin 8 bit ditiru dengan topeng\nTOPENG = 0xFF\n\ndef tambah8(a, b):\n    mentah = (a + b) & TOPENG\n    return mentah - 256 if mentah > 127 else mentah\n\ndef meluap(a, b):\n    h = tambah8(a, b)\n    return (a >= 0) == (b >= 0) and (h >= 0) != (a >= 0)\n\nfor a, b in [(100, 27), (127, 1), (-128, -1), (50, -70)]:\n    print(f\"{a:>5} + {b:>5} = {tambah8(a, b):>5}   luap: {meluap(a, b)}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Perluasan tanda.** Ketika bilangan 8 bit dipindahkan ke tempat 16 bit, bit kosongnya tidak diisi nol melainkan disalin dari bit tanda. Kalau tidak, nilai negatif berubah jadi positif besar."
+            },
+            {
+              "type": "MATH",
+              "content": "  −5 dalam 8 bit  :          1111 1011\n\n  Diisi nol       : 0000 0000 1111 1011 = 251   ✗\n  Perluasan tanda : 1111 1111 1111 1011 =  −5   ✓"
+            },
+            {
+              "type": "NOTE",
+              "content": "Python tidak punya batas bit pada tipe `int`, jadi luapan tidak pernah terjadi di sana. Itu memudahkan belajar tetapi menyembunyikan perilaku yang nyata di hampir semua bahasa lain. Setiap kali kamu menulis C, Java, Go, atau Rust, batas itu kembali ada. Topeng `& 0xFF` di contoh-contoh di atas memang dipakai untuk menirukannya."
+            },
+            {
+              "type": "TASK",
+              "content": "Tuliskan `−37` dalam komplemen dua 8 bit.",
+              "solution": "```\nLangkah 1   tulis 37 dalam biner\n            37 = 32 + 4 + 1 = 0010 0101\n\nLangkah 2   balik semua bitnya\n            1101 1010\n\nLangkah 3   tambah satu\n            1101 1011\n```\n\nJadi `−37 = 11011011₂`.\n\nPeriksa dengan menjumlahkannya ke 37:\n\n```\n  0010 0101     37\n+ 1101 1011    −37\n───────────\n1 0000 0000     bit ke-9 dibuang, sisanya 0  ✓\n```\n\nCara periksa yang lain, baca pola bitnya langsung. Bit tertinggi bernilai `−128` pada komplemen dua:\n\n```\n1101 1011 = −128 + 64 + 16 + 8 + 2 + 1\n          = −128 + 91\n          = −37   ✓\n```\n\nCara kedua ini sering lebih cepat untuk membaca pola bit yang sudah ada."
+            },
+            {
+              "type": "TASK",
+              "content": "Dalam 8 bit bertanda, mana dari penjumlahan berikut yang meluap?\n\n```\na.  100 + 50\nb.  −100 + (−50)\nc.  100 + (−50)\nd.  −128 + (−1)\n```",
+              "solution": "```\na. 100 + 50 = 150       meluap. batas atasnya 127\nb. −100 + (−50) = −150  meluap. batas bawahnya −128\nc. 100 + (−50) = 50     tidak meluap\nd. −128 + (−1) = −129   meluap\n```\n\nJadi (a), (b), dan (d) meluap.\n\nButir (c) tidak pernah bisa meluap, dan itu berlaku umum: **menjumlahkan dua bilangan bertanda berbeda tidak pernah meluap**. Hasilnya selalu berada di antara kedua operan, jadi tidak mungkin keluar dari jangkauan.\n\nPerhatikan apa yang sebenarnya tersimpan saat meluap:\n\n```\na. hasilnya 1001 0110 = −106\nb. hasilnya 0110 1010 =  106\nd. hasilnya 0111 1111 =  127\n```\n\nPada (a) dua positif menghasilkan negatif, dan pada (b) dua negatif menghasilkan positif. Dua-duanya mustahil, dan itulah tanda luapan yang dipakai perangkat kerasnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut. Kenapa nilainya berhenti di 127 lalu melompat ke angka negatif?\n\n```\nnilai = 120\nfor _ in range(10):\n    mentah = (nilai + 1) & 0xFF\n    nilai = mentah - 256 if mentah > 127 else mentah\n    print(nilai, end=\" \")\n```",
+              "solution": "Keluarannya:\n\n```\n121 122 123 124 125 126 127 -128 -127 -126\n```\n\nSetelah 127, nilainya melompat ke −128.\n\nPenyebabnya ada pada pola bitnya, bukan pada logika penambahannya.\n\n```\n127 = 0111 1111\n+ 1\n    = 1000 0000\n```\n\nPola `1000 0000` adalah `−128` dalam komplemen dua, karena bit tertinggi bernilai `−128` dan sisanya nol. Penambahannya sendiri benar; yang habis adalah tempatnya.\n\nInilah roda pada diagram tadi. Nilai tidak berhenti di batas, melainkan berputar ke ujung yang lain.\n\nBaris `mentah - 256 if mentah > 127 else mentah` meniru cara perangkat keras menafsirkan pola bit sebagai bilangan bertanda. Topeng `& 0xFF` yang membuang bit kesembilan, persis seperti register 8 bit sungguhan."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah penghitung pengunjung disimpan sebagai bilangan bulat bertanda 32 bit. Berapa lama sampai meluap kalau bertambah 1.000 per detik? Apa yang terjadi saat meluap?",
+              "solution": "```\nBatas atas 32 bit bertanda = 2³¹ − 1 = 2.147.483.647\n\n2.147.483.647 ÷ 1.000 = 2.147.484 detik\n                       ÷ 3.600  ≈ 596.523 jam\n                       ÷ 24     ≈ 24.855 hari\n                       ÷ 365    ≈ 68 tahun\n```\n\nSekitar 68 tahun. Saat meluap, nilainya melompat ke `−2.147.483.648`, dan penghitungnya menampilkan angka negatif besar.\n\nKalau yang dipakai tipe **tak bertanda** 32 bit, batasnya dua kali lipat:\n\n```\n2³² − 1 = 4.294.967.295  →  sekitar 136 tahun\n```\n\nPerhitungan yang sama menjelaskan persoalan tahun 2038. Banyak sistem Unix menyimpan waktu sebagai detik sejak 1970 dalam bilangan bertanda 32 bit, dan jatahnya habis pada 19 Januari 2038.\n\nJalan keluarnya sama di kedua kasus: pakai 64 bit. Dengan 64 bit, penghitung yang sama baru meluap setelah ratusan juta tahun."
+            }
+          ]
+        },
+        {
+          "title": "Bilangan Pecahan",
+          "summary": "Kenapa 0,1 ditambah 0,2 bukan 0,3.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Bilangan bulat sudah beres. Pecahan menuntut kesepakatan lain, dan kesepakatan itulah yang menjelaskan kenapa `0.1 + 0.2` tidak persis sama dengan `0.3` di hampir semua bahasa pemrograman."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pecahan biner.** Aturan posisinya sama, hanya diteruskan ke kanan koma dengan pembagian dua."
+            },
+            {
+              "type": "MATH",
+              "content": "  1 0 1 , 1 0 1\n  4 2 1   ½ ¼ ⅛\n\n= 4 + 1 + 0,5 + 0,125\n= 5,625"
+            },
+            {
+              "type": "TEXT",
+              "content": "Persoalannya muncul di sini. Sama seperti basis sepuluh tidak bisa menuliskan sepertiga dengan tepat, basis dua tidak bisa menuliskan sepersepuluh dengan tepat."
+            },
+            {
+              "type": "MATH",
+              "content": "1/3 dalam basis 10 = 0,3333333…   berulang\n\n1/10 dalam basis 2 = 0,0001100110011…  berulang\n\nPecahan yang penyebutnya bukan pangkat dua\nselalu berulang dalam biner."
+            },
+            {
+              "type": "TEXT",
+              "content": "Yang bisa ditulis persis dalam biner hanyalah pecahan berpenyebut pangkat dua: setengah, seperempat, seperdelapan, dan jumlah-jumlahnya. `0,5` dan `0,25` tersimpan tepat. `0,1` tidak."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Titik tetap versus titik mengambang.** Ada dua cara menaruh koma, dan keduanya dipakai di tempat berbeda."
+            },
+            {
+              "type": "MATH",
+              "content": "Titik tetap     koma selalu di posisi yang sama\n                16 bit: 8 bit bulat, 8 bit pecahan\n                sederhana dan cepat\n                jangkauannya sempit\n\nTitik mengambang  posisi koma ikut disimpan\n                  jangkauannya sangat luas\n                  ketelitiannya berubah-ubah"
+            },
+            {
+              "type": "TEXT",
+              "content": "**IEEE 754** adalah kesepakatan titik mengambang yang dipakai hampir semua prosesor sejak 1985. Bentuknya seperti notasi ilmiah, tetapi dalam basis dua."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 280\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Susunan 32 bit IEEE 754 presisi tunggal, dengan contoh angka negatif enam koma lima diuraikan\">\n  <text x=\"24\" y=\"26\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">IEEE 754 PRESISI TUNGGAL, 32 BIT</text>\n\n  <rect x=\"24\" y=\"40\" width=\"34\" height=\"38\" fill=\"var(--kunyit)\" opacity=\"0.25\"/>\n  <rect x=\"24\" y=\"40\" width=\"34\" height=\"38\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"1.4\"/>\n  <rect x=\"58\" y=\"40\" width=\"136\" height=\"38\" fill=\"var(--nila)\" opacity=\"0.25\"/>\n  <rect x=\"58\" y=\"40\" width=\"136\" height=\"38\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.4\"/>\n  <rect x=\"194\" y=\"40\" width=\"356\" height=\"38\" fill=\"currentColor\" opacity=\"0.07\"/>\n  <rect x=\"194\" y=\"40\" width=\"356\" height=\"38\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.4\"/>\n\n  <text x=\"41\" y=\"64\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--kunyit)\">S</text>\n  <text x=\"126\" y=\"64\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--nila)\">E (8 bit)</text>\n  <text x=\"372\" y=\"64\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.8\">M (23 bit)</text>\n\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\" text-anchor=\"middle\">\n    <text x=\"41\" y=\"94\">tanda</text>\n    <text x=\"126\" y=\"94\">pangkat + 127</text>\n    <text x=\"372\" y=\"94\">pecahan</text>\n  </g>\n\n  <text x=\"24\" y=\"134\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">CONTOH: &#8722;6,5</text>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\">\n    <text x=\"24\" y=\"160\" fill=\"var(--kunyit)\">1</text>\n    <text x=\"58\" y=\"160\" fill=\"var(--nila)\">10000001</text>\n    <text x=\"194\" y=\"160\" fill=\"currentColor\" opacity=\"0.8\">10100000000000000000000</text>\n  </g>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.75\">\n    <text x=\"24\" y=\"196\">S = 1</text>\n    <text x=\"150\" y=\"196\">negatif</text>\n    <text x=\"24\" y=\"218\">E = 10000001 = 129</text>\n    <text x=\"230\" y=\"218\">pangkat = 129 &#8722; 127 = 2</text>\n    <text x=\"24\" y=\"240\">M = 1,101 (dengan 1 tersirat)</text>\n  </g>\n  <line x1=\"24\" y1=\"252\" x2=\"420\" y2=\"252\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n  <text x=\"24\" y=\"272\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--nila)\">&#8722;1,101&#8322; &#215; 2&#178; = &#8722;110,1&#8322; = &#8722;6,5</text>\n</svg>",
+              "solution": "Susunan 32 bit IEEE 754 presisi tunggal dan contoh penguraiannya. Satu bit tanda, delapan bit pangkat yang digeser 127, dan dua puluh tiga bit pecahan."
+            },
+            {
+              "type": "MATH",
+              "content": "nilai = (−1)^S × 1,M × 2^(E − bias)\n\nPresisi tunggal, 32 bit    float\n  S  1 bit    E  8 bit    M 23 bit    bias 127\n\nPresisi ganda, 64 bit      double\n  S  1 bit    E 11 bit    M 52 bit    bias 1023"
+            },
+            {
+              "type": "TEXT",
+              "content": "Angka `1` di depan koma pada `1,M` tidak disimpan. Ia selalu ada pada bilangan ternormalisasi, jadi menyimpannya akan membuang satu bit. Penghematan itu memberi satu bit ketelitian tambahan secara cuma-cuma."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Nilai istimewa.** Beberapa pola pangkat disisihkan untuk keadaan khusus, dan inilah sebabnya bilangan pecahan punya nilai yang tidak dimiliki bilangan bulat."
+            },
+            {
+              "type": "MATH",
+              "content": "E semua nol, M nol      nol      ada +0 dan −0\nE semua nol, M ≠ nol    subnormal, sangat kecil\nE semua satu, M nol     tak hingga, +inf dan −inf\nE semua satu, M ≠ nol   NaN, bukan bilangan"
+            },
+            {
+              "type": "TEXT",
+              "content": "`NaN` punya sifat yang mengejutkan: ia tidak sama dengan dirinya sendiri. Itu bukan cacat, melainkan cara menandai hasil yang tidak terdefinisi, misalnya `0/0` atau akar bilangan negatif."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import struct\n\ndef uraikan(x):\n    bita = struct.pack(\">f\", x)\n    bit = format(int.from_bytes(bita, \"big\"), \"032b\")\n    s, e, m = bit[0], bit[1:9], bit[9:]\n    pangkat = int(e, 2)\n    print(f\"{x:>10}  {s} {e} {m}\")\n    print(f\"{'':>10}  tanda={s}  E={pangkat}  pangkat={pangkat - 127}\")\n\nfor x in (1.0, -6.5, 0.1, 255.0):\n    uraikan(x)\n    print()"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan keluaran untuk `0.1`. Bagian pecahannya berisi pola `1001` yang berulang sampai kehabisan tempat, lalu dibulatkan. Perhatikan tiga bit terakhirnya, `101`, yang seharusnya `100` kalau polanya diteruskan. Pembulatan itulah sumber selisihnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "print(0.1 + 0.2)\nprint(0.1 + 0.2 == 0.3)\nprint(f\"{0.1:.20f}\")\nprint(f\"{0.1 + 0.2:.20f}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Keluarannya `0.30000000000000004`. Bukan kesalahan Python; semua bahasa yang memakai IEEE 754 memberi hasil yang sama. Yang terjadi adalah `0,1` dan `0,2` sudah dibulatkan sejak disimpan, lalu galatnya ikut terbawa."
+            },
+            {
+              "type": "NOTE",
+              "content": "Jangan pernah memakai bilangan pecahan untuk uang. Harga `Rp 10.000,50` yang dijumlahkan ribuan kali akan menyimpang. Simpan uang sebagai bilangan bulat dalam satuan terkecil, misalnya sen atau rupiah penuh, atau pakai tipe desimal khusus seperti `Decimal` di Python dan `BigDecimal` di Java."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "from decimal import Decimal\n\n# pecahan biasa menyimpang\ntotal = 0.0\nfor _ in range(10):\n    total += 0.1\nprint(total, total == 1.0)\n\n# bilangan bulat dalam satuan sen, selalu tepat\nsen = 0\nfor _ in range(10):\n    sen += 10\nprint(sen / 100)\n\n# Decimal menyimpan angka desimal apa adanya\nd = Decimal(\"0.1\") * 10\nprint(d, d == Decimal(\"1.0\"))"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Membandingkan pecahan.** Karena nilainya hampir selalu hasil pembulatan, membandingkan dengan `==` jarang tepat. Yang dibandingkan seharusnya selisihnya terhadap sebuah batas toleransi."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import math\n\na = 0.1 + 0.2\nprint(a == 0.3)\nprint(abs(a - 0.3) < 1e-9)\nprint(math.isclose(a, 0.3))\n\nprint(float(\"nan\") == float(\"nan\"))   # selalu False\nprint(math.isnan(float(\"nan\")))       # cara yang benar"
+            },
+            {
+              "type": "TASK",
+              "content": "Tuliskan `−6,5` dalam IEEE 754 presisi tunggal, langkah demi langkah.",
+              "solution": "```\nLangkah 1   tanda\n            negatif, jadi S = 1\n\nLangkah 2   besarannya dalam biner\n            6,5 = 110,1₂\n            (4 + 2 + 0,5)\n\nLangkah 3   normalisasi\n            110,1 = 1,101 × 2²\n            jadi pangkatnya 2\n\nLangkah 4   E yang disimpan\n            E = pangkat + bias = 2 + 127 = 129\n            129 = 10000001₂\n\nLangkah 5   M, yaitu bagian setelah koma\n            dari 1,101 diambil 101\n            lalu diisi nol sampai 23 bit\n            101 0000 0000 0000 0000 0000\n```\n\nHasil lengkapnya:\n\n```\n1 10000001 10100000000000000000000\n```\n\nPeriksa dengan kode:\n\n```python\nimport struct\nprint(format(int.from_bytes(struct.pack(\">f\", -6.5), \"big\"), \"032b\"))\n```\n\nAngka 1 di depan koma pada `1,101` tidak ikut disimpan, dan itu yang paling sering terlewat. Yang masuk ke bagian M hanya `101`."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `0.5 + 0.25 == 0.75` bernilai benar, sementara `0.1 + 0.2 == 0.3` bernilai salah?",
+              "solution": "Karena ketiga bilangan pada pernyataan pertama bisa ditulis **tepat** dalam biner.\n\n```\n0,5  = 0,1₂       setengah\n0,25 = 0,01₂      seperempat\n0,75 = 0,11₂      setengah + seperempat\n```\n\nSemuanya pecahan berpenyebut pangkat dua, jadi tidak ada pembulatan sama sekali. Penjumlahannya tepat, dan perbandingannya benar.\n\nPada pernyataan kedua, tidak satu pun dari ketiganya bisa ditulis tepat.\n\n```\n0,1 = 0,000110011001100…₂   berulang\n0,2 = 0,001100110011001…₂   berulang\n0,3 = 0,010011001100110…₂   berulang\n```\n\nKetiganya dibulatkan saat disimpan. Jumlah dua nilai yang sudah dibulatkan tidak harus sama dengan nilai ketiga yang dibulatkan sendiri, dan di sini memang tidak sama.\n\nPatokan praktisnya: pecahan aman kalau penyebutnya pangkat dua, yaitu 2, 4, 8, 16, dan seterusnya. Selain itu, jangan pakai `==`."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut, lalu jelaskan hasilnya.\n\n```\nprint(0.1 + 0.2 + 0.3)\nprint(0.3 + 0.2 + 0.1)\nprint((0.1 + 0.2) + 0.3 == 0.1 + (0.2 + 0.3))\n```",
+              "solution": "Keluarannya:\n\n```\n0.6000000000000001\n0.6\nFalse\n```\n\nDua hasil berbeda dari bilangan yang sama, hanya karena urutannya ditukar.\n\nPenyebabnya: **penjumlahan pecahan tidak asosiatif**. Setiap penjumlahan membulatkan hasilnya ke nilai terdekat yang bisa disimpan, jadi galat pembulatan menumpuk dengan cara yang berbeda tergantung urutan.\n\n```\n(0,1 + 0,2) = 0,30000000000000004   sudah menyimpang\n       + 0,3 = 0,6000000000000001\n\n(0,2 + 0,3) = 0,5                   kebetulan tepat\n       + 0,1 = 0,6\n```\n\nAkibatnya nyata di luar kelas. Menjumlahkan sejuta bilangan pecahan dalam urutan berbeda bisa memberi hasil yang berbeda, dan itu membuat hasil perhitungan sulit diulang persis.\n\nUntuk penjumlahan yang panjang, Python menyediakan `math.fsum` yang menjaga ketelitian:\n\n```python\nimport math\nprint(math.fsum([0.1, 0.2, 0.3]))\n```"
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah aplikasi kasir menyimpan harga sebagai `float`. Setelah sebulan, total penjualan meleset beberapa rupiah dari jumlah manual. Jelaskan sebabnya dan perbaikannya.",
+              "solution": "Sebabnya penumpukan galat pembulatan. Setiap harga yang bukan pecahan pangkat dua sudah menyimpang sejak disimpan, dan selisih sekecil apa pun menumpuk setelah ribuan penjumlahan.\n\n```python\ntotal = 0.0\nfor _ in range(10):\n    total += 0.1\nprint(total)        # 0.9999999999999999\nprint(total == 1.0) # False\n```\n\nSepuluh kali saja sudah meleset. Ribuan transaksi membuatnya terlihat di laporan.\n\n**Perbaikan pertama, dan yang paling umum: simpan sebagai bilangan bulat dalam satuan terkecil.**\n\n```python\nsen = 0\nfor _ in range(10):\n    sen += 10      # Rp 0,10 disimpan sebagai 10 sen\nprint(sen / 100)   # 1.0, tepat\n```\n\nSemua perhitungan dikerjakan dengan bilangan bulat, dan pembagian seratus hanya dilakukan saat menampilkan.\n\n**Perbaikan kedua: pakai tipe desimal.**\n\n```python\nfrom decimal import Decimal\nharga = Decimal(\"10000.50\")\n```\n\nPerhatikan bahwa `Decimal` diberi **teks**, bukan `Decimal(10000.50)`. Memberinya pecahan akan menyalin nilai yang sudah menyimpang.\n\nUntuk rupiah yang tidak memakai sen dalam praktik sehari-hari, cara pertama sudah cukup dan paling cepat. Cara kedua diperlukan saat ada pembagian, misalnya menghitung pajak atau diskon persen."
+            }
+          ]
+        },
+        {
+          "title": "Teks dan Susunan Bita",
+          "summary": "Bita yang sama bisa berarti huruf, bilangan, atau gambar.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Bilangan sudah bisa disimpan. Tetapi memori hanya menyimpan bita, dan bita itu sendiri tidak memberi tahu apa isinya. Pola `01000001` bisa berarti bilangan 65, huruf `A`, atau sepotong gambar. Yang menentukan adalah kesepakatan pembacanya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**ASCII.** Kesepakatan tertua yang masih hidup, memakai 7 bit untuk 128 lambang."
+            },
+            {
+              "type": "MATH",
+              "content": "48–57    '0'–'9'\n65–90    'A'–'Z'\n97–122   'a'–'z'\n32       spasi\n10       baris baru"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan dua pola yang berguna. Selisih huruf besar dan kecil selalu 32, yaitu satu bit saja. Dan angka `'7'` bernilai 55, bukan 7, sehingga mengubah digit menjadi bilangan cukup dengan mengurangi 48."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "print(ord('A'), ord('a'), ord('a') - ord('A'))\nprint(format(ord('A'), '08b'))\nprint(format(ord('a'), '08b'))   # cuma satu bit yang beda\n\nprint(ord('7') - ord('0'))       # mengubah digit jadi bilangan"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Unicode dan UTF-8.** ASCII cuma cukup untuk bahasa Inggris. Unicode memberi nomor kepada setiap lambang di semua bahasa, dan UTF-8 menentukan cara menuliskan nomor itu sebagai bita."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 290\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Pola bita UTF-8 untuk satu sampai empat bita, dan perbandingan urutan bita kecil dan besar\">\n  <text x=\"24\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">POLA BITA UTF-8</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12.5\">\n    <text x=\"24\" y=\"52\" fill=\"currentColor\" opacity=\"0.5\">1 bita</text>\n    <text x=\"96\" y=\"52\" fill=\"var(--nila)\">0</text>\n    <text x=\"108\" y=\"52\" fill=\"currentColor\" opacity=\"0.85\">xxxxxxx</text>\n    <text x=\"300\" y=\"52\" fill=\"currentColor\" opacity=\"0.5\">U+0000 .. U+007F</text>\n\n    <text x=\"24\" y=\"78\" fill=\"currentColor\" opacity=\"0.5\">2 bita</text>\n    <text x=\"96\" y=\"78\" fill=\"var(--nila)\">110</text>\n    <text x=\"132\" y=\"78\" fill=\"currentColor\" opacity=\"0.85\">xxxxx</text>\n    <text x=\"196\" y=\"78\" fill=\"var(--kunyit)\">10</text>\n    <text x=\"220\" y=\"78\" fill=\"currentColor\" opacity=\"0.85\">xxxxxx</text>\n    <text x=\"300\" y=\"78\" fill=\"currentColor\" opacity=\"0.5\">U+0080 .. U+07FF</text>\n\n    <text x=\"24\" y=\"104\" fill=\"currentColor\" opacity=\"0.5\">3 bita</text>\n    <text x=\"96\" y=\"104\" fill=\"var(--nila)\">1110</text>\n    <text x=\"144\" y=\"104\" fill=\"currentColor\" opacity=\"0.85\">xxxx</text>\n    <text x=\"196\" y=\"104\" fill=\"var(--kunyit)\">10</text>\n    <text x=\"220\" y=\"104\" fill=\"currentColor\" opacity=\"0.6\">xx..</text>\n    <text x=\"264\" y=\"104\" fill=\"var(--kunyit)\">10</text>\n    <text x=\"288\" y=\"104\" fill=\"currentColor\" opacity=\"0.6\">xx..</text>\n    <text x=\"380\" y=\"104\" fill=\"currentColor\" opacity=\"0.5\">U+0800 .. U+FFFF</text>\n\n    <text x=\"24\" y=\"130\" fill=\"currentColor\" opacity=\"0.5\">4 bita</text>\n    <text x=\"96\" y=\"130\" fill=\"var(--nila)\">11110</text>\n    <text x=\"156\" y=\"130\" fill=\"currentColor\" opacity=\"0.85\">xxx</text>\n    <text x=\"196\" y=\"130\" fill=\"var(--kunyit)\">10</text>\n    <text x=\"220\" y=\"130\" fill=\"currentColor\" opacity=\"0.6\">xx..</text>\n    <text x=\"264\" y=\"130\" fill=\"var(--kunyit)\">10</text>\n    <text x=\"288\" y=\"130\" fill=\"currentColor\" opacity=\"0.6\">xx..</text>\n    <text x=\"332\" y=\"130\" fill=\"var(--kunyit)\">10</text>\n    <text x=\"356\" y=\"130\" fill=\"currentColor\" opacity=\"0.6\">xx..</text>\n    <text x=\"440\" y=\"130\" fill=\"currentColor\" opacity=\"0.5\">U+10000 ..</text>\n  </g>\n  <text x=\"24\" y=\"156\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">Banyaknya 1 di depan bita pertama = panjangnya. Bita lanjutan selalu diawali 10.</text>\n\n  <line x1=\"24\" y1=\"178\" x2=\"576\" y2=\"178\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n  <text x=\"24\" y=\"202\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">URUTAN BITA UNTUK BILANGAN 1000 (32 BIT)</text>\n\n  <g>\n    <text x=\"24\" y=\"232\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">Ujung kecil</text>\n    <text x=\"24\" y=\"248\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">x86, ARM</text>\n    <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">\n      <text x=\"150\" y=\"232\">E8</text><text x=\"192\" y=\"232\">03</text>\n      <text x=\"234\" y=\"232\">00</text><text x=\"276\" y=\"232\">00</text>\n    </g>\n    <text x=\"330\" y=\"232\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.5\">bita terkecil dulu</text>\n  </g>\n\n  <g>\n    <text x=\"24\" y=\"270\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--kunyit)\">Ujung besar</text>\n    <text x=\"24\" y=\"286\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">urutan jaringan</text>\n    <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">\n      <text x=\"150\" y=\"270\">00</text><text x=\"192\" y=\"270\">00</text>\n      <text x=\"234\" y=\"270\">03</text><text x=\"276\" y=\"270\">E8</text>\n    </g>\n    <text x=\"330\" y=\"270\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.5\">bita terbesar dulu</text>\n  </g>\n</svg>",
+              "solution": "Pola bita UTF-8 dan perbandingan urutan bita. Banyaknya angka 1 di awal bita pertama menyatakan panjangnya, dan tiap bita lanjutan selalu diawali 10."
+            },
+            {
+              "type": "TEXT",
+              "content": "Rancangan ini punya dua sifat penting. Teks ASCII tetap sah sebagai UTF-8 tanpa diubah apa pun, dan sebuah bita selalu bisa dikenali sebagai awal atau lanjutan, sehingga pembacaan bisa dimulai dari tengah berkas."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "for huruf in [\"A\", \"\\u00e9\", \"\\u221a\", \"\\u65e5\"]:\n    bita = huruf.encode(\"utf-8\")\n    print(f\"U+{ord(huruf):04X}  {bita.hex(' '):<12} {len(bita)} bita\")\n    print(\"        \", \" \".join(format(b, \"08b\") for b in bita))"
+            },
+            {
+              "type": "NOTE",
+              "content": "Satu huruf tidak sama dengan satu bita, dan juga tidak sama dengan satu lambang di layar. Emoji dengan pilihan warna kulit tersusun dari beberapa titik kode yang digabung. Inilah sebabnya memotong teks berdasarkan jumlah bita bisa menghasilkan lambang rusak, dan kenapa `len()` pada teks tidak memberi ukuran penyimpanannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Urutan bita.** Bilangan yang lebih besar dari satu bita harus dipecah, dan ada dua kesepakatan tentang urutannya."
+            },
+            {
+              "type": "MATH",
+              "content": "Bilangan 1000 = 0x000003E8 dalam 32 bit\n\nUjung kecil   E8 03 00 00    bita terkecil dulu\nUjung besar   00 00 03 E8    bita terbesar dulu\n\nx86 dan ARM pakai ujung kecil.\nProtokol jaringan memakai ujung besar."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perbedaan ini tidak terlihat selama data tinggal di satu mesin. Ia muncul begitu data ditulis ke berkas atau dikirim lewat jaringan, dan dibaca mesin lain."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import sys\n\nn = 1000\nprint(\"mesin ini  :\", sys.byteorder)\nprint(\"ujung kecil:\", n.to_bytes(4, \"little\").hex(\" \"))\nprint(\"ujung besar:\", n.to_bytes(4, \"big\").hex(\" \"))\n\n# salah baca urutannya, dan nilainya kacau\nbita = n.to_bytes(4, \"big\")\nprint(\"dibaca benar :\", int.from_bytes(bita, \"big\"))\nprint(\"dibaca salah :\", int.from_bytes(bita, \"little\"))"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Perataan dan sisipan.** Prosesor membaca memori paling cepat kalau alamat datanya kelipatan ukurannya. Karena itu penyusun kode menyisipkan bita kosong agar tiap medan jatuh di alamat yang rata."
+            },
+            {
+              "type": "MATH",
+              "content": "struct { char a; int b; char c; }\n\nTanpa perataan    1 + 4 + 1 = 6 bita\nKenyataannya      12 bita\n\n  alamat 0   a\n  alamat 1-3 sisipan\n  alamat 4-7 b\n  alamat 8   c\n  alamat 9-11 sisipan agar ukurannya kelipatan 4"
+            },
+            {
+              "type": "TEXT",
+              "content": "Urutan medan jadi berpengaruh pada ukuran. Menyusun ulang dari yang terbesar ke terkecil sering memangkas sisipannya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import struct\n\n# urutan medan menentukan ukurannya\nprint(struct.calcsize(\"ci c\"))    # char, int, char\nprint(struct.calcsize(\"icc\"))     # int, char, char\nprint(struct.calcsize(\"=cic\"))    # tanpa perataan"
+            },
+            {
+              "type": "NOTE",
+              "content": "Struktur yang dikirim lewat jaringan atau disimpan ke berkas harus menyebutkan urutan bita dan perataannya secara tegas. Di Python itu dilakukan dengan awalan pada format `struct`: `<` untuk ujung kecil, `>` untuk ujung besar, dan `=` untuk tanpa sisipan. Mengandalkan nilai bawaan membuat berkas yang ditulis di satu mesin gagal dibaca di mesin lain."
+            },
+            {
+              "type": "TASK",
+              "content": "Teks `\"Halo\"` disimpan dalam UTF-8. Berapa bita? Bagaimana dengan `\"Halo √\"`?",
+              "solution": "```\n\"Halo\"    4 bita\n\n  H  a  l  o\n  48 61 6C 6F\n```\n\nKeempat hurufnya ASCII, jadi masing-masing satu bita.\n\n```\n\"Halo √\"  8 bita\n\n  H  a  l  o  spasi  √\n  48 61 6C 6F  20    E2 88 9A\n```\n\nLambang `√` adalah U+221A, yang berada di jangkauan `U+0800..U+FFFF`, jadi butuh tiga bita.\n\n```\n5 bita ASCII + 3 bita untuk √ = 8 bita\n```\n\nPeriksa dengan kode:\n\n```python\nprint(len(\"Halo \\u221a\"))                    # 6 huruf\nprint(len(\"Halo \\u221a\".encode(\"utf-8\")))    # 8 bita\n```\n\nPerhatikan bedanya: enam huruf, delapan bita. Memotong teks ini di bita ke-7 akan memotong `√` di tengah dan menghasilkan lambang rusak."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah berkas berisi empat bita `00 00 01 F4`. Berapa nilainya kalau dibaca sebagai bilangan 32 bit tak bertanda dengan masing-masing urutan bita?",
+              "solution": "```\nUjung besar    00 00 01 F4\n               = 0x000001F4\n               = 1×256 + 15×16 + 4\n               = 500\n\nUjung kecil    dibaca terbalik jadi F4 01 00 00\n               = 0xF4010000\n               = 4.093.247.488\n```\n\nSelisihnya bukan sedikit. Salah menebak urutan bita tidak menghasilkan nilai yang hampir benar, melainkan nilai yang sama sekali tidak berhubungan.\n\nDalam kode:\n\n```python\nbita = bytes([0x00, 0x00, 0x01, 0xF4])\nprint(int.from_bytes(bita, \"big\"))     # 500\nprint(int.from_bytes(bita, \"little\"))  # 4093247488\n```\n\nInilah sebabnya setiap format berkas biner dan setiap protokol jaringan menyebutkan urutan bitanya di dalam spesifikasinya. Urutan besar disebut urutan bita jaringan justru karena dipakai di protokol internet."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `ord('a') - ord('A')` bernilai 32, dan bit mana yang membedakan keduanya?",
+              "solution": "```\n'A' = 65 = 0100 0001\n'a' = 97 = 0110 0001\n          ↑\n      bit ke-6 (bernilai 32)\n```\n\nYang membedakan hanya satu bit, yaitu bit bernilai 32. Seluruh pasangan huruf besar-kecil dalam ASCII mengikuti pola ini.\n\nAkibatnya, mengubah besar-kecil huruf ASCII cukup dengan satu operasi bit:\n\n```python\nprint(chr(ord('A') | 32))    # 'a'  nyalakan bitnya\nprint(chr(ord('a') & ~32))   # 'A'  matikan bitnya\nprint(chr(ord('a') ^ 32))    # 'A'  balikkan bitnya\n```\n\nPenyusunan ASCII memang sengaja dibuat begitu supaya perangkat keras lama bisa mengubah besar-kecil huruf tanpa tabel pencarian.\n\nTetapi jangan pakai cara ini di kode sungguhan. Ia hanya benar untuk huruf ASCII, dan akan merusak huruf beraksen maupun aksara non-Latin. Pakai `.upper()` dan `.lower()` yang mengerti Unicode."
+            },
+            {
+              "type": "TASK",
+              "content": "Susun ulang medan struktur berikut agar ukurannya paling kecil, lalu jelaskan hematnya.\n\n```\nstruct { char a; int b; char c; short d; }\n```",
+              "solution": "Dengan perataan 4 bita untuk `int` dan 2 bita untuk `short`:\n\n```\nUrutan asli\n  0     a       (char)\n  1-3   sisipan\n  4-7   b       (int)\n  8     c       (char)\n  9     sisipan\n  10-11 d       (short)\n  total 12 bita\n\nUrutan dari terbesar ke terkecil\n  0-3   b       (int)\n  4-5   d       (short)\n  6     a       (char)\n  7     c       (char)\n  total 8 bita\n```\n\nHematnya 4 bita, atau sepertiga ukurannya.\n\nPatokannya: **susun medan dari yang terbesar ke yang terkecil**. Dengan begitu tiap medan jatuh di alamat yang sudah rata tanpa perlu disisipi.\n\nPada satu struktur, empat bita terdengar sepele. Pada larik berisi sejuta struktur, selisihnya empat megabita, dan ukuran yang lebih kecil juga berarti lebih banyak muat di tembolok. Bagian tembolok nanti akan menjelaskan kenapa itu berpengaruh besar pada kecepatan."
+            }
+          ]
+        },
+        {
+          "title": "Aljabar Boolean dan Gerbang",
+          "summary": "Logika yang diwujudkan sebagai rangkaian.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Di Logika Informatika kamu sudah mengenal proposisi, tabel kebenaran, dan hukum De Morgan. Semuanya berlaku persis sama di sini, bedanya nilai benar dan salah berganti nama menjadi 1 dan 0, dan rumusnya diwujudkan sebagai rangkaian."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tiga operasi dasar, satu lambang baru.** Notasi perangkat keras memakai lambang aritmetika, bukan lambang logika."
+            },
+            {
+              "type": "MATH",
+              "content": "Logika        Perangkat keras      Dibaca\n\np ∧ q         A · B   atau  AB     AND\np ∨ q         A + B                OR\n¬p            A'      atau  Ā      NOT\np ⊕ q         A ⊕ B                XOR"
+            },
+            {
+              "type": "TEXT",
+              "content": "Lambang `+` dan `·` dipilih karena hukum-hukumnya mirip aljabar biasa. Tetapi kemiripan itu tidak lengkap, dan di situlah jebakannya."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Lambang lima gerbang logika dasar beserta tabel kebenarannya\">\n  <g stroke=\"currentColor\" stroke-opacity=\"0.75\" fill=\"none\" stroke-width=\"1.6\">\n    <path d=\"M 40 40 L 40 92 L 66 92 A 26 26 0 0 0 66 40 Z\"/>\n    <line x1=\"18\" y1=\"52\" x2=\"40\" y2=\"52\"/><line x1=\"18\" y1=\"80\" x2=\"40\" y2=\"80\"/>\n    <line x1=\"92\" y1=\"66\" x2=\"114\" y2=\"66\"/>\n  </g>\n  <text x=\"62\" y=\"118\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">AND</text>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.75\" fill=\"none\" stroke-width=\"1.6\" transform=\"translate(140,0)\">\n    <path d=\"M 36 40 Q 58 66 36 92 Q 72 92 92 66 Q 72 40 36 40 Z\"/>\n    <line x1=\"18\" y1=\"52\" x2=\"44\" y2=\"52\"/><line x1=\"18\" y1=\"80\" x2=\"44\" y2=\"80\"/>\n    <line x1=\"92\" y1=\"66\" x2=\"114\" y2=\"66\"/>\n  </g>\n  <text x=\"202\" y=\"118\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">OR</text>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.75\" fill=\"none\" stroke-width=\"1.6\" transform=\"translate(280,0)\">\n    <path d=\"M 40 40 L 40 92 L 84 66 Z\"/>\n    <circle cx=\"89\" cy=\"66\" r=\"5\"/>\n    <line x1=\"18\" y1=\"66\" x2=\"40\" y2=\"66\"/>\n    <line x1=\"94\" y1=\"66\" x2=\"114\" y2=\"66\"/>\n  </g>\n  <text x=\"342\" y=\"118\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">NOT</text>\n\n  <g stroke=\"var(--kunyit)\" stroke-opacity=\"0.9\" fill=\"none\" stroke-width=\"1.6\" transform=\"translate(420,0)\">\n    <path d=\"M 40 40 L 40 92 L 66 92 A 26 26 0 0 0 66 40 Z\"/>\n    <circle cx=\"97\" cy=\"66\" r=\"5\"/>\n    <line x1=\"18\" y1=\"52\" x2=\"40\" y2=\"52\"/><line x1=\"18\" y1=\"80\" x2=\"40\" y2=\"80\"/>\n    <line x1=\"102\" y1=\"66\" x2=\"120\" y2=\"66\"/>\n  </g>\n  <text x=\"482\" y=\"118\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--kunyit)\">NAND</text>\n\n  <line x1=\"24\" y1=\"142\" x2=\"576\" y2=\"142\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12.5\" fill=\"currentColor\">\n    <g opacity=\"0.5\">\n      <text x=\"34\" y=\"170\">A</text><text x=\"70\" y=\"170\">B</text>\n      <text x=\"124\" y=\"170\">AND</text><text x=\"196\" y=\"170\">OR</text>\n      <text x=\"262\" y=\"170\">XOR</text><text x=\"336\" y=\"170\">NAND</text>\n      <text x=\"420\" y=\"170\">NOR</text>\n    </g>\n    <g opacity=\"0.85\">\n      <text x=\"34\" y=\"196\">0</text><text x=\"70\" y=\"196\">0</text>\n      <text x=\"134\" y=\"196\">0</text><text x=\"202\" y=\"196\">0</text>\n      <text x=\"272\" y=\"196\">0</text><text x=\"352\" y=\"196\">1</text><text x=\"430\" y=\"196\">1</text>\n\n      <text x=\"34\" y=\"220\">0</text><text x=\"70\" y=\"220\">1</text>\n      <text x=\"134\" y=\"220\">0</text><text x=\"202\" y=\"220\">1</text>\n      <text x=\"272\" y=\"220\">1</text><text x=\"352\" y=\"220\">1</text><text x=\"430\" y=\"220\">0</text>\n\n      <text x=\"34\" y=\"244\">1</text><text x=\"70\" y=\"244\">0</text>\n      <text x=\"134\" y=\"244\">0</text><text x=\"202\" y=\"244\">1</text>\n      <text x=\"272\" y=\"244\">1</text><text x=\"352\" y=\"244\">1</text><text x=\"430\" y=\"244\">0</text>\n\n      <text x=\"34\" y=\"268\">1</text><text x=\"70\" y=\"268\">1</text>\n      <text x=\"134\" y=\"268\">1</text><text x=\"202\" y=\"268\">1</text>\n      <text x=\"272\" y=\"268\">0</text><text x=\"352\" y=\"268\">0</text><text x=\"430\" y=\"268\">0</text>\n    </g>\n  </g>\n  <line x1=\"28\" y1=\"178\" x2=\"450\" y2=\"178\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n  <line x1=\"100\" y1=\"156\" x2=\"100\" y2=\"256\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n  <text x=\"24\" y=\"292\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--kunyit)\">NAND dan NOR masing-masing cukup untuk membangun semua gerbang lain.</text>\n</svg>",
+              "solution": "Lambang empat gerbang yang paling sering kamu lihat di skema rangkaian, beserta tabel kebenaran enam gerbang. Lingkaran kecil di ujung keluaran selalu berarti pembalikan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Hukum yang perlu kamu kenali.** Sebagian sama dengan aljabar biasa, sebagian tidak."
+            },
+            {
+              "type": "MATH",
+              "content": "Identitas     A + 0 = A        A · 1 = A\nNol-satu      A + 1 = 1        A · 0 = 0\nIdempoten     A + A = A        A · A = A\nKomplemen     A + A' = 1       A · A' = 0\nInvolusi      (A')' = A\n\nKomutatif     A + B = B + A\nAsosiatif     (A+B)+C = A+(B+C)\n\nDistributif   A·(B+C) = A·B + A·C\n              A + B·C = (A+B)·(A+C)    ← ini khas\n\nDe Morgan     (A·B)' = A' + B'\n              (A+B)' = A' · B'\n\nSerapan       A + A·B = A\n              A·(A+B) = A"
+            },
+            {
+              "type": "TEXT",
+              "content": "Baris distributif yang kedua tidak berlaku di aljabar biasa. `2 + 3×4` jelas bukan `(2+3)×(2+4)`. Dalam aljabar Boolean ia berlaku, dan hukum ini sering dipakai untuk menyederhanakan rangkaian."
+            },
+            {
+              "type": "TEXT",
+              "content": "**De Morgan di perangkat keras.** Hukum ini bukan sekadar manipulasi rumus; ia berarti dua rangkaian yang bentuknya berbeda ternyata identik perilakunya."
+            },
+            {
+              "type": "MATH",
+              "content": "(A·B)' = A' + B'\n\n  Gerbang NAND  ≡  dua NOT lalu OR\n\n(A+B)' = A'·B'\n\n  Gerbang NOR   ≡  dua NOT lalu AND"
+            },
+            {
+              "type": "TEXT",
+              "content": "**NAND cukup untuk segalanya.** Ini sifat yang membuat pabrik cip bisa membuat satu jenis gerbang saja dan menyusun apa pun darinya."
+            },
+            {
+              "type": "MATH",
+              "content": "NOT A      = A NAND A\n\nA AND B    = (A NAND B) NAND (A NAND B)\n\nA OR B     = (A NAND A) NAND (B NAND B)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Yang ketiga adalah De Morgan yang dibaca terbalik. `(A' · B')' = A + B`, dan `A NAND A` menghasilkan `A'`. NOR punya sifat yang sama."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def nand(a, b):\n    return 0 if (a and b) else 1\n\ndef bukan(a):        return nand(a, a)\ndef dan(a, b):       return nand(nand(a, b), nand(a, b))\ndef atau(a, b):      return nand(bukan(a), bukan(b))\ndef xor(a, b):       return atau(dan(a, bukan(b)), dan(bukan(a), b))\n\nprint(\"A B | NOT A  AND  OR  XOR\")\nfor a in (0, 1):\n    for b in (0, 1):\n        print(f\"{a} {b} |   {bukan(a)}     {dan(a,b)}    {atau(a,b)}   {xor(a,b)}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Dari tabel kebenaran ke rangkaian.** Setiap tabel kebenaran bisa diubah menjadi rumus secara mekanis. Ambil setiap baris yang keluarannya 1, tulis sebagai perkalian, lalu jumlahkan semuanya."
+            },
+            {
+              "type": "MATH",
+              "content": "A  B  C  │  F\n0  0  0  │  0\n0  0  1  │  1    →  A'B'C\n0  1  0  │  0\n0  1  1  │  1    →  A'BC\n1  0  0  │  0\n1  0  1  │  0\n1  1  0  │  1    →  ABC'\n1  1  1  │  1    →  ABC\n\nF = A'B'C + A'BC + ABC' + ABC"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bentuk ini disebut jumlah dari hasil kali, dan selalu bisa dibuat. Tetapi biasanya belum yang paling hemat gerbang."
+            },
+            {
+              "type": "MATH",
+              "content": "F = A'B'C + A'BC + ABC' + ABC\n\n  A'B'C + A'BC = A'C(B' + B) = A'C\n  ABC' + ABC   = AB(C' + C)  = AB\n\nF = A'C + AB"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dari empat suku berisi tiga faktor, tinggal dua suku berisi dua faktor. Penyederhanaan ini langsung menjadi penghematan transistor, luas cip, dan daya listrik."
+            },
+            {
+              "type": "NOTE",
+              "content": "Untuk rumus dengan tiga sampai empat masukan, penyederhanaan dengan tangan masih bisa dikerjakan, dan ada alat bantu berbentuk tabel bernama peta Karnaugh. Di luar itu, penyederhanaan dikerjakan perangkat lunak sintesis. Yang penting kamu kuasai bukan tekniknya, melainkan kenyataan bahwa dua rangkaian berbeda bisa benar-benar setara."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import itertools\n\ndef f_panjang(a, b, c):\n    return (((not a) and (not b) and c) or ((not a) and b and c)\n            or (a and b and (not c)) or (a and b and c))\n\ndef f_pendek(a, b, c):\n    return ((not a) and c) or (a and b)\n\nprint(\"A B C | panjang pendek\")\nsama = True\nfor a, b, c in itertools.product([0, 1], repeat=3):\n    p, q = int(f_panjang(a, b, c)), int(f_pendek(a, b, c))\n    sama = sama and p == q\n    print(f\"{a} {b} {c} |    {p}      {q}\")\nprint(\"setara:\", sama)"
+            },
+            {
+              "type": "TASK",
+              "content": "Sederhanakan rumus berikut dan sebutkan hukum yang kamu pakai.\n\n```\nF = A·B + A·B' + A'·B\n```",
+              "solution": "```\nF = A·B + A·B' + A'·B\n\n  A·B + A·B'  = A·(B + B')     distributif\n              = A·1            komplemen\n              = A              identitas\n\nF = A + A'·B\n```\n\nLanjutkan dengan sebuah pola yang berguna:\n\n```\n  A + A'·B    = (A + A')·(A + B)   distributif kedua\n              = 1·(A + B)          komplemen\n              = A + B              identitas\n\nF = A + B\n```\n\nJadi ketiga suku itu tidak lain adalah gerbang OR biasa.\n\nPeriksa dengan tabel kebenaran:\n\n```\nA B │ A·B  A·B'  A'·B │ F │ A+B\n0 0 │  0    0     0   │ 0 │  0\n0 1 │  0    0     1   │ 1 │  1\n1 0 │  0    1     0   │ 1 │  1\n1 1 │  1    0     0   │ 1 │  1\n```\n\nCocok di keempat baris. Tiga gerbang AND dan dua gerbang OR tergantikan oleh satu gerbang OR."
+            },
+            {
+              "type": "TASK",
+              "content": "Buktikan `(A + B)' = A'·B'` dengan tabel kebenaran, lalu jelaskan artinya dalam bentuk rangkaian.",
+              "solution": "```\nA B │ A+B │ (A+B)' │ A' │ B' │ A'·B'\n0 0 │  0  │   1    │ 1  │ 1  │   1\n0 1 │  1  │   0    │ 1  │ 0  │   0\n1 0 │  1  │   0    │ 0  │ 1  │   0\n1 1 │  1  │   0    │ 0  │ 0  │   0\n```\n\nKolom `(A+B)'` dan `A'·B'` identik di keempat baris, jadi keduanya setara.\n\nArtinya dalam bentuk rangkaian:\n\n```\nRangkaian kiri    satu gerbang OR, lalu satu NOT\n                  = satu gerbang NOR\n\nRangkaian kanan   dua gerbang NOT, lalu satu AND\n```\n\nKeduanya berperilaku persis sama tetapi memakai jumlah gerbang yang berbeda. Perancang bisa memilih mana yang lebih murah dengan komponen yang tersedia.\n\nInilah guna praktis hukum De Morgan di perangkat keras. Ia bukan sekadar aturan penulisan ulang, melainkan izin untuk menukar satu susunan gerbang dengan susunan lain yang lebih hemat."
+            },
+            {
+              "type": "TASK",
+              "content": "Susun gerbang XOR hanya dari gerbang NAND. Berapa NAND yang kamu butuhkan?",
+              "solution": "Empat gerbang NAND.\n\n```\nX = A NAND B\n\nkeluaran = (A NAND X) NAND (B NAND X)\n```\n\nTelusuri keempat kemungkinannya:\n\n```\nA B │ X=A NAND B │ A NAND X │ B NAND X │ keluaran\n0 0 │     1      │    1     │    1     │    0\n0 1 │     1      │    1     │    0     │    1\n1 0 │     1      │    0     │    1     │    1\n1 1 │     0      │    1     │    1     │    0\n```\n\nKolom terakhir persis tabel XOR.\n\nDalam kode:\n\n```python\ndef nand(a, b):\n    return 0 if (a and b) else 1\n\ndef xor(a, b):\n    x = nand(a, b)\n    return nand(nand(a, x), nand(b, x))\n\nfor a in (0, 1):\n    for b in (0, 1):\n        print(a, b, xor(a, b))\n```\n\nMenyusun XOR lewat `A·B' + A'·B` membutuhkan lebih banyak gerbang kalau tiap NOT, AND, dan OR juga harus dibuat dari NAND. Empat NAND adalah susunan yang paling hemat, dan ini dipakai di cip sungguhan."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah alarm menyala kalau pintu terbuka DAN sistem aktif, ATAU kalau tombol darurat ditekan. Tulis rumusnya, lalu sebutkan gerbang yang dibutuhkan.",
+              "solution": "```\nP = pintu terbuka\nS = sistem aktif\nD = tombol darurat ditekan\n\nAlarm = P·S + D\n```\n\nGerbang yang dibutuhkan:\n\n```\nsatu AND   untuk P·S\nsatu OR    untuk menggabungkan dengan D\n```\n\nDua gerbang saja.\n\nTabel kebenarannya:\n\n```\nP S D │ P·S │ Alarm\n0 0 0 │  0  │  0\n0 0 1 │  0  │  1\n0 1 0 │  0  │  0\n0 1 1 │  0  │  1\n1 0 0 │  0  │  0\n1 0 1 │  0  │  1\n1 1 0 │  1  │  1\n1 1 1 │  1  │  1\n```\n\nPerhatikan bahwa tombol darurat mengalahkan segalanya: setiap baris dengan `D = 1` menyalakan alarm, tidak peduli keadaan lainnya. Itu memang perilaku yang diinginkan dari tombol darurat, dan rumusnya mencerminkannya tanpa perlu aturan tambahan.\n\nKalau dibuat dari tabel kebenaran secara mekanis, akan muncul lima suku berisi tiga faktor. Penyederhanaannya kembali ke `P·S + D`, dan itu menunjukkan kenapa menyusun rumus langsung dari pernyataan masalah sering lebih baik daripada menyusunnya dari tabel."
+            }
+          ]
+        },
+        {
+          "title": "Rangkaian Kombinasional",
+          "summary": "Menyusun penjumlah, pemilih, dan ALU dari gerbang.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Gerbang sendirian tidak berguna. Yang berguna adalah susunannya. Bagian ini membangun empat rangkaian yang menjadi isi sebagian besar prosesor, semuanya dari gerbang yang sudah kamu kenal."
+            },
+            {
+              "type": "TEXT",
+              "content": "Semua rangkaian di sini bersifat **kombinasional**: keluarannya hanya bergantung pada masukan saat itu, tanpa ingatan sama sekali. Rangkaian yang punya ingatan dibahas di bagian berikutnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Penjumlah separuh.** Menjumlahkan dua bit. Sudah disinggung di Pengantar Ilmu Komputer, sekarang kita pakai sebagai bahan bangunan."
+            },
+            {
+              "type": "MATH",
+              "content": "A  B  │  S  C\n0  0  │  0  0\n0  1  │  1  0\n1  0  │  1  0\n1  1  │  0  1\n\nS = A ⊕ B        jumlah\nC = A · B        simpanan"
+            },
+            {
+              "type": "TEXT",
+              "content": "Disebut separuh karena ia tidak bisa menerima simpanan dari kolom sebelumnya. Untuk menjumlahkan bilangan lebih dari satu bit, kita butuh yang penuh."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Penjumlah penuh.** Tiga masukan: dua bit yang dijumlahkan, dan satu simpanan masuk."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Rangkaian penjumlah penuh tersusun dari dua gerbang XOR, dua gerbang AND, dan satu gerbang OR\">\n  <g stroke=\"currentColor\" stroke-opacity=\"0.65\" fill=\"none\" stroke-width=\"1.4\">\n    <path d=\"M 108 44 Q 128 68 108 92 Q 140 92 158 68 Q 140 44 108 44 Z\"/>\n    <line x1=\"158\" y1=\"68\" x2=\"200\" y2=\"68\"/>\n    <line x1=\"60\" y1=\"54\" x2=\"114\" y2=\"54\"/><line x1=\"60\" y1=\"82\" x2=\"114\" y2=\"82\"/>\n  </g>\n  <text x=\"133\" y=\"36\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">XOR</text>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.65\" fill=\"none\" stroke-width=\"1.4\">\n    <path d=\"M 248 54 Q 268 78 248 102 Q 280 102 298 78 Q 280 54 248 54 Z\"/>\n    <line x1=\"298\" y1=\"78\" x2=\"360\" y2=\"78\"/>\n    <line x1=\"200\" y1=\"68\" x2=\"254\" y2=\"68\"/><line x1=\"214\" y1=\"92\" x2=\"254\" y2=\"92\"/>\n  </g>\n  <text x=\"273\" y=\"46\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">XOR</text>\n  <text x=\"372\" y=\"83\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"var(--nila)\">S</text>\n  <text x=\"390\" y=\"83\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.5\">jumlah</text>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.65\" fill=\"none\" stroke-width=\"1.4\">\n    <path d=\"M 248 142 L 248 184 L 268 184 A 21 21 0 0 0 268 142 Z\"/>\n    <line x1=\"289\" y1=\"163\" x2=\"330\" y2=\"163\"/>\n    <line x1=\"200\" y1=\"152\" x2=\"248\" y2=\"152\"/><line x1=\"214\" y1=\"174\" x2=\"248\" y2=\"174\"/>\n  </g>\n  <text x=\"268\" y=\"134\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">AND</text>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.65\" fill=\"none\" stroke-width=\"1.4\">\n    <path d=\"M 108 212 L 108 254 L 128 254 A 21 21 0 0 0 128 212 Z\"/>\n    <line x1=\"149\" y1=\"233\" x2=\"248\" y2=\"233\"/>\n    <line x1=\"60\" y1=\"222\" x2=\"108\" y2=\"222\"/><line x1=\"60\" y1=\"244\" x2=\"108\" y2=\"244\"/>\n  </g>\n  <text x=\"128\" y=\"204\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">AND</text>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.65\" fill=\"none\" stroke-width=\"1.4\">\n    <path d=\"M 346 178 Q 366 202 346 226 Q 378 226 396 202 Q 378 178 346 178 Z\"/>\n    <line x1=\"396\" y1=\"202\" x2=\"440\" y2=\"202\"/>\n    <line x1=\"330\" y1=\"163\" x2=\"336\" y2=\"163\" /><path d=\"M 330 163 L 336 163 L 336 190 L 352 190\"/>\n    <path d=\"M 248 233 L 336 233 L 336 214 L 352 214\"/>\n  </g>\n  <text x=\"371\" y=\"170\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">OR</text>\n  <text x=\"452\" y=\"207\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"14\" fill=\"var(--kunyit)\">C</text>\n  <text x=\"470\" y=\"207\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.5\">simpanan keluar</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.8\">\n    <text x=\"36\" y=\"58\">A</text>\n    <text x=\"36\" y=\"86\">B</text>\n    <text x=\"30\" y=\"226\">A</text>\n    <text x=\"30\" y=\"248\">B</text>\n    <text x=\"178\" y=\"167\">C</text>\n  </g>\n  <text x=\"178\" y=\"182\" font-family=\"system-ui, sans-serif\" font-size=\"9.5\" fill=\"currentColor\" opacity=\"0.5\">masuk</text>\n  <path d=\"M 192 160 L 206 160 L 206 92 L 214 92\" stroke=\"currentColor\" stroke-opacity=\"0.4\" fill=\"none\" stroke-dasharray=\"3 3\"/>\n  <path d=\"M 192 164 L 206 164 L 206 174 L 214 174\" stroke=\"currentColor\" stroke-opacity=\"0.4\" fill=\"none\" stroke-dasharray=\"3 3\"/>\n  <path d=\"M 200 68 L 200 152\" stroke=\"currentColor\" stroke-opacity=\"0.4\" fill=\"none\" stroke-dasharray=\"3 3\"/>\n\n  <text x=\"24\" y=\"288\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">S = A &#8853; B &#8853; C      Cout = (A&#183;B) + (C &#183; (A &#8853; B))</text>\n</svg>",
+              "solution": "Penjumlah penuh dari dua gerbang XOR, dua gerbang AND, dan satu gerbang OR. Dua XOR menghasilkan jumlahnya, sisanya menentukan apakah ada simpanan keluar."
+            },
+            {
+              "type": "MATH",
+              "content": "A  B  Cin │  S  Cout\n0  0   0  │  0   0\n0  0   1  │  1   0\n0  1   0  │  1   0\n0  1   1  │  0   1\n1  0   0  │  1   0\n1  0   1  │  0   1\n1  1   0  │  0   1\n1  1   1  │  1   1\n\nS    = A ⊕ B ⊕ Cin\nCout = A·B + Cin·(A ⊕ B)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Baca rumus `Cout` dalam bahasa biasa: ada simpanan keluar kalau kedua bitnya satu, **atau** kalau tepat satu bitnya satu dan ada simpanan masuk. Itu persis cara kamu menjumlahkan di atas kertas."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def penjumlah_penuh(a, b, cin):\n    s = a ^ b ^ cin\n    cout = (a & b) | (cin & (a ^ b))\n    return s, cout\n\nprint(\"A B Cin | S Cout\")\nfor a in (0, 1):\n    for b in (0, 1):\n        for cin in (0, 1):\n            s, c = penjumlah_penuh(a, b, cin)\n            print(f\"{a} {b}  {cin}  | {s}   {c}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Penjumlah riak.** Sambungkan simpanan keluar satu penjumlah ke simpanan masuk penjumlah berikutnya, dan kamu punya mesin penjumlah selebar apa pun."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def penjumlah_penuh(a, b, cin):\n    return a ^ b ^ cin, (a & b) | (cin & (a ^ b))\n\ndef penjumlah_riak(x, y, lebar=8):\n    hasil = 0\n    bawa = 0\n    for i in range(lebar):\n        a = (x >> i) & 1\n        b = (y >> i) & 1\n        s, bawa = penjumlah_penuh(a, b, bawa)\n        hasil |= s << i\n    return hasil, bawa\n\nfor x, y in [(13, 29), (200, 100), (255, 1)]:\n    h, luap = penjumlah_riak(x, y)\n    print(f\"{x:>4} + {y:>4} = {h:>4}  ({format(h,'08b')})  simpanan keluar: {luap}\")"
+            },
+            {
+              "type": "NOTE",
+              "content": "Penjumlah riak sederhana tetapi lambat, karena tiap bit harus menunggu simpanan dari bit di kanannya. Penjumlah 64 bit berarti 64 tahap tunggu berantai. Prosesor sungguhan memakai rancangan bernama penjumlah simpanan-lihat-depan, yang menghitung semua simpanan sekaligus dengan menukar jumlah gerbang demi kecepatan. Pertukaran antara luas dan kecepatan seperti ini muncul di hampir setiap keputusan rancangan perangkat keras."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pengurangan tanpa rangkaian baru.** Karena `A − B = A + (−B)`, dan membuat `−B` berarti membalik bit lalu menambah satu, penjumlah yang sama bisa dipakai."
+            },
+            {
+              "type": "MATH",
+              "content": "Nyalakan jalur \"kurang\":\n\n  tiap bit B dilewatkan XOR dengan 1  → terbalik\n  simpanan masuk pertama diisi 1      → tambah satu\n\nSatu rangkaian, dua fungsi."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pemilih jalur.** Rangkaian yang memilih satu dari beberapa masukan berdasarkan bit pemilih. Inilah yang mewujudkan percabangan `if` di dalam perangkat keras."
+            },
+            {
+              "type": "MATH",
+              "content": "Pemilih 2 ke 1\n\n  Y = S'·A + S·B\n\n  S = 0  →  Y = A\n  S = 1  →  Y = B\n\nPemilih 4 ke 1 butuh 2 bit pemilih,\n8 ke 1 butuh 3 bit, dan seterusnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Penyandi balik.** Kebalikannya: mengubah `n` bit masukan menjadi satu dari `2ⁿ` jalur keluaran yang menyala. Dipakai untuk memilih register mana yang dituju, atau sel memori mana yang dibaca."
+            },
+            {
+              "type": "MATH",
+              "content": "Penyandi balik 2 ke 4\n\n  A B │ Y0 Y1 Y2 Y3\n  0 0 │  1  0  0  0\n  0 1 │  0  1  0  0\n  1 0 │  0  0  1  0\n  1 1 │  0  0  0  1"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def pemilih(s, a, b):\n    return ((not s) and a) or (s and b)\n\ndef penyandi_balik(a, b):\n    n = (a << 1) | b\n    return [1 if i == n else 0 for i in range(4)]\n\nprint(\"pemilih:\", [int(pemilih(s, 0, 1)) for s in (0, 1)])\nfor a in (0, 1):\n    for b in (0, 1):\n        print(f\"penyandi balik {a}{b} -> {penyandi_balik(a, b)}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Unit aritmetika dan logika.** Gabungkan penjumlah, gerbang logika, dan sebuah pemilih besar, dan kamu mendapat ALU: satu rangkaian yang bisa mengerjakan beberapa operasi, dipilih oleh beberapa bit kode."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def alu(a, b, kode, lebar=8):\n    topeng = (1 << lebar) - 1\n    operasi = {\n        0b000: lambda: (a + b) & topeng,\n        0b001: lambda: (a - b) & topeng,\n        0b010: lambda: a & b,\n        0b011: lambda: a | b,\n        0b100: lambda: a ^ b,\n        0b101: lambda: (~a) & topeng,\n        0b110: lambda: (a << 1) & topeng,\n        0b111: lambda: a >> 1,\n    }\n    hasil = operasi[kode]()\n    return hasil, int(hasil == 0)\n\nnama = [\"TAMBAH\", \"KURANG\", \"AND\", \"OR\", \"XOR\", \"NOT A\", \"GESER KIRI\", \"GESER KANAN\"]\nfor kode in range(8):\n    h, nol = alu(12, 10, kode)\n    print(f\"{nama[kode]:<11} {h:>4}  {format(h,'08b')}  bendera nol: {nol}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan `bendera nol` pada keluarannya. ALU sungguhan menghasilkan beberapa bendera semacam itu, yaitu nol, negatif, simpanan, dan luapan. Bendera inilah yang dibaca instruksi lompat bersyarat untuk memutuskan apakah sebuah percabangan diambil."
+            },
+            {
+              "type": "TASK",
+              "content": "Lengkapi tabel kebenaran penjumlah penuh untuk `A=1, B=1, Cin=1`, lalu jelaskan hasilnya dalam penjumlahan biasa.",
+              "solution": "```\nS    = A ⊕ B ⊕ Cin = 1 ⊕ 1 ⊕ 1 = 1\nCout = A·B + Cin·(A ⊕ B)\n     = 1·1 + 1·(1 ⊕ 1)\n     = 1 + 1·0\n     = 1\n```\n\nJadi `S = 1` dan `Cout = 1`.\n\nDalam penjumlahan biasa, ketiga masukan itu berarti `1 + 1 + 1 = 3`. Dalam biner, 3 ditulis `11`, yaitu satu di kolom ini dan satu disimpan ke kolom berikutnya.\n\n```\nS     = 1   angka yang ditulis di kolom ini\nCout  = 1   yang disimpan ke kolom kiri\n```\n\nInilah sebabnya penjumlah penuh butuh tiga masukan. Satu kolom penjumlahan memang selalu melibatkan dua angka ditambah simpanan dari kolom sebelumnya, persis seperti saat kamu menjumlahkan di atas kertas."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan penjumlah riak di atas dengan `255 + 1` pada lebar 8 bit. Apa hasilnya, dan apa artinya simpanan keluar?",
+              "solution": "Hasilnya `0`, dengan simpanan keluar `1`.\n\n```\n  1111 1111     255\n+ 0000 0001       1\n───────────\n1 0000 0000\n\nDelapan bit terbawah: 0000 0000 = 0\nBit kesembilan       : 1, keluar dari rangkaian\n```\n\nRangkaian 8 bit tidak punya tempat untuk bit kesembilan, jadi ia muncul sebagai **simpanan keluar** dan hasil yang tersimpan menjadi nol.\n\nArti simpanan keluar bergantung pada bagaimana bilangannya ditafsirkan:\n\n```\nTak bertanda   simpanan keluar = 1 berarti luapan\n               255 + 1 seharusnya 256, tidak muat\n\nBertanda       simpanan keluar bukan penanda luapan\n               255 ditafsirkan sebagai −1\n               −1 + 1 = 0, dan itu benar\n```\n\nJadi pola bit yang sama bisa benar atau salah tergantung tafsirnya. Prosesor menghasilkan **dua** bendera terpisah untuk ini: bendera simpanan untuk tak bertanda, dan bendera luapan untuk bertanda. Program yang memilih bendera yang keliru akan salah menilai hasilnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Rancang pemilih 4 ke 1 memakai tiga pemilih 2 ke 1. Gambarkan susunannya.",
+              "solution": "Susun bertingkat: dua pemilih di tingkat pertama, satu di tingkat kedua.\n\n```\n  A ──┐\n      ├─ pemilih 1 ──┐  (dipilih S0)\n  B ──┘              │\n                     ├─ pemilih 3 ── Y   (dipilih S1)\n  C ──┐              │\n      ├─ pemilih 2 ──┘  (dipilih S0)\n  D ──┘\n```\n\nCara kerjanya:\n\n```\nS0 memilih di dalam tiap pasangan\n   pemilih 1 memberi A atau B\n   pemilih 2 memberi C atau D\n\nS1 memilih antara kedua pasangan\n```\n\nPeriksa keempat kemungkinannya:\n\n```\nS1 S0 │ pemilih 1 │ pemilih 2 │ Y\n 0  0 │     A     │     C     │ A\n 0  1 │     B     │     D     │ B\n 1  0 │     A     │     C     │ C\n 1  1 │     B     │     D     │ D\n```\n\nDalam kode:\n\n```python\ndef pemilih2(s, a, b):\n    return b if s else a\n\ndef pemilih4(s1, s0, a, b, c, d):\n    return pemilih2(s1, pemilih2(s0, a, b), pemilih2(s0, c, d))\n```\n\nPola bertingkat ini berlaku umum. Pemilih 8 ke 1 dibuat dari dua pemilih 4 ke 1 ditambah satu pemilih 2 ke 1, dan seterusnya."
+            },
+            {
+              "type": "TASK",
+              "content": "ALU di contoh kode punya 3 bit kode operasi. Berapa operasi paling banyak yang bisa didukung? Kalau mau menambah operasi perkalian dan pembagian, berapa bit yang dibutuhkan?",
+              "solution": "```\n3 bit kode → 2³ = 8 operasi\n```\n\nKedelapan slotnya sudah terpakai semua di contoh itu: tambah, kurang, AND, OR, XOR, NOT, geser kiri, geser kanan.\n\nUntuk menambah dua operasi lagi:\n\n```\n8 + 2 = 10 operasi\n\n2³ =  8   kurang\n2⁴ = 16   cukup\n\nJadi perlu 4 bit.\n```\n\nMenambah satu bit kode operasi menggandakan jumlah operasi yang bisa dialamatkan, dari 8 menjadi 16. Enam slot sisanya bisa dibiarkan kosong untuk perluasan nanti.\n\nKeputusan ini tidak gratis. Bit kode operasi mengambil tempat di dalam instruksi, dan instruksi punya lebar tetap. Menambah satu bit untuk kode operasi berarti mengurangi satu bit dari medan lain, misalnya nomor register atau nilai langsung.\n\nPertukaran inilah inti perancangan kumpulan instruksi, dan akan dibahas lebih jauh di bagian Instruksi Mesin."
+            }
+          ]
+        },
+        {
+          "title": "Rangkaian Sekuensial",
+          "summary": "Ingatan yang lahir dari umpan balik, dan kenapa ada detak.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Semua rangkaian di bagian sebelumnya lupa segalanya begitu masukannya berubah. Padahal komputer harus mengingat: isi register, alamat instruksi berikutnya, keadaan sebuah mesin. Bagian ini membangun ingatan dari gerbang yang sama."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Ingatan lahir dari umpan balik.** Sambungkan keluaran sebuah gerbang kembali ke masukannya, dan rangkaian itu bisa bertahan pada keadaannya sendiri."
+            },
+            {
+              "type": "MATH",
+              "content": "Pengunci SR dari dua gerbang NOR yang saling bersilang\n\n  S ──┐\n      NOR ──┬── Q\n  ┌─────────┘\n  │\n  └─────────┐\n      NOR ──┴── Q'\n  R ──┘\n\n  S=1 R=0  →  Q menjadi 1, dan bertahan\n  S=0 R=1  →  Q menjadi 0, dan bertahan\n  S=0 R=0  →  Q tetap seperti sebelumnya ← ingatan\n  S=1 R=1  →  terlarang, keluarannya tidak sah"
+            },
+            {
+              "type": "TEXT",
+              "content": "Baris ketiga itulah yang membedakan rangkaian sekuensial dari kombinasional. Dengan kedua masukan nol, keluarannya bergantung pada **apa yang terjadi sebelumnya**, bukan pada masukan saat itu."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Flip-flop D.** Pengunci SR punya keadaan terlarang dan sulit dipakai. Flip-flop D menutup kedua masalah itu: satu jalur data, satu jalur detak."
+            },
+            {
+              "type": "MATH",
+              "content": "D  detak      │  Q berikutnya\nX  diam       │  Q tetap\n0  tepi naik  │  0\n1  tepi naik  │  1"
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 290\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Diagram waktu sebuah flip-flop D: keluaran hanya berubah pada tepi naik detak\">\n  <text x=\"24\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">DIAGRAM WAKTU FLIP-FLOP D</text>\n\n  <text x=\"24\" y=\"66\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--nila)\">DETAK</text>\n  <path d=\"M 92 76 L 132 76 L 132 44 L 192 44 L 192 76 L 252 76 L 252 44 L 312 44\n           L 312 76 L 372 76 L 372 44 L 432 44 L 432 76 L 492 76 L 492 44 L 540 44\"\n        fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.8\"/>\n\n  <g stroke=\"var(--kunyit)\" stroke-opacity=\"0.45\" stroke-dasharray=\"3 4\">\n    <line x1=\"132\" y1=\"40\" x2=\"132\" y2=\"250\"/>\n    <line x1=\"252\" y1=\"40\" x2=\"252\" y2=\"250\"/>\n    <line x1=\"372\" y1=\"40\" x2=\"372\" y2=\"250\"/>\n    <line x1=\"492\" y1=\"40\" x2=\"492\" y2=\"250\"/>\n  </g>\n  <g fill=\"var(--kunyit)\">\n    <path d=\"M 132 44 l -5 10 l 10 0 z\"/><path d=\"M 252 44 l -5 10 l 10 0 z\"/>\n    <path d=\"M 372 44 l -5 10 l 10 0 z\"/><path d=\"M 492 44 l -5 10 l 10 0 z\"/>\n  </g>\n\n  <text x=\"24\" y=\"146\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.8\">D</text>\n  <path d=\"M 92 156 L 164 156 L 164 124 L 288 124 L 288 156 L 404 156 L 404 124 L 540 124\"\n        fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.65\" stroke-width=\"1.8\"/>\n\n  <text x=\"24\" y=\"226\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--kunyit)\">Q</text>\n  <path d=\"M 92 236 L 252 236 L 252 204 L 372 204 L 372 236 L 492 236 L 492 204 L 540 204\"\n        fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"1.8\"/>\n\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">\n    <text x=\"96\" y=\"100\">D berubah kapan saja</text>\n    <text x=\"96\" y=\"268\">Q hanya ikut pada tepi naik</text>\n  </g>\n  <text x=\"300\" y=\"286\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--kunyit)\" text-anchor=\"middle\">Garis putus-putus = tepi naik detak. Di luar itu Q membeku.</text>\n</svg>",
+              "solution": "Keluaran Q hanya mengambil nilai D pada tepi naik detak. Di antara dua tepi, D boleh berubah sesukanya tanpa mempengaruhi Q."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kenapa harus ada detak.** Tanpa detak, perubahan merambat lewat rangkaian dengan kecepatan berbeda-beda, dan sebagian jalur sampai lebih dulu daripada yang lain. Hasil antara yang belum tenang bisa terbaca sebagai hasil akhir."
+            },
+            {
+              "type": "TEXT",
+              "content": "Detak menyelesaikannya dengan memberi jeda. Semua perubahan terjadi di tepi detak, lalu seluruh rangkaian diberi waktu sampai tenang sebelum tepi berikutnya datang."
+            },
+            {
+              "type": "MATH",
+              "content": "Satu daur detak harus lebih lama daripada\njalur terpanjang di dalam rangkaian.\n\n  jalur terpanjang 0,3 ns  →  maksimal 3,3 GHz\n  jalur terpanjang 0,2 ns  →  maksimal 5,0 GHz\n\nItu sebabnya mempercepat satu jalur terpanjang\nbisa menaikkan kecepatan seluruh cip."
+            },
+            {
+              "type": "NOTE",
+              "content": "Jalur terpanjang ini disebut lintasan kritis. Seluruh prosesor dibatasi olehnya, bukan oleh rata-rata jalurnya. Memperbaiki jalur yang sudah cepat tidak menambah apa pun, sementara memperbaiki lintasan kritis menaikkan batas kecepatan seluruh cip. Pola yang sama berlaku pada optimasi perangkat lunak."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Register.** Beberapa flip-flop D yang berbagi satu jalur detak. Delapan flip-flop menjadi register 8 bit."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "class FlipFlopD:\n    def __init__(self):\n        self.q = 0\n\n    def tepi_naik(self, d):\n        self.q = d          # satu-satunya saat Q berubah\n        return self.q\n\nclass Register:\n    def __init__(self, lebar=8):\n        self.bit = [FlipFlopD() for _ in range(lebar)]\n        self.lebar = lebar\n\n    def tepi_naik(self, nilai, muat=1):\n        if muat:            # jalur \"muat\" mengendalikan apakah isinya diganti\n            for i, ff in enumerate(self.bit):\n                ff.tepi_naik((nilai >> i) & 1)\n        return self.nilai()\n\n    def nilai(self):\n        return sum(ff.q << i for i, ff in enumerate(self.bit))\n\nr = Register(8)\nprint(r.tepi_naik(0b10110101))\nprint(r.tepi_naik(0b00000001, muat=0))   # diabaikan, isinya bertahan\nprint(r.tepi_naik(0b00000001, muat=1))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Jalur `muat` itu penting. Tanpanya register akan menimpa isinya setiap detak. Dengan jalur itu, sebuah register bisa menahan nilainya selama berdaur-daur sampai benar-benar perlu diganti."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pencacah.** Register ditambah penjumlah yang selalu menambahkan satu. Inilah wujud pencacah program di dalam prosesor."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "class Pencacah:\n    def __init__(self, lebar=4):\n        self.nilai = 0\n        self.topeng = (1 << lebar) - 1\n\n    def detak(self, aktif=1, muat=None):\n        if muat is not None:\n            self.nilai = muat & self.topeng      # lompat\n        elif aktif:\n            self.nilai = (self.nilai + 1) & self.topeng\n        return self.nilai\n\np = Pencacah(4)\nprint([p.detak() for _ in range(18)])\nprint(\"lompat ke 10:\", p.detak(muat=10))\nprint([p.detak() for _ in range(3)])"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bahwa pencacah 4 bit berputar kembali ke nol setelah 15, dan bahwa jalur `muat` memungkinkan lompatan. Dua perilaku itu persis yang dibutuhkan pencacah program: maju satu per satu, atau dipaksa ke alamat lain oleh instruksi lompat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mesin keadaan.** Register yang menyimpan keadaan, ditambah rangkaian kombinasional yang menentukan keadaan berikutnya. Hampir semua pengendali di dalam komputer berbentuk begini."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Pengendali lampu lalu lintas sederhana\nPINDAH = {\n    \"MERAH\":  (\"HIJAU\",  3),\n    \"HIJAU\":  (\"KUNING\", 3),\n    \"KUNING\": (\"MERAH\",  1),\n}\n\nkeadaan = \"MERAH\"\nsisa = 3\nfor daur in range(1, 13):\n    print(f\"daur {daur:>2}: {keadaan}\")\n    sisa -= 1\n    if sisa == 0:\n        keadaan, sisa = PINDAH[keadaan]"
+            },
+            {
+              "type": "TASK",
+              "content": "Pada pengunci SR, kenapa `S=1 R=1` dilarang?",
+              "solution": "Karena kedua keluaran dipaksa ke nilai yang sama, padahal menurut rancangannya `Q` dan `Q'` harus selalu berlawanan.\n\n```\nS=1 R=1  →  Q = 0 dan Q' = 0\n```\n\nSelama kedua masukan tetap 1, keadaan itu memang stabil. Masalahnya muncul saat keduanya dilepas ke nol **pada saat yang sama**.\n\n```\nDua gerbang NOR berlomba.\nYang menang ditentukan oleh selisih kecepatan\nyang tidak bisa diramalkan.\n\nQ bisa jadi 0, bisa jadi 1.\n```\n\nKeluaran yang tidak bisa diramalkan inilah yang membuat keadaan itu terlarang. Rangkaian yang sama bisa memberi hasil berbeda pada cip yang berbeda, bahkan pada suhu yang berbeda.\n\nFlip-flop D menutup celah ini dengan rancangannya: ia hanya punya satu jalur data, dan `S` serta `R` dibangkitkan dari `D` sehingga tidak mungkin keduanya bernilai 1 bersamaan."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah prosesor punya lintasan kritis 0,25 nanodetik. Berapa kecepatan detak maksimumnya? Kalau lintasan itu dipercepat menjadi 0,2 nanodetik, berapa persen kenaikannya?",
+              "solution": "```\nKecepatan maksimum = 1 / lintasan kritis\n\n0,25 ns  →  1 / 0,25×10⁻⁹ = 4,0 GHz\n0,20 ns  →  1 / 0,20×10⁻⁹ = 5,0 GHz\n```\n\nKenaikannya:\n\n```\n(5,0 − 4,0) / 4,0 = 25%\n```\n\nPerhatikan bahwa yang menentukan hanya **lintasan terpanjang**. Kalau rangkaian itu punya seratus jalur lain yang semuanya 0,1 ns, mempercepat seratus jalur itu tidak menaikkan kecepatan detak sama sekali.\n\nInilah sebabnya perancang cip menghabiskan banyak usaha hanya untuk beberapa jalur. Dan inilah pula alasan mengoptimasi perangkat lunak harus dimulai dari pengukuran: memperbaiki bagian yang bukan penghambat tidak mengubah apa pun."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode pencacah di atas. Kenapa setelah 15 nilainya kembali ke 0, bukan ke 16?",
+              "solution": "Keluarannya:\n\n```\n[1, 2, 3, ..., 14, 15, 0, 1, 2]\n```\n\nPencacah 4 bit hanya punya empat flip-flop, jadi hanya bisa menyimpan nilai 0 sampai 15.\n\n```\n15 = 1111\n+1\n   = 10000   lima bit\n\nBit kelima tidak punya flip-flop untuk ditempati,\njadi hilang. Yang tersisa 0000 = 0.\n```\n\nBaris `& self.topeng` di kode meniru hal ini. `topeng` bernilai `0b1111`, dan operasi AND membuang bit apa pun di atas posisi keempat.\n\nPerilaku berputar ini bukan cacat, melainkan sifat yang dimanfaatkan. Pencacah alamat memori memang diharapkan kembali ke awal, dan pencacah pembagi detak bekerja justru karena berputar.\n\nYang berbahaya adalah ketika perilaku ini tidak disengaja, dan itulah luapan bilangan bulat yang dibahas di bagian bilangan bertanda."
+            },
+            {
+              "type": "TASK",
+              "content": "Rancang mesin keadaan untuk pintu putar yang terkunci. Masukannya: koin dimasukkan, atau pintu didorong. Sebutkan keadaan dan perpindahannya.",
+              "solution": "Dua keadaan saja sudah cukup.\n\n```\nKeadaan   TERKUNCI, TERBUKA\n\nTERKUNCI + koin    →  TERBUKA\nTERKUNCI + dorong  →  TERKUNCI   (tidak terjadi apa-apa)\nTERBUKA  + koin    →  TERBUKA    (koin terbuang)\nTERBUKA  + dorong  →  TERKUNCI   (orang lewat, mengunci lagi)\n```\n\nDalam kode:\n\n```python\nPINDAH = {\n    (\"TERKUNCI\", \"koin\"):   \"TERBUKA\",\n    (\"TERKUNCI\", \"dorong\"): \"TERKUNCI\",\n    (\"TERBUKA\",  \"koin\"):   \"TERBUKA\",\n    (\"TERBUKA\",  \"dorong\"): \"TERKUNCI\",\n}\n\nkeadaan = \"TERKUNCI\"\nfor masukan in [\"dorong\", \"koin\", \"koin\", \"dorong\", \"dorong\"]:\n    baru = PINDAH[(keadaan, masukan)]\n    print(f\"{keadaan:<9} + {masukan:<7} -> {baru}\")\n    keadaan = baru\n```\n\nDalam perangkat keras, dua keadaan butuh satu flip-flop saja. Masukannya dua bit, dan keadaan berikutnya ditentukan rangkaian kombinasional kecil:\n\n```\nberikutnya = (sekarang AND NOT dorong) OR koin\n```\n\nPerhatikan baris `TERBUKA + koin`. Koin kedua hilang begitu saja, dan itu memang perilaku pintu putar sungguhan. Mesin keadaan memaksamu memutuskan hal semacam ini secara tegas, dan di situlah gunanya."
+            }
+          ]
+        },
+        {
+          "title": "Memori dan Pengalamatan",
+          "summary": "Larik bita raksasa, dan batas yang ditentukan lebar alamat.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Prosesor tidak bisa menyimpan banyak. Register jumlahnya belasan. Segala sesuatu yang lebih besar tinggal di memori, dan memori diakses lewat **alamat**."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Memori adalah larik bita raksasa.** Tidak lebih rumit dari itu. Setiap bita punya satu alamat, dan alamat itu bilangan bulat yang dimulai dari nol."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Peta memori dengan alamat heksadesimal dan contoh data 32 bit yang rata dan tidak rata\">\n  <text x=\"24\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">MEMORI DIALAMATI PER BITA</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11.5\" fill=\"currentColor\" opacity=\"0.5\" text-anchor=\"end\">\n    <text x=\"92\" y=\"60\">0x1000</text><text x=\"92\" y=\"86\">0x1004</text>\n    <text x=\"92\" y=\"112\">0x1008</text><text x=\"92\" y=\"138\">0x100C</text>\n  </g>\n\n  <g>\n    <rect x=\"104\" y=\"44\" width=\"52\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.3\"/>\n    <rect x=\"156\" y=\"44\" width=\"52\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.3\"/>\n    <rect x=\"208\" y=\"44\" width=\"52\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.3\"/>\n    <rect x=\"260\" y=\"44\" width=\"52\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.3\"/>\n  </g>\n  <g>\n    <rect x=\"104\" y=\"96\" width=\"52\" height=\"22\" fill=\"currentColor\" opacity=\"0.08\"/>\n    <rect x=\"156\" y=\"96\" width=\"52\" height=\"22\" fill=\"var(--kunyit)\" opacity=\"0.3\"/>\n    <rect x=\"208\" y=\"96\" width=\"52\" height=\"22\" fill=\"var(--kunyit)\" opacity=\"0.3\"/>\n    <rect x=\"260\" y=\"96\" width=\"52\" height=\"22\" fill=\"var(--kunyit)\" opacity=\"0.3\"/>\n    <rect x=\"104\" y=\"122\" width=\"52\" height=\"22\" fill=\"var(--kunyit)\" opacity=\"0.3\"/>\n  </g>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.25\" fill=\"none\">\n    <rect x=\"104\" y=\"44\" width=\"208\" height=\"22\"/><rect x=\"104\" y=\"70\" width=\"208\" height=\"22\"/>\n    <rect x=\"104\" y=\"96\" width=\"208\" height=\"22\"/><rect x=\"104\" y=\"122\" width=\"208\" height=\"22\"/>\n    <line x1=\"156\" y1=\"44\" x2=\"156\" y2=\"144\"/><line x1=\"208\" y1=\"44\" x2=\"208\" y2=\"144\"/>\n    <line x1=\"260\" y1=\"44\" x2=\"260\" y2=\"144\"/>\n  </g>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"middle\">\n    <text x=\"130\" y=\"38\">+0</text><text x=\"182\" y=\"38\">+1</text>\n    <text x=\"234\" y=\"38\">+2</text><text x=\"286\" y=\"38\">+3</text>\n  </g>\n\n  <g font-family=\"system-ui, sans-serif\" font-size=\"11.5\">\n    <text x=\"330\" y=\"59\" fill=\"var(--nila)\">Rata</text>\n    <text x=\"330\" y=\"75\" fill=\"currentColor\" opacity=\"0.55\">int 32 bit di 0x1000</text>\n    <text x=\"330\" y=\"90\" fill=\"currentColor\" opacity=\"0.55\">1000 habis dibagi 4, satu kali baca</text>\n\n    <text x=\"330\" y=\"116\" fill=\"var(--kunyit)\">Tidak rata</text>\n    <text x=\"330\" y=\"132\" fill=\"currentColor\" opacity=\"0.55\">int 32 bit di 0x1005</text>\n    <text x=\"330\" y=\"147\" fill=\"currentColor\" opacity=\"0.55\">melintasi dua kata, dua kali baca</text>\n  </g>\n\n  <line x1=\"24\" y1=\"176\" x2=\"576\" y2=\"176\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n  <text x=\"24\" y=\"200\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">LEBAR ALAMAT MENENTUKAN BATAS MEMORI</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12.5\" fill=\"currentColor\" opacity=\"0.85\">\n    <text x=\"24\" y=\"228\">16 bit</text><text x=\"140\" y=\"228\">2&#185;&#8310; bita</text><text x=\"260\" y=\"228\">= 64 KiB</text>\n    <text x=\"24\" y=\"252\">32 bit</text><text x=\"140\" y=\"252\">2&#179;&#178; bita</text><text x=\"260\" y=\"252\">= 4 GiB</text>\n    <text x=\"24\" y=\"276\">64 bit</text><text x=\"140\" y=\"276\">2&#8310;&#8308; bita</text><text x=\"260\" y=\"276\">= 16 EiB</text>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">\n    <text x=\"372\" y=\"228\">mikropengendali</text>\n    <text x=\"372\" y=\"252\">batas lama PC</text>\n    <text x=\"372\" y=\"276\">jauh melampaui kebutuhan</text>\n  </g>\n</svg>",
+              "solution": "Memori dialamati per bita. Data yang lebih besar dari satu bita menempati beberapa alamat berurutan, dan lebar alamat menentukan berapa banyak bita yang bisa dijangkau."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Lebar alamat menentukan batas memori.** Ini hubungan yang paling sering ditanyakan dan paling mudah dihitung."
+            },
+            {
+              "type": "MATH",
+              "content": "n bit alamat  →  2ⁿ bita bisa dijangkau\n\n16 bit  →  2¹⁶ =        65.536 bita = 64 KiB\n32 bit  →  2³² = 4.294.967.296 bita =  4 GiB\n48 bit  →  2⁴⁸                      = 256 TiB\n64 bit  →  2⁶⁴                      =  16 EiB"
+            },
+            {
+              "type": "TEXT",
+              "content": "Inilah sebabnya sistem 32 bit tidak bisa memakai RAM lebih dari 4 GiB. Bukan karena perangkat kerasnya kurang, melainkan karena tidak ada alamat yang tersisa untuk menunjuk bita ke-4.294.967.297."
+            },
+            {
+              "type": "NOTE",
+              "content": "Prosesor 64 bit masa kini tidak benar-benar memakai 64 bit alamat. Sebagian besar memakai 48 bit, yang sudah memberi 256 TiB, jauh melampaui kebutuhan. Mengalamati 64 bit penuh berarti membangun rangkaian penerjemah alamat yang lebih besar tanpa guna. Bit yang tidak terpakai diharuskan berisi salinan bit tertinggi, dan alamat yang melanggarnya ditolak."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kata dan perataan.** Meski memori dialamati per bita, prosesor membaca dalam potongan selebar jalur datanya, biasanya 4 atau 8 bita sekaligus."
+            },
+            {
+              "type": "MATH",
+              "content": "Data 32 bit di alamat 0x1000\n  1000 ÷ 4 = 250 pas      → satu kali baca\n\nData 32 bit di alamat 0x1005\n  1005 ÷ 4 bersisa        → melintasi dua potongan\n                            dua kali baca, lalu digabung"
+            },
+            {
+              "type": "TEXT",
+              "content": "Sebagian prosesor melayani akses tidak rata dengan lebih lambat. Sebagian lagi, terutama pada perangkat tertanam, langsung menolaknya dengan galat. Itu sebabnya penyusun kode menyisipkan bita kosong, seperti yang kamu lihat di bagian susunan bita."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def rata(alamat, ukuran):\n    return alamat % ukuran == 0\n\nfor alamat in (0x1000, 0x1002, 0x1004, 0x1005, 0x1008):\n    print(f\"0x{alamat:04X}  int32: {str(rata(alamat,4)):<5} \"\n          f\"int16: {str(rata(alamat,2)):<5} int64: {rata(alamat,8)}\")"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Menghitung alamat anggota larik\nAWAL = 0x2000\nUKURAN = 4          # int 32 bit\n\nfor i in range(6):\n    print(f\"data[{i}] ada di 0x{AWAL + i * UKURAN:04X}\")\n\nprint()\n# Inilah rumus yang dijalankan prosesor setiap kali kamu\n# menulis data[i]. Tidak ada pencarian, cuma perkalian.\nprint(\"alamat = awal + indeks x ukuran\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Rumus satu baris itu menjelaskan kenapa mengambil anggota larik butuh waktu tetap, berapa pun besarnya larik. Tidak ada penelusuran; alamatnya langsung dihitung."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Jenis memori.** Yang perlu kamu bedakan ada empat, dan bedanya terletak pada apa yang terjadi saat listrik putus."
+            },
+            {
+              "type": "MATH",
+              "content": "SRAM   cepat, mahal, besar per bitnya\n       dipakai untuk tembolok\n       hilang saat listrik putus\n\nDRAM   lebih lambat, murah, padat\n       dipakai untuk RAM utama\n       perlu disegarkan ribuan kali per detik\n       hilang saat listrik putus\n\nROM    hanya dibaca, isinya tetap\n       dipakai untuk kode penyalaan awal\n\nFlash  bisa ditulis, isinya tetap\n       dipakai untuk SSD dan kartu memori\n       jumlah penulisannya terbatas"
+            },
+            {
+              "type": "TEXT",
+              "content": "DRAM menyimpan tiap bit sebagai muatan pada kapasitor kecil, dan muatan itu bocor. Karena itu isinya harus dibaca dan ditulis ulang terus-menerus. Nama \"dinamis\" berasal dari situ, dan penyegaran itulah salah satu sebab DRAM lebih lambat dari SRAM."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Peta memori sebuah program.** Satu program yang sedang berjalan melihat ruang alamatnya sendiri, terbagi dalam beberapa daerah."
+            },
+            {
+              "type": "MATH",
+              "content": "alamat tinggi\n  ┌─────────────┐\n  │   tumpukan  │  ↓ tumbuh ke bawah\n  │             │    variabel lokal, alamat kembali\n  ├─────────────┤\n  │             │\n  ├─────────────┤\n  │   timbunan  │  ↑ tumbuh ke atas\n  │             │    alokasi dinamis\n  ├─────────────┤\n  │  data       │  variabel global\n  ├─────────────┤\n  │  teks       │  kode programnya sendiri\n  └─────────────┘\nalamat rendah"
+            },
+            {
+              "type": "NOTE",
+              "content": "Tumpukan dan timbunan sengaja ditaruh di ujung berlawanan dan tumbuh saling mendekat, supaya keduanya bisa memakai ruang kosong di tengah sesuai kebutuhan. Ketika keduanya bertemu, memori habis. Galat `StackOverflowError` yang kamu temui saat rekursi tanpa kasus dasar berasal dari tumpukan yang tumbuh melewati batasnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah mikropengendali punya 16 bit alamat. Berapa memori maksimum yang bisa dijangkaunya? Kalau alamatnya diperlebar menjadi 24 bit, berapa kali lipat kenaikannya?",
+              "solution": "```\n16 bit  →  2¹⁶ = 65.536 bita = 64 KiB\n24 bit  →  2²⁴ = 16.777.216 bita = 16 MiB\n```\n\nKenaikannya:\n\n```\n2²⁴ / 2¹⁶ = 2⁸ = 256 kali lipat\n```\n\nMenambah 8 bit alamat mengalikan jangkauannya dengan 256, bukan menambahnya sedikit. Setiap satu bit tambahan menggandakan jangkauan.\n\nPatokan yang berguna untuk diingat:\n\n```\n+1 bit   →  2 kali\n+10 bit  →  sekitar 1.000 kali  (2¹⁰ = 1.024)\n+20 bit  →  sekitar 1 juta kali\n+30 bit  →  sekitar 1 miliar kali\n```\n\nDengan patokan ini, `2³² = 2³⁰ × 2² ≈ 1 miliar × 4 = 4 GiB` bisa dihitung di kepala tanpa kalkulator."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah larik `int32` dimulai di alamat `0x3000`. Di alamat berapa `data[7]` berada? Apakah alamat itu rata?",
+              "solution": "```\nalamat = awal + indeks × ukuran\n       = 0x3000 + 7 × 4\n       = 0x3000 + 28\n       = 0x3000 + 0x1C\n       = 0x301C\n```\n\nRata atau tidak:\n\n```\n0x301C = 12316 dalam desimal\n12316 ÷ 4 = 3079 pas, tidak bersisa\n\nRata.\n```\n\nSebenarnya tidak perlu dihitung desimalnya. Alamat rata untuk 4 bita berarti dua bit terendahnya nol:\n\n```\n0x301C = ...0001 1100\n                   ↑↑\n             dua bit terendah = 00  → rata\n```\n\nPatokan cepat ini berlaku umum:\n\n```\nrata 2 bita  →  1 bit terendah nol\nrata 4 bita  →  2 bit terendah nol\nrata 8 bita  →  3 bit terendah nol\n```\n\nDan selama larik dimulai di alamat yang rata, **semua** anggotanya pasti rata, karena setiap langkah menambah kelipatan ukurannya. Itulah sebabnya pengalokasi memori selalu mengembalikan alamat yang rata."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa DRAM perlu disegarkan sementara SRAM tidak? Apa akibatnya bagi kecepatan?",
+              "solution": "Perbedaannya pada cara menyimpan satu bit.\n\n```\nSRAM   satu bit disimpan pada enam transistor\n       yang saling mengunci, mirip pengunci SR\n       di bagian rangkaian sekuensial.\n       Selama listrik ada, keadaannya bertahan.\n\nDRAM   satu bit disimpan sebagai muatan listrik\n       pada satu kapasitor kecil, ditambah satu\n       transistor. Muatan itu bocor dalam\n       hitungan milidetik.\n```\n\nKarena bocor, isi DRAM harus dibaca dan ditulis ulang terus-menerus, ribuan kali per detik. Itulah penyegaran.\n\nAkibatnya bagi kecepatan ada dua:\n\n```\n1. Saat sebuah baris sedang disegarkan, baris itu\n   tidak bisa dibaca. Permintaan harus menunggu.\n\n2. Membaca DRAM bersifat merusak. Muatannya habis\n   saat dibaca, jadi harus ditulis ulang setiap\n   kali. Langkah tambahan itu memakan waktu.\n```\n\nLalu kenapa DRAM tetap dipakai? Karena satu bit cuma butuh satu transistor dan satu kapasitor, bukan enam transistor. Pada luas cip yang sama, DRAM memuat sekitar enam kali lebih banyak bit dan jauh lebih murah.\n\nPertukaran inilah yang melahirkan jenjang memori: SRAM yang cepat dan mahal dipakai sedikit sebagai tembolok, DRAM yang lambat dan murah dipakai banyak sebagai memori utama."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah program rekursif gagal dengan `RecursionError`. Jelaskan apa yang terjadi di peta memori.",
+              "solution": "Yang habis adalah **tumpukan**, bukan memori secara keseluruhan.\n\nSetiap pemanggilan fungsi menaruh satu bingkai di tumpukan, berisi:\n\n```\nalamat kembali     ke mana setelah fungsi selesai\nvariabel lokal     milik pemanggilan itu sendiri\nargumen            nilai yang dikirimkan\n```\n\nRekursi tanpa kasus dasar menumpuk bingkai terus-menerus tanpa ada yang dilepas. Tumpukan tumbuh ke bawah sampai menabrak batasnya.\n\n```python\ndef jatuh(n):\n    return jatuh(n + 1)    # tidak ada kasus dasar\n\n# jatuh(0) → RecursionError\n```\n\nPython memasang batas kedalaman sendiri, lazimnya sekitar 1.000, dan melempar `RecursionError` sebelum tumpukan sistem benar-benar habis. Bahasa seperti C tidak punya penjaga itu, dan programnya langsung dihentikan sistem operasi dengan `segmentation fault`.\n\nPerhatikan bahwa memori masih banyak tersisa. Yang habis hanya daerah tumpukan, yang memang dibatasi ukurannya, lazimnya 1 sampai 8 MiB.\n\nKalau rekursinya memang perlu dalam, ada dua jalan keluar: ubah menjadi perulangan yang memakai timbunan untuk menyimpan keadaannya, atau naikkan batas kedalamannya. Cara pertama hampir selalu lebih baik."
+            }
+          ]
+        },
+        {
+          "title": "Tembolok dan Lokalitas",
+          "summary": "Kenapa urutan membaca data mengubah kecepatan program.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Di Pengantar Ilmu Komputer kamu sudah melihat jenjang memori lewat perumpamaan waktu. Sekarang kita lihat mekanismenya, dan mengukur akibatnya pada kode sungguhan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Jurang yang melebar.** Sejak 1980-an, kecepatan prosesor naik jauh lebih cepat daripada kecepatan memori. Jurang itu sekarang menjadi penghambat utama pada banyak program."
+            },
+            {
+              "type": "MATH",
+              "content": "Perkiraan pada prosesor masa kini\n\nRegister       0 daur       langsung tersedia\nTembolok L1    ~4 daur      ~1 ns\nTembolok L2    ~12 daur     ~3 ns\nTembolok L3    ~40 daur     ~10 ns\nRAM            ~200 daur    ~60-100 ns\nSSD            ~100.000 daur"
+            },
+            {
+              "type": "NOTE",
+              "content": "Angka di atas perkiraan kasar dan berbeda antar prosesor. Yang perlu kamu ingat bukan angkanya, melainkan **perbandingannya**: RAM sekitar lima puluh kali lebih lambat dari L1. Satu kali menunggu RAM setara dengan membuang lima puluh instruksi."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Jalur permintaan data melewati tembolok, dengan perbandingan waktu antara temu dan luput\">\n  <defs>\n    <marker id=\"c9-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"currentColor\"/>\n    </marker>\n  </defs>\n\n  <rect x=\"24\" y=\"52\" width=\"92\" height=\"52\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.25\"/>\n  <rect x=\"24\" y=\"52\" width=\"92\" height=\"52\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.5\"/>\n  <text x=\"70\" y=\"76\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--nila)\">Prosesor</text>\n  <text x=\"70\" y=\"93\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.5\">minta 0x2040</text>\n\n  <path d=\"M 116 78 L 168 78\" stroke=\"currentColor\" stroke-opacity=\"0.55\" marker-end=\"url(#c9-ujung)\"/>\n\n  <rect x=\"174\" y=\"52\" width=\"104\" height=\"52\" rx=\"3\" fill=\"currentColor\" opacity=\"0.07\"/>\n  <rect x=\"174\" y=\"52\" width=\"104\" height=\"52\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.45\"/>\n  <text x=\"226\" y=\"76\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.85\">Tembolok</text>\n  <text x=\"226\" y=\"93\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.5\">ada di sini?</text>\n\n  <path d=\"M 226 104 L 226 140\" stroke=\"var(--nila)\" stroke-opacity=\"0.7\" marker-end=\"url(#c9-ujung)\"/>\n  <text x=\"236\" y=\"126\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--nila)\">ya, TEMU</text>\n  <rect x=\"152\" y=\"146\" width=\"148\" height=\"34\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.18\"/>\n  <rect x=\"152\" y=\"146\" width=\"148\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-opacity=\"0.6\"/>\n  <text x=\"226\" y=\"168\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">sekitar 4 daur</text>\n\n  <path d=\"M 278 78 L 336 78\" stroke=\"var(--kunyit)\" stroke-opacity=\"0.7\" marker-end=\"url(#c9-ujung)\"/>\n  <text x=\"290\" y=\"68\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--kunyit)\">tidak, LUPUT</text>\n\n  <rect x=\"342\" y=\"52\" width=\"104\" height=\"52\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.14\"/>\n  <rect x=\"342\" y=\"52\" width=\"104\" height=\"52\" rx=\"3\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-opacity=\"0.7\"/>\n  <text x=\"394\" y=\"76\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"var(--kunyit)\">RAM</text>\n  <text x=\"394\" y=\"93\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.5\">ambil satu blok</text>\n\n  <path d=\"M 394 104 L 394 140\" stroke=\"var(--kunyit)\" stroke-opacity=\"0.7\" marker-end=\"url(#c9-ujung)\"/>\n  <rect x=\"320\" y=\"146\" width=\"148\" height=\"34\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.14\"/>\n  <rect x=\"320\" y=\"146\" width=\"148\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-opacity=\"0.6\"/>\n  <text x=\"394\" y=\"168\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--kunyit)\">sekitar 200 daur</text>\n\n  <text x=\"486\" y=\"80\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">50 kali</text>\n  <text x=\"486\" y=\"96\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">lebih lambat</text>\n\n  <line x1=\"24\" y1=\"208\" x2=\"576\" y2=\"208\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n  <text x=\"24\" y=\"230\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">SATU LUPUT MENGAMBIL SATU BLOK, BUKAN SATU BITA</text>\n\n  <g>\n    <rect x=\"24\" y=\"244\" width=\"40\" height=\"24\" fill=\"var(--kunyit)\" opacity=\"0.3\"/>\n    <rect x=\"24\" y=\"244\" width=\"40\" height=\"24\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"1.4\"/>\n    <text x=\"44\" y=\"261\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"var(--kunyit)\">minta</text>\n  </g>\n  <g stroke=\"currentColor\" stroke-opacity=\"0.3\" fill=\"currentColor\" fill-opacity=\"0.06\">\n    <rect x=\"64\" y=\"244\" width=\"40\" height=\"24\"/><rect x=\"104\" y=\"244\" width=\"40\" height=\"24\"/>\n    <rect x=\"144\" y=\"244\" width=\"40\" height=\"24\"/><rect x=\"184\" y=\"244\" width=\"40\" height=\"24\"/>\n    <rect x=\"224\" y=\"244\" width=\"40\" height=\"24\"/><rect x=\"264\" y=\"244\" width=\"40\" height=\"24\"/>\n    <rect x=\"304\" y=\"244\" width=\"40\" height=\"24\"/>\n  </g>\n  <path d=\"M 24 282 L 344 282\" stroke=\"var(--nila)\" stroke-width=\"1.5\"/>\n  <path d=\"M 24 276 L 24 288 M 344 276 M 344 276 L 344 288\" stroke=\"var(--nila)\" stroke-width=\"1.5\"/>\n  <text x=\"360\" y=\"286\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--nila)\">satu blok, lazimnya 64 bita</text>\n  <text x=\"360\" y=\"262\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">tetangganya ikut terbawa gratis</text>\n</svg>",
+              "solution": "Permintaan data selalu melewati tembolok lebih dulu. Saat luput, yang diambil dari RAM bukan satu bita melainkan satu blok utuh, sehingga tetangganya ikut terbawa."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Blok, bukan bita.** Inilah rincian yang menjelaskan segalanya. Ketika tembolok luput, ia tidak mengambil satu bita dari RAM melainkan satu **blok** utuh, lazimnya 64 bita."
+            },
+            {
+              "type": "MATH",
+              "content": "Minta alamat 0x2040  →  yang diambil 0x2040..0x207F\n\nKalau data int32, satu blok memuat 16 anggota larik.\nSatu kali bayar, lima belas anggota berikutnya gratis."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Dua kecenderungan program.** Tembolok bekerja karena program tidak mengakses memori secara acak."
+            },
+            {
+              "type": "MATH",
+              "content": "Lokalitas waktu\n  Data yang baru dipakai cenderung dipakai lagi.\n  Contoh: variabel pencacah di dalam perulangan.\n\nLokalitas tempat\n  Data di sebelah yang dipakai cenderung ikut dipakai.\n  Contoh: menelusuri larik dari awal ke akhir."
+            },
+            {
+              "type": "TEXT",
+              "content": "Lokalitas tempat inilah yang dimanfaatkan pengambilan per blok. Dan kedua kecenderungan ini bisa kamu ukur sendiri."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import time\n\nN = 1400\nm = [[i * N + j for j in range(N)] for i in range(N)]\n\ndef berurutan():\n    t = time.perf_counter(); s = 0\n    for i in range(N):\n        for j in range(N):\n            s += m[i][j]\n    return time.perf_counter() - t\n\ndef melompat():\n    t = time.perf_counter(); s = 0\n    for j in range(N):\n        for i in range(N):\n            s += m[i][j]      # operasi sama persis, urutan beda\n    return time.perf_counter() - t\n\na, b = berurutan(), melompat()\nprint(f\"berurutan : {a:.3f} detik\")\nprint(f\"melompat  : {b:.3f} detik\")\nprint(f\"selisih   : {b/a:.2f} kali\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kedua fungsi mengerjakan jumlah operasi yang **persis sama**. Yang berbeda hanya urutan kunjungannya, dan selisih waktunya seluruhnya berasal dari perilaku tembolok."
+            },
+            {
+              "type": "NOTE",
+              "content": "Angka selisihnya berbeda-beda, dan keragaman itu sendiri bagian dari pelajarannya. Di panel halaman ini, yang berjalan di atas WebAssembly, hasilnya sekitar 1,2 sampai 1,4 kali. Di Python biasa pada komputermu sekitar 1,4 sampai 1,5 kali. Di bahasa terkompilasi jauh lebih besar, karena di sana tidak ada beban penafsir yang menyamarkannya.\n\nCoba turunkan `N` menjadi 600 lalu jalankan lagi. Selisihnya hampir hilang. Pada ukuran itu seluruh datanya masih muat di tembolok, jadi urutan kunjungan tidak lagi berpengaruh. Itulah sebabnya pengukuran kinerja harus memakai data sebesar yang sesungguhnya dipakai."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Temu dan luput.** Dua istilah yang akan terus kamu temui dalam pengukuran kinerja."
+            },
+            {
+              "type": "MATH",
+              "content": "Temu     data ditemukan di tembolok\nLuput    data tidak ada, harus diambil dari bawah\n\nRasio temu = temu / (temu + luput)\n\nWaktu rata-rata\n  = waktu temu + rasio luput × denda luput\n\nContoh\n  waktu temu 4 daur, denda 200 daur\n\n  rasio temu 99%  →  4 + 0,01 × 200 =   6 daur\n  rasio temu 95%  →  4 + 0,05 × 200 =  14 daur\n  rasio temu 90%  →  4 + 0,10 × 200 =  24 daur"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan betapa tajamnya. Turun dari 99 persen ke 90 persen membuat akses memori empat kali lebih lambat, padahal selisih rasionya cuma sembilan angka persen."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tiga sebab luput.** Pengelompokan ini membantu menentukan apa yang bisa diperbaiki."
+            },
+            {
+              "type": "MATH",
+              "content": "Wajib      data belum pernah diakses sama sekali\n           tidak bisa dihindari\n\nKapasitas  data yang dibutuhkan lebih besar daripada\n           temboloknya\n           diperbaiki dengan mengecilkan data kerja\n\nKonflik    beberapa alamat berebut tempat yang sama\n           diperbaiki dengan mengubah tata letak data"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Menirukan tembolok pemetaan langsung dan menghitung rasio temunya\nclass Tembolok:\n    def __init__(self, blok=64, jumlah=8):\n        self.blok, self.jumlah = blok, jumlah\n        self.isi = [None] * jumlah\n        self.temu = self.luput = 0\n\n    def baca(self, alamat):\n        nomor = alamat // self.blok\n        tempat = nomor % self.jumlah\n        if self.isi[tempat] == nomor:\n            self.temu += 1\n        else:\n            self.luput += 1\n            self.isi[tempat] = nomor\n\n    def rasio(self):\n        total = self.temu + self.luput\n        return self.temu / total if total else 0\n\nfor langkah, nama in [(4, \"berurutan\"), (64, \"satu blok\"), (512, \"melompat jauh\")]:\n    t = Tembolok()\n    for i in range(0, 4096, langkah):\n        t.baca(i)\n    print(f\"{nama:<14} langkah {langkah:>4} bita  \"\n          f\"rasio temu {t.rasio():.0%}  ({t.temu} temu, {t.luput} luput)\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Hasilnya langsung terlihat. Akses berurutan menemukan hampir semuanya di tembolok, sementara akses yang melompat sejauh satu blok atau lebih meleset setiap kali."
+            },
+            {
+              "type": "NOTE",
+              "content": "Karena itu struktur data yang tersimpan berurutan sering mengalahkan struktur yang secara teori lebih baik. Menelusuri larik satu juta anggota bisa lebih cepat daripada menelusuri senarai berantai dengan jumlah anggota yang sama, meski keduanya `O(n)`, karena anggota senarai berantai tersebar di memori dan hampir setiap langkah berarti satu luput."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah tembolok punya waktu temu 4 daur dan denda luput 200 daur. Hitung waktu akses rata-rata untuk rasio temu 95 persen dan 99,5 persen.",
+              "solution": "```\nRata-rata = waktu temu + rasio luput × denda\n\nRasio temu 95%   rasio luput 5%\n  = 4 + 0,05 × 200\n  = 4 + 10\n  = 14 daur\n\nRasio temu 99,5%  rasio luput 0,5%\n  = 4 + 0,005 × 200\n  = 4 + 1\n  = 5 daur\n```\n\nPerbandingannya `14 / 5 = 2,8 kali lebih cepat`, hanya dari menaikkan rasio temu sebesar 4,5 angka persen.\n\nYang membuatnya begitu tajam adalah besarnya denda. Karena satu luput berharga lima puluh kali satu temu, **jumlah luput** yang menentukan, bukan jumlah akses.\n\n```\nDari 1.000 akses:\n  rasio temu 95%    50 luput × 200 = 10.000 daur terbuang\n  rasio temu 99,5%   5 luput × 200 =  1.000 daur terbuang\n```\n\nInilah sebabnya pengukuran kinerja program yang banyak mengolah data hampir selalu dimulai dari pola akses memorinya, bukan dari jumlah operasi hitungnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode perbandingan penelusuran di atas. Kenapa kedua fungsi yang operasinya identik bisa berbeda waktunya?",
+              "solution": "Hasilnya bergantung pada tempat menjalankannya, misalnya:\n\n```\nberurutan : 0,166 detik\nmelompat  : 0,208 detik\nselisih   : 1,25 kali\n```\n\nKeduanya mengerjakan `N x N` penjumlahan dan `N x N` pengindeksan. Jumlah operasinya sama persis.\n\nYang berbeda adalah **urutan alamat yang disentuh**.\n\n```\nberurutan   m[0][0], m[0][1], m[0][2], ...\n            alamat bersebelahan. Satu luput membawa\n            satu blok, dan belasan kunjungan berikutnya\n            sudah ada di tembolok.\n\nmelompat    m[0][0], m[1][0], m[2][0], ...\n            tiap langkah pindah ke baris lain, yang\n            letaknya jauh. Blok yang terbawa hampir\n            tidak terpakai sebelum terdesak keluar.\n```\n\nDua catatan supaya hasilnya tidak disalahartikan.\n\nPertama, **ukuran data menentukan apakah efeknya terlihat.** Dengan `N = 600` selisihnya hampir hilang, karena seluruh datanya masih muat di tembolok. Efek lokalitas baru muncul ketika data kerja melampaui kapasitas tembolok.\n\nKedua, **Python meredam efeknya.** Daftar bersarang menyimpan penunjuk, bukan nilai, jadi datanya memang sudah tersebar sejak awal. Beban penafsir juga menenggelamkan sebagian selisihnya. Di C atau Rust dengan larik dua dimensi sungguhan, percobaan yang sama biasanya memberi selisih beberapa kali lipat, bukan 1,25 kali.\n\nArah kesimpulannya tetap sama di semua lingkungan: telusuri data searah dengan cara ia tersimpan."
+            },
+            {
+              "type": "TASK",
+              "content": "Mana yang lebih cepat ditelusuri seluruhnya, larik sejuta `int` atau senarai berantai sejuta `int`? Keduanya `O(n)`.",
+              "solution": "Larik, dan selisihnya besar.\n\n```\nLarik\n  Anggota tersimpan berurutan.\n  Satu blok 64 bita memuat 16 anggota int32.\n  Satu luput melayani 16 kunjungan berikutnya.\n  → sekitar 62.500 luput untuk sejuta anggota\n\nSenarai berantai\n  Tiap simpul dialokasikan terpisah, letaknya\n  tersebar. Alamat simpul berikutnya baru\n  diketahui setelah simpul ini dibaca.\n  → mendekati sejuta luput\n```\n\nPerbandingannya sekitar 16 kali lebih banyak luput, dan tiap luput berharga sekitar 200 daur.\n\nAda sebab kedua yang memperburuk. Pada larik, prosesor bisa menebak alamat berikutnya dan mengambilnya lebih awal. Pada senarai berantai, alamat berikutnya **baru diketahui setelah simpul ini selesai dibaca**, jadi penantiannya berantai dan tidak bisa ditumpuk.\n\nPelajarannya: notasi `O` menghitung jumlah operasi, dan menganggap semua akses memori berharga sama. Pada perangkat keras sungguhan anggapan itu tidak berlaku. Dua algoritma `O(n)` bisa berbeda belasan kali hanya karena pola aksesnya.\n\nSenarai berantai tetap berguna, misalnya saat banyak penyisipan di tengah. Tetapi untuk penelusuran murni, larik hampir selalu menang."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah program mengolah struktur berisi 20 medan, tetapi hanya memakai 2 medan di dalam perulangannya. Kenapa ini lambat, dan bagaimana memperbaikinya?",
+              "solution": "Masalahnya pada apa yang terbawa ke tembolok.\n\n```\nSatu struktur 20 medan int32 = 80 bita\nSatu blok tembolok           = 64 bita\n\nTiap kali mengambil satu struktur, hampir satu\nblok penuh terpakai, padahal yang dibutuhkan cuma\n2 medan = 8 bita.\n\nSekitar 90 persen isi tembolok terbuang.\n```\n\nPerbaikannya disebut pemisahan larik, yaitu menyimpan tiap medan sebagai lariknya sendiri.\n\n```\nSebelum   satu larik berisi struktur\n          [ {a,b,...20 medan}, {a,b,...}, ... ]\n\nSesudah   larik terpisah per medan\n          a: [a0, a1, a2, ...]\n          b: [b0, b1, b2, ...]\n          sisanya di larik lain\n```\n\nSekarang perulangan yang hanya memakai `a` dan `b` membaca dua larik yang padat. Satu blok 64 bita memuat 16 nilai yang semuanya terpakai, bukan satu struktur yang 90 persennya terbuang.\n\nSusunan ini dikenal sebagai larik-dari-struktur versus struktur-dari-larik, dan banyak dipakai di mesin permainan serta pengolahan data besar.\n\nPerbaikan yang lebih murah kalau penataan ulang terlalu merepotkan: pindahkan medan yang sering dipakai ke urutan paling depan, supaya keduanya jatuh di blok yang sama."
+            }
+          ]
+        },
+        {
+          "title": "Instruksi Mesin",
+          "summary": "Perjanjian antara perangkat keras dan perangkat lunak.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Prosesor tidak mengerti `if`, `for`, atau nama variabel. Yang dimengertinya adalah kumpulan pola bit berukuran tetap, masing-masing menyuruhnya melakukan satu hal sangat sederhana. Kumpulan itu disebut **kumpulan instruksi**, atau ISA."
+            },
+            {
+              "type": "TEXT",
+              "content": "ISA adalah perjanjian antara perangkat keras dan perangkat lunak. Ia menentukan instruksi apa yang ada, berapa register yang tersedia, dan bagaimana alamat memori dihitung. Semua program pada akhirnya diterjemahkan ke dalamnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Enam jenis instruksi** sudah menutup hampir semua yang dikerjakan prosesor."
+            },
+            {
+              "type": "MATH",
+              "content": "Aritmetika    TAMBAH, KURANG, KALI\nLogika        AND, OR, XOR, GESER\nPindah data   MUAT dari memori, SIMPAN ke memori\nLompat        LOMPAT ke alamat\nBersyarat     LOMPAT JIKA NOL, LOMPAT JIKA NEGATIF\nPemanggilan   PANGGIL, KEMBALI"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Bentuk instruksi.** Satu instruksi harus memuat kode operasinya sekaligus operan yang dikenainya, semuanya dalam lebar yang tetap."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 280\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Dua bentuk instruksi 32 bit: bentuk register dan bentuk nilai langsung, dengan contoh penguraian\">\n  <text x=\"24\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">BENTUK REGISTER &#8212; OPERASI ANTAR REGISTER</text>\n\n  <g>\n    <rect x=\"24\" y=\"38\" width=\"120\" height=\"36\" fill=\"var(--nila)\" opacity=\"0.28\"/>\n    <rect x=\"144\" y=\"38\" width=\"100\" height=\"36\" fill=\"currentColor\" opacity=\"0.08\"/>\n    <rect x=\"244\" y=\"38\" width=\"100\" height=\"36\" fill=\"currentColor\" opacity=\"0.08\"/>\n    <rect x=\"344\" y=\"38\" width=\"100\" height=\"36\" fill=\"currentColor\" opacity=\"0.08\"/>\n    <rect x=\"444\" y=\"38\" width=\"112\" height=\"36\" fill=\"var(--kunyit)\" opacity=\"0.2\"/>\n  </g>\n  <g stroke=\"currentColor\" stroke-opacity=\"0.3\" fill=\"none\">\n    <rect x=\"24\" y=\"38\" width=\"532\" height=\"36\"/>\n    <line x1=\"144\" y1=\"38\" x2=\"144\" y2=\"74\"/><line x1=\"244\" y1=\"38\" x2=\"244\" y2=\"74\"/>\n    <line x1=\"344\" y1=\"38\" x2=\"344\" y2=\"74\"/><line x1=\"444\" y1=\"38\" x2=\"444\" y2=\"74\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" text-anchor=\"middle\">\n    <text x=\"84\" y=\"61\" fill=\"var(--nila)\">opcode</text>\n    <text x=\"194\" y=\"61\" fill=\"currentColor\" opacity=\"0.8\">rd</text>\n    <text x=\"294\" y=\"61\" fill=\"currentColor\" opacity=\"0.8\">rs1</text>\n    <text x=\"394\" y=\"61\" fill=\"currentColor\" opacity=\"0.8\">rs2</text>\n    <text x=\"500\" y=\"61\" fill=\"var(--kunyit)\">fungsi</text>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"middle\">\n    <text x=\"84\" y=\"90\">7 bit</text><text x=\"194\" y=\"90\">5 bit</text>\n    <text x=\"294\" y=\"90\">5 bit</text><text x=\"394\" y=\"90\">5 bit</text><text x=\"500\" y=\"90\">10 bit</text>\n  </g>\n\n  <text x=\"24\" y=\"130\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">BENTUK NILAI LANGSUNG &#8212; NILAI IKUT DI DALAM INSTRUKSI</text>\n  <g>\n    <rect x=\"24\" y=\"144\" width=\"120\" height=\"36\" fill=\"var(--nila)\" opacity=\"0.28\"/>\n    <rect x=\"144\" y=\"144\" width=\"100\" height=\"36\" fill=\"currentColor\" opacity=\"0.08\"/>\n    <rect x=\"244\" y=\"144\" width=\"100\" height=\"36\" fill=\"currentColor\" opacity=\"0.08\"/>\n    <rect x=\"344\" y=\"144\" width=\"212\" height=\"36\" fill=\"var(--kunyit)\" opacity=\"0.2\"/>\n  </g>\n  <g stroke=\"currentColor\" stroke-opacity=\"0.3\" fill=\"none\">\n    <rect x=\"24\" y=\"144\" width=\"532\" height=\"36\"/>\n    <line x1=\"144\" y1=\"144\" x2=\"144\" y2=\"180\"/><line x1=\"244\" y1=\"144\" x2=\"244\" y2=\"180\"/>\n    <line x1=\"344\" y1=\"144\" x2=\"344\" y2=\"180\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" text-anchor=\"middle\">\n    <text x=\"84\" y=\"167\" fill=\"var(--nila)\">opcode</text>\n    <text x=\"194\" y=\"167\" fill=\"currentColor\" opacity=\"0.8\">rd</text>\n    <text x=\"294\" y=\"167\" fill=\"currentColor\" opacity=\"0.8\">rs1</text>\n    <text x=\"450\" y=\"167\" fill=\"var(--kunyit)\">nilai langsung</text>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"middle\">\n    <text x=\"84\" y=\"196\">7 bit</text><text x=\"194\" y=\"196\">5 bit</text>\n    <text x=\"294\" y=\"196\">5 bit</text><text x=\"450\" y=\"196\">15 bit</text>\n  </g>\n\n  <line x1=\"24\" y1=\"218\" x2=\"576\" y2=\"218\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n  <text x=\"24\" y=\"242\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">TAMBAH r3, r1, r2</text>\n  <text x=\"230\" y=\"242\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">isi r1 ditambah isi r2, simpan ke r3</text>\n  <text x=\"24\" y=\"268\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">TAMBAHI r3, r1, 100</text>\n  <text x=\"230\" y=\"268\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">isi r1 ditambah 100, simpan ke r3</text>\n</svg>",
+              "solution": "Dua bentuk instruksi 32 bit. Bentuk register memakai tiga nomor register, bentuk nilai langsung menukar satu register dengan nilai yang ditulis di dalam instruksinya sendiri."
+            },
+            {
+              "type": "TEXT",
+              "content": "Lebar instruksi yang tetap menciptakan tarik-menarik. Tiap bit yang diberikan ke kode operasi diambil dari medan lain."
+            },
+            {
+              "type": "MATH",
+              "content": "Instruksi 32 bit, 5 bit untuk nomor register\n  → 2⁵ = 32 register\n\nKalau registernya mau 64, perlu 6 bit per register.\nTiga medan register berarti 3 bit tambahan,\ndiambil dari kode operasi atau nilai langsung."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Cara mencari operan.** Sebuah instruksi bisa menyebut nilainya dengan beberapa cara, dan ini disebut mode pengalamatan."
+            },
+            {
+              "type": "MATH",
+              "content": "Langsung      nilainya ditulis di instruksi\n              TAMBAHI r1, r1, 5\n\nRegister      nilainya ada di register\n              TAMBAH r1, r2, r3\n\nTak langsung  register berisi alamatnya\n              MUAT r1, (r2)\n\nTerindeks     alamat = register + geseran\n              MUAT r1, 8(r2)\n              inilah yang mewujudkan data[i]"
+            },
+            {
+              "type": "TEXT",
+              "content": "Mode terindeks pantas diperhatikan. Rumus `alamat = awal + geseran` di bagian memori tadi persis diwujudkan oleh satu mode pengalamatan ini, dan itulah sebabnya mengakses anggota larik bisa dikerjakan dalam satu instruksi."
+            },
+            {
+              "type": "TEXT",
+              "content": "**RISC dan CISC.** Dua aliran perancangan dengan pertukaran yang berbeda."
+            },
+            {
+              "type": "MATH",
+              "content": "CISC   instruksi banyak dan rumit\n       lebarnya berubah-ubah, 1 sampai 15 bita\n       satu instruksi bisa membaca memori,\n       menghitung, lalu menulis balik\n       contoh: x86\n\nRISC   instruksi sedikit dan sederhana\n       lebarnya tetap, memudahkan pipeline\n       hanya MUAT dan SIMPAN yang menyentuh memori\n       contoh: ARM, RISC-V"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perbedaannya mengabur di dalam. Prosesor x86 masa kini memecah instruksi CISC-nya menjadi operasi mikro bergaya RISC sebelum dijalankan. Yang bertahan dari CISC terutama bentuk luarnya, demi kecocokan dengan perangkat lunak lama."
+            },
+            {
+              "type": "NOTE",
+              "content": "RISC-V adalah ISA terbuka yang kini banyak dipakai untuk mengajar dan mulai dipakai di produk sungguhan. Terbuka berarti siapa pun boleh membuat prosesor dengannya tanpa membayar lisensi. Buku Patterson dan Hennessy, acuan baku mata kuliah ini, sudah memakainya menggantikan MIPS."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menulis penafsir sendiri.** Cara tercepat memahami daur instruksi adalah membangunnya. Mesin berikut punya empat register, memori kecil, dan sembilan instruksi."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "MUAT, SIMPAN, MUATI, TAMBAH, KURANG, LOMPAT, LJN, CETAK, HENTI = range(9)\n\ndef jalankan(program, memori=None, batas=200):\n    reg = [0, 0, 0, 0]\n    mem = memori or [0] * 16\n    pc = 0\n    langkah = 0\n\n    while langkah < batas:\n        langkah += 1\n        kode, a, b, c = program[pc]        # AMBIL\n        pc += 1                            # majukan pencacah program\n\n        if kode == MUATI:   reg[a] = b                 # PECAH dan KERJAKAN\n        elif kode == MUAT:  reg[a] = mem[reg[b] + c]\n        elif kode == SIMPAN: mem[reg[b] + c] = reg[a]\n        elif kode == TAMBAH: reg[a] = reg[b] + reg[c]\n        elif kode == KURANG: reg[a] = reg[b] - reg[c]\n        elif kode == LOMPAT: pc = a\n        elif kode == LJN:\n            if reg[a] == 0: pc = b                     # lompat jika nol\n        elif kode == CETAK: print(\"keluaran:\", reg[a])\n        elif kode == HENTI: break\n    return reg, mem\n\n# Menjumlahkan 1 sampai 5\nprogram = [\n    (MUATI,  0, 0, 0),    # r0 = 0   penampung jumlah\n    (MUATI,  1, 5, 0),    # r1 = 5   pencacah\n    (MUATI,  2, 1, 0),    # r2 = 1   tetapan satu\n    (TAMBAH, 0, 0, 1),    # r0 += r1\n    (KURANG, 1, 1, 2),    # r1 -= 1\n    (LJN,    1, 7, 0),    # kalau r1 == 0, lompat ke 7\n    (LOMPAT, 3, 0, 0),    # kalau belum, ulangi dari 3\n    (CETAK,  0, 0, 0),\n    (HENTI,  0, 0, 0),\n]\n\nreg, _ = jalankan(program)\nprint(\"register akhir:\", reg)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan tiga hal. Tidak ada `for` di dalam mesin ini; perulangan dibuat dari `LOMPAT` yang mengubah pencacah program. Tidak ada `if`; percabangan dibuat dari `LJN`. Dan pencacah program dimajukan **sebelum** instruksinya dikerjakan, supaya instruksi lompat bisa menimpanya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Instruksi yang sama, disandikan sebagai satu bilangan 32 bit\ndef sandikan(kode, a, b, c):\n    return (kode << 24) | (a << 16) | (b << 8) | c\n\ndef pecahkan(kata):\n    return ((kata >> 24) & 0xFF, (kata >> 16) & 0xFF,\n            (kata >> 8) & 0xFF, kata & 0xFF)\n\nkata = sandikan(3, 0, 0, 1)        # TAMBAH r0, r0, r1\nprint(f\"0x{kata:08X}  {kata:032b}\")\nprint(\"dipecah kembali:\", pecahkan(kata))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Inilah yang sebenarnya tersimpan di memori: bukan nama instruksi, melainkan satu bilangan. Tahap pecah di dalam prosesor adalah rangkaian yang mengambil potongan-potongan bit itu dan mengarahkannya ke bagian yang tepat."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah ISA punya instruksi 16 bit dengan 4 bit kode operasi dan tiga medan register. Berapa register yang bisa dialamati, dan berapa instruksi yang bisa ada?",
+              "solution": "```\nLebar instruksi      16 bit\nKode operasi          4 bit\nTersisa              12 bit untuk tiga medan register\n12 ÷ 3 = 4 bit per register\n\nRegister    2⁴ = 16 register\nInstruksi   2⁴ = 16 kode operasi\n```\n\nKeduanya terbatas di 16, dan itu memang sempit untuk ISA sungguhan.\n\nPilihan yang bisa diambil perancang:\n\n```\nPerlebar instruksi jadi 32 bit\n  Lebih lega, tapi tiap program jadi dua kali\n  lebih besar dan menghabiskan lebih banyak\n  tembolok instruksi.\n\nKurangi jumlah medan register\n  Dua medan, bukan tiga, dengan bentuk\n  \"r1 = r1 + r2\". Ini yang dipakai x86.\n  Hemat bit, tapi nilai lama r1 tertimpa.\n\nPakai beberapa bentuk instruksi\n  Sebagian kode operasi dipakai untuk instruksi\n  yang tidak butuh tiga register, dan bit sisanya\n  dipakai untuk nilai langsung.\n```\n\nCara ketiga yang paling umum, dan itulah sebabnya ISA sungguhan punya beberapa bentuk instruksi seperti pada diagram tadi."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan penafsir di atas, lalu ubah programnya agar menjumlahkan 1 sampai 10.",
+              "solution": "Cukup ubah satu baris:\n\n```python\n(MUATI, 1, 10, 0),    # r1 = 10, bukan 5\n```\n\nHasilnya `55`, yaitu `10 × 11 ÷ 2`. Rumus itu sudah kamu buktikan dengan induksi di Matematika Diskrit.\n\nTelusuri jalannya untuk memastikan:\n\n```\nr0 = 0,  r1 = 10,  r2 = 1\n\nputaran 1   r0 = 0 + 10 = 10,  r1 = 9\nputaran 2   r0 = 10 + 9 = 19,  r1 = 8\n...\nputaran 10  r0 = 55,           r1 = 0\n            LJN melihat r1 == 0, lompat keluar\n```\n\nPerhatikan bahwa perulangannya tidak dinyatakan di mana pun. Yang ada hanya `LOMPAT 3` yang mengembalikan pencacah program ke instruksi ketiga, dan `LJN` yang memeriksa apakah sudah waktunya berhenti.\n\nSetiap `for` dan `while` yang pernah kamu tulis diterjemahkan menjadi pasangan seperti ini. Perulangan bukan hal mendasar bagi mesin; ia dibangun dari lompatan."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis program untuk mesin di atas yang menghitung `5 × 4` tanpa instruksi perkalian.",
+              "solution": "Perkalian dibuat dari penjumlahan berulang.\n\n```python\nprogram = [\n    (MUATI,  0, 0, 0),    # r0 = 0    hasil\n    (MUATI,  1, 5, 0),    # r1 = 5    yang dikali\n    (MUATI,  2, 4, 0),    # r2 = 4    pencacah\n    (MUATI,  3, 1, 0),    # r3 = 1    tetapan satu\n    (TAMBAH, 0, 0, 1),    # r0 += r1\n    (KURANG, 2, 2, 3),    # r2 -= 1\n    (LJN,    2, 8, 0),    # kalau r2 == 0, keluar\n    (LOMPAT, 4, 0, 0),    # ulangi\n    (CETAK,  0, 0, 0),\n    (HENTI,  0, 0, 0),\n]\n```\n\nHasilnya `20`.\n\nPerhatikan bahwa keempat register terpakai semua. Register `r3` cuma menyimpan angka satu, dan itu terasa boros. Tetapi mesin ini tidak punya instruksi `KURANGI` dengan nilai langsung, jadi angka satu harus ditaruh di register lebih dulu.\n\nInilah tekanan nyata yang dirasakan perancang ISA. Menambah instruksi `KURANGI r2, r2, 1` akan membebaskan satu register dan memangkas satu instruksi, dengan harga satu kode operasi.\n\nProsesor yang tidak punya instruksi perkalian sungguhan memang ada, terutama mikropengendali kecil. Di sana penyusun kode membuat perkalian dari geseran dan penjumlahan, dengan cara yang jauh lebih cepat daripada penjumlahan berulang."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa prosesor RISC melarang instruksi aritmetika menyentuh memori secara langsung?",
+              "solution": "Supaya setiap instruksi memakan waktu yang bisa diramalkan.\n\n```\nInstruksi yang hanya menyentuh register\n  waktunya tetap, sekitar 1 daur\n\nInstruksi yang menyentuh memori\n  4 daur kalau temu di L1\n  200 daur kalau luput sampai RAM\n  waktunya tidak bisa diramalkan\n```\n\nKalau satu instruksi bisa melakukan keduanya, misalnya `TAMBAH r1, (r2)`, maka instruksi itu kadang selesai dalam 1 daur dan kadang dalam 200 daur.\n\nAkibatnya pada pipeline, yang dibahas di bagian berikutnya:\n\n```\nPipeline mengandalkan tiap tahap selesai dalam\nwaktu yang sama. Satu instruksi yang kadang\nbutuh 200 daur memaksa seluruh pipeline menunggu,\ndan rancangannya jadi jauh lebih rumit.\n```\n\nDengan memisahkan `MUAT` dan `SIMPAN` dari instruksi hitung, hanya dua jenis instruksi itu yang bisa lama. Penyusun kode pun bisa menyusun ulang urutan instruksi supaya pekerjaan lain dikerjakan selama menunggu data datang.\n\nHarganya: program jadi lebih panjang. `TAMBAH r1, (r2)` yang satu instruksi di CISC menjadi dua instruksi di RISC. Pertukaran ini dinilai sepadan, dan itulah sebabnya hampir semua prosesor baru memakai rancangan RISC di dalamnya."
+            }
+          ]
+        },
+        {
+          "title": "Jalur Data dan Pipeline",
+          "summary": "Mengerjakan lima instruksi sekaligus tanpa menunggu.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Daur ambil, pecah, kerjakan sudah kamu kenal dari Pengantar Ilmu Komputer. Sekarang pertanyaannya: kalau satu instruksi butuh lima tahap, apakah prosesor harus menunggu kelimanya selesai sebelum mulai instruksi berikutnya?"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Lima tahap.** Daur tiga langkah itu pada rancangan sungguhan dipecah lebih halus."
+            },
+            {
+              "type": "MATH",
+              "content": "IF   ambil instruksi dari memori\nID   pecah, dan baca register yang dibutuhkan\nEX   kerjakan di ALU\nME   baca atau tulis memori, kalau perlu\nWB   tulis hasilnya kembali ke register"
+            },
+            {
+              "type": "TEXT",
+              "content": "Tiap tahap memakai bagian perangkat keras yang berbeda. Saat tahap EX sedang menghitung, rangkaian pengambil instruksi di tahap IF **menganggur**. Itu pemborosan yang jelas."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pipeline.** Mulai instruksi berikutnya begitu tahap pertama selesai, tanpa menunggu instruksi sebelumnya rampung."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Bagan pipeline lima tahap: lima instruksi tumpang tindih sehingga satu instruksi selesai tiap daur\">\n  <text x=\"24\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">LIMA TAHAP, LIMA INSTRUKSI TUMPANG TINDIH</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\" text-anchor=\"middle\">\n    <text x=\"118\" y=\"46\">1</text><text x=\"178\" y=\"46\">2</text><text x=\"238\" y=\"46\">3</text>\n    <text x=\"298\" y=\"46\">4</text><text x=\"358\" y=\"46\">5</text><text x=\"418\" y=\"46\">6</text>\n    <text x=\"478\" y=\"46\">7</text><text x=\"538\" y=\"46\">8</text>\n  </g>\n  <text x=\"68\" y=\"46\" font-family=\"system-ui, sans-serif\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"middle\">daur</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11.5\" fill=\"currentColor\" opacity=\"0.7\">\n    <text x=\"24\" y=\"76\">I1</text><text x=\"24\" y=\"110\">I2</text><text x=\"24\" y=\"144\">I3</text>\n    <text x=\"24\" y=\"178\">I4</text><text x=\"24\" y=\"212\">I5</text>\n  </g>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" text-anchor=\"middle\">\n    <g>\n      <rect x=\"90\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.32\"/><text x=\"118\" y=\"76\" fill=\"currentColor\">IF</text>\n      <rect x=\"150\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.26\"/><text x=\"178\" y=\"76\" fill=\"currentColor\">ID</text>\n      <rect x=\"210\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.2\"/><text x=\"238\" y=\"76\" fill=\"currentColor\">EX</text>\n      <rect x=\"270\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.14\"/><text x=\"298\" y=\"76\" fill=\"currentColor\">ME</text>\n      <rect x=\"330\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.09\"/><text x=\"358\" y=\"76\" fill=\"currentColor\">WB</text>\n    </g>\n    <g transform=\"translate(60,34)\">\n      <rect x=\"90\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.32\"/><text x=\"118\" y=\"76\" fill=\"currentColor\">IF</text>\n      <rect x=\"150\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.26\"/><text x=\"178\" y=\"76\" fill=\"currentColor\">ID</text>\n      <rect x=\"210\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.2\"/><text x=\"238\" y=\"76\" fill=\"currentColor\">EX</text>\n      <rect x=\"270\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.14\"/><text x=\"298\" y=\"76\" fill=\"currentColor\">ME</text>\n      <rect x=\"330\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.09\"/><text x=\"358\" y=\"76\" fill=\"currentColor\">WB</text>\n    </g>\n    <g transform=\"translate(120,68)\">\n      <rect x=\"90\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.32\"/><text x=\"118\" y=\"76\" fill=\"currentColor\">IF</text>\n      <rect x=\"150\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.26\"/><text x=\"178\" y=\"76\" fill=\"currentColor\">ID</text>\n      <rect x=\"210\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.2\"/><text x=\"238\" y=\"76\" fill=\"currentColor\">EX</text>\n      <rect x=\"270\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.14\"/><text x=\"298\" y=\"76\" fill=\"currentColor\">ME</text>\n      <rect x=\"330\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.09\"/><text x=\"358\" y=\"76\" fill=\"currentColor\">WB</text>\n    </g>\n    <g transform=\"translate(180,102)\">\n      <rect x=\"90\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.32\"/><text x=\"118\" y=\"76\" fill=\"currentColor\">IF</text>\n      <rect x=\"150\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.26\"/><text x=\"178\" y=\"76\" fill=\"currentColor\">ID</text>\n      <rect x=\"210\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.2\"/><text x=\"238\" y=\"76\" fill=\"currentColor\">EX</text>\n      <rect x=\"270\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.14\"/><text x=\"298\" y=\"76\" fill=\"currentColor\">ME</text>\n    </g>\n    <g transform=\"translate(240,136)\">\n      <rect x=\"90\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.32\"/><text x=\"118\" y=\"76\" fill=\"currentColor\">IF</text>\n      <rect x=\"150\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.26\"/><text x=\"178\" y=\"76\" fill=\"currentColor\">ID</text>\n      <rect x=\"210\" y=\"60\" width=\"56\" height=\"22\" fill=\"var(--nila)\" opacity=\"0.2\"/><text x=\"238\" y=\"76\" fill=\"currentColor\">EX</text>\n    </g>\n  </g>\n\n  <rect x=\"330\" y=\"54\" width=\"60\" height=\"170\" fill=\"var(--kunyit)\" opacity=\"0.1\"/>\n  <line x1=\"330\" y1=\"54\" x2=\"330\" y2=\"224\" stroke=\"var(--kunyit)\" stroke-opacity=\"0.5\" stroke-dasharray=\"3 3\"/>\n  <line x1=\"390\" y1=\"54\" x2=\"390\" y2=\"224\" stroke=\"var(--kunyit)\" stroke-opacity=\"0.5\" stroke-dasharray=\"3 3\"/>\n  <text x=\"360\" y=\"244\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"var(--kunyit)\">penuh</text>\n\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">\n    <text x=\"24\" y=\"268\">IF ambil  ID pecah  EX hitung  ME memori  WB tulis balik</text>\n  </g>\n  <text x=\"24\" y=\"290\" font-family=\"system-ui, sans-serif\" font-size=\"11.5\" fill=\"var(--nila)\">Tiap instruksi tetap butuh 5 daur, tetapi satu instruksi selesai tiap daur.</text>\n</svg>",
+              "solution": "Lima instruksi tumpang tindih di lima tahap. Setelah pipeline terisi penuh, satu instruksi selesai setiap daur meski tiap instruksi tetap butuh lima daur."
+            },
+            {
+              "type": "MATH",
+              "content": "Tanpa pipeline\n  5 instruksi × 5 daur = 25 daur\n\nDengan pipeline\n  5 daur untuk mengisi + 4 daur sisanya = 9 daur\n\nUntuk n instruksi\n  tanpa pipeline  5n\n  dengan pipeline n + 4"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bahwa satu instruksi tetap butuh lima daur dari awal sampai selesai. Yang berubah adalah **daya keluarannya**: satu instruksi rampung tiap daur, bukan tiap lima daur."
+            },
+            {
+              "type": "NOTE",
+              "content": "Pipeline tidak mempercepat satu instruksi, melainkan menaikkan jumlah instruksi yang selesai per satuan waktu. Pembedaan antara waktu tempuh dan daya keluaran ini muncul di mana-mana, dari jaringan sampai jalur perakitan pabrik."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Hambatan.** Tiga jenis keadaan membuat pipeline tidak bisa jalan mulus."
+            },
+            {
+              "type": "MATH",
+              "content": "Hambatan struktur\n  Dua tahap butuh perangkat keras yang sama\n  pada daur yang sama.\n  Diatasi dengan memperbanyak perangkatnya.\n\nHambatan data\n  Instruksi butuh hasil instruksi sebelumnya\n  yang belum selesai.\n  TAMBAH r1, r2, r3\n  KURANG r4, r1, r5    ← r1 belum ditulis\n\nHambatan kendali\n  Setelah lompat bersyarat, prosesor belum tahu\n  instruksi mana yang harus diambil berikutnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mengatasi hambatan data.** Cara termudah adalah menyuruh pipeline menunggu, tetapi itu membuang daur. Cara yang dipakai prosesor sungguhan adalah **penerusan**: mengambil hasil langsung dari keluaran ALU sebelum sempat ditulis ke register."
+            },
+            {
+              "type": "MATH",
+              "content": "Tanpa penerusan\n  daur  1   2   3   4   5   6   7\n  I1   IF  ID  EX  ME  WB\n  I2       IF  ID  ⊗   ⊗   EX  ME     dua daur terbuang\n\nDengan penerusan\n  daur  1   2   3   4   5   6\n  I1   IF  ID  EX  ME  WB\n  I2       IF  ID  EX  ME  WB\n                 ↑\n           hasil EX I1 dialirkan langsung"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mengatasi hambatan kendali.** Setelah instruksi lompat bersyarat, prosesor harus menebak. Kalau tebakannya benar, tidak ada yang terbuang. Kalau salah, instruksi yang sudah terlanjur masuk pipeline harus dibuang."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Berapa mahalnya satu tebakan yang meleset\nTAHAP = 5\nDENDA = TAHAP - 1          # instruksi yang harus dibuang\n\nfor akurasi in (0.50, 0.90, 0.95, 0.99):\n    cabang_per_instruksi = 0.20     # sekitar 1 dari 5 instruksi\n    boros = cabang_per_instruksi * (1 - akurasi) * DENDA\n    print(f\"akurasi tebakan {akurasi:>5.0%}  \"\n          f\"daur terbuang per instruksi: {boros:.3f}  \"\n          f\"CPI jadi {1 + boros:.3f}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pada pipeline lima tahap dendanya masih ringan. Prosesor masa kini punya pipeline lima belas sampai dua puluh tahap, dan di sana satu tebakan meleset membuang belasan daur. Itulah sebabnya penebak cabang masa kini mencapai akurasi di atas 95 persen, dan menghabiskan luas cip yang tidak sedikit."
+            },
+            {
+              "type": "NOTE",
+              "content": "Penebakan cabang pernah menjadi lubang keamanan. Serangan Spectre yang terungkap pada 2018 memanfaatkan jejak yang ditinggalkan instruksi yang dijalankan atas dasar tebakan yang kemudian dibatalkan. Hasilnya memang dibuang, tetapi perubahan isi tembolok tidak dikembalikan, dan dari situ data rahasia bisa disimpulkan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Menirukan pipeline lima tahap dan menghitung daurnya\ndef simulasi(jumlah_instruksi, tahap=5, hambatan=0):\n    daur = tahap + (jumlah_instruksi - 1) + hambatan\n    tanpa = jumlah_instruksi * tahap\n    return daur, tanpa\n\nfor n in (1, 5, 100, 10000):\n    pakai, tanpa = simulasi(n)\n    print(f\"{n:>6} instruksi | tanpa pipeline {tanpa:>7} daur | \"\n          f\"dengan pipeline {pakai:>7} daur | {tanpa/pakai:.2f}x\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bahwa percepatannya mendekati jumlah tahap hanya kalau instruksinya banyak. Untuk lima instruksi, percepatannya cuma 2,8 kali, bukan 5 kali, karena daur pengisian pipeline belum terbayar."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Di atas pipeline.** Dua teknik lain yang dipakai prosesor masa kini."
+            },
+            {
+              "type": "MATH",
+              "content": "Superskalar     beberapa pipeline sejajar\n                4 sampai 8 instruksi per daur\n                membuat CPI bisa di bawah 1\n\nLuar urutan     instruksi dikerjakan tidak sesuai\n                urutan tulisnya, mengisi waktu\n                tunggu dengan pekerjaan lain\n                hasilnya tetap disusun ulang\n                sesuai urutan asli"
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah pipeline 5 tahap menjalankan 1.000 instruksi tanpa hambatan. Berapa daur dibutuhkan, dan berapa percepatannya dibanding tanpa pipeline?",
+              "solution": "```\nDengan pipeline\n  daur = tahap + (n − 1)\n       = 5 + 999\n       = 1.004 daur\n\nTanpa pipeline\n  daur = n × tahap\n       = 1.000 × 5\n       = 5.000 daur\n\nPercepatan = 5.000 / 1.004 = 4,98 kali\n```\n\nHampir mencapai 5 kali, yaitu jumlah tahapnya, tetapi tidak persis. Selisihnya berasal dari 4 daur pengisian pipeline di awal.\n\nMakin banyak instruksinya, makin kecil arti daur pengisian itu:\n\n```\n     10 instruksi  →  3,57 kali\n    100 instruksi  →  4,81 kali\n  1.000 instruksi  →  4,98 kali\n 10.000 instruksi  →  5,00 kali\n```\n\nPercepatan maksimumnya sama dengan jumlah tahap, dan hanya bisa didekati, tidak bisa dicapai. Itu pun dengan anggapan tidak ada hambatan sama sekali, yang tidak pernah terjadi pada program sungguhan."
+            },
+            {
+              "type": "TASK",
+              "content": "Urutan instruksi berikut punya hambatan data. Tunjukkan di mana, lalu susun ulang agar hambatannya hilang.\n\n```\n1. TAMBAH r1, r2, r3\n2. KURANG r4, r1, r5\n3. TAMBAH r6, r7, r8\n4. KURANG r9, r6, r2\n```",
+              "solution": "Hambatannya ada di dua tempat:\n\n```\nInstruksi 2 butuh r1 dari instruksi 1\nInstruksi 4 butuh r6 dari instruksi 3\n```\n\nKeduanya berurutan langsung, jadi instruksi kedua masuk tahap EX sebelum instruksi pertama menulis hasilnya.\n\nSusunan ulang yang menyelipkan pekerjaan lain di antaranya:\n\n```\n1. TAMBAH r1, r2, r3\n2. TAMBAH r6, r7, r8     ← dimajukan, tidak bergantung\n3. KURANG r4, r1, r5     ← r1 sudah siap sekarang\n4. KURANG r9, r6, r2     ← r6 sudah siap sekarang\n```\n\nSekarang ada satu instruksi penyela di antara tiap pasangan yang saling bergantung, jadi hasilnya sempat ditulis sebelum dibutuhkan.\n\nDua catatan penting.\n\nPertama, penyusunan ulang ini sah karena instruksi 1 dan 3 memang tidak saling bergantung. Mengubah urutan instruksi yang saling bergantung akan mengubah hasil programnya.\n\nKedua, pada prosesor sungguhan yang punya penerusan, hambatan ini sudah teratasi di perangkat keras tanpa perlu penyusunan ulang. Tetapi penyusun kode tetap mengerjakannya, karena penerusan tidak menolong untuk kasus `MUAT` yang hasilnya baru siap di tahap ME."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode penebak cabang di atas. Kenapa akurasi 90 persen masih dianggap buruk untuk prosesor masa kini?",
+              "solution": "Keluarannya:\n\n```\nakurasi tebakan   50%  daur terbuang per instruksi: 0.400  CPI jadi 1.400\nakurasi tebakan   90%  daur terbuang per instruksi: 0.080  CPI jadi 1.080\nakurasi tebakan   95%  daur terbuang per instruksi: 0.040  CPI jadi 1.040\nakurasi tebakan   99%  daur terbuang per instruksi: 0.008  CPI jadi 1.008\n```\n\nPada pipeline 5 tahap, akurasi 90 persen cuma menaikkan CPI sebesar 8 persen. Terlihat ringan.\n\nMasalahnya, prosesor masa kini bukan 5 tahap.\n\n```\nPipeline 20 tahap  →  denda 19 daur, bukan 4\n\nakurasi 90%  →  0,20 × 0,10 × 19 = 0,38 daur\n                CPI jadi 1,38, naik 38 persen\n```\n\nLebih dari sepertiga kemampuan prosesor terbuang hanya untuk tebakan yang meleset.\n\nAda pengali kedua. Prosesor superskalar mengerjakan 4 sampai 8 instruksi per daur, jadi satu tebakan meleset tidak membuang 19 instruksi melainkan bisa lebih dari seratus.\n\nItulah sebabnya penebak cabang masa kini sangat rumit, menyimpan riwayat ribuan cabang, dan mencapai akurasi di atas 95 persen. Pada perkara ini, selisih beberapa angka persen berharga mahal."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa menaikkan jumlah tahap pipeline tidak selalu membuat prosesor lebih cepat?",
+              "solution": "Karena dua biaya ikut naik bersamanya.\n\n**Pertama, denda tebakan meleset membesar.**\n\n```\n5 tahap   → denda 4 daur\n20 tahap  → denda 19 daur\n```\n\nMakin dalam pipeline-nya, makin banyak instruksi yang terlanjur masuk dan harus dibuang saat tebakan meleset.\n\n**Kedua, tiap tahap butuh register penyangga.**\n\nDi antara dua tahap harus ada flip-flop yang menahan hasil sementara. Register itu sendiri memakan waktu, dan waktu itu tidak ikut terbagi saat tahapnya dipecah lebih halus.\n\n```\nJalur kerja 1,0 ns dipecah 5 tahap\n  tiap tahap 0,20 ns + 0,05 ns register = 0,25 ns\n\nJalur yang sama dipecah 20 tahap\n  tiap tahap 0,05 ns + 0,05 ns register = 0,10 ns\n  separuh waktunya habis di register\n```\n\nPada 20 tahap, setengah daurnya tidak mengerjakan apa pun selain menyimpan hasil antara.\n\nSejarahnya sudah membuktikan ini. Intel Pentium 4 memakai pipeline sampai 31 tahap untuk mengejar kecepatan detak tinggi, dan hasilnya kalah dari rancangan yang pipeline-nya lebih pendek. Rancangan sesudahnya kembali ke pipeline yang lebih dangkal.\n\nJadi ada kedalaman optimum, dan di luar itu penambahan tahap justru merugikan."
+            }
+          ]
+        },
+        {
+          "title": "Mengukur Kinerja",
+          "summary": "Kenapa GHz menyesatkan dan menambah inti ada batasnya.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "\"Prosesor ini 3 GHz\" terdengar seperti ukuran kecepatan, padahal bukan. Bagian ini menyusun ukuran yang benar, dan menunjukkan kenapa menambah inti tidak membuat program dua kali lebih cepat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Persamaan waktu prosesor.** Satu rumus yang memuat seluruh faktor yang menentukan."
+            },
+            {
+              "type": "MATH",
+              "content": "waktu = jumlah instruksi × CPI × waktu satu daur\n\nCPI = daur per instruksi\n\nKetiganya dipengaruhi hal yang berbeda:\n\n  jumlah instruksi  oleh algoritma, penyusun kode, ISA\n  CPI               oleh rancangan prosesor, tembolok\n  waktu satu daur   oleh teknologi pembuatan cip"
+            },
+            {
+              "type": "TEXT",
+              "content": "Rumus ini menjelaskan kenapa kecepatan detak saja menyesatkan. Prosesor 3 GHz dengan CPI 2 lebih lambat daripada prosesor 2 GHz dengan CPI 1, meski angka GHz-nya lebih besar."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def waktu(instruksi, cpi, ghz):\n    return instruksi * cpi / (ghz * 1e9)\n\nmesin = [(\"A\", 3.0, 2.0), (\"B\", 2.0, 1.2), (\"C\", 3.5, 2.4)]\nINSTRUKSI = 1_000_000_000\n\nfor nama, ghz, cpi in mesin:\n    t = waktu(INSTRUKSI, cpi, ghz)\n    print(f\"Mesin {nama}: {ghz} GHz, CPI {cpi}  ->  {t:.3f} detik\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**CPI gabungan.** Instruksi yang berbeda memakan daur yang berbeda, jadi CPI sebuah program adalah rata-rata tertimbang."
+            },
+            {
+              "type": "MATH",
+              "content": "CPI = Σ (bagian jenis i × CPI jenis i)\n\nContoh\n  hitung      50%, CPI 1\n  muat        30%, CPI 2\n  simpan      10%, CPI 2\n  cabang      10%, CPI 3\n\nCPI = 0,5×1 + 0,3×2 + 0,1×2 + 0,1×3\n    = 0,5 + 0,6 + 0,2 + 0,3\n    = 1,6"
+            },
+            {
+              "type": "NOTE",
+              "content": "Ukuran MIPS, yaitu juta instruksi per detik, sering dipakai dan hampir selalu menyesatkan. Dua prosesor dengan ISA berbeda membutuhkan jumlah instruksi berbeda untuk pekerjaan yang sama, jadi angka MIPS yang lebih besar tidak berarti pekerjaannya selesai lebih cepat. Yang bisa dibandingkan hanya **waktu menyelesaikan pekerjaan yang sama**."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Hukum Amdahl.** Kalau kamu mempercepat sebagian dari sebuah program, percepatan keseluruhannya dibatasi oleh bagian yang tidak kamu percepat."
+            },
+            {
+              "type": "MATH",
+              "content": "percepatan = 1 / ( (1 − p) + p/s )\n\n  p = bagian yang bisa dipercepat\n  s = berapa kali bagian itu dipercepat\n\nBatas atasnya, saat s → tak hingga:\n\n  percepatan maksimum = 1 / (1 − p)"
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Grafik hukum Amdahl: percepatan mendatar mendekati batas yang ditentukan bagian yang tidak bisa diparalelkan\">\n  <g stroke=\"currentColor\" stroke-opacity=\"0.25\">\n    <line x1=\"70\" y1=\"250\" x2=\"556\" y2=\"250\"/>\n    <line x1=\"70\" y1=\"250\" x2=\"70\" y2=\"36\"/>\n  </g>\n  <g stroke=\"currentColor\" stroke-opacity=\"0.08\">\n    <line x1=\"70\" y1=\"40\" x2=\"556\" y2=\"40\"/><line x1=\"70\" y1=\"145\" x2=\"556\" y2=\"145\"/>\n    <line x1=\"70\" y1=\"198\" x2=\"556\" y2=\"198\"/>\n  </g>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"end\">\n    <text x=\"62\" y=\"44\">20</text><text x=\"62\" y=\"149\">10</text>\n    <text x=\"62\" y=\"202\">4</text><text x=\"62\" y=\"254\">0</text>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.45\" text-anchor=\"middle\">\n    <text x=\"70\" y=\"266\">1</text><text x=\"145\" y=\"266\">2</text><text x=\"220\" y=\"266\">4</text>\n    <text x=\"295\" y=\"266\">8</text><text x=\"370\" y=\"266\">16</text><text x=\"445\" y=\"266\">32</text>\n    <text x=\"520\" y=\"266\">64</text>\n  </g>\n  <text x=\"300\" y=\"286\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.5\" text-anchor=\"middle\">jumlah inti</text>\n  <text x=\"24\" y=\"30\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">percepatan</text>\n\n  <path d=\"M 70 239.5 L 145 230 L 220 213.5 L 295 187.7 L 370 154 L 445 118.2 L 520 88.1\"\n        fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"2\"/>\n  <line x1=\"70\" y1=\"40\" x2=\"556\" y2=\"40\" stroke=\"var(--nila)\" stroke-opacity=\"0.45\" stroke-dasharray=\"4 4\"/>\n  <text x=\"528\" y=\"80\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"var(--nila)\">p = 0,95</text>\n  <text x=\"528\" y=\"34\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"var(--nila)\" opacity=\"0.7\">batas 20x</text>\n\n  <path d=\"M 70 239.5 L 145 230.9 L 220 217.7 L 295 200.5 L 370 182.8 L 445 168.1 L 520 157.9\"\n        fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"2\"/>\n  <line x1=\"70\" y1=\"145\" x2=\"556\" y2=\"145\" stroke=\"var(--kunyit)\" stroke-opacity=\"0.45\" stroke-dasharray=\"4 4\"/>\n  <text x=\"528\" y=\"152\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"var(--kunyit)\">p = 0,90</text>\n  <text x=\"528\" y=\"139\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"var(--kunyit)\" opacity=\"0.7\">batas 10x</text>\n\n  <path d=\"M 70 239.5 L 145 233.2 L 220 226 L 295 219.4 L 370 214.6 L 445 211.6 L 520 209.9\"\n        fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.6\" stroke-width=\"2\"/>\n  <line x1=\"70\" y1=\"208\" x2=\"556\" y2=\"208\" stroke=\"currentColor\" stroke-opacity=\"0.3\" stroke-dasharray=\"4 4\"/>\n  <text x=\"528\" y=\"226\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.7\">p = 0,75</text>\n  <text x=\"528\" y=\"203\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">batas 4x</text>\n</svg>",
+              "solution": "Hukum Amdahl. Tiap kurva mendatar mendekati batasnya sendiri, dan batas itu ditentukan sepenuhnya oleh bagian yang tidak bisa diparalelkan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Baca grafiknya dengan saksama. Program yang 90 persennya bisa diparalelkan **tidak akan pernah** lebih cepat dari sepuluh kali, berapa pun inti yang kamu tambahkan. Dengan 64 inti pun percepatannya baru 8,8 kali."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def amdahl(p, s):\n    return 1 / ((1 - p) + p / s)\n\nprint(\"inti |  p=0,50  p=0,75  p=0,90  p=0,95  p=0,99\")\nfor n in (1, 2, 4, 8, 16, 64, 256):\n    baris = \"  \".join(f\"{amdahl(p, n):>6.2f}\" for p in (0.5, 0.75, 0.9, 0.95, 0.99))\n    print(f\"{n:>4} |  {baris}\")\n\nprint()\nprint(\"batas atas (inti tak hingga):\")\nfor p in (0.5, 0.75, 0.9, 0.95, 0.99):\n    print(f\"  p={p:<5} -> {1/(1-p):>6.1f} kali\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan kolom paling kanan. Bahkan program yang 99 persennya paralel hanya bisa dipercepat seratus kali, dan butuh ribuan inti untuk mendekatinya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Akibatnya pada optimasi.** Hukum yang sama berlaku ketika kamu mempercepat satu bagian kode."
+            },
+            {
+              "type": "MATH",
+              "content": "Sebuah fungsi memakan 5% waktu program.\nKamu membuatnya 100 kali lebih cepat.\n\npercepatan = 1 / (0,95 + 0,05/100)\n           = 1 / 0,9505\n           = 1,05 kali\n\nLima persen. Setelah kerja keras membuat\nsesuatu seratus kali lebih cepat."
+            },
+            {
+              "type": "TEXT",
+              "content": "Inilah sebabnya optimasi harus dimulai dari pengukuran. Memperbaiki bagian yang memakan 5 persen waktu hampir tidak berarti, sementara memperbaiki bagian yang memakan 60 persen mengubah segalanya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Mana yang layak dioptimasi?\ndef hasil(bagian, percepatan):\n    return 1 / ((1 - bagian) + bagian / percepatan)\n\nprint(\"bagian waktu | dipercepat 2x | 10x | 100x\")\nfor bagian in (0.05, 0.20, 0.50, 0.80):\n    a, b, c = hasil(bagian, 2), hasil(bagian, 10), hasil(bagian, 100)\n    print(f\"{bagian:>11.0%}  |    {a:.2f}x      | {b:.2f}x | {c:.2f}x\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Baca tabelnya dari sudut pandang usaha. Mempercepat bagian 80 persen hanya dua kali lipat memberi 1,67 kali, sementara mempercepat bagian 5 persen seratus kali lipat cuma memberi 1,05 kali. Usaha yang kecil di tempat yang benar mengalahkan usaha besar di tempat yang salah."
+            },
+            {
+              "type": "NOTE",
+              "content": "Sejak sekitar 2005, kecepatan detak berhenti naik karena panas yang dihasilkan. Pembuat prosesor beralih menambah inti. Hukum Amdahl menjelaskan kenapa peralihan itu tidak otomatis menguntungkan: program yang ditulis untuk berjalan berurutan tidak menjadi lebih cepat di mesin berinti banyak. Keuntungannya harus diambil sendiri oleh pemrogram, dan di situlah batas yang dirumuskan Amdahl mulai terasa."
+            },
+            {
+              "type": "TASK",
+              "content": "Mesin A berjalan di 3 GHz dengan CPI 2. Mesin B berjalan di 2 GHz dengan CPI 1,2. Program yang sama butuh 1 miliar instruksi di keduanya. Mana yang lebih cepat?",
+              "solution": "```\nwaktu = instruksi × CPI ÷ kecepatan detak\n\nMesin A = 10⁹ × 2 ÷ (3 × 10⁹)\n        = 2 / 3\n        = 0,667 detik\n\nMesin B = 10⁹ × 1,2 ÷ (2 × 10⁹)\n        = 1,2 / 2\n        = 0,600 detik\n```\n\n**Mesin B lebih cepat**, sekitar 11 persen, meski kecepatan detaknya lebih rendah.\n\n```\n0,667 / 0,600 = 1,11 kali\n```\n\nInilah sebabnya angka GHz sendirian tidak berarti. Mesin A berdetak 50 persen lebih cepat, tetapi membutuhkan 67 persen lebih banyak daur untuk tiap instruksi, dan kerugian itu lebih besar daripada keuntungannya.\n\nPerhatikan pula bahwa perbandingan ini hanya sah karena jumlah instruksinya sama. Kalau ISA-nya berbeda, jumlah instruksi untuk pekerjaan yang sama juga berbeda, dan ketiga faktor harus dihitung semua."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah program punya campuran instruksi berikut. Hitung CPI gabungannya.\n\n```\nhitung   60%, CPI 1\nmuat     20%, CPI 3\nsimpan   10%, CPI 2\ncabang   10%, CPI 4\n```",
+              "solution": "```\nCPI = 0,60 × 1 + 0,20 × 3 + 0,10 × 2 + 0,10 × 4\n    = 0,60 + 0,60 + 0,20 + 0,40\n    = 1,80\n```\n\nPerhatikan sumbangan tiap jenis:\n\n```\nhitung   0,60 dari 1,80 =  33%  dari CPI\nmuat     0,60 dari 1,80 =  33%  dari CPI\nsimpan   0,20 dari 1,80 =  11%\ncabang   0,40 dari 1,80 =  22%\n```\n\nInstruksi `muat` cuma 20 persen dari jumlah instruksi, tetapi menyumbang sepertiga dari CPI. Instruksi `cabang` cuma 10 persen, tetapi menyumbang 22 persen.\n\nDari sini bisa ditentukan ke mana usaha perbaikan diarahkan. Menurunkan CPI `muat` dari 3 menjadi 2, misalnya dengan tembolok yang lebih baik, memangkas CPI gabungan menjadi 1,60, atau 11 persen lebih cepat.\n\nMempercepat instruksi `hitung` yang CPI-nya sudah 1 tidak mungkin lagi: satu daur adalah batas bawahnya pada prosesor tanpa superskalar."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah program 75 persen bagiannya bisa diparalelkan. Berapa percepatan maksimumnya? Berapa percepatannya dengan 8 inti?",
+              "solution": "```\nPercepatan maksimum = 1 / (1 − p)\n                    = 1 / (1 − 0,75)\n                    = 1 / 0,25\n                    = 4 kali\n```\n\nDengan 8 inti:\n\n```\npercepatan = 1 / ((1 − 0,75) + 0,75/8)\n           = 1 / (0,25 + 0,09375)\n           = 1 / 0,34375\n           = 2,91 kali\n```\n\nDengan 8 inti, yang didapat 2,91 dari 4 kali yang mungkin, yaitu sekitar 73 persen dari batasnya.\n\nLihat apa yang terjadi kalau intinya ditambah terus:\n\n```\n 8 inti  →  2,91 kali\n16 inti  →  3,37 kali\n32 inti  →  3,66 kali\n64 inti  →  3,82 kali\n∞  inti  →  4,00 kali\n```\n\nDari 8 ke 64 inti, intinya delapan kali lipat tetapi tambahannya cuma 0,91 kali. Setiap inti tambahan memberi hasil yang makin kecil.\n\nKesimpulan praktisnya: menambah inti ada batasnya, dan untuk melampaui batas itu yang harus diperbesar adalah `p`, bukan jumlah intinya. Mengubah bagian berurutan menjadi paralel memberi hasil jauh lebih besar daripada membeli mesin dengan inti lebih banyak."
+            },
+            {
+              "type": "TASK",
+              "content": "Hasil pengukuran menunjukkan sebuah fungsi memakan 40 persen waktu program. Kamu bisa membuatnya 5 kali lebih cepat, atau membuat fungsi lain yang memakan 15 persen menjadi 20 kali lebih cepat. Mana yang kamu pilih?",
+              "solution": "Hitung keduanya dengan hukum Amdahl.\n\n```\nPilihan 1   p = 0,40, s = 5\n  = 1 / (0,60 + 0,40/5)\n  = 1 / (0,60 + 0,08)\n  = 1 / 0,68\n  = 1,47 kali\n\nPilihan 2   p = 0,15, s = 20\n  = 1 / (0,85 + 0,15/20)\n  = 1 / (0,85 + 0,0075)\n  = 1 / 0,8575\n  = 1,17 kali\n```\n\n**Pilihan pertama**, meski percepatannya jauh lebih kecil.\n\nMempercepat 5 kali pada bagian 40 persen mengalahkan mempercepat 20 kali pada bagian 15 persen. Yang menentukan bukan seberapa besar percepatan yang kamu capai, melainkan seberapa besar bagian yang kamu sentuh.\n\nPerhatikan pula batas atas masing-masing:\n\n```\nPilihan 1   batasnya 1/(1−0,40) = 1,67 kali\nPilihan 2   batasnya 1/(1−0,15) = 1,18 kali\n```\n\nPilihan kedua sudah hampir mentok di 1,17 dari batas 1,18. Usaha tambahan apa pun di sana nyaris tidak berbuah. Pilihan pertama masih punya ruang dari 1,47 menuju 1,67.\n\nInilah urutan kerja yang benar dalam optimasi: ukur dulu untuk tahu bagian mana yang besar, baru putuskan. Menebak tanpa mengukur hampir selalu menuntun ke pilihan kedua, karena bagian yang terlihat lambat belum tentu bagian yang banyak memakan waktu."
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "title": "Computer Organization and Design: The Hardware Software Interface, RISC-V Edition",
+          "author": "David A. Patterson dan John L. Hennessy",
+          "url": "https://shop.elsevier.com/books/computer-organization-and-design-risc-v-edition/patterson/978-0-12-820331-6",
+          "note": "Buku teks acuan utama mata kuliah ini di seluruh dunia. Urutan topik di sini mengikuti susunan babnya, dari aritmetika komputer sampai jenjang memori dan pipeline."
+        },
+        {
+          "title": "The Elements of Computing Systems, edisi kedua (Nand2Tetris)",
+          "author": "Noam Nisan dan Shimon Schocken",
+          "url": "https://www.nand2tetris.org/book",
+          "note": "Dasar pendekatan membangun dari bawah: gerbang, rangkaian kombinasional, rangkaian sekuensial, lalu bahasa mesin. Bab 1 sampai 5 sejajar dengan bagian 5 sampai 11 di sini."
+        },
+        {
+          "title": "Structured Computer Organization",
+          "author": "Andrew S. Tanenbaum dan Todd Austin",
+          "url": "https://www.pearson.com/en-us/subject-catalog/p/structured-computer-organization/P200000003297",
+          "note": "Acuan kedua, terutama untuk pembagian jenjang abstraksi dan pembahasan mode pengalamatan serta perbandingan RISC dengan CISC."
+        },
+        {
+          "title": "IEEE 754 Standard for Floating-Point Arithmetic",
+          "author": "IEEE",
+          "url": "https://standards.ieee.org/ieee/754/6210/",
+          "note": "Sumber untuk susunan bit presisi tunggal dan ganda, nilai bias, serta pola khusus untuk nol, tak hingga, dan NaN."
+        },
+        {
+          "title": "What Every Computer Scientist Should Know About Floating-Point Arithmetic",
+          "author": "David Goldberg",
+          "url": "https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html",
+          "note": "Penjelasan rinci kenapa pecahan desimal tidak bisa ditulis tepat dalam biner, dan akibatnya pada perbandingan serta penjumlahan berantai."
+        },
+        {
+          "title": "The Unicode Standard dan UTF-8",
+          "author": "Unicode Consortium",
+          "url": "https://www.unicode.org/versions/latest/",
+          "note": "Rujukan untuk pola bita UTF-8, jangkauan titik kode tiap panjang, dan sifat bahwa teks ASCII tetap sah tanpa diubah."
+        },
+        {
+          "title": "What Every Programmer Should Know About Memory",
+          "author": "Ulrich Drepper",
+          "url": "https://people.freebsd.org/~lstewart/articles/cpumemory.pdf",
+          "note": "Dasar pembahasan tembolok: pengambilan per blok, lokalitas waktu dan tempat, serta pengaruh tata letak data terhadap kecepatan."
+        },
+        {
+          "title": "The RISC-V Instruction Set Manual",
+          "author": "RISC-V International",
+          "url": "https://riscv.org/technical/specifications/",
+          "note": "Rujukan untuk bentuk instruksi lebar tetap, pembagian medan, dan prinsip bahwa hanya instruksi muat dan simpan yang menyentuh memori."
+        },
+        {
+          "title": "Validity of the single processor approach to achieving large scale computing capabilities",
+          "author": "Gene M. Amdahl, 1967",
+          "url": "https://dl.acm.org/doi/10.1145/1465482.1465560",
+          "note": "Makalah asli hukum Amdahl. Dasar bagian terakhir tentang batas percepatan dan kenapa menambah inti ada hentinya."
+        },
+        {
+          "title": "Spectre Attacks: Exploiting Speculative Execution",
+          "author": "Kocher dan rekan, 2018",
+          "url": "https://spectreattack.com/spectre.pdf",
+          "note": "Sumber untuk catatan bahwa penebakan cabang meninggalkan jejak di tembolok meski hasilnya dibatalkan."
+        },
+        {
+          "title": "struct: Interpret bytes as packed binary data",
+          "author": "Python Software Foundation",
+          "url": "https://docs.python.org/3/library/struct.html",
+          "note": "Rujukan untuk contoh kode penguraian IEEE 754, urutan bita, dan perataan medan struktur."
+        }
+      ]
     },
     {
       "code": "IF106",
