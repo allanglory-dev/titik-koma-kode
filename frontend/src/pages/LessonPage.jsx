@@ -77,6 +77,14 @@ export function LessonPage() {
           <h1>{lesson.title}</h1>
           {lesson.summary && <p className="lead">{lesson.summary}</p>}
 
+          {blocks.length === 0 && (
+            <aside className="block-note">
+              <span className="block-note-label">Belum ditulis</span>
+              Rangka bab ini sudah ditetapkan, tetapi isinya belum ditulis.
+              Ringkasan di atas menyebutkan apa yang akan dibahas di sini.
+            </aside>
+          )}
+
           {blocks.map((block, i) => (
             <BlockView
               key={block.id}

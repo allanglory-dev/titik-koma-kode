@@ -13,6 +13,8 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     List<Course> findAllByOrderBySemesterAscCodeAsc();
 
+    List<Course> findByKindOrderByCodeAsc(String kind);
+
     List<Course> findBySemesterOrderByCodeAsc(Integer semester);
 
     List<Course> findByAreaCodeOrderBySemesterAscCodeAsc(String areaCode);

@@ -20,6 +20,7 @@ public class SeedCareer {
         public Integer orderIndex;
         public List<String> coreCourses = List.of();
         public List<String> supportCourses = List.of();
+        public List<String> skillCourses = List.of();
         public List<String> beyondCurriculum = List.of();
         public List<SeedStage> stages = List.of();
         public List<SeedContent.SeedReference> references = List.of();

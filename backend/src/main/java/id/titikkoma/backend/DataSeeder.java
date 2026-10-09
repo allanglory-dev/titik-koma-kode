@@ -65,10 +65,8 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        SeedContent seed;
-        try (InputStream in = new ClassPathResource("seed/kurikulum.json").getInputStream()) {
-            seed = objectMapper.readValue(in, SeedContent.class);
-        }
+        SeedContent seed = baca("seed/kurikulum.json");
+        SeedContent keterampilan = baca("seed/keterampilan.json");
 
         blockRepository.deleteAll();
         lessonRepository.deleteAll();
@@ -85,7 +83,11 @@ public class DataSeeder implements CommandLineRunner {
         int blockCount = 0;
         int totalSks = 0;
 
-        for (SeedContent.SeedCourse seedCourse : seed.courses) {
+        // Modul keterampilan memakai entitas yang sama, hanya berbeda jenisnya.
+        var semuaKursus = new ArrayList<SeedContent.SeedCourse>(seed.courses);
+        semuaKursus.addAll(keterampilan.courses);
+
+        for (SeedContent.SeedCourse seedCourse : semuaKursus) {
             Area area = areaByCode.get(seedCourse.area);
             if (area == null) {
                 throw new IllegalStateException(
@@ -103,6 +105,7 @@ public class DataSeeder implements CommandLineRunner {
                     seedCourse.level,
                     seedCourse.hours,
                     area);
+            course.setKind(seedCourse.kind == null ? "KULIAH" : seedCourse.kind);
             course.setOutcomes(new ArrayList<>(seedCourse.outcomes));
             course.setPrerequisites(new ArrayList<>(seedCourse.prerequisites));
             course.setReferences(seedCourse.references.stream()
@@ -140,8 +143,16 @@ public class DataSeeder implements CommandLineRunner {
         int jalur = muatKarier();
 
         log.info("Jalur karier dimuat: {} jalur.", jalur);
-        log.info("Kurikulum dimuat: {} bidang, {} mata kuliah, {} SKS, {} pelajaran, {} blok isi.",
-                seed.areas.size(), seed.courses.size(), totalSks, lessonCount, blockCount);
+        log.info("Kurikulum dimuat: {} bidang, {} mata kuliah, {} modul keterampilan, "
+                + "{} SKS, {} bagian, {} blok isi.",
+                seed.areas.size(), seed.courses.size(), keterampilan.courses.size(),
+                totalSks, lessonCount, blockCount);
+    }
+
+    private SeedContent baca(String berkas) throws Exception {
+        try (InputStream in = new ClassPathResource(berkas).getInputStream()) {
+            return objectMapper.readValue(in, SeedContent.class);
+        }
     }
 
     /**
@@ -168,6 +179,9 @@ public class DataSeeder implements CommandLineRunner {
             for (String kode : sp.supportCourses) {
                 periksaKode(sp.code, kode, kodeMataKuliah);
             }
+            for (String kode : sp.skillCourses) {
+                periksaKode(sp.code, kode, kodeMataKuliah);
+            }
 
             CareerPath path = new CareerPath();
             path.setCode(sp.code);
@@ -182,6 +196,7 @@ public class DataSeeder implements CommandLineRunner {
             path.setOrderIndex(sp.orderIndex);
             path.setCoreCourses(new ArrayList<>(sp.coreCourses));
             path.setSupportCourses(new ArrayList<>(sp.supportCourses));
+            path.setSkillCourses(new ArrayList<>(sp.skillCourses));
             path.setBeyondCurriculum(new ArrayList<>(sp.beyondCurriculum));
             path.setReferences(sp.references.stream()
                     .map(r -> new CourseReference(r.title, r.author, r.url, r.note))

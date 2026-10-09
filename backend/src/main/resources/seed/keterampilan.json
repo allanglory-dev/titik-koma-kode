@@ -1,0 +1,1983 @@
+{
+  "areas": [],
+  "courses": [
+    {
+      "code": "KT01",
+      "kind": "KETERAMPILAN",
+      "title": "Git dan GitHub",
+      "description": "Menyimpan riwayat perubahan kode dan bekerja bersama orang lain tanpa saling menimpa pekerjaan.",
+      "level": "Pemula",
+      "hours": 20,
+      "area": "SE",
+      "outcomes": [
+        "Menelusuri dan mengembalikan perubahan kode.",
+        "Bekerja pada cabang terpisah lalu menggabungkannya.",
+        "Menyelesaikan bentrokan penggabungan tanpa panik."
+      ],
+      "prerequisites": [],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "Pro Git",
+          "author": "Scott Chacon dan Ben Straub",
+          "url": "https://git-scm.com/book/en/v2",
+          "note": "Buku resmi Git, gratis dan lengkap."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Kenapa Perlu Pengendali Versi",
+          "summary": "Masalah yang muncul tanpa Git: berkas bernama final_revisi_fix2, pekerjaan yang hilang, dan dua orang menimpa kode satu sama lain.",
+          "blocks": []
+        },
+        {
+          "title": "Memulai Repositori",
+          "summary": "init, status, add, dan commit. Memahami tiga tempat berkas berada: direktori kerja, panggung, dan riwayat.",
+          "blocks": []
+        },
+        {
+          "title": "Menelusuri Riwayat",
+          "summary": "log, diff, dan show. Membaca apa yang berubah, kapan, dan oleh siapa.",
+          "blocks": []
+        },
+        {
+          "title": "Membatalkan Perubahan",
+          "summary": "restore, reset, dan revert. Memilih mana yang aman dipakai setelah kode sudah dibagikan.",
+          "blocks": []
+        },
+        {
+          "title": "Cabang",
+          "summary": "Membuat cabang untuk mengerjakan sesuatu tanpa mengganggu yang sudah jalan. Berpindah dan menggabungkan.",
+          "blocks": []
+        },
+        {
+          "title": "Menyelesaikan Bentrokan",
+          "summary": "Kenapa bentrokan terjadi, cara membaca penanda bentrokan, dan cara memutuskan versi mana yang dipakai.",
+          "blocks": []
+        },
+        {
+          "title": "Bekerja dengan GitHub",
+          "summary": "remote, push, pull, dan fetch. Perbedaan repositori lokal dan jarak jauh.",
+          "blocks": []
+        },
+        {
+          "title": "Pull Request dan Telaah Kode",
+          "summary": "Mengusulkan perubahan, menanggapi masukan, dan menggabungkan setelah disetujui.",
+          "blocks": []
+        },
+        {
+          "title": "Alur Kerja Tim",
+          "summary": "Pola cabang yang umum dipakai, pesan commit yang baik, dan berkas yang sebaiknya tidak ikut disimpan.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT02",
+      "kind": "KETERAMPILAN",
+      "title": "Linux dan Baris Perintah",
+      "description": "Bekerja di server tanpa antarmuka grafis, karena hampir semua aplikasi berjalan di atas Linux.",
+      "level": "Pemula",
+      "hours": 20,
+      "area": "OS",
+      "outcomes": [
+        "Menjelajah dan mengelola berkas lewat baris perintah.",
+        "Mengatur hak akses dan proses yang berjalan.",
+        "Menulis skrip sederhana untuk pekerjaan berulang."
+      ],
+      "prerequisites": [],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "Linux Roadmap",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/linux",
+          "note": "Acuan cakupan topik."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Kenapa Baris Perintah",
+          "summary": "Kapan baris perintah lebih cepat daripada antarmuka grafis, dan kenapa server biasanya tidak punya tampilan.",
+          "blocks": []
+        },
+        {
+          "title": "Menjelajah Berkas",
+          "summary": "pwd, ls, cd, dan susunan direktori pada Linux.",
+          "blocks": []
+        },
+        {
+          "title": "Mengelola Berkas",
+          "summary": "cp, mv, rm, mkdir, dan pola penamaan berkas.",
+          "blocks": []
+        },
+        {
+          "title": "Membaca dan Mencari Isi",
+          "summary": "cat, less, head, tail, grep, dan find.",
+          "blocks": []
+        },
+        {
+          "title": "Pipa dan Pengalihan",
+          "summary": "Menyambungkan perintah dengan pipa, lalu mengarahkan keluarannya ke berkas.",
+          "blocks": []
+        },
+        {
+          "title": "Hak Akses",
+          "summary": "Pengguna, grup, dan izin baca tulis jalankan. Kapan sudo diperlukan dan kapan sebaiknya dihindari.",
+          "blocks": []
+        },
+        {
+          "title": "Proses",
+          "summary": "ps, top, kill, dan menjalankan perintah di latar belakang.",
+          "blocks": []
+        },
+        {
+          "title": "Jaringan dari Terminal",
+          "summary": "ssh, scp, curl, dan memeriksa sambungan.",
+          "blocks": []
+        },
+        {
+          "title": "Skrip Shell",
+          "summary": "Variabel, percabangan, perulangan, dan menjadwalkan pekerjaan berkala.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT03",
+      "kind": "KETERAMPILAN",
+      "title": "SQL Praktis",
+      "description": "Mengambil dan mengolah data dari basis data relasional, perkakas yang dipakai hampir semua jalur.",
+      "level": "Pemula",
+      "hours": 30,
+      "area": "DM",
+      "outcomes": [
+        "Menulis kueri yang menggabungkan beberapa tabel.",
+        "Meringkas data dengan pengelompokan dan fungsi agregat.",
+        "Membaca rencana eksekusi dan memperbaiki kueri yang lambat."
+      ],
+      "prerequisites": [
+        "IF302"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "SQL Roadmap",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/sql",
+          "note": "Acuan cakupan topik."
+        },
+        {
+          "title": "PostgreSQL Documentation",
+          "author": "PostgreSQL Global Development Group",
+          "url": "https://www.postgresql.org/docs/current/",
+          "note": "Rujukan resmi untuk tata bahasa SQL."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Mengambil Data",
+          "summary": "SELECT, WHERE, ORDER BY, dan LIMIT. Pola kueri yang paling sering dipakai sehari-hari.",
+          "blocks": []
+        },
+        {
+          "title": "Menyaring dengan Teliti",
+          "summary": "Operator perbandingan, IN, BETWEEN, LIKE, dan penanganan nilai kosong yang sering keliru.",
+          "blocks": []
+        },
+        {
+          "title": "Menggabungkan Tabel",
+          "summary": "INNER, LEFT, RIGHT, dan FULL JOIN. Kapan masing-masing dipakai dan apa akibatnya pada jumlah baris.",
+          "blocks": []
+        },
+        {
+          "title": "Meringkas Data",
+          "summary": "COUNT, SUM, AVG, GROUP BY, dan HAVING. Perbedaan WHERE dan HAVING.",
+          "blocks": []
+        },
+        {
+          "title": "Subkueri dan CTE",
+          "summary": "Kueri di dalam kueri, lalu menuliskannya ulang dengan WITH supaya mudah dibaca.",
+          "blocks": []
+        },
+        {
+          "title": "Fungsi Jendela",
+          "summary": "ROW_NUMBER, RANK, LAG, dan LEAD. Menghitung peringkat dan perbandingan antarbaris.",
+          "blocks": []
+        },
+        {
+          "title": "Mengubah Data",
+          "summary": "INSERT, UPDATE, DELETE, dan kenapa selalu jalankan SELECT dulu sebelum menghapus.",
+          "blocks": []
+        },
+        {
+          "title": "Transaksi",
+          "summary": "COMMIT dan ROLLBACK. Apa yang terjadi saat dua orang mengubah data yang sama.",
+          "blocks": []
+        },
+        {
+          "title": "Indeks dan Kecepatan",
+          "summary": "Kapan indeks membantu, kapan justru membebani, dan cara membaca rencana eksekusi.",
+          "blocks": []
+        },
+        {
+          "title": "Kesalahan yang Sering Terjadi",
+          "summary": "Kueri N plus satu, JOIN yang melipatgandakan baris, dan agregat yang menyesatkan.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT04",
+      "kind": "KETERAMPILAN",
+      "title": "HTTP dan REST API",
+      "description": "Memahami percakapan antara peramban dan server, dasar dari hampir semua aplikasi modern.",
+      "level": "Pemula",
+      "hours": 16,
+      "area": "NC",
+      "outcomes": [
+        "Menjelaskan perjalanan satu permintaan dari peramban sampai server.",
+        "Membaca dan menafsirkan kode status beserta header.",
+        "Merancang titik akhir API yang mudah ditebak."
+      ],
+      "prerequisites": [
+        "IF303"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "HTTP Documentation",
+          "author": "MDN Web Docs",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+          "note": "Rujukan resmi untuk metode, status, dan header."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Cara Kerja HTTP",
+          "summary": "Permintaan, tanggapan, dan sifat tanpa ingatan. Apa yang terjadi saat kamu menekan Enter di peramban.",
+          "blocks": []
+        },
+        {
+          "title": "Metode",
+          "summary": "GET, POST, PUT, PATCH, DELETE, dan kapan masing-masing seharusnya dipakai.",
+          "blocks": []
+        },
+        {
+          "title": "Kode Status",
+          "summary": "Keluarga 2xx, 3xx, 4xx, dan 5xx. Kenapa 404 berbeda dari 500 dan kenapa itu penting.",
+          "blocks": []
+        },
+        {
+          "title": "Header",
+          "summary": "Content-Type, Authorization, Cache-Control, dan header yang sering ditemui.",
+          "blocks": []
+        },
+        {
+          "title": "Merancang Titik Akhir",
+          "summary": "Penamaan sumber daya, penyaringan, pengurutan, dan pemenggalan halaman.",
+          "blocks": []
+        },
+        {
+          "title": "Autentikasi",
+          "summary": "Kunci API, token pembawa, dan perbedaan autentikasi dengan otorisasi.",
+          "blocks": []
+        },
+        {
+          "title": "CORS",
+          "summary": "Kenapa peramban memblokir permintaan lintas asal, dan cara menanganinya dengan benar.",
+          "blocks": []
+        },
+        {
+          "title": "Mencoba API",
+          "summary": "Memakai curl dan Postman untuk menguji titik akhir sebelum menulis kode.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT10",
+      "kind": "KETERAMPILAN",
+      "title": "JavaScript Modern",
+      "description": "Bahasa yang menghidupkan halaman web, ditulis dengan gaya yang dipakai sekarang.",
+      "level": "Pemula",
+      "hours": 30,
+      "area": "SPD",
+      "outcomes": [
+        "Menulis JavaScript modern tanpa kebiasaan lama yang menyesatkan.",
+        "Menangani kode tak sinkron dengan janji dan async.",
+        "Mengolah array dan objek dengan cara yang ringkas."
+      ],
+      "prerequisites": [
+        "IF205"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "JavaScript Guide",
+          "author": "MDN Web Docs",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+          "note": "Rujukan resmi bahasa."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Dasar yang Perlu Diluruskan",
+          "summary": "let dan const, perbedaan tiga sama dengan, dan nilai yang dianggap salah.",
+          "blocks": []
+        },
+        {
+          "title": "Fungsi",
+          "summary": "Fungsi panah, parameter bawaan, dan parameter sisa.",
+          "blocks": []
+        },
+        {
+          "title": "Array",
+          "summary": "map, filter, reduce, find, dan some. Mengganti perulangan manual dengan yang lebih jelas maksudnya.",
+          "blocks": []
+        },
+        {
+          "title": "Objek",
+          "summary": "Pembongkaran, penyebaran, penggabungan, dan rantai opsional.",
+          "blocks": []
+        },
+        {
+          "title": "Modul",
+          "summary": "import dan export. Memecah kode menjadi berkas yang saling memanggil.",
+          "blocks": []
+        },
+        {
+          "title": "Kode Tak Sinkron",
+          "summary": "Mengapa diperlukan, dari callback ke janji, lalu ke async dan await.",
+          "blocks": []
+        },
+        {
+          "title": "Mengambil Data",
+          "summary": "fetch, menangani kesalahan jaringan, dan membedakan gagal jaringan dengan gagal permintaan.",
+          "blocks": []
+        },
+        {
+          "title": "DOM",
+          "summary": "Memilih elemen, mengubah isi, dan menangani kejadian.",
+          "blocks": []
+        },
+        {
+          "title": "Kesalahan yang Sering Terjadi",
+          "summary": "this yang berpindah arti, pembandingan tipe otomatis, dan mengubah array yang sedang ditelusuri.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT11",
+      "kind": "KETERAMPILAN",
+      "title": "TypeScript",
+      "description": "Menambahkan jenis data pada JavaScript supaya kesalahan tertangkap sebelum program dijalankan.",
+      "level": "Menengah",
+      "hours": 20,
+      "area": "FPL",
+      "outcomes": [
+        "Memberi jenis pada variabel, fungsi, dan objek.",
+        "Membaca pesan kesalahan TypeScript yang sering panjang.",
+        "Menata jenis bersama supaya bisa dipakai ulang."
+      ],
+      "prerequisites": [
+        "KT10"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "TypeScript Handbook",
+          "author": "Microsoft",
+          "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+          "note": "Rujukan resmi bahasa."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Kenapa Perlu Jenis",
+          "summary": "Kesalahan yang hanya muncul di produksi, lalu bagaimana jenis menangkapnya lebih awal.",
+          "blocks": []
+        },
+        {
+          "title": "Jenis Dasar",
+          "summary": "string, number, boolean, array, dan tuple.",
+          "blocks": []
+        },
+        {
+          "title": "Jenis Objek",
+          "summary": "interface dan type. Kapan memakai yang mana.",
+          "blocks": []
+        },
+        {
+          "title": "Fungsi Bertipe",
+          "summary": "Jenis parameter, jenis kembalian, dan parameter opsional.",
+          "blocks": []
+        },
+        {
+          "title": "Gabungan dan Penyempitan",
+          "summary": "Jenis gabungan, penjaga jenis, dan cara TypeScript mempersempit kemungkinan.",
+          "blocks": []
+        },
+        {
+          "title": "Jenis Umum",
+          "summary": "Generik pada fungsi dan antarmuka, supaya satu bentuk bisa dipakai banyak jenis.",
+          "blocks": []
+        },
+        {
+          "title": "Membaca Pesan Kesalahan",
+          "summary": "Menelusuri pesan yang panjang sampai ke sebab aslinya.",
+          "blocks": []
+        },
+        {
+          "title": "TypeScript dengan React",
+          "summary": "Memberi jenis pada properti komponen, keadaan, dan kejadian.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT12",
+      "kind": "KETERAMPILAN",
+      "title": "React",
+      "description": "Membangun antarmuka dari komponen yang dapat dipakai ulang, kerangka kerja yang paling banyak dicari lowongan.",
+      "level": "Menengah",
+      "hours": 40,
+      "area": "SPD",
+      "outcomes": [
+        "Menyusun antarmuka sebagai komponen yang saling bersarang.",
+        "Mengelola keadaan dan efek samping dengan hook.",
+        "Membangun aplikasi berhalaman banyak beserta pengambilan datanya."
+      ],
+      "prerequisites": [
+        "KT10"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "React Roadmap",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/react",
+          "note": "Acuan susunan bab."
+        },
+        {
+          "title": "React Documentation",
+          "author": "Meta",
+          "url": "https://react.dev/learn",
+          "note": "Rujukan resmi."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Komponen dan JSX",
+          "summary": "Cara React menggambarkan tampilan, dan kenapa JSX bukan HTML.",
+          "blocks": []
+        },
+        {
+          "title": "Properti",
+          "summary": "Mengalirkan data dari induk ke anak, dan kenapa arahnya hanya satu.",
+          "blocks": []
+        },
+        {
+          "title": "Keadaan",
+          "summary": "useState, apa yang memicu penggambaran ulang, dan kenapa keadaan tidak boleh diubah langsung.",
+          "blocks": []
+        },
+        {
+          "title": "Menampilkan Daftar",
+          "summary": "Menelusuri data menjadi elemen, dan kenapa setiap anak perlu kunci yang tetap.",
+          "blocks": []
+        },
+        {
+          "title": "Penampilan Bersyarat",
+          "summary": "Menampilkan bagian tertentu berdasarkan keadaan, termasuk keadaan memuat dan kosong.",
+          "blocks": []
+        },
+        {
+          "title": "Menangani Kejadian",
+          "summary": "Masukan terkendali, penanganan formulir, dan pengangkatan keadaan ke induk.",
+          "blocks": []
+        },
+        {
+          "title": "useEffect",
+          "summary": "Kapan benar-benar diperlukan, daftar ketergantungan, dan pembersihan.",
+          "blocks": []
+        },
+        {
+          "title": "Hook Lain",
+          "summary": "useRef, useMemo, useCallback, dan useReducer. Kapan masing-masing berguna.",
+          "blocks": []
+        },
+        {
+          "title": "Hook Buatan Sendiri",
+          "summary": "Memindahkan logika berulang ke hook tersendiri.",
+          "blocks": []
+        },
+        {
+          "title": "Perutean",
+          "summary": "Halaman banyak, parameter alamat, dan navigasi.",
+          "blocks": []
+        },
+        {
+          "title": "Mengambil Data",
+          "summary": "Pola pengambilan data, menangani keadaan memuat dan gagal, serta penembolokan.",
+          "blocks": []
+        },
+        {
+          "title": "Mengelola Keadaan Bersama",
+          "summary": "Context dan pustaka pengelola keadaan. Kapan memang dibutuhkan.",
+          "blocks": []
+        },
+        {
+          "title": "Kesalahan yang Sering Terjadi",
+          "summary": "Efek yang berjalan berulang, keadaan basi, dan penggambaran ulang yang berlebihan.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT13",
+      "kind": "KETERAMPILAN",
+      "title": "Pengujian Antarmuka",
+      "description": "Memastikan tampilan tetap bekerja setelah kode diubah, tanpa harus mengeklik ulang satu per satu.",
+      "level": "Menengah",
+      "hours": 20,
+      "area": "SE",
+      "outcomes": [
+        "Menulis pengujian komponen yang bermakna.",
+        "Menguji alur pengguna dari ujung ke ujung.",
+        "Menjalankan pengujian otomatis pada setiap perubahan kode."
+      ],
+      "prerequisites": [
+        "KT12"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Apa yang Layak Diuji",
+          "summary": "Menguji perilaku, bukan rincian penerapan. Kesalahan paling umum dalam menulis pengujian.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian Komponen",
+          "summary": "Menggambar komponen, mencari elemen seperti pengguna mencarinya, dan memeriksa hasilnya.",
+          "blocks": []
+        },
+        {
+          "title": "Meniru Data",
+          "summary": "Mengganti panggilan jaringan dengan tiruan supaya pengujian cepat dan dapat diulang.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian Ujung ke Ujung",
+          "summary": "Menjalankan peramban sungguhan untuk menelusuri alur utama pengguna.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian yang Rapuh",
+          "summary": "Kenapa pengujian kadang gagal tanpa sebab, dan cara membuatnya tenang.",
+          "blocks": []
+        },
+        {
+          "title": "Menjalankan Otomatis",
+          "summary": "Memasang pengujian pada alur integrasi supaya berjalan setiap kali kode berubah.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT20",
+      "kind": "KETERAMPILAN",
+      "title": "Spring Boot",
+      "description": "Kerangka kerja Java yang paling banyak dipakai membangun layanan di perusahaan.",
+      "level": "Menengah",
+      "hours": 40,
+      "area": "SPD",
+      "outcomes": [
+        "Membangun REST API lengkap dengan lapisan yang tertata.",
+        "Menyambungkan aplikasi ke basis data dengan JPA.",
+        "Menangani kesalahan, pengaturan, dan pengujian."
+      ],
+      "prerequisites": [
+        "IF202",
+        "KT04"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "Spring Boot Reference",
+          "author": "VMware",
+          "url": "https://docs.spring.io/spring-boot/index.html",
+          "note": "Rujukan resmi."
+        },
+        {
+          "title": "Spring Boot Roadmap",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/spring-boot",
+          "note": "Acuan susunan bab."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Memulai Proyek",
+          "summary": "Spring Initializr, susunan berkas, dan apa yang terjadi saat aplikasi dijalankan.",
+          "blocks": []
+        },
+        {
+          "title": "Penyuntikan Ketergantungan",
+          "summary": "Gagasan pokok Spring: siapa yang membuat objek, dan kenapa itu memudahkan pengujian.",
+          "blocks": []
+        },
+        {
+          "title": "Controller",
+          "summary": "Memetakan alamat ke metode, membaca parameter, dan mengembalikan JSON.",
+          "blocks": []
+        },
+        {
+          "title": "Lapisan Layanan",
+          "summary": "Memisahkan aturan usaha dari penanganan permintaan, dan kenapa pemisahan itu penting.",
+          "blocks": []
+        },
+        {
+          "title": "JPA dan Entity",
+          "summary": "Memetakan kelas ke tabel, relasi antarentitas, dan jebakan pemuatan malas.",
+          "blocks": []
+        },
+        {
+          "title": "Repository",
+          "summary": "Kueri turunan nama metode, kueri khusus, dan pemenggalan halaman.",
+          "blocks": []
+        },
+        {
+          "title": "Penanganan Kesalahan",
+          "summary": "Penangan global, tanggapan kesalahan yang konsisten, dan kode status yang tepat.",
+          "blocks": []
+        },
+        {
+          "title": "Pengaturan",
+          "summary": "Berkas properti, profil, dan menyimpan rahasia di luar kode.",
+          "blocks": []
+        },
+        {
+          "title": "Keamanan",
+          "summary": "Autentikasi berbasis token, hak akses, dan penyandian kata sandi.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian",
+          "summary": "Pengujian unit untuk layanan, pengujian irisan untuk controller, dan pengujian integrasi.",
+          "blocks": []
+        },
+        {
+          "title": "Menyiapkan Produksi",
+          "summary": "Pencatatan jejak, pemeriksaan kesehatan, dan pengemasan aplikasi.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT21",
+      "kind": "KETERAMPILAN",
+      "title": "Perancangan REST API",
+      "description": "Merancang antarmuka layanan yang mudah dipakai orang lain dan tidak menyusahkan saat berubah.",
+      "level": "Menengah",
+      "hours": 16,
+      "area": "SE",
+      "outcomes": [
+        "Merancang titik akhir yang konsisten dan mudah ditebak.",
+        "Menangani versi tanpa merusak pemakai lama.",
+        "Menulis dokumentasi yang benar-benar dipakai."
+      ],
+      "prerequisites": [
+        "KT04"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "API Design Roadmap",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/api-design",
+          "note": "Acuan susunan bab."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Sumber Daya dan Alamat",
+          "summary": "Penamaan, bentuk jamak, dan sarang yang tidak berlebihan.",
+          "blocks": []
+        },
+        {
+          "title": "Bentuk Tanggapan",
+          "summary": "Susunan JSON yang konsisten, penanganan daftar, dan pemenggalan halaman.",
+          "blocks": []
+        },
+        {
+          "title": "Kesalahan yang Berguna",
+          "summary": "Bentuk pesan kesalahan yang bisa ditindaklanjuti pemakai API.",
+          "blocks": []
+        },
+        {
+          "title": "Penyaringan dan Pengurutan",
+          "summary": "Parameter kueri yang mudah ditebak dan tidak berlebihan.",
+          "blocks": []
+        },
+        {
+          "title": "Versi API",
+          "summary": "Kapan perlu versi baru, dan cara berpindah tanpa merusak pemakai lama.",
+          "blocks": []
+        },
+        {
+          "title": "Pembatasan Laju",
+          "summary": "Melindungi layanan dari pemakaian berlebih.",
+          "blocks": []
+        },
+        {
+          "title": "Dokumentasi",
+          "summary": "OpenAPI, contoh permintaan, dan menjaga dokumentasi tetap sejalan dengan kode.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT22",
+      "kind": "KETERAMPILAN",
+      "title": "Autentikasi dan Keamanan Aplikasi",
+      "description": "Memastikan hanya orang yang berhak bisa masuk dan melihat data yang menjadi haknya.",
+      "level": "Menengah",
+      "hours": 20,
+      "area": "SEC",
+      "outcomes": [
+        "Menerapkan autentikasi berbasis token dengan benar.",
+        "Membedakan autentikasi dari otorisasi dan menerapkan keduanya.",
+        "Menutup celah yang paling sering ditemui di aplikasi web."
+      ],
+      "prerequisites": [
+        "KT04",
+        "IF403"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "OWASP Top Ten",
+          "author": "OWASP Foundation",
+          "url": "https://owasp.org/www-project-top-ten/",
+          "note": "Daftar celah keamanan aplikasi web yang paling sering ditemui."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Kata Sandi",
+          "summary": "Penyandian satu arah, garam, dan kenapa jangan pernah menyimpan kata sandi apa adanya.",
+          "blocks": []
+        },
+        {
+          "title": "Sesi dan Token",
+          "summary": "Perbedaan sesi berbasis kuki dan token, beserta untung ruginya.",
+          "blocks": []
+        },
+        {
+          "title": "JWT",
+          "summary": "Susunannya, cara memeriksanya, masa berlaku, dan kesalahpahaman yang umum.",
+          "blocks": []
+        },
+        {
+          "title": "Otorisasi",
+          "summary": "Peran, izin, dan memeriksa hak akses pada tingkat data, bukan hanya tampilan.",
+          "blocks": []
+        },
+        {
+          "title": "Celah Umum",
+          "summary": "Suntikan, XSS, CSRF, dan kendali akses yang bocor, mengacu pada OWASP.",
+          "blocks": []
+        },
+        {
+          "title": "Menyimpan Rahasia",
+          "summary": "Variabel lingkungan, pengelola rahasia, dan kenapa jangan menaruh kunci di repositori.",
+          "blocks": []
+        },
+        {
+          "title": "Masuk lewat Pihak Ketiga",
+          "summary": "OAuth dan OpenID Connect secukupnya untuk dipakai dengan benar.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT23",
+      "kind": "KETERAMPILAN",
+      "title": "Caching dan Antrean",
+      "description": "Membuat layanan tetap cepat saat pemakainya banyak, dan memindahkan pekerjaan berat ke latar belakang.",
+      "level": "Lanjutan",
+      "hours": 16,
+      "area": "PDC",
+      "outcomes": [
+        "Menerapkan penembolokan tanpa menyajikan data basi.",
+        "Memindahkan pekerjaan lambat ke antrean.",
+        "Mengenali kapan keduanya justru tidak diperlukan."
+      ],
+      "prerequisites": [
+        "KT20"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Kapan Perlu Tembolok",
+          "summary": "Mengukur dulu sebelum menambah, dan kenapa tembolok yang salah lebih berbahaya daripada tidak ada.",
+          "blocks": []
+        },
+        {
+          "title": "Redis",
+          "summary": "Jenis data, masa berlaku, dan pola pemakaian yang umum.",
+          "blocks": []
+        },
+        {
+          "title": "Pola Penembolokan",
+          "summary": "Baca lewat tembolok, tulis lewat tembolok, dan penanganan saat tembolok kosong bersamaan.",
+          "blocks": []
+        },
+        {
+          "title": "Membatalkan Tembolok",
+          "summary": "Persoalan tersulitnya: kapan data di tembolok harus dibuang.",
+          "blocks": []
+        },
+        {
+          "title": "Antrean Pesan",
+          "summary": "Kenapa pekerjaan berat dipindahkan, dan apa yang berubah pada pengalaman pengguna.",
+          "blocks": []
+        },
+        {
+          "title": "Pekerja Latar",
+          "summary": "Menjalankan tugas, mencoba ulang saat gagal, dan menangani pesan yang terus gagal.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT30",
+      "kind": "KETERAMPILAN",
+      "title": "Docker",
+      "description": "Mengemas aplikasi beserta seluruh kebutuhannya supaya berjalan sama di mana pun.",
+      "level": "Menengah",
+      "hours": 20,
+      "area": "PDC",
+      "outcomes": [
+        "Mengemas aplikasi ke dalam citra kontainer.",
+        "Menjalankan beberapa layanan sekaligus untuk pengembangan.",
+        "Membuat citra yang ramping dan aman."
+      ],
+      "prerequisites": [
+        "KT02"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "Docker Documentation",
+          "author": "Docker Inc.",
+          "url": "https://docs.docker.com/",
+          "note": "Rujukan resmi."
+        },
+        {
+          "title": "Docker Learning Roadmap",
+          "author": "Coursera",
+          "url": "https://www.coursera.org/resources/docker-learning-roadmap",
+          "note": "Acuan urutan belajar dari dasar sampai produksi."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Masalah yang Dipecahkan",
+          "summary": "Kalimat jalan di komputer saya, dan bagaimana kontainer menghapusnya.",
+          "blocks": []
+        },
+        {
+          "title": "Citra dan Kontainer",
+          "summary": "Perbedaan keduanya, lapisan citra, dan registry.",
+          "blocks": []
+        },
+        {
+          "title": "Menjalankan Kontainer",
+          "summary": "run, exec, logs, dan ps. Perintah yang dipakai setiap hari.",
+          "blocks": []
+        },
+        {
+          "title": "Dockerfile",
+          "summary": "Menulis resep citra, urutan perintah, dan pemanfaatan tembolok lapisan.",
+          "blocks": []
+        },
+        {
+          "title": "Volume",
+          "summary": "Menyimpan data yang harus bertahan setelah kontainer dihapus.",
+          "blocks": []
+        },
+        {
+          "title": "Jaringan",
+          "summary": "Menyambungkan antarkontainer dan membuka porta ke luar.",
+          "blocks": []
+        },
+        {
+          "title": "Docker Compose",
+          "summary": "Menjalankan aplikasi, basis data, dan tembolok sekaligus untuk pengembangan.",
+          "blocks": []
+        },
+        {
+          "title": "Citra untuk Produksi",
+          "summary": "Pembangunan bertahap, citra dasar yang ramping, dan tidak berjalan sebagai root.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT31",
+      "kind": "KETERAMPILAN",
+      "title": "Kubernetes",
+      "description": "Menjalankan banyak kontainer di banyak mesin, dengan penskalaan dan pemulihan otomatis.",
+      "level": "Lanjutan",
+      "hours": 40,
+      "area": "PDC",
+      "outcomes": [
+        "Menjalankan aplikasi pada klaster Kubernetes.",
+        "Mengatur penskalaan, pembaruan, dan pemulihan.",
+        "Mengelola pengaturan dan rahasia dengan aman."
+      ],
+      "prerequisites": [
+        "KT30"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "Kubernetes Documentation",
+          "author": "CNCF",
+          "url": "https://kubernetes.io/docs/home/",
+          "note": "Rujukan resmi."
+        },
+        {
+          "title": "Kubernetes Learning Roadmap",
+          "author": "Coursera",
+          "url": "https://www.coursera.org/resources/kubernetes-learning-roadmap",
+          "note": "Acuan urutan belajar dan perkiraan waktunya."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Kenapa Perlu Orkestrasi",
+          "summary": "Batas yang dicapai Docker Compose, dan persoalan yang muncul saat mesinnya banyak.",
+          "blocks": []
+        },
+        {
+          "title": "Susunan Klaster",
+          "summary": "Simpul, bidang kendali, etcd, dan kubelet. Siapa mengerjakan apa.",
+          "blocks": []
+        },
+        {
+          "title": "Pod",
+          "summary": "Satuan terkecil yang bisa dijalankan, dan kenapa bukan kontainer langsung.",
+          "blocks": []
+        },
+        {
+          "title": "Deployment dan ReplicaSet",
+          "summary": "Menjaga jumlah salinan, pembaruan bertahap, dan pengembalian versi.",
+          "blocks": []
+        },
+        {
+          "title": "Service",
+          "summary": "Memberi alamat tetap pada pod yang terus berganti.",
+          "blocks": []
+        },
+        {
+          "title": "Ingress",
+          "summary": "Mengarahkan lalu lintas dari luar ke layanan di dalam klaster, beserta TLS.",
+          "blocks": []
+        },
+        {
+          "title": "ConfigMap dan Secret",
+          "summary": "Memisahkan pengaturan dari citra, dan menyimpan rahasia dengan benar.",
+          "blocks": []
+        },
+        {
+          "title": "Penyimpanan",
+          "summary": "Volume tetap untuk aplikasi yang menyimpan data.",
+          "blocks": []
+        },
+        {
+          "title": "Penskalaan",
+          "summary": "Penskalaan mendatar otomatis berdasarkan beban.",
+          "blocks": []
+        },
+        {
+          "title": "Helm",
+          "summary": "Mengemas dan memasang aplikasi beserta pengaturannya.",
+          "blocks": []
+        },
+        {
+          "title": "Pemantauan dan Penelusuran Masalah",
+          "summary": "Membaca log, memeriksa keadaan pod, dan menelusuri sebab kegagalan.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT32",
+      "kind": "KETERAMPILAN",
+      "title": "Integrasi dan Penerbitan Berkelanjutan",
+      "description": "Mengotomatiskan pembangunan, pengujian, dan penerbitan supaya rilis menjadi hal biasa, bukan peristiwa menegangkan.",
+      "level": "Menengah",
+      "hours": 16,
+      "area": "SE",
+      "outcomes": [
+        "Menyusun alur yang menguji setiap perubahan kode.",
+        "Menerbitkan aplikasi secara otomatis setelah pengujian lolos.",
+        "Memulihkan keadaan ketika penerbitan bermasalah."
+      ],
+      "prerequisites": [
+        "KT01",
+        "KT30"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Gagasan Pokok",
+          "summary": "Kenapa menggabungkan kode sesering mungkin justru mengurangi risiko.",
+          "blocks": []
+        },
+        {
+          "title": "Alur Pertama",
+          "summary": "Menjalankan pengujian otomatis setiap kali kode didorong ke repositori.",
+          "blocks": []
+        },
+        {
+          "title": "Membangun Artefak",
+          "summary": "Mengemas hasil pembangunan dan menyimpannya untuk dipakai tahap berikutnya.",
+          "blocks": []
+        },
+        {
+          "title": "Penerbitan Otomatis",
+          "summary": "Menerbitkan ke lingkungan uji, lalu ke produksi setelah disetujui.",
+          "blocks": []
+        },
+        {
+          "title": "Strategi Penerbitan",
+          "summary": "Penerbitan bertahap, berdampingan, dan bendera fitur.",
+          "blocks": []
+        },
+        {
+          "title": "Rahasia pada Alur",
+          "summary": "Menyimpan kunci dan kata sandi tanpa membocorkannya di log.",
+          "blocks": []
+        },
+        {
+          "title": "Ketika Gagal",
+          "summary": "Membaca log alur, mengulang tahap yang gagal, dan mengembalikan versi sebelumnya.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT33",
+      "kind": "KETERAMPILAN",
+      "title": "Infrastruktur sebagai Kode",
+      "description": "Menuliskan infrastruktur sebagai berkas yang bisa ditelaah dan diulang, bukan diklik satu per satu.",
+      "level": "Lanjutan",
+      "hours": 16,
+      "area": "PDC",
+      "outcomes": [
+        "Menuliskan sumber daya awan sebagai kode.",
+        "Menerapkan perubahan dengan aman dan dapat dibatalkan.",
+        "Mengelola keadaan infrastruktur bersama tim."
+      ],
+      "prerequisites": [
+        "KT34"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Kenapa Jangan Diklik",
+          "summary": "Masalah mengatur infrastruktur lewat konsol: tidak tercatat, tidak terulang, dan sulit ditelaah.",
+          "blocks": []
+        },
+        {
+          "title": "Terraform",
+          "summary": "Tata bahasa dasar, penyedia, dan sumber daya.",
+          "blocks": []
+        },
+        {
+          "title": "Rencana dan Terapkan",
+          "summary": "Melihat apa yang akan berubah sebelum benar-benar mengubahnya.",
+          "blocks": []
+        },
+        {
+          "title": "Keadaan",
+          "summary": "Berkas keadaan, penyimpanan bersama, dan penguncian saat tim bekerja bersamaan.",
+          "blocks": []
+        },
+        {
+          "title": "Modul",
+          "summary": "Memecah infrastruktur menjadi bagian yang dapat dipakai ulang.",
+          "blocks": []
+        },
+        {
+          "title": "Lingkungan Terpisah",
+          "summary": "Mengelola pengembangan, pengujian, dan produksi dari kode yang sama.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT34",
+      "kind": "KETERAMPILAN",
+      "title": "Dasar Komputasi Awan",
+      "description": "Menjalankan aplikasi di infrastruktur sewa, beserta cara menghitung biayanya.",
+      "level": "Menengah",
+      "hours": 20,
+      "area": "PDC",
+      "outcomes": [
+        "Memilih layanan awan yang sesuai keperluan.",
+        "Menerbitkan aplikasi beserta basis datanya ke awan.",
+        "Memperkirakan biaya dan menghindari tagihan yang mengejutkan."
+      ],
+      "prerequisites": [
+        "KT02"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Model Layanan",
+          "summary": "Perbedaan infrastruktur, platform, dan perangkat lunak sebagai layanan.",
+          "blocks": []
+        },
+        {
+          "title": "Komputasi",
+          "summary": "Mesin maya, kontainer terkelola, dan fungsi tanpa server. Kapan memilih yang mana.",
+          "blocks": []
+        },
+        {
+          "title": "Penyimpanan",
+          "summary": "Penyimpanan objek, blok, dan berkas.",
+          "blocks": []
+        },
+        {
+          "title": "Basis Data Terkelola",
+          "summary": "Untung ruginya dibanding memasang sendiri.",
+          "blocks": []
+        },
+        {
+          "title": "Jaringan",
+          "summary": "Jaringan maya, kelompok keamanan, dan pemerataan beban.",
+          "blocks": []
+        },
+        {
+          "title": "Identitas dan Hak Akses",
+          "summary": "Memberi izin sekecil mungkin yang tetap mencukupi.",
+          "blocks": []
+        },
+        {
+          "title": "Biaya",
+          "summary": "Cara penagihan, pemantauan biaya, dan jebakan yang membuat tagihan membengkak.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT40",
+      "kind": "KETERAMPILAN",
+      "title": "Python untuk Data",
+      "description": "Python dengan bekal yang dibutuhkan pekerjaan data, bukan pemrograman umum.",
+      "level": "Pemula",
+      "hours": 20,
+      "area": "MSF",
+      "outcomes": [
+        "Mengolah berkas data dengan Python.",
+        "Memakai NumPy untuk perhitungan pada larik.",
+        "Menyiapkan lingkungan kerja yang dapat diulang orang lain."
+      ],
+      "prerequisites": [
+        "IF102"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "Python for Data Analysis Roadmap",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/python-for-data-analysis",
+          "note": "Acuan cakupan topik."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Lingkungan Kerja",
+          "summary": "Notebook, lingkungan maya, dan mengelola pustaka.",
+          "blocks": []
+        },
+        {
+          "title": "Mengolah Berkas",
+          "summary": "Membaca dan menulis CSV, JSON, dan berkas teks.",
+          "blocks": []
+        },
+        {
+          "title": "NumPy",
+          "summary": "Larik, operasi menyeluruh, dan kenapa jauh lebih cepat daripada perulangan biasa.",
+          "blocks": []
+        },
+        {
+          "title": "Bentuk dan Penyiaran",
+          "summary": "Dimensi larik, pengubahan bentuk, dan aturan penyiaran.",
+          "blocks": []
+        },
+        {
+          "title": "Nilai Kosong dan Data Kotor",
+          "summary": "Pola data dunia nyata yang jarang rapi.",
+          "blocks": []
+        },
+        {
+          "title": "Catatan yang Dapat Diulang",
+          "summary": "Menyusun notebook supaya hasilnya bisa diulang orang lain.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT41",
+      "kind": "KETERAMPILAN",
+      "title": "Analisis Data dengan Pandas",
+      "description": "Perkakas utama pekerjaan data sehari-hari: membersihkan, menggabungkan, dan meringkas data.",
+      "level": "Menengah",
+      "hours": 30,
+      "area": "DM",
+      "outcomes": [
+        "Membersihkan data yang berantakan.",
+        "Menggabungkan data dari beberapa sumber.",
+        "Meringkas dan mengelompokkan untuk menjawab pertanyaan."
+      ],
+      "prerequisites": [
+        "KT40"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "pandas documentation",
+          "author": "pandas development team",
+          "url": "https://pandas.pydata.org/docs/",
+          "note": "Rujukan resmi."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "DataFrame dan Series",
+          "summary": "Dua bentuk pokok Pandas, dan cara memilih baris serta kolom.",
+          "blocks": []
+        },
+        {
+          "title": "Memuat Data",
+          "summary": "Dari CSV, Excel, basis data, dan API.",
+          "blocks": []
+        },
+        {
+          "title": "Membersihkan",
+          "summary": "Nilai kosong, duplikat, jenis data yang salah, dan teks yang tidak seragam.",
+          "blocks": []
+        },
+        {
+          "title": "Menyaring dan Mengurutkan",
+          "summary": "Penyaringan bersyarat dan pengurutan bertingkat.",
+          "blocks": []
+        },
+        {
+          "title": "Mengelompokkan",
+          "summary": "groupby, agregat, dan tabel pivot.",
+          "blocks": []
+        },
+        {
+          "title": "Menggabungkan",
+          "summary": "merge, join, dan concat. Padanannya dengan JOIN pada SQL.",
+          "blocks": []
+        },
+        {
+          "title": "Deret Waktu",
+          "summary": "Mengolah tanggal, pengambilan sampel ulang, dan jendela bergulir.",
+          "blocks": []
+        },
+        {
+          "title": "Kesalahan yang Sering Terjadi",
+          "summary": "Peringatan salinan, operasi yang lambat karena perulangan, dan ingatan yang membengkak.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT42",
+      "kind": "KETERAMPILAN",
+      "title": "Visualisasi Data",
+      "description": "Menyajikan temuan secara jujur dan mudah ditangkap, bukan sekadar membuat grafik yang ramai.",
+      "level": "Menengah",
+      "hours": 16,
+      "area": "GIT",
+      "outcomes": [
+        "Memilih bentuk grafik yang sesuai jenis datanya.",
+        "Membuat grafik yang tidak menyesatkan pembacanya.",
+        "Menyusun papan pantau yang menjawab pertanyaan tertentu."
+      ],
+      "prerequisites": [
+        "KT41"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Memilih Bentuk Grafik",
+          "summary": "Perbandingan, sebaran, hubungan, dan perubahan sepanjang waktu.",
+          "blocks": []
+        },
+        {
+          "title": "Grafik dengan Kode",
+          "summary": "Matplotlib dan Seaborn untuk kebutuhan sehari-hari.",
+          "blocks": []
+        },
+        {
+          "title": "Grafik yang Menyesatkan",
+          "summary": "Sumbu yang dipotong, skala yang tidak wajar, dan diagram lingkaran yang menyusahkan.",
+          "blocks": []
+        },
+        {
+          "title": "Warna dan Keterjangkauan",
+          "summary": "Palet yang aman bagi penyandang buta warna, dan kontras yang memadai.",
+          "blocks": []
+        },
+        {
+          "title": "Papan Pantau",
+          "summary": "Menyusun beberapa grafik untuk menjawab satu pertanyaan, bukan memamerkan semua data.",
+          "blocks": []
+        },
+        {
+          "title": "Menyampaikan Temuan",
+          "summary": "Menyusun cerita dari data untuk pendengar yang bukan orang teknis.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT43",
+      "kind": "KETERAMPILAN",
+      "title": "Pembelajaran Mesin Terapan",
+      "description": "Melatih dan menilai model dengan scikit-learn, dari penyiapan data sampai penerbitan.",
+      "level": "Lanjutan",
+      "hours": 40,
+      "area": "AI",
+      "outcomes": [
+        "Menyiapkan data dan memilih fitur yang relevan.",
+        "Melatih serta menilai model secara jujur.",
+        "Menerbitkan model supaya bisa dipakai aplikasi lain."
+      ],
+      "prerequisites": [
+        "IF501",
+        "KT41"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "scikit-learn User Guide",
+          "author": "scikit-learn developers",
+          "url": "https://scikit-learn.org/stable/user_guide.html",
+          "note": "Rujukan resmi."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Alur Kerja",
+          "summary": "Urutan pekerjaan dari pertanyaan sampai model yang dipakai.",
+          "blocks": []
+        },
+        {
+          "title": "Menyiapkan Data",
+          "summary": "Pembagian latih dan uji, penskalaan, dan pengodean data kategori.",
+          "blocks": []
+        },
+        {
+          "title": "Model Dasar",
+          "summary": "Regresi linear dan logistik sebagai pembanding yang wajib ada.",
+          "blocks": []
+        },
+        {
+          "title": "Model Pohon",
+          "summary": "Pohon keputusan, hutan acak, dan peningkatan gradien.",
+          "blocks": []
+        },
+        {
+          "title": "Menilai Model",
+          "summary": "Ketepatan, presisi, recall, dan kenapa ketepatan saja sering menyesatkan.",
+          "blocks": []
+        },
+        {
+          "title": "Validasi Silang",
+          "summary": "Menghindari kesimpulan yang kebetulan bagus pada satu pembagian data.",
+          "blocks": []
+        },
+        {
+          "title": "Penalaan",
+          "summary": "Pencarian kisi dan acak untuk memilih pengaturan model.",
+          "blocks": []
+        },
+        {
+          "title": "Kebocoran Data",
+          "summary": "Kesalahan paling berbahaya: model tampak sangat baik tapi gagal di dunia nyata.",
+          "blocks": []
+        },
+        {
+          "title": "Menerbitkan Model",
+          "summary": "Menyimpan model, menyajikannya lewat API, dan memantau penurunan mutunya.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT44",
+      "kind": "KETERAMPILAN",
+      "title": "Saluran Data",
+      "description": "Memindahkan data dari sumbernya ke gudang data secara berkala dan andal.",
+      "level": "Lanjutan",
+      "hours": 30,
+      "area": "DM",
+      "outcomes": [
+        "Menyusun proses ekstraksi, transformasi, dan pemuatan.",
+        "Menjadwalkan dan memantau proses yang berjalan berkala.",
+        "Menangani kegagalan tanpa merusak data."
+      ],
+      "prerequisites": [
+        "KT03",
+        "KT40"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "Apache Airflow Documentation",
+          "author": "Apache Software Foundation",
+          "url": "https://airflow.apache.org/docs/",
+          "note": "Rujukan resmi penjadwal saluran data."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Bentuk Saluran",
+          "summary": "Perbedaan ETL dan ELT, serta kapan masing-masing dipakai.",
+          "blocks": []
+        },
+        {
+          "title": "Mengambil Data",
+          "summary": "Dari basis data, API, dan berkas. Pengambilan penuh dan bertambah.",
+          "blocks": []
+        },
+        {
+          "title": "Mengubah Data",
+          "summary": "Pembersihan, penggabungan, dan pembentukan sesuai kebutuhan analisis.",
+          "blocks": []
+        },
+        {
+          "title": "Gudang Data",
+          "summary": "Skema bintang, tabel fakta, dan tabel dimensi.",
+          "blocks": []
+        },
+        {
+          "title": "Penjadwalan dengan Airflow",
+          "summary": "DAG, tugas, ketergantungan, dan penjadwalan berkala.",
+          "blocks": []
+        },
+        {
+          "title": "Menangani Kegagalan",
+          "summary": "Percobaan ulang, pengulangan yang aman, dan pemulihan data yang tertinggal.",
+          "blocks": []
+        },
+        {
+          "title": "Mutu Data",
+          "summary": "Pemeriksaan otomatis dan peringatan saat data menyimpang.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT50",
+      "kind": "KETERAMPILAN",
+      "title": "Kotlin dan Android",
+      "description": "Membangun aplikasi Android dengan bahasa resmi yang dipakai sekarang.",
+      "level": "Menengah",
+      "hours": 40,
+      "area": "SPD",
+      "outcomes": [
+        "Membangun aplikasi Android berlayar banyak.",
+        "Mengelola keadaan dan daur hidup aplikasi.",
+        "Menyiapkan aplikasi sampai layak diunggah ke toko."
+      ],
+      "prerequisites": [
+        "IF202"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "Android Developers",
+          "author": "Google",
+          "url": "https://developer.android.com/courses",
+          "note": "Rujukan resmi beserta kursus bawaannya."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Kotlin Secukupnya",
+          "summary": "Perbedaan dengan Java, keamanan nilai kosong, dan fungsi perluasan.",
+          "blocks": []
+        },
+        {
+          "title": "Proyek Android",
+          "summary": "Susunan berkas, Gradle, dan menjalankan di emulator.",
+          "blocks": []
+        },
+        {
+          "title": "Tampilan dengan Compose",
+          "summary": "Fungsi komposabel, keadaan, dan penggambaran ulang.",
+          "blocks": []
+        },
+        {
+          "title": "Tata Letak",
+          "summary": "Menyusun tampilan yang menyesuaikan ukuran layar.",
+          "blocks": []
+        },
+        {
+          "title": "Navigasi",
+          "summary": "Berpindah antarlayar dan mengirim data.",
+          "blocks": []
+        },
+        {
+          "title": "Daur Hidup",
+          "summary": "Apa yang terjadi saat aplikasi dijeda, diputar, atau dihentikan sistem.",
+          "blocks": []
+        },
+        {
+          "title": "Jaringan",
+          "summary": "Memanggil API, menangani kegagalan, dan menampilkan keadaan memuat.",
+          "blocks": []
+        },
+        {
+          "title": "Penyimpanan Lokal",
+          "summary": "Room dan penyimpanan pengaturan.",
+          "blocks": []
+        },
+        {
+          "title": "Izin",
+          "summary": "Meminta izin perangkat dengan cara yang benar.",
+          "blocks": []
+        },
+        {
+          "title": "Menyiapkan Rilis",
+          "summary": "Penandatanganan, pengecilan ukuran, dan pengunggahan ke Play Store.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT51",
+      "kind": "KETERAMPILAN",
+      "title": "Flutter",
+      "description": "Membangun aplikasi untuk Android dan iOS dari satu basis kode.",
+      "level": "Menengah",
+      "hours": 30,
+      "area": "SPD",
+      "outcomes": [
+        "Membangun aplikasi lintas sistem dari satu kode.",
+        "Mengelola keadaan aplikasi dengan pola yang umum dipakai.",
+        "Menerbitkan ke kedua toko aplikasi."
+      ],
+      "prerequisites": [
+        "IF202"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "Flutter Documentation",
+          "author": "Google",
+          "url": "https://docs.flutter.dev/",
+          "note": "Rujukan resmi."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Dart Secukupnya",
+          "summary": "Tata bahasa dasar dan keamanan nilai kosong.",
+          "blocks": []
+        },
+        {
+          "title": "Widget",
+          "summary": "Gagasan bahwa semuanya widget, serta widget keadaan dan tanpa keadaan.",
+          "blocks": []
+        },
+        {
+          "title": "Tata Letak",
+          "summary": "Row, Column, Stack, dan menyesuaikan ukuran layar.",
+          "blocks": []
+        },
+        {
+          "title": "Navigasi",
+          "summary": "Berpindah halaman dan mengirim data.",
+          "blocks": []
+        },
+        {
+          "title": "Mengelola Keadaan",
+          "summary": "Provider dan pola lain yang umum dipakai.",
+          "blocks": []
+        },
+        {
+          "title": "Jaringan dan Penyimpanan",
+          "summary": "Memanggil API dan menyimpan data di perangkat.",
+          "blocks": []
+        },
+        {
+          "title": "Menerbitkan",
+          "summary": "Membangun untuk Android dan iOS beserta perbedaannya.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT60",
+      "kind": "KETERAMPILAN",
+      "title": "Keamanan Aplikasi Web Praktis",
+      "description": "Mengenali dan menutup celah yang paling sering ditemui pada aplikasi web.",
+      "level": "Lanjutan",
+      "hours": 30,
+      "area": "SEC",
+      "outcomes": [
+        "Mengenali celah pada daftar OWASP Top Ten.",
+        "Menutup celah pada kode sendiri.",
+        "Menguji keamanan aplikasi sendiri secara bertanggung jawab."
+      ],
+      "prerequisites": [
+        "IF604",
+        "KT04"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "OWASP Top Ten",
+          "author": "OWASP Foundation",
+          "url": "https://owasp.org/www-project-top-ten/",
+          "note": "Daftar celah acuan industri."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Cara Berpikir Penyerang",
+          "summary": "Menyusun model ancaman sebelum menulis kode.",
+          "blocks": []
+        },
+        {
+          "title": "Suntikan",
+          "summary": "Suntikan SQL dan perintah, beserta cara menutupnya dengan benar.",
+          "blocks": []
+        },
+        {
+          "title": "XSS",
+          "summary": "Tersimpan, terpantul, dan berbasis DOM. Pelolosan keluaran dan kebijakan keamanan isi.",
+          "blocks": []
+        },
+        {
+          "title": "Kendali Akses",
+          "summary": "Celah paling sering: pemeriksaan hak akses yang hanya dilakukan di tampilan.",
+          "blocks": []
+        },
+        {
+          "title": "Autentikasi yang Rusak",
+          "summary": "Pengelolaan sesi, pemulihan kata sandi, dan serangan tebak sandi.",
+          "blocks": []
+        },
+        {
+          "title": "Pengaturan yang Keliru",
+          "summary": "Nilai bawaan yang berbahaya, pesan kesalahan yang terlalu banyak bercerita.",
+          "blocks": []
+        },
+        {
+          "title": "Ketergantungan yang Rentan",
+          "summary": "Memeriksa pustaka yang dipakai dan memperbaruinya.",
+          "blocks": []
+        },
+        {
+          "title": "Menguji dengan Izin",
+          "summary": "Memakai Burp Suite dan OWASP ZAP pada aplikasi sendiri, serta batas hukumnya.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT61",
+      "kind": "KETERAMPILAN",
+      "title": "Uji Penetrasi dengan Izin",
+      "description": "Menguji ketahanan sistem secara sah, lalu melaporkannya supaya bisa diperbaiki.",
+      "level": "Lanjutan",
+      "hours": 30,
+      "area": "SEC",
+      "outcomes": [
+        "Menjalankan pengujian pada lingkungan yang memang disediakan.",
+        "Memakai perkakas pengintaian dan pengujian yang umum.",
+        "Menyusun laporan temuan yang bisa ditindaklanjuti."
+      ],
+      "prerequisites": [
+        "KT60",
+        "IF303"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "Cyber Security Roadmap",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/cyber-security",
+          "note": "Acuan susunan topik."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Batas Hukum dan Etika",
+          "summary": "Kenapa izin tertulis mutlak diperlukan, dan apa akibatnya bila tidak ada.",
+          "blocks": []
+        },
+        {
+          "title": "Pengintaian",
+          "summary": "Mengumpulkan keterangan dari sumber terbuka sebelum menyentuh sistem.",
+          "blocks": []
+        },
+        {
+          "title": "Pemindaian",
+          "summary": "Nmap untuk memetakan porta dan layanan yang terbuka.",
+          "blocks": []
+        },
+        {
+          "title": "Analisis Lalu Lintas",
+          "summary": "Wireshark untuk membaca percakapan jaringan.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian Aplikasi Web",
+          "summary": "Burp Suite untuk mencegat dan mengubah permintaan.",
+          "blocks": []
+        },
+        {
+          "title": "Laboratorium Latihan",
+          "summary": "Hack The Box, TryHackMe, dan laboratorium yang kamu pasang sendiri.",
+          "blocks": []
+        },
+        {
+          "title": "Menulis Laporan",
+          "summary": "Menjelaskan temuan, menakar tingkat bahayanya, dan menyarankan perbaikan.",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "code": "KT70",
+      "kind": "KETERAMPILAN",
+      "title": "Otomasi Pengujian",
+      "description": "Membangun pengujian yang berjalan sendiri setiap kali kode berubah.",
+      "level": "Menengah",
+      "hours": 30,
+      "area": "SE",
+      "outcomes": [
+        "Menulis pengujian otomatis pada beberapa tingkat.",
+        "Menguji API dan antarmuka secara otomatis.",
+        "Menjaga pengujian tetap cepat dan tidak rapuh."
+      ],
+      "prerequisites": [
+        "IF601"
+      ],
+      "references": [
+        {
+          "title": "Developer Roadmaps",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/roadmaps",
+          "note": "Acuan susunan bab modul ini."
+        },
+        {
+          "title": "QA Roadmap",
+          "author": "roadmap.sh",
+          "url": "https://roadmap.sh/qa",
+          "note": "Acuan susunan topik."
+        }
+      ],
+      "lessons": [
+        {
+          "title": "Piramida Pengujian",
+          "summary": "Berapa banyak pengujian di tiap tingkat, dan kenapa yang paling banyak justru yang terkecil.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian Unit",
+          "summary": "Menguji satu bagian secara terpisah, beserta pemakaian tiruan.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian API",
+          "summary": "Menguji titik akhir langsung, termasuk kasus gagal.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian Antarmuka",
+          "summary": "Playwright atau Selenium untuk menelusuri alur pengguna.",
+          "blocks": []
+        },
+        {
+          "title": "Data Uji",
+          "summary": "Menyiapkan dan membersihkan data supaya pengujian dapat diulang.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian yang Rapuh",
+          "summary": "Sebab pengujian gagal tanpa alasan jelas, dan cara menenangkannya.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian Beban",
+          "summary": "k6 atau JMeter untuk mengetahui batas kemampuan sistem.",
+          "blocks": []
+        },
+        {
+          "title": "Pengujian pada Alur Integrasi",
+          "summary": "Menjalankan otomatis, membaca laporan, dan mengatur ambang kelulusan.",
+          "blocks": []
+        }
+      ]
+    }
+  ]
+}

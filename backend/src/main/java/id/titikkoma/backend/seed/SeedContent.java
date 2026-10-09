@@ -27,6 +27,8 @@ public class SeedContent {
 
     public static class SeedCourse {
         public String code;
+        /** KULIAH bila kosong. */
+        public String kind;
         /** Opsional. Kalau kosong, dibuat dari judul. */
         public String slug;
         public String title;

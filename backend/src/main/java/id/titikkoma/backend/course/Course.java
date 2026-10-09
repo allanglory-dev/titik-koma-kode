@@ -41,12 +41,14 @@ public class Course {
     @Column(columnDefinition = "text")
     private String description;
 
-    /** Semester 1 sampai 8. */
-    @Column(nullable = false)
+    /** KULIAH untuk mata kuliah, KETERAMPILAN untuk modul perkakas industri. */
+    @Column(nullable = false, length = 16)
+    private String kind = "KULIAH";
+
+    /** Semester 1 sampai 8. Kosong untuk modul keterampilan. */
     private Integer semester;
 
-    /** Bobot satuan kredit semester. */
-    @Column(nullable = false)
+    /** Bobot satuan kredit semester. Kosong untuk modul keterampilan. */
     private Integer sks;
 
     /** Pemula, Menengah, atau Lanjutan. */
@@ -134,6 +136,14 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 
     public Integer getSemester() {

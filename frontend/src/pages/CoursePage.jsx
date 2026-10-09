@@ -39,7 +39,10 @@ export function CoursePage() {
 
   return (
     <main className="reader">
-      <span className="chapter-mark">{course.level}</span>
+      <span className="chapter-mark">
+        {course.kind === "KETERAMPILAN" ? "Modul keterampilan" : "Mata kuliah"} ·{" "}
+        {course.level}
+      </span>
       <h1>{course.title}</h1>
       <p className="lead">{course.description}</p>
 

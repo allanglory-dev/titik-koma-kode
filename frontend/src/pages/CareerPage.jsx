@@ -20,7 +20,9 @@ function DaftarMataKuliah({ kode, semua }) {
             </span>
             <span className="row-title">{c.title}</span>
             <span className="row-desc">{c.description}</span>
-            <span className="row-meta">Semester {c.semester}</span>
+            <span className="row-meta">
+              {c.semester ? `Semester ${c.semester}` : `${c.hours} jam`}
+            </span>
           </Link>
         );
       })}
@@ -45,6 +47,10 @@ export function CareerPage() {
   }
 
   const [path, courses] = data;
+  const jamModul = path.skillCourses.reduce(
+    (n, k) => n + (courses.find((c) => c.code === k)?.hours ?? 0),
+    0
+  );
   const siap = path.coreCourses.filter(
     (k) => (courses.find((c) => c.code === k)?.lessonCount ?? 0) > 0
   ).length;
@@ -100,16 +106,12 @@ export function CareerPage() {
       <h2>Pendukung</h2>
       <DaftarMataKuliah kode={path.supportCourses} semua={courses} />
 
-      <h2>Di luar kurikulum</h2>
-      <p className="progress-label" style={{ marginBottom: 14 }}>
-        Perkakas dan kemampuan yang dituntut industri tapi jarang diajarkan di
-        kelas. Ini yang perlu kamu kejar sendiri.
+      <h2>Modul keterampilan</h2>
+      <p className="progress-label" style={{ marginBottom: 18 }}>
+        Perkakas yang dituntut industri tapi jarang diajarkan di kelas.
+        {jamModul > 0 && ` Totalnya sekitar ${jamModul} jam.`}
       </p>
-      <ul className="tahap-isi" style={{ marginLeft: 0 }}>
-        {path.beyondCurriculum.map((x, i) => (
-          <li key={i}>{x}</li>
-        ))}
-      </ul>
+      <DaftarMataKuliah kode={path.skillCourses} semua={courses} />
 
       {path.references.length > 0 && (
         <>

@@ -69,6 +69,13 @@ public class CareerPath {
     @Column(name = "course_code", length = 12)
     private List<String> supportCourses = new ArrayList<>();
 
+    /** Modul keterampilan yang ditempuh pada jalur ini. */
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "career_skill", joinColumns = @JoinColumn(name = "path_id"))
+    @OrderColumn(name = "position")
+    @Column(name = "course_code", length = 12)
+    private List<String> skillCourses = new ArrayList<>();
+
     /** Hal yang perlu dipelajari di luar kurikulum, biasanya perkakas industri. */
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "career_extra", joinColumns = @JoinColumn(name = "path_id"))
@@ -186,6 +193,14 @@ public class CareerPath {
 
     public void setSupportCourses(List<String> supportCourses) {
         this.supportCourses = supportCourses;
+    }
+
+    public List<String> getSkillCourses() {
+        return skillCourses;
+    }
+
+    public void setSkillCourses(List<String> skillCourses) {
+        this.skillCourses = skillCourses;
     }
 
     public List<String> getBeyondCurriculum() {

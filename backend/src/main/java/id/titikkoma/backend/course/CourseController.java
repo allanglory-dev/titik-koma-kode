@@ -24,12 +24,15 @@ public class CourseController {
         this.lessonRepository = lessonRepository;
     }
 
-    /** GET /api/courses, boleh disaring dengan ?semester=2 atau ?area=SDF */
+    /** GET /api/courses, boleh disaring dengan ?semester=2, ?area=SDF, atau ?kind=KETERAMPILAN */
     @GetMapping
     public List<Course> findAll(@RequestParam(required = false) Integer semester,
-            @RequestParam(required = false) String area) {
+            @RequestParam(required = false) String area,
+            @RequestParam(required = false) String kind) {
         List<Course> courses;
-        if (semester != null) {
+        if (kind != null) {
+            courses = courseRepository.findByKindOrderByCodeAsc(kind);
+        } else if (semester != null) {
             courses = courseRepository.findBySemesterOrderByCodeAsc(semester);
         } else if (area != null) {
             courses = courseRepository.findByAreaCodeOrderBySemesterAscCodeAsc(area);

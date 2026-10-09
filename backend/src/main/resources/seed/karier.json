@@ -22,14 +22,7 @@
         "IF601",
         "IF403"
       ],
-      "beyondCurriculum": [
-        "Kerangka kerja antarmuka: React, Vue, atau Angular",
-        "TypeScript, kini hampir menjadi syarat di banyak lowongan",
-        "Perkakas pembangun: Vite atau Webpack",
-        "Pengelolaan keadaan dan pengambilan data",
-        "Pengujian antarmuka dengan Playwright atau Cypress",
-        "Dasar rancangan dan kerja sama memakai Figma"
-      ],
+      "beyondCurriculum": [],
       "stages": [
         {
           "name": "Fondasi",
@@ -95,6 +88,14 @@
           "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
           "note": "Pembanding kisaran gaji dari papan lowongan."
         }
+      ],
+      "skillCourses": [
+        "KT01",
+        "KT04",
+        "KT10",
+        "KT11",
+        "KT12",
+        "KT13"
       ]
     },
     {
@@ -123,14 +124,7 @@
         "IF601",
         "IF503"
       ],
-      "beyondCurriculum": [
-        "Satu bahasa sampai lancar: Java dengan Spring Boot, Python, Go, atau Node.js",
-        "SQL yang mendalam, bukan sekadar SELECT",
-        "Perancangan REST API dan autentikasi berbasis token",
-        "Docker dan dasar penerbitan aplikasi",
-        "Caching dengan Redis",
-        "Antrean pesan untuk pekerjaan yang berjalan di latar"
-      ],
+      "beyondCurriculum": [],
       "stages": [
         {
           "name": "Fondasi",
@@ -196,6 +190,17 @@
           "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
           "note": "Pembanding kisaran gaji dari papan lowongan."
         }
+      ],
+      "skillCourses": [
+        "KT01",
+        "KT02",
+        "KT03",
+        "KT04",
+        "KT20",
+        "KT21",
+        "KT22",
+        "KT23",
+        "KT30"
       ]
     },
     {
@@ -223,12 +228,7 @@
         "IF505",
         "IF601"
       ],
-      "beyondCurriculum": [
-        "Satu tumpukan teknologi utuh, misalnya React dengan Spring Boot",
-        "Dasar penerbitan dan hosting",
-        "Perancangan API dari kedua sisi sekaligus",
-        "Kemampuan memutuskan apa yang dikerjakan di sisi mana"
-      ],
+      "beyondCurriculum": [],
       "stages": [
         {
           "name": "Pilih satu sisi lebih dulu",
@@ -279,6 +279,15 @@
           "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
           "note": "Pembanding kisaran gaji dari papan lowongan."
         }
+      ],
+      "skillCourses": [
+        "KT01",
+        "KT03",
+        "KT04",
+        "KT10",
+        "KT12",
+        "KT20",
+        "KT30"
       ]
     },
     {
@@ -303,12 +312,7 @@
         "IF304",
         "IF601"
       ],
-      "beyondCurriculum": [
-        "Kotlin untuk Android, atau Swift untuk iOS",
-        "Kerangka kerja lintas sistem: Flutter atau React Native",
-        "Penyimpanan lokal dan penyelarasan ketika kembali daring",
-        "Proses penerbitan ke Play Store dan App Store"
-      ],
+      "beyondCurriculum": [],
       "stages": [
         {
           "name": "Fondasi",
@@ -360,6 +364,12 @@
           "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
           "note": "Pembanding kisaran gaji dari papan lowongan."
         }
+      ],
+      "skillCourses": [
+        "KT01",
+        "KT04",
+        "KT50",
+        "KT51"
       ]
     },
     {
@@ -383,13 +393,7 @@
         "IF405",
         "IF306"
       ],
-      "beyondCurriculum": [
-        "SQL yang mendalam, ini perkakas utamanya",
-        "Python dengan Pandas untuk mengolah data",
-        "Perkakas papan pantau: Metabase, Power BI, atau Looker",
-        "Dasar visualisasi yang tidak menyesatkan",
-        "Kemampuan menjelaskan temuan secara ringkas"
-      ],
+      "beyondCurriculum": [],
       "stages": [
         {
           "name": "Fondasi data",
@@ -442,6 +446,12 @@
           "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
           "note": "Pembanding kisaran gaji dari papan lowongan."
         }
+      ],
+      "skillCourses": [
+        "KT03",
+        "KT40",
+        "KT41",
+        "KT42"
       ]
     },
     {
@@ -468,13 +478,7 @@
         "IF606",
         "IF302"
       ],
-      "beyondCurriculum": [
-        "Python dengan NumPy, Pandas, dan scikit-learn",
-        "Satu pustaka pembelajaran mendalam: PyTorch atau TensorFlow",
-        "Cara mengukur model dan mengenali kelewat pas",
-        "Dasar penerbitan model ke produksi",
-        "Kesadaran akan bias data dan dampaknya"
-      ],
+      "beyondCurriculum": [],
       "stages": [
         {
           "name": "Matematikanya dulu",
@@ -536,6 +540,12 @@
           "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
           "note": "Pembanding kisaran gaji dari papan lowongan."
         }
+      ],
+      "skillCourses": [
+        "KT40",
+        "KT41",
+        "KT42",
+        "KT43"
       ]
     },
     {
@@ -561,14 +571,7 @@
         "IF506",
         "IF206"
       ],
-      "beyondCurriculum": [
-        "SQL tingkat lanjut dan penalaan kueri",
-        "Python untuk menulis saluran data",
-        "Penjadwal proses seperti Airflow",
-        "Gudang data: BigQuery, Snowflake, atau Redshift",
-        "Pengolahan arus data dengan Kafka",
-        "Dasar infrastruktur awan"
-      ],
+      "beyondCurriculum": [],
       "stages": [
         {
           "name": "Fondasi",
@@ -620,6 +623,14 @@
           "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
           "note": "Pembanding kisaran gaji dari papan lowongan."
         }
+      ],
+      "skillCourses": [
+        "KT02",
+        "KT03",
+        "KT30",
+        "KT34",
+        "KT40",
+        "KT44"
       ]
     },
     {
@@ -645,14 +656,7 @@
         "IF502",
         "IF601"
       ],
-      "beyondCurriculum": [
-        "Linux sampai nyaman di baris perintah",
-        "Docker dan Kubernetes",
-        "Satu penyedia awan: AWS, GCP, atau Azure",
-        "Infrastruktur sebagai kode dengan Terraform",
-        "Alur integrasi dan penerbitan berkelanjutan",
-        "Pemantauan dan peringatan"
-      ],
+      "beyondCurriculum": [],
       "stages": [
         {
           "name": "Kuasai mesinnya",
@@ -704,6 +708,15 @@
           "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
           "note": "Pembanding kisaran gaji dari papan lowongan."
         }
+      ],
+      "skillCourses": [
+        "KT01",
+        "KT02",
+        "KT30",
+        "KT31",
+        "KT32",
+        "KT33",
+        "KT34"
       ]
     },
     {
@@ -729,14 +742,7 @@
         "IF505",
         "IF306"
       ],
-      "beyondCurriculum": [
-        "Jaringan dan protokol sampai mendalam",
-        "Daftar celah OWASP Top Ten",
-        "Perkakas uji penetrasi: Burp Suite, Nmap, Wireshark",
-        "Kriptografi terapan",
-        "Latihan di lingkungan sah seperti Hack The Box atau TryHackMe",
-        "Sertifikasi yang diakui industri bila hendak serius"
-      ],
+      "beyondCurriculum": [],
       "stages": [
         {
           "name": "Pahami sistemnya dulu",
@@ -788,6 +794,12 @@
           "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
           "note": "Pembanding kisaran gaji dari papan lowongan."
         }
+      ],
+      "skillCourses": [
+        "KT02",
+        "KT04",
+        "KT60",
+        "KT61"
       ]
     },
     {
@@ -811,13 +823,7 @@
         "IF602",
         "IF201"
       ],
-      "beyondCurriculum": [
-        "Satu kerangka kerja pengujian otomatis",
-        "Pengujian antarmuka dengan Playwright atau Selenium",
-        "Pengujian API dengan Postman atau REST Assured",
-        "Pengujian beban dengan k6 atau JMeter",
-        "Menulis laporan kegagalan yang bisa ditindaklanjuti"
-      ],
+      "beyondCurriculum": [],
       "stages": [
         {
           "name": "Dasar pengujian",
@@ -869,6 +875,12 @@
           "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
           "note": "Pembanding kisaran gaji dari papan lowongan."
         }
+      ],
+      "skillCourses": [
+        "KT01",
+        "KT04",
+        "KT13",
+        "KT70"
       ]
     }
   ]
