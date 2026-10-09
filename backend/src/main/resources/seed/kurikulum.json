@@ -108,7 +108,1010 @@
         "Membedakan persoalan yang bisa dan tidak bisa diselesaikan komputer."
       ],
       "prerequisites": [],
-      "lessons": []
+      "lessons": [
+        {
+          "title": "Apa Itu Ilmu Komputer",
+          "summary": "Bidang yang ternyata bukan tentang komputer.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Ada kalimat terkenal yang sering dipakai membuka mata kuliah ini: ilmu komputer tidak lebih tentang komputer daripada astronomi tentang teleskop."
+            },
+            {
+              "type": "TEXT",
+              "content": "Maksudnya begini. Teleskop cuma alat untuk mengamati langit; yang dipelajari astronom adalah benda langitnya. Begitu pula komputer: ia alat untuk menjalankan perhitungan, sedangkan yang dipelajari ilmu komputer adalah **perhitungannya itu sendiri**."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pertanyaan pokok bidang ini sebenarnya cuma tiga, dan ketiganya bisa ditanyakan tanpa menyalakan komputer sama sekali."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "1. Persoalan apa saja yang bisa diselesaikan dengan langkah-langkah?\n2. Berapa ongkosnya, dalam waktu dan ruang?\n3. Bagaimana menuliskannya supaya mesin bisa mengerjakannya?"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pertanyaan pertama melahirkan teori komputasi, dan jawabannya mengejutkan: ada persoalan yang **tidak akan pernah** bisa diselesaikan komputer, secepat apa pun mesinnya. Itu dibahas di bagian kesembilan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pertanyaan kedua melahirkan analisis algoritma. Dua program yang sama-sama benar bisa berbeda kecepatannya ribuan kali, dan itu bukan soal bahasa pemrogramannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pertanyaan ketiga melahirkan bahasa pemrograman, rekayasa perangkat lunak, dan hampir semua yang biasa orang kira sebagai keseluruhan ilmu komputer."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Yang sering disalahpahami.** Ilmu komputer kerap disamakan dengan tiga hal yang sebenarnya berbeda."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pertama, **memrogram**. Memrogram adalah keterampilan menuliskan algoritma, sama seperti menulis adalah keterampilan menuangkan gagasan. Penting, tapi bukan keseluruhan bidangnya. Banyak lulusan ilmu komputer bekerja merancang sistem, menganalisis data, atau meneliti algoritma, dengan porsi menulis kode yang kecil."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kedua, **teknologi informasi**. TI berurusan dengan memasang dan merawat sistem yang sudah ada. Ilmu komputer berurusan dengan merancang yang belum ada, dan memahami kenapa sesuatu bekerja."
+            },
+            {
+              "type": "TEXT",
+              "content": "Ketiga, **memakai komputer**. Mahir memakai perangkat lunak adalah keterampilan pengguna. Ilmu komputer berada di sisi sebaliknya: memahami apa yang terjadi di balik tombol."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Gagasan algoritma lebih tua dari komputer.** Kata algoritma sendiri berasal dari nama Al-Khawarizmi, matematikawan Persia abad kesembilan. Algoritma Euklides untuk mencari pembagi bersama terbesar sudah berumur lebih dari dua ribu tahun, dan masih dipakai sampai sekarang."
+            },
+            {
+              "type": "TEXT",
+              "content": "Artinya, kalau semua komputer di dunia mendadak hilang, ilmu komputer tidak ikut lenyap. Yang hilang hanya alat untuk menjalankannya dengan cepat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Cabang-cabangnya.** ACM dan IEEE, dua lembaga yang menyusun panduan kurikulum ilmu komputer internasional, membagi bidang ini menjadi tujuh belas bidang pengetahuan. Beberapa yang akan kamu temui lebih dulu:"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Dasar pemrograman      menulis dan menyusun program\nAlgoritma              merancang langkah dan mengukur ongkosnya\nArsitektur komputer    cara mesin menjalankan instruksi\nSistem operasi         pengelola sumber daya mesin\nJaringan               cara mesin bertukar data\nManajemen data         menyimpan dan menanyai data\nKecerdasan buatan      sistem yang menalar dan belajar\nKeamanan               mengenali ancaman dan menutup celah"
+            },
+            {
+              "type": "TEXT",
+              "content": "Seluruh bidang itu tersambung. Kecerdasan buatan bersandar pada algoritma dan matematika. Basis data bersandar pada struktur data dan sistem operasi. Keamanan menyentuh hampir semuanya. Peta lengkapnya ada di bagian penutup topik ini."
+            },
+            {
+              "type": "NOTE",
+              "content": "Mata kuliah ini sengaja luas dan tidak dalam. Tugasnya memberi peta, bukan mengantar sampai tujuan. Hampir setiap bagian di sini punya mata kuliah tersendiri di semester berikutnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Menurutmu, mana dari kegiatan berikut yang termasuk ilmu komputer, dan mana yang bukan? Jelaskan alasannya.\n\n1. Memasang ulang Windows pada laptop yang lambat\n2. Mencari cara tercepat menyusun seribu nama secara berurutan\n3. Membuktikan bahwa sebuah persoalan tidak mungkin diselesaikan mesin\n4. Membuat poster memakai aplikasi desain",
+              "solution": "Nomor 2 dan 3 adalah ilmu komputer. Keduanya mempersoalkan langkah penyelesaian dan batasnya, bukan alatnya.\n\nNomor 1 adalah teknologi informasi: merawat sistem yang sudah ada. Nomor 4 adalah keterampilan memakai perangkat lunak.\n\nPembedanya bukan kedekatannya dengan komputer, melainkan apakah kamu sedang memikirkan **cara menyelesaikan persoalan secara umum** atau sedang mengoperasikan sesuatu yang sudah jadi."
+            },
+            {
+              "type": "TASK",
+              "content": "Algoritma Euklides mencari pembagi bersama terbesar dua bilangan dengan cara berikut:\n\n```\nSelama b tidak nol:\n    simpan sisa bagi a oleh b\n    a diisi b\n    b diisi sisa tadi\nJawabannya adalah a\n```\n\nTelusuri langkahnya untuk a = 48 dan b = 18.",
+              "solution": "```\na=48  b=18  sisa 48 % 18 = 12   ->  a=18  b=12\na=18  b=12  sisa 18 % 12 = 6    ->  a=12  b=6\na=12  b=6   sisa 12 % 6  = 0    ->  a=6   b=0\nb sudah nol, jawabannya 6\n```\n\nPembagi bersama terbesar 48 dan 18 memang 6.\n\nPerhatikan bahwa kamu baru saja menjalankan algoritma berumur dua ribu tahun di kepala sendiri, tanpa komputer. Itu inti bagian ini."
+            }
+          ]
+        },
+        {
+          "title": "Bilangan Biner",
+          "summary": "Kenapa mesin hanya mengenal nol dan satu.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Komputer tersusun dari jutaan sakelar kecil bernama transistor. Setiap sakelar hanya punya dua keadaan: dialiri listrik, atau tidak. Itu saja."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dua keadaan itulah yang kita tulis sebagai 0 dan 1. Bukan karena dua angka itu istimewa, melainkan karena membedakan dua keadaan jauh lebih andal daripada membedakan sepuluh."
+            },
+            {
+              "type": "TEXT",
+              "content": "Bayangkan merancang sakelar yang harus membedakan sepuluh tingkat tegangan untuk mewakili angka 0 sampai 9. Sedikit gangguan listrik saja bisa membuat 6 terbaca 7. Dengan dua keadaan, batasnya longgar: ada arus berarti 1, tidak ada berarti 0."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Cara menghitungnya sama seperti desimal, hanya basisnya berbeda.** Dalam desimal, setiap posisi bernilai sepuluh kali posisi di kanannya. Dalam biner, dua kali."
+            },
+            {
+              "type": "MATH",
+              "content": "Desimal 203\n\n  2      0      3\n100     10      1\n= 2*100 + 0*10 + 3*1 = 203"
+            },
+            {
+              "type": "MATH",
+              "content": "Biner 1101\n\n  1      1      0      1\n  8      4      2      1\n= 1*8 + 1*4 + 0*2 + 1*1 = 13"
+            },
+            {
+              "type": "TEXT",
+              "content": "Jadi `1101` dalam biner bernilai 13. Nilai tiap posisi dari kanan adalah 1, 2, 4, 8, 16, 32, 64, 128, dan seterusnya, selalu berlipat dua."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mengubah desimal ke biner** dilakukan dengan membagi dua berulang kali, lalu membaca sisanya dari bawah ke atas."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Ubah 25 ke biner\n\n25 : 2 = 12  sisa 1\n12 : 2 =  6  sisa 0\n 6 : 2 =  3  sisa 0\n 3 : 2 =  1  sisa 1\n 1 : 2 =  0  sisa 1\n\nBaca sisa dari bawah ke atas:  11001"
+            },
+            {
+              "type": "TEXT",
+              "content": "Periksa hasilnya: 16 + 8 + 0 + 0 + 1 = 25. Cocok."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Satuannya.** Satu angka biner disebut bit, singkatan dari binary digit. Delapan bit disebut satu bait, atau byte."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "1 bit    satu angka 0 atau 1\n1 byte   8 bit,  bisa mewakili 256 nilai berbeda\n1 KB     1.024 byte\n1 MB     1.024 KB\n1 GB     1.024 MB\n1 TB     1.024 GB"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kenapa 1.024 dan bukan 1.000? Karena 1.024 adalah 2 pangkat 10, dan segala sesuatu di dalam mesin bergerak dalam kelipatan dua."
+            },
+            {
+              "type": "NOTE",
+              "content": "Produsen cakram keras sering memakai 1.000, bukan 1.024, sehingga cakram bertanda 1 TB terbaca sekitar 931 GB oleh sistem operasi. Tidak ada yang rusak, cuma dua cara menghitung yang berbeda."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Berapa banyak nilai yang muat?** Dengan n bit, kamu bisa mewakili 2 pangkat n nilai berbeda."
+            },
+            {
+              "type": "MATH",
+              "content": "1 bit   ->  2 nilai      (0, 1)\n4 bit   ->  16 nilai     (0 sampai 15)\n8 bit   ->  256 nilai    (0 sampai 255)\n16 bit  ->  65.536 nilai\n32 bit  ->  sekitar 4,3 miliar"
+            },
+            {
+              "type": "TEXT",
+              "content": "Angka 255 itu sebabnya banyak muncul di dunia komputer. Nilai warna merah, hijau, dan biru pada sebuah piksel masing-masing disimpan dalam satu byte, jadi jangkauannya 0 sampai 255."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Heksadesimal** muncul karena biner terlalu panjang untuk dibaca manusia. Heksadesimal berbasis 16, memakai angka 0 sampai 9 lalu huruf A sampai F untuk nilai 10 sampai 15."
+            },
+            {
+              "type": "TEXT",
+              "content": "Keunggulannya: satu angka heksadesimal persis mewakili empat bit, jadi penerjemahannya mudah tanpa hitungan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Biner        1111 1111\nHeksadesimal    F    F\nDesimal         255\n\nWarna  #FF8800  berarti  merah 255, hijau 136, biru 0"
+            },
+            {
+              "type": "TASK",
+              "content": "Ubah bilangan biner `101010` menjadi desimal.",
+              "solution": "Tulis nilai tiap posisi dari kanan, lalu jumlahkan yang bitnya 1.\n\n```\n  1   0   1   0   1   0\n 32  16   8   4   2   1\n\n32 + 8 + 2 = 42\n```\n\nJawabannya 42."
+            },
+            {
+              "type": "TASK",
+              "content": "Ubah bilangan desimal 100 menjadi biner.",
+              "solution": "Bagi dua berulang, lalu baca sisanya dari bawah ke atas.\n\n```\n100 : 2 = 50  sisa 0\n 50 : 2 = 25  sisa 0\n 25 : 2 = 12  sisa 1\n 12 : 2 =  6  sisa 0\n  6 : 2 =  3  sisa 0\n  3 : 2 =  1  sisa 1\n  1 : 2 =  0  sisa 1\n```\n\nHasilnya `1100100`.\n\nPeriksa: 64 + 32 + 4 = 100. Cocok."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah berkas gambar berukuran 2 MB. Berapa bit isinya?",
+              "solution": "```\n2 MB = 2 x 1.024 KB        = 2.048 KB\n     = 2.048 x 1.024 byte  = 2.097.152 byte\n     = 2.097.152 x 8 bit   = 16.777.216 bit\n```\n\nSekitar 16,8 juta bit. Angka ini memberi gambaran kenapa pemampatan data penting: tanpa itu, berkas gambar dan video akan jauh lebih besar."
+            }
+          ]
+        },
+        {
+          "title": "Semua Hanya Angka",
+          "summary": "Bagaimana tulisan, gambar, dan suara disimpan sebagai bilangan.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Kalau mesin hanya mengenal nol dan satu, bagaimana ia menyimpan nama, foto, dan lagu? Jawabannya: semuanya diubah menjadi angka lebih dulu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Ini gagasan terpenting di bagian awal ilmu komputer. **Bit tidak punya makna sendiri.** Deretan bit yang sama persis bisa berarti angka, huruf, warna, atau instruksi, tergantung cara program menafsirkannya."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "01000001\n\nsebagai bilangan  ->  65\nsebagai huruf     ->  A\nsebagai warna     ->  satu tingkat kecerahan\nsebagai instruksi ->  perintah tertentu bagi prosesor"
+            },
+            {
+              "type": "TEXT",
+              "content": "Yang menentukan maknanya adalah kesepakatan, bukan bitnya. Kesepakatan itulah yang disebut pengodean."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tulisan.** Kesepakatan paling awal yang luas dipakai adalah ASCII, yang memetakan 128 lambang ke angka 0 sampai 127."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "A = 65    a = 97    0 = 48\nB = 66    b = 98    1 = 49\nC = 67    c = 99    spasi = 32"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan huruf besar dan kecil menempati angka berbeda, selisihnya tepat 32. Itu sebabnya mengubah huruf besar menjadi kecil di dalam program cukup dengan menambah 32."
+            },
+            {
+              "type": "TEXT",
+              "content": "ASCII cukup untuk bahasa Inggris, tapi gagal untuk hampir semua bahasa lain. Tidak ada tempat untuk aksara Arab, Tionghoa, Jepang, apalagi emoji."
+            },
+            {
+              "type": "TEXT",
+              "content": "Penggantinya adalah **Unicode**, yang menyediakan nomor untuk lebih dari seratus empat puluh ribu lambang dari hampir semua sistem tulisan di dunia. Cara menyimpannya yang paling umum disebut UTF-8."
+            },
+            {
+              "type": "NOTE",
+              "content": "UTF-8 dirancang supaya tetap cocok dengan ASCII: 128 lambang pertama memakai satu byte dengan nilai yang persis sama. Lambang lain memakai dua sampai empat byte. Itu sebabnya `<meta charset=\"utf-8\">` yang kamu tulis di bagian HTML penting: tanpa itu, browser bisa salah menafsirkan byte dan huruf beraksen berubah jadi simbol aneh."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Gambar.** Sebuah gambar dipecah menjadi kotak-kotak kecil bernama piksel. Setiap piksel menyimpan tiga angka: kadar merah, hijau, dan biru, masing-masing 0 sampai 255."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Putih   = (255, 255, 255)\nHitam   = (  0,   0,   0)\nMerah   = (255,   0,   0)\nKuning  = (255, 255,   0)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dengan tiga angka berjangkauan 256, jumlah warna yang bisa dibentuk adalah 256 pangkat 3, yaitu sekitar 16,7 juta. Angka itu yang sering kamu lihat pada keterangan layar."
+            },
+            {
+              "type": "MATH",
+              "content": "Foto 1920 x 1080 piksel\n\n1920 x 1080           = 2.073.600 piksel\n2.073.600 x 3 byte    = 6.220.800 byte\n                      = sekitar 5,9 MB"
+            },
+            {
+              "type": "TEXT",
+              "content": "Padahal foto di ponselmu biasanya jauh lebih kecil dari itu. Selisihnya berkat pemampatan, misalnya JPEG, yang membuang sebagian rincian yang sulit ditangkap mata."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Suara.** Bunyi aslinya gelombang yang berubah halus. Mesin mengubahnya menjadi angka dengan cara mencuplik tinggi gelombang ribuan kali per detik."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Kualitas cakram padat\n\n44.100 cuplikan per detik\n16 bit per cuplikan\n2 saluran, kiri dan kanan\n\n44.100 x 16 x 2 = 1.411.200 bit per detik\nLagu 3 menit    = sekitar 30 MB tanpa pemampatan"
+            },
+            {
+              "type": "TEXT",
+              "content": "Angka 44.100 bukan sembarangan. Telinga manusia menangkap bunyi sampai sekitar 20.000 getaran per detik, dan ada teorema yang menyatakan cuplikan harus lebih dari dua kali lipat frekuensi tertinggi agar gelombangnya bisa disusun kembali dengan utuh."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Video** adalah gambar beruntun ditambah suara. Tiga puluh gambar per detik, masing-masing beberapa megabita, menghasilkan angka yang mustahil dikirim lewat jaringan tanpa pemampatan yang sangat agresif."
+            },
+            {
+              "type": "TEXT",
+              "content": "Itu sebabnya pemampatan bukan sekadar penghemat ruang, melainkan syarat agar layanan seperti video daring bisa ada sama sekali."
+            },
+            {
+              "type": "TASK",
+              "content": "Kata `Hi` disimpan dalam ASCII. Berapa nilai angka tiap hurufnya, dan berapa byte yang dipakai?",
+              "solution": "`H` adalah huruf kapital kedelapan. Karena `A` bernilai 65, maka `H` bernilai 72.\n\n`i` adalah huruf kecil kesembilan. Karena `a` bernilai 97, maka `i` bernilai 105.\n\n```\nH  ->  72  ->  01001000\ni  -> 105  ->  01101001\n```\n\nDua huruf, masing-masing satu byte, jadi 2 byte."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah layar berukuran 800 x 600 piksel menampilkan gambar berwarna penuh tanpa pemampatan. Berapa ukurannya dalam MB?",
+              "solution": "```\n800 x 600            = 480.000 piksel\n480.000 x 3 byte     = 1.440.000 byte\n1.440.000 : 1.024    = 1.406,25 KB\n1.406,25 : 1.024     = sekitar 1,37 MB\n```\n\nSekitar 1,37 MB. Bandingkan dengan berkas JPEG pada ukuran yang sama, yang biasanya hanya ratusan kilobita."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa deretan bit `01000001` bisa berarti angka 65 sekaligus huruf A? Bukankah seharusnya satu arti saja?",
+              "solution": "Karena bit itu sendiri tidak membawa arti. Yang memberi arti adalah program yang membacanya.\n\nKalau program memperlakukan byte itu sebagai bilangan, hasilnya 65. Kalau memperlakukannya sebagai huruf dengan kesepakatan ASCII, hasilnya `A`.\n\nIni sebabnya berkas yang dibuka dengan program yang salah menampilkan simbol kacau. Bitnya benar, tafsirannya yang keliru.\n\nGagasan ini akan muncul lagi di bagian tipe data saat kamu belajar memrogram."
+            }
+          ]
+        },
+        {
+          "title": "Gerbang Logika",
+          "summary": "Bagaimana penjumlahan muncul dari sakelar yang menyala dan mati.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Kita sudah tahu mesin menyimpan segalanya sebagai nol dan satu. Pertanyaan berikutnya lebih menarik: bagaimana sekumpulan sakelar bisa **menghitung**?"
+            },
+            {
+              "type": "TEXT",
+              "content": "Jawabannya dimulai dari tiga operasi dasar yang bisa dibuat dari sakelar. Ketiganya disebut gerbang logika."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Gerbang NOT** membalik masukannya. Nol jadi satu, satu jadi nol."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "masukan  keluaran\n   0        1\n   1        0"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Gerbang AND** menghasilkan satu hanya bila kedua masukannya satu. Seperti dua sakelar yang dipasang berurutan: lampu menyala hanya kalau keduanya ditekan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "a   b   keluaran\n0   0      0\n0   1      0\n1   0      0\n1   1      1"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Gerbang OR** menghasilkan satu bila salah satu masukannya satu. Seperti dua sakelar yang dipasang sejajar."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "a   b   keluaran\n0   0      0\n0   1      1\n1   0      1\n1   1      1"
+            },
+            {
+              "type": "TEXT",
+              "content": "Ada satu lagi yang sering dipakai, **XOR**, yang menghasilkan satu bila kedua masukannya **berbeda**."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "a   b   keluaran\n0   0      0\n0   1      1\n1   0      1\n1   1      0"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Sekarang bagian yang menakjubkan.** Perhatikan penjumlahan dua bit."
+            },
+            {
+              "type": "MATH",
+              "content": "0 + 0 = 0\n0 + 1 = 1\n1 + 0 = 1\n1 + 1 = 10   (nol, simpan satu)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bandingkan kolom hasilnya dengan tabel XOR. Persis sama. Dan kolom simpanannya persis sama dengan tabel AND."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "        hasil     simpanan\n0 + 0 =   0          0\n0 + 1 =   1          0\n1 + 0 =   1          0\n1 + 1 =   0          1\n\nhasil    = a XOR b\nsimpanan = a AND b"
+            },
+            {
+              "type": "TEXT",
+              "content": "Artinya, dengan satu gerbang XOR dan satu gerbang AND, kamu sudah membuat mesin penjumlah. Rangkaian ini punya nama sendiri: penjumlah separuh."
+            },
+            {
+              "type": "TEXT",
+              "content": "Menyambung beberapa penjumlah seperti itu menghasilkan mesin yang bisa menjumlahkan bilangan delapan bit, enam belas bit, atau lebih. Pengurangan, perkalian, dan pembandingan semuanya bisa disusun dari gerbang yang sama."
+            },
+            {
+              "type": "NOTE",
+              "content": "Inilah lompatan terpenting di bagian ini. Penjumlahan tidak dipasang ke dalam mesin sebagai aturan yang harus dihafal. Ia **muncul dengan sendirinya** dari susunan sakelar. Tidak ada sihir di dalam prosesor, hanya jutaan sakelar yang disusun dengan sangat cermat."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dari gerbang, orang menyusun rangkaian yang lebih besar: penjumlah, pembanding, pemilih jalur, dan penyimpan satu bit. Dari situ tersusun unit aritmetika, register, dan akhirnya prosesor utuh."
+            },
+            {
+              "type": "TEXT",
+              "content": "Prosesor ponsel masa kini memuat sekitar sepuluh sampai dua puluh miliar transistor. Semuanya sakelar, semuanya cuma mengenal menyala dan mati."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau kamu ingin melihat bangunan itu dari dasar sampai puncak, ada proyek belajar bernama Nand2Tetris yang mengajak membangun komputer utuh mulai dari satu jenis gerbang saja. Rujukannya ada di akhir topik ini."
+            },
+            {
+              "type": "TASK",
+              "content": "Lengkapi keluaran rangkaian berikut untuk semua kemungkinan masukan.\n\n```\nkeluaran = NOT (a AND b)\n```",
+              "solution": "```\na   b   a AND b   NOT(a AND b)\n0   0      0           1\n0   1      0           1\n1   0      0           1\n1   1      1           0\n```\n\nRangkaian ini disebut NAND, dan punya sifat istimewa: **semua gerbang lain bisa disusun hanya dari NAND.** Itu sebabnya proyek Nand2Tetris memulai segalanya dari gerbang ini."
+            },
+            {
+              "type": "TASK",
+              "content": "Dengan penjumlah separuh, hitung `1 + 1` dalam biner dan jelaskan keluarannya.",
+              "solution": "```\na = 1, b = 1\n\nhasil    = 1 XOR 1 = 0\nsimpanan = 1 AND 1 = 1\n```\n\nJadi keluarannya hasil 0 dengan simpanan 1, yang dibaca sebagai `10` dalam biner, yaitu 2 dalam desimal. Benar.\n\nSimpanan inilah yang diteruskan ke posisi berikutnya, persis seperti menyimpan satu saat menjumlahkan bersusun di kertas."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa membangun mesin dengan dua keadaan lebih mudah daripada sepuluh keadaan?",
+              "solution": "Karena membedakan dua keadaan jauh lebih longgar batasnya. Rangkaian cukup menjawab satu pertanyaan: ada arus atau tidak.\n\nUntuk mewakili sepuluh angka, rangkaian harus membedakan sepuluh tingkat tegangan yang berdekatan. Gangguan listrik kecil, panas, atau komponen yang menua bisa membuat satu tingkat terbaca sebagai tetangganya.\n\nDengan dua keadaan, gangguan sebesar apa pun masih bisa ditoleransi selama tidak membalik keadaannya. Keandalan inilah alasan sesungguhnya, bukan karena biner lebih indah secara matematika."
+            }
+          ]
+        },
+        {
+          "title": "Di Dalam Prosesor",
+          "summary": "Daur yang berulang miliaran kali setiap detik.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Prosesor sering disebut otak komputer. Sebutan itu agak melebihkan. Prosesor sebenarnya pekerja yang sangat bodoh tapi sangat cepat: ia hanya bisa mengerjakan perintah yang sangat sederhana, tapi miliaran kali per detik."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perintah yang dikenalnya kira-kira seperti ini: ambil angka dari memori, jumlahkan dua angka, simpan hasilnya, lompat ke baris lain. Tidak lebih canggih dari itu."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Bagian-bagiannya.** Di dalam prosesor ada tiga bagian pokok."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Unit aritmetika dan logika   menghitung dan membandingkan\nUnit kendali                 membaca dan menerjemahkan instruksi\nRegister                     penyimpanan sangat kecil dan sangat cepat"
+            },
+            {
+              "type": "TEXT",
+              "content": "Register itu penting dipahami. Jumlahnya cuma belasan, dan masing-masing cuma muat beberapa byte, tapi kecepatannya jauh melampaui memori mana pun. Semua perhitungan terjadi di sana."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Daur yang berulang terus.** Apa pun yang sedang dijalankan komputermu, prosesor sebenarnya cuma mengulang tiga langkah ini tanpa henti."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "1. Ambil     ambil instruksi berikutnya dari memori\n2. Terjemah  pecah instruksi itu menjadi perintah yang dikenal\n3. Kerjakan  jalankan perintahnya\n\nlalu kembali ke langkah 1"
+            },
+            {
+              "type": "TEXT",
+              "content": "Daur ini disebut ambil, terjemah, kerjakan. Prosesor berkecepatan 3 GHz mengulangnya sekitar tiga miliar kali setiap detik."
+            },
+            {
+              "type": "TEXT",
+              "content": "Ada satu register khusus bernama pencacah program yang menyimpan alamat instruksi berikutnya. Setelah sebuah instruksi dikerjakan, isinya bertambah satu, kecuali instruksinya menyuruh melompat ke tempat lain."
+            },
+            {
+              "type": "NOTE",
+              "content": "Percabangan `if` dan perulangan `while` yang akan kamu tulis nanti pada akhirnya berubah menjadi instruksi lompat yang mengubah isi pencacah program. Tidak ada yang lebih rumit dari itu di tingkat mesin."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Contoh satu daur.** Misalkan program hendak menjumlahkan dua angka yang tersimpan di memori."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Ambil     : baca instruksi \"jumlahkan isi alamat 100 dan 104\"\nTerjemah  : kenali ini perintah jumlah, siapkan unit aritmetika\nKerjakan  : salin kedua angka ke register\n            jumlahkan di unit aritmetika\n            simpan hasilnya ke register tujuan\n\nPencacah program bertambah, daur berikutnya dimulai"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kecepatan jam.** Angka seperti 3 GHz menunjukkan berapa kali prosesor berdetak setiap detik. Setiap detak menandai batas satu langkah kerja."
+            },
+            {
+              "type": "TEXT",
+              "content": "Tapi angka itu sendiri sudah tidak lagi menjadi ukuran utama kecepatan. Prosesor masa kini mengerjakan beberapa instruksi sekaligus dalam satu detak, dan menebak instruksi mana yang akan dibutuhkan berikutnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sejak sekitar tahun 2005, menaikkan kecepatan jam menjadi sangat sulit karena panas yang dihasilkan. Pembuat prosesor beralih menambah **inti**: beberapa prosesor kecil di dalam satu keping."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perubahan itu punya akibat besar bagi pemrogram. Program yang ditulis untuk berjalan satu per satu tidak otomatis menjadi lebih cepat di mesin berinti delapan. Memanfaatkan banyak inti perlu dirancang sejak awal, dan itu dibahas di mata kuliah Komputasi Paralel."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah prosesor berdetak 2,4 GHz. Berapa instruksi yang bisa dikerjakannya dalam satu detik, bila dianggap satu instruksi per detak?",
+              "solution": "```\n2,4 GHz = 2,4 miliar detak per detik\n```\n\nJadi sekitar 2.400.000.000 instruksi per detik.\n\nAnggapan satu instruksi per detak sebenarnya menyederhanakan. Prosesor sungguhan bisa menyelesaikan lebih dari satu instruksi per detak lewat jalur pipa, tapi juga kadang tertahan menunggu data dari memori. Angka di atas cukup sebagai gambaran kasar."
+            },
+            {
+              "type": "TASK",
+              "content": "Kalau prosesor hanya mengenal perintah sederhana seperti menjumlah dan melompat, bagaimana sebuah permainan tiga dimensi bisa berjalan?",
+              "solution": "Karena perintah sederhana itu dijalankan dalam jumlah yang sangat besar.\n\nSatu bingkai permainan tiga dimensi melibatkan jutaan perhitungan posisi, warna, dan cahaya. Semuanya perkalian dan penjumlahan biasa, hanya saja dikerjakan jutaan kali dalam waktu kurang dari seperenam puluh detik.\n\nSebagian besarnya bahkan tidak dikerjakan prosesor utama, melainkan kartu grafis, yang punya ribuan inti kecil khusus untuk mengerjakan perhitungan serupa secara serentak.\n\nJadi kerumitan di layar bukan berasal dari kecanggihan satu perintah, melainkan dari banyaknya perintah sederhana."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa menambah inti tidak otomatis membuat semua program dua kali lebih cepat?",
+              "solution": "Karena program harus ditulis khusus agar pekerjaannya bisa dipecah.\n\nSebagian pekerjaan memang bisa dibagi. Mengubah ukuran seribu foto bisa dikerjakan delapan inti sekaligus, masing-masing kebagian seratus dua puluh lima foto.\n\nSebagian lain tidak bisa, karena setiap langkah bergantung pada hasil langkah sebelumnya. Menghitung bunga majemuk tahun kesepuluh menuntut hasil tahun kesembilan lebih dulu. Menambah inti tidak membantu sama sekali di sini.\n\nAda rumus bernama hukum Amdahl yang menghitung batas percepatan berdasarkan seberapa besar bagian yang bisa dipecah. Itu dibahas di mata kuliah Komputasi Paralel."
+            }
+          ]
+        },
+        {
+          "title": "Memori dan Penyimpanan",
+          "summary": "Kenapa mesin punya banyak jenis ingatan, bukan satu.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Kalau ada satu jenis memori yang sekaligus cepat, besar, murah, dan tahan mati listrik, komputer hanya akan memakai itu. Sayangnya tidak ada."
+            },
+            {
+              "type": "TEXT",
+              "content": "Yang cepat selalu mahal dan kecil. Yang besar selalu lambat dan murah. Jalan keluarnya: pakai semuanya sekaligus, disusun berjenjang."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Jenjangnya**, dari yang paling cepat dan paling kecil."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Register      beberapa byte      di dalam prosesor\nTembolok L1   puluhan KB         di dalam prosesor\nTembolok L2   ratusan KB         di dalam prosesor\nTembolok L3   beberapa MB        dibagi antarinti\nRAM           4 sampai 64 GB     keping terpisah\nSSD           ratusan GB         penyimpanan tetap\nCakram keras  beberapa TB        penyimpanan tetap"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Perbedaan kecepatannya jauh lebih besar dari dugaan kebanyakan orang.** Angka mentahnya sulit dibayangkan, jadi mari diperbesar. Andaikan membaca dari register butuh waktu satu detik."
+            },
+            {
+              "type": "MATH",
+              "content": "Register       1 detik\nTembolok L1    1 detik\nTembolok L2    4 detik\nRAM            sekitar 1,5 menit\nSSD            sekitar 1 hari\nCakram keras   sekitar 2 bulan"
+            },
+            {
+              "type": "TEXT",
+              "content": "Jadi ketika prosesor harus menunggu data dari cakram keras, perbandingannya seperti kamu menunggu dua bulan untuk sesuatu yang biasanya datang dalam sedetik. Itu sebabnya mengganti cakram keras dengan SSD terasa jauh lebih berpengaruh daripada menaikkan kecepatan prosesor."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tembolok bekerja karena sebuah kebiasaan program.** Data yang baru saja dipakai cenderung dipakai lagi tak lama kemudian, dan data yang letaknya berdekatan cenderung dipakai berurutan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dua kecenderungan itu membuat tebakan mesin sering tepat. Prosesor menyalin sepotong data dari RAM ke tembolok, dan biasanya potongan itu memang yang dibutuhkan berikutnya."
+            },
+            {
+              "type": "NOTE",
+              "content": "Kecenderungan ini punya akibat nyata saat memrogram. Menelusuri sebuah larik secara berurutan bisa berkali-kali lipat lebih cepat daripada melompat-lompat secara acak, meski jumlah datanya sama persis. Gagasan ini kembali di mata kuliah Struktur Data."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menguap atau tidak.** Register, tembolok, dan RAM kehilangan isinya begitu listrik putus. SSD dan cakram keras tidak."
+            },
+            {
+              "type": "TEXT",
+              "content": "Itu sebabnya pekerjaan yang belum disimpan hilang saat listrik mati: ia masih berada di RAM, belum dipindahkan ke penyimpanan tetap."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dan itu juga sebabnya program harus dimuat dulu dari penyimpanan ke RAM sebelum dijalankan. Prosesor tidak bisa menjalankan apa pun langsung dari cakram."
+            },
+            {
+              "type": "TASK",
+              "content": "Program A membaca data dari RAM sepuluh ribu kali. Program B membaca data yang sama dari SSD sepuluh ribu kali. Pakai perbandingan waktu di atas, kira-kira berapa kali lebih lambat program B?",
+              "solution": "Dari perbandingan tadi, RAM sekitar 1,5 menit dan SSD sekitar 1 hari.\n\n```\n1 hari      = 1.440 menit\n1.440 : 1,5 = 960\n```\n\nSekitar 960 kali lebih lambat.\n\nAngka ini menjelaskan kenapa basis data berusaha keras menyimpan data yang sering diminta di dalam RAM, dan kenapa membaca berkas berulang-ulang di dalam perulangan adalah kesalahan yang mahal."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa pekerjaan yang belum disimpan hilang ketika listrik mati, padahal laptopmu punya SSD?",
+              "solution": "Karena yang sedang kamu kerjakan berada di RAM, bukan di SSD.\n\nRAM bersifat menguap: isinya bertahan hanya selama ada aliran listrik. SSD tidak menguap, tapi data baru pindah ke sana ketika kamu menekan simpan, atau ketika program melakukannya sendiri secara berkala.\n\nItu sebabnya banyak program kini menyimpan rancangan secara otomatis tiap beberapa menit, justru untuk mengurangi akibat dari sifat ini."
+            },
+            {
+              "type": "TASK",
+              "content": "Menurutmu kenapa prosesor punya tiga tingkat tembolok, bukan satu tembolok besar saja?",
+              "solution": "Karena semakin besar sebuah memori, semakin lama waktu yang dibutuhkan untuk mencari isinya, dan semakin mahal membuatnya.\n\nTembolok L1 sengaja dibuat sangat kecil supaya bisa sangat cepat. L3 jauh lebih besar tapi lebih lambat, dan masih tetap jauh lebih cepat daripada RAM.\n\nJadi tiga tingkat itu adalah jalan tengah: yang paling sering dipakai ditaruh di tempat tercepat, yang agak jarang ditaruh di tempat yang lebih besar. Pola berjenjang seperti ini muncul lagi di banyak tempat, misalnya penembolokan di sisi web."
+            }
+          ]
+        },
+        {
+          "title": "Dari Kode ke Mesin",
+          "summary": "Perjalanan satu baris tulisan sampai dikerjakan prosesor.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Prosesor tidak mengerti Python, Java, atau bahasa mana pun yang ditulis manusia. Yang dimengertinya hanya deretan bilangan biner yang disebut kode mesin."
+            },
+            {
+              "type": "TEXT",
+              "content": "Jadi ada jarak yang harus dijembatani antara apa yang kamu tulis dan apa yang dikerjakan mesin. Bagian ini menelusuri jembatan itu."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tiga tingkat bahasa.**"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Bahasa tingkat tinggi   total = a + b\nBahasa rakitan          LOAD  R1, a\n                        ADD   R1, b\n                        STORE total, R1\nKode mesin              10110000 01100001 ..."
+            },
+            {
+              "type": "TEXT",
+              "content": "Bahasa rakitan masih bisa dibaca manusia, tapi tiap barisnya sudah bersesuaian satu lawan satu dengan instruksi mesin. Ia lebih seperti catatan pengingat bagi kode mesin daripada bahasa tersendiri."
+            },
+            {
+              "type": "TEXT",
+              "content": "Satu baris bahasa tingkat tinggi bisa berubah menjadi puluhan instruksi mesin. Itulah gunanya bahasa tingkat tinggi: menyembunyikan rincian yang tidak perlu kamu pikirkan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Dua cara menjembataninya.** Perbedaan keduanya menjelaskan banyak hal yang akan kamu temui nanti."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kompilator** menerjemahkan seluruh program lebih dulu menjadi kode mesin, menghasilkan berkas yang bisa dijalankan. Penerjemahan terjadi sekali; setelah itu program berjalan langsung di prosesor."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "kode.c  ->  kompilator  ->  program.exe  ->  dijalankan prosesor\n            (sekali)                   (berkali-kali)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Penafsir** membaca dan menjalankan program baris demi baris saat itu juga, tanpa menghasilkan berkas terpisah."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "kode.py  ->  penafsir membaca dan menjalankan baris demi baris\n             (setiap kali program dijalankan)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Akibatnya terasa nyata.** Program hasil kompilasi umumnya berjalan jauh lebih cepat, karena penerjemahan sudah selesai sebelum program dijalankan. Program yang ditafsirkan menanggung ongkos penerjemahan terus-menerus."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sebagai gambaran kasar, program Python bisa puluhan kali lebih lambat daripada program C yang mengerjakan hal yang sama. Itu bukan kelemahan yang disembunyikan, melainkan pertukaran yang disengaja."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sebagai gantinya, bahasa yang ditafsirkan jauh lebih cepat dicoba. Tidak perlu menunggu kompilasi, dan programnya bisa dijalankan di sistem apa pun yang punya penafsirnya."
+            },
+            {
+              "type": "NOTE",
+              "content": "Itu sebabnya Python banyak dipakai untuk analisis data dan pembelajaran mesin meski lebih lambat. Bagian yang berat sebenarnya dikerjakan pustaka yang ditulis dalam C, sedangkan Python hanya mengatur jalannya. Kamu menikmati kemudahan menulis tanpa menanggung penuh kelambatannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Java memakai jalan tengah. Kode diterjemahkan lebih dulu menjadi bytecode, lalu bytecode itu dijalankan sebuah mesin maya yang bisa menerjemahkannya ke kode mesin sambil berjalan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kesalahan muncul di waktu yang berbeda.** Ini akibat yang paling sering kamu rasakan sehari-hari."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pada bahasa terkompilasi, banyak kesalahan ketahuan sebelum program dijalankan, karena kompilator memeriksa seluruh program lebih dulu. Pada bahasa yang ditafsirkan, kesalahan di baris kelima puluh baru ketahuan setelah empat puluh sembilan baris sebelumnya berjalan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# Python tidak mengeluhkan baris ini sampai benar-benar dijalankan\nif False:\n    print(tidak_ada_variabel_ini)"
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa program yang sama bisa berjalan lebih cepat setelah dikompilasi?",
+              "solution": "Karena pekerjaan menerjemahkan sudah diselesaikan sebelum program dijalankan.\n\nPada program yang ditafsirkan, setiap baris harus dibaca dan diterjemahkan ulang setiap kali dijalankan. Di dalam perulangan satu juta kali, baris yang sama diterjemahkan satu juta kali.\n\nKompilator menerjemahkannya sekali saja, lalu menyimpan hasilnya. Saat dijalankan, prosesor langsung mengerjakan kode mesin tanpa perantara.\n\nKompilator juga punya waktu untuk memperbaiki kode selagi menerjemahkan, misalnya membuang perhitungan yang hasilnya tidak pernah dipakai."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah program ditulis dalam Python dan berjalan di komputermu. Temanmu memakai sistem operasi berbeda. Apakah program itu bisa langsung ia jalankan? Bagaimana kalau programnya ditulis dalam C lalu dikompilasi?",
+              "solution": "Program Python biasanya bisa langsung dijalankan, asalkan temanmu punya penafsir Python. Yang kamu kirim adalah kode sumbernya, dan penerjemahan terjadi di komputernya.\n\nProgram C yang sudah dikompilasi biasanya **tidak** bisa. Hasil kompilasi berupa kode mesin yang terikat pada jenis prosesor dan sistem operasi tertentu. Program yang dikompilasi untuk Windows tidak berjalan di macOS, meski kode sumbernya sama.\n\nUntuk itu kode sumbernya perlu dikompilasi ulang di sistem tujuan. Inilah salah satu pertukaran antara kedua pendekatan."
+            },
+            {
+              "type": "TASK",
+              "content": "Telusuri perjalanan baris `total = a + b` dari saat kamu mengetiknya sampai hasilnya tersimpan.",
+              "solution": "```\n1. Kamu menulis  total = a + b  dalam bahasa tingkat tinggi\n2. Kompilator atau penafsir menerjemahkannya menjadi\n   beberapa instruksi mesin, kira-kira:\n      ambil isi alamat a ke register 1\n      ambil isi alamat b ke register 2\n      jumlahkan register 1 dan register 2\n      simpan hasilnya ke alamat total\n3. Instruksi itu disimpan di RAM sebagai deretan bit\n4. Prosesor mengambilnya satu per satu lewat daur\n   ambil, terjemah, kerjakan\n5. Unit aritmetika melakukan penjumlahan yang sebenarnya\n   tersusun dari gerbang XOR dan AND\n6. Hasilnya disimpan kembali ke alamat total di RAM\n```\n\nPerhatikan bahwa jawabannya menyentuh hampir semua bagian sebelumnya: bit, gerbang logika, prosesor, dan memori. Itulah sebabnya urutan topik ini disusun begitu."
+            }
+          ]
+        },
+        {
+          "title": "Sistem Operasi dan Jaringan",
+          "summary": "Dua lapisan yang membuat mesin bisa dipakai dan saling terhubung.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Prosesor hanya bisa menjalankan satu deretan instruksi. Lalu kenapa laptopmu sanggup memutar musik sambil membuka browser sambil mengunduh berkas?"
+            },
+            {
+              "type": "TEXT",
+              "content": "Jawabannya terletak pada sebuah program istimewa yang mengatur semuanya: sistem operasi."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tugas pokoknya ada empat.**"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Mengatur proses       membagi waktu prosesor antarprogram\nMengatur memori       membagi RAM dan menjaga program tidak saling ganggu\nMengatur berkas       menyusun data di penyimpanan\nMengatur perangkat    menjembatani papan ketik, layar, jaringan"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Banyak pekerjaan sekaligus itu sebenarnya tipuan.** Pada satu inti prosesor, hanya satu program yang benar-benar berjalan pada satu saat."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sistem operasi berpindah antarprogram begitu cepat sehingga semuanya tampak berjalan bersamaan. Satu program diberi jatah beberapa milidetik, lalu dihentikan sementara, dan giliran berpindah ke yang lain."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Program A jalan 5 ms  ->  disimpan keadaannya\nProgram B jalan 5 ms  ->  disimpan keadaannya\nProgram C jalan 5 ms  ->  disimpan keadaannya\nkembali ke A ...\n\nMata manusia tidak menangkap jeda sependek itu."
+            },
+            {
+              "type": "TEXT",
+              "content": "Prosesor berinti banyak membuat sebagian di antaranya benar-benar berjalan serentak, tapi tipuan yang sama tetap dipakai karena jumlah program selalu jauh melebihi jumlah inti."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Memori perlu dijaga.** Tanpa pengaturan, program yang keliru bisa menimpa ingatan program lain, dan satu kesalahan kecil akan merobohkan seluruh sistem."
+            },
+            {
+              "type": "TEXT",
+              "content": "Sistem operasi memberi setiap program ruang alamatnya sendiri, dan prosesor membantu menegakkan batas itu. Program yang mencoba menyentuh ruang di luar jatahnya langsung dihentikan."
+            },
+            {
+              "type": "NOTE",
+              "content": "Pesan seperti segmentation fault berasal dari sini. Itu bukan kerusakan, melainkan penjagaan yang bekerja: sebuah program mencoba menyentuh ingatan yang bukan miliknya, lalu dihentikan sebelum merusak apa pun."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Jaringan** menambahkan satu lapisan lagi: cara dua mesin bertukar data."
+            },
+            {
+              "type": "TEXT",
+              "content": "Persoalannya tidak sepele. Data harus dipecah menjadi potongan kecil, diberi alamat, dilewatkan belasan mesin perantara, lalu disusun kembali secara utuh dan berurutan di tujuan, padahal sebagian potongan bisa hilang atau datang terbalik."
+            },
+            {
+              "type": "TEXT",
+              "content": "Jalan keluarnya adalah membagi persoalan menjadi beberapa lapisan, yang masing-masing hanya mengurus satu hal."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Aplikasi    HTTP, surel        isi yang dipertukarkan\nAngkutan    TCP, UDP           keutuhan dan urutan potongan\nInternet    IP                 alamat dan jalur\nTautan      Wi-Fi, Ethernet    pengiriman fisik"
+            },
+            {
+              "type": "TEXT",
+              "content": "Lapisan atas tidak perlu tahu apakah di bawahnya Wi-Fi atau kabel. Pemisahan inilah yang membuat internet bisa tumbuh selama puluhan tahun tanpa harus dirancang ulang."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kedua bahasan ini punya mata kuliah tersendiri nanti, jadi di sini cukup gambaran besarnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Kamu membuka sepuluh aplikasi pada laptop berinti empat. Apakah kesepuluhnya benar-benar berjalan bersamaan?",
+              "solution": "Tidak. Paling banyak empat yang benar-benar berjalan serentak, satu untuk tiap inti.\n\nSelebihnya bergantian memakai inti yang ada. Sistem operasi membagi waktu dalam potongan beberapa milidetik, menyimpan keadaan tiap program saat gilirannya habis, lalu memulihkannya ketika gilirannya datang lagi.\n\nKarena perpindahannya jauh lebih cepat daripada kemampuan mata menangkap perubahan, kesepuluhnya tampak berjalan bersamaan."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa jaringan dibagi menjadi beberapa lapisan, bukan dirancang sebagai satu kesatuan?",
+              "solution": "Supaya tiap lapisan bisa diganti tanpa mengganggu yang lain.\n\nKetika Wi-Fi menggantikan kabel, lapisan di atasnya tidak perlu diubah sama sekali. Browser tetap bekerja seperti biasa karena ia hanya berurusan dengan lapisan aplikasi.\n\nPemisahan ini juga membuat tiap lapisan bisa dikerjakan orang yang berbeda dengan keahlian berbeda. Perancang protokol web tidak perlu memahami gelombang radio.\n\nGagasan memisahkan persoalan menjadi lapisan yang saling tidak tahu rincian satu sama lain adalah salah satu gagasan terpenting di seluruh ilmu komputer, dan muncul lagi di hampir setiap mata kuliah."
+            }
+          ]
+        },
+        {
+          "title": "Batas Komputasi",
+          "summary": "Persoalan yang tidak akan pernah bisa diselesaikan mesin.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Sejauh ini kita membahas apa yang bisa dilakukan komputer. Bagian ini membahas sesuatu yang lebih mengejutkan: ada persoalan yang **tidak akan pernah** bisa diselesaikan komputer."
+            },
+            {
+              "type": "TEXT",
+              "content": "Bukan karena mesinnya kurang cepat atau ingatannya kurang besar. Bukan juga karena kita belum cukup pintar menemukan caranya. Melainkan karena sudah dibuktikan secara matematis bahwa caranya tidak ada."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Contoh yang paling terkenal: persoalan berhenti.** Pertanyaannya sederhana."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Bisakah dibuat sebuah program yang,\nbila diberi program apa pun beserta masukannya,\nselalu bisa menjawab dengan benar:\n\"Apakah program itu akan berhenti, atau berjalan selamanya?\""
+            },
+            {
+              "type": "TEXT",
+              "content": "Kelihatannya masuk akal. Program itu akan sangat berguna: kita bisa memeriksa apakah sebuah kode mengandung perulangan tak berujung sebelum menjalankannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Alan Turing membuktikan pada tahun 1936 bahwa program seperti itu mustahil ada. Buktinya memakai cara yang disebut kontradiksi, dan garis besarnya bisa diikuti tanpa matematika berat."
+            },
+            {
+              "type": "TEXT",
+              "content": "Andaikan program itu ada. Sebut namanya `berhenti`, dan ia selalu menjawab benar."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "berhenti(program, masukan)  ->  True jika berhenti\n                                False jika berjalan selamanya"
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau `berhenti` memang ada, kita bisa menyusun program nakal berikut."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def nakal(program):\n    if berhenti(program, program):\n        while True:        # sengaja berjalan selamanya\n            pass\n    else:\n        return             # langsung berhenti"
+            },
+            {
+              "type": "TEXT",
+              "content": "Program `nakal` sengaja melakukan kebalikan dari jawaban `berhenti`. Sekarang ajukan satu pertanyaan yang mematikan: apa yang terjadi bila `nakal` diberi dirinya sendiri?"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nakal(nakal)\n\nKalau berhenti(nakal, nakal) menjawab True,\n  berarti nakal seharusnya berhenti,\n  tapi menurut kodenya ia justru berjalan selamanya.\n\nKalau berhenti(nakal, nakal) menjawab False,\n  berarti nakal seharusnya berjalan selamanya,\n  tapi menurut kodenya ia justru langsung berhenti."
+            },
+            {
+              "type": "TEXT",
+              "content": "Dua-duanya bertentangan dengan dirinya sendiri. Satu-satunya anggapan yang bisa salah adalah anggapan awal kita, yaitu bahwa `berhenti` bisa ada. Jadi ia tidak bisa ada."
+            },
+            {
+              "type": "NOTE",
+              "content": "Pembuktian seperti ini punya bentuk yang sama dengan paradoks tukang cukur: seorang tukang cukur mencukur semua orang yang tidak mencukur dirinya sendiri. Siapa yang mencukur si tukang cukur? Kedua jawaban sama-sama bertentangan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Akibatnya nyata.** Karena persoalan berhenti tidak terpecahkan, banyak hal lain ikut terbukti mustahil. Tidak ada alat yang bisa menemukan semua gelung tak berujung dalam sembarang program. Tidak ada pemeriksa yang bisa membuktikan sembarang program bebas dari kesalahan."
+            },
+            {
+              "type": "TEXT",
+              "content": "Itu sebabnya pengujian perangkat lunak tidak pernah bisa digantikan sepenuhnya oleh pemeriksaan otomatis. Bukan karena perkakasnya belum cukup canggih, melainkan karena ada batas yang tidak bisa dilewati."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Batas yang kedua: terlalu lama.** Sebagian persoalan sebenarnya terpecahkan, tapi ongkosnya membengkak begitu cepat sehingga tidak berguna."
+            },
+            {
+              "type": "MATH",
+              "content": "Persoalan penjual keliling, mencari rute terpendek\n\n10 kota   ->  181.440 kemungkinan\n15 kota   ->  sekitar 43 miliar\n20 kota   ->  sekitar 60 triliun triliun"
+            },
+            {
+              "type": "TEXT",
+              "content": "Dengan dua puluh kota, memeriksa semua kemungkinan tidak akan selesai sebelum matahari padam, secepat apa pun mesinnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Persoalan semacam ini melahirkan pertanyaan terbuka terbesar dalam ilmu komputer, yang dikenal sebagai P lawan NP. Pertanyaannya: apakah setiap persoalan yang jawabannya mudah **diperiksa** juga mudah **dicari**?"
+            },
+            {
+              "type": "TEXT",
+              "content": "Belum ada yang bisa menjawabnya sejak dirumuskan pada tahun 1971, dan ada hadiah satu juta dolar bagi yang berhasil. Dugaan kebanyakan ahli, jawabannya tidak."
+            },
+            {
+              "type": "NOTE",
+              "content": "Keamanan di internet justru bersandar pada dugaan itu. Memfaktorkan bilangan yang sangat besar diyakini sulit, sedangkan memeriksa hasilnya mudah. Bila ternyata P sama dengan NP, sebagian besar penyandian yang dipakai hari ini akan runtuh."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pelajaran dari bagian ini bukan supaya kamu berkecil hati, melainkan supaya tahu kapan berhenti mencari. Mengenali bahwa sebuah persoalan termasuk golongan yang sulit akan menyelamatkanmu dari berbulan-bulan mengejar jalan keluar yang memang tidak ada."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa persoalan berhenti tidak bisa diselesaikan dengan sekadar menjalankan programnya dan menunggu?",
+              "solution": "Karena kamu tidak akan pernah tahu kapan harus berhenti menunggu.\n\nKalau program itu berhenti setelah lima detik, kamu dapat jawabannya. Tapi kalau setelah satu jam belum berhenti, kamu tetap tidak tahu apakah ia memang berjalan selamanya atau akan berhenti pada menit berikutnya.\n\nMenunggu hanya bisa membuktikan satu arah jawaban, yaitu bahwa program berhenti. Ia tidak pernah bisa membuktikan bahwa program tidak akan pernah berhenti."
+            },
+            {
+              "type": "TASK",
+              "content": "Mana yang lebih mudah: menyusun jadwal kuliah yang memenuhi semua syarat, atau memeriksa apakah sebuah jadwal sudah memenuhi semua syarat? Apa hubungannya dengan P lawan NP?",
+              "solution": "Memeriksa jauh lebih mudah. Kamu cukup menelusuri jadwal yang diberikan dan memastikan tidak ada dua mata kuliah bertabrakan. Waktunya sebanding dengan jumlah jadwalnya.\n\nMenyusunnya dari nol jauh lebih berat. Jumlah kemungkinan susunan membengkak sangat cepat seiring bertambahnya mata kuliah dan ruang.\n\nInilah bentuk persoalan yang jadi pokok pertanyaan P lawan NP: mudah diperiksa, sulit dicari. Kalau seandainya terbukti P sama dengan NP, akan ada cara cepat menyusunnya juga, dan banyak persoalan sulit di dunia nyata ikut terpecahkan."
+            },
+            {
+              "type": "TASK",
+              "content": "Seorang teman mengaku sedang membuat program yang bisa mendeteksi semua gelung tak berujung pada program apa pun. Apa tanggapanmu?",
+              "solution": "Yang ia janjikan mustahil, dan itu sudah dibuktikan sejak 1936 lewat persoalan berhenti.\n\nTapi jangan berhenti di situ, karena ada versi yang masuk akal. Yang mungkin dibuat adalah alat yang mendeteksi **sebagian** gelung tak berujung, atau yang bekerja untuk **jenis program tertentu** yang dibatasi.\n\nAlat seperti ini benar-benar ada dan dipakai sehari-hari. Ia hanya tidak bisa menjamin menemukan semuanya, dan kadang memberi peringatan palsu.\n\nMembedakan antara mustahil secara mutlak dan sulit tapi berguna adalah salah satu kegunaan praktis dari memahami teori komputasi."
+            }
+          ]
+        },
+        {
+          "title": "Peta Ilmu Komputer",
+          "summary": "Semua yang akan kamu pelajari, dan bagaimana semuanya tersambung.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Kita sudah menelusuri satu jalur lurus: dari bit, ke gerbang, ke prosesor, ke bahasa pemrograman, lalu ke batas yang tidak bisa dilewati. Bagian terakhir ini melebar, memperlihatkan seluruh bidangnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Pembagian yang dipakai di sini mengikuti panduan kurikulum yang disusun ACM dan IEEE, dua lembaga yang menjadi acuan program ilmu komputer di banyak negara."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Fondasi.** Tiga bidang yang menopang hampir semua yang lain."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Dasar pemrograman    menulis dan menyusun program\nAlgoritma            merancang langkah dan mengukur ongkosnya\nMatematika           logika, himpunan, peluang, aljabar linear"
+            },
+            {
+              "type": "TEXT",
+              "content": "Matematika sering dianggap bagian yang paling jauh dari praktik, padahal justru paling awet. Bahasa pemrograman datang dan pergi, tapi cara membuktikan sebuah algoritma benar tidak berubah."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mesin.** Bagaimana perangkat keras dan lapisan di atasnya bekerja."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Arsitektur komputer  cara mesin menjalankan instruksi\nSistem operasi       pengelola sumber daya\nJaringan             cara mesin bertukar data\nKomputasi paralel    banyak inti dan banyak mesin"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Data dan kecerdasan.**"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Manajemen data       menyimpan dan menanyai data\nKecerdasan buatan    penalaran dan sistem yang belajar"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Membangun perangkat lunak.**"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Rekayasa perangkat lunak   merancang dan merawat sistem\nBahasa pemrograman         paradigma dan cara menerjemahkannya\nInteraksi manusia-komputer merancang antarmuka\nPengembangan platform      web, perangkat bergerak\nGrafika komputer           membentuk dan menggambar citra"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tanggung jawab.**"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Keamanan                 mengenali ancaman dan menutup celah\nMasyarakat dan etika     dampak teknologi dan tanggung jawabnya"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Bagaimana semuanya tersambung.** Pembagian di atas memudahkan menyusun kurikulum, tapi menyesatkan kalau dianggap kotak yang terpisah. Satu persoalan nyata hampir selalu memotong banyak bidang sekaligus."
+            },
+            {
+              "type": "TEXT",
+              "content": "Ambil satu contoh: membangun mesin pencari."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Menyimpan miliaran halaman      manajemen data\nMengurutkan hasil pencarian     algoritma\nMemahami maksud pertanyaan      kecerdasan buatan\nMelayani jutaan permintaan      komputasi paralel\nMenjaga data pengguna           keamanan\nMerancang halaman hasilnya      interaksi manusia-komputer\nMemutuskan apa yang disaring    etika"
+            },
+            {
+              "type": "TEXT",
+              "content": "Itu sebabnya kurikulum menuntutmu melewati semuanya, meski kelak kamu hanya mendalami satu atau dua."
+            },
+            {
+              "type": "NOTE",
+              "content": "Kalau ada satu gagasan yang pantas kamu bawa dari seluruh topik ini, bawalah **abstraksi**. Transistor disembunyikan oleh gerbang, gerbang oleh prosesor, prosesor oleh sistem operasi, sistem operasi oleh bahasa pemrograman. Setiap lapisan menyembunyikan rincian di bawahnya supaya lapisan berikutnya bisa dibangun. Seluruh ilmu komputer berdiri di atas gagasan ini."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Setelah ini.** Topik berikutnya akan mendalami satu per satu bagian yang di sini hanya disinggung. Algoritma dan Pemrograman mengajakmu menulis sendiri langkah-langkah yang di sini cuma dibicarakan. Matematika Diskrit dan Logika Informatika membekalimu alat untuk membuktikan. Organisasi Komputer kembali ke gerbang dan prosesor dengan jauh lebih rinci."
+            },
+            {
+              "type": "TEXT",
+              "content": "Kalau sebagian bagian tadi terasa masih kabur, itu wajar dan memang disengaja. Tugas topik pengantar adalah memberi peta, bukan mengantar sampai tujuan. Peta yang kabur pun jauh lebih berguna daripada berjalan tanpa peta sama sekali."
+            },
+            {
+              "type": "TASK",
+              "content": "Pilih satu benda atau layanan yang kamu pakai hari ini, lalu sebutkan tiga bidang ilmu komputer yang terlibat di dalamnya.",
+              "solution": "Tidak ada satu jawaban benar. Sebagai contoh, aplikasi pesan di ponselmu melibatkan:\n\n```\nJaringan          mengirim pesan antarperangkat\nKeamanan          penyandian ujung ke ujung\nManajemen data    menyimpan riwayat percakapan\nInteraksi         merancang tampilan percakapan\nKomputasi paralel melayani jutaan pengguna sekaligus\n```\n\nYang penting dari latihan ini bukan daftarnya, melainkan kebiasaan melihat satu benda biasa lalu mengenali lapisan-lapisan yang menyusunnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Jelaskan dengan kata-katamu sendiri apa itu abstraksi, lalu beri satu contoh dari luar dunia komputer.",
+              "solution": "Abstraksi adalah menyembunyikan rincian agar seseorang bisa memakai sesuatu tanpa memahami isi dalamnya.\n\nContoh di luar komputer: menyetir mobil. Kamu cukup tahu setir, pedal, dan tuas. Kamu tidak perlu memahami pembakaran di dalam mesin, perbandingan gigi, atau cara rem cakram bekerja.\n\nRincian itu tetap ada dan tetap penting, hanya disembunyikan di balik antarmuka yang sederhana. Montir bekerja satu lapisan lebih bawah, dan perancang mesin satu lapisan lebih bawah lagi.\n\nIlmu komputer memakai pola yang sama, hanya saja lapisannya jauh lebih banyak."
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "title": "Computer Science: An Overview",
+          "author": "J. Glenn Brookshear dan Dennis Brylow",
+          "url": "https://www.pearson.com/en-us/subject-catalog/p/Brookshear-Computer-Science-An-Overview-Subscription-13th-Edition/P200000003351/9780137503216",
+          "note": "Buku teks acuan utama. Urutan topik ini mengikuti susunan babnya."
+        },
+        {
+          "title": "CS50: Introduction to Computer Science",
+          "author": "David J. Malan, Harvard University",
+          "url": "https://cs50.harvard.edu/x/",
+          "note": "Acuan untuk cara menyajikan representasi biner dan perjalanan kode ke mesin."
+        },
+        {
+          "title": "Computer Science Curricula 2023",
+          "author": "ACM, IEEE Computer Society, dan AAAI",
+          "url": "https://csed.acm.org/knowledge-areas/",
+          "note": "Dasar pembagian bidang pada bagian Peta Ilmu Komputer."
+        },
+        {
+          "title": "On Computable Numbers, with an Application to the Entscheidungsproblem",
+          "author": "Alan M. Turing, 1936",
+          "url": "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf",
+          "note": "Makalah asli yang membuktikan persoalan berhenti tidak terpecahkan."
+        },
+        {
+          "title": "The Elements of Computing Systems (Nand2Tetris)",
+          "author": "Noam Nisan dan Shimon Schocken",
+          "url": "https://www.nand2tetris.org/",
+          "note": "Untuk mendalami bagian gerbang logika sampai prosesor dengan membangunnya sendiri."
+        }
+      ]
     },
     {
       "code": "IF102",
