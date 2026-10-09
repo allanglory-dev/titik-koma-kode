@@ -1,3 +1,4 @@
+import { PyLab } from "./PyLab";
 import { TaskBlock } from "./TaskBlock";
 import { TryIt } from "./TryIt";
 
@@ -58,9 +59,13 @@ export function BlockView({ block, taskNumber }) {
       return <div className="block-text">{format(block.content)}</div>;
 
     case "CODE":
-      return block.language === "html" ? (
-        <TryIt initialCode={block.content} />
-      ) : (
+      if (block.language === "html") {
+        return <TryIt initialCode={block.content} />;
+      }
+      if (block.language === "python") {
+        return <PyLab initialCode={block.content} />;
+      }
+      return (
         <pre className="code">
           <code>{block.content}</code>
         </pre>

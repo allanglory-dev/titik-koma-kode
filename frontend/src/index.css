@@ -450,6 +450,25 @@ pre.code {
   background: #fff;
 }
 
+.lab-keluaran {
+  margin: 0;
+  padding: 16px;
+  overflow: auto;
+  background: var(--code-bg);
+  color: var(--code-ink);
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.lab-run:disabled,
+.lab-reset:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 /* Pohon elemen: memperlihatkan susunan sarang dari kode yang sedang ditulis */
 .tree {
   padding: 16px;
