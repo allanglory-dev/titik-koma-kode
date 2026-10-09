@@ -32,6 +32,10 @@ public class Block {
     /** Bahasa untuk blok CODE, misalnya "html" atau "java". Kosong untuk blok lain. */
     private String language;
 
+    /** Pembahasan untuk blok TASK. Kosong untuk blok lain. */
+    @Column(columnDefinition = "text")
+    private String solution;
+
     /** Urutan blok di dalam satu pelajaran. */
     private Integer orderIndex;
 
@@ -77,6 +81,14 @@ public class Block {
 
     public String getLanguage() {
         return language;
+    }
+
+    public String getSolution() {
+        return solution;
+    }
+
+    public void setSolution(String solution) {
+        this.solution = solution;
     }
 
     public void setLanguage(String language) {

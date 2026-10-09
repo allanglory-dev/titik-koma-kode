@@ -1,37 +1,61 @@
+import { TaskBlock } from "./TaskBlock";
 import { TryIt } from "./TryIt";
 
 /**
- * Mengubah penanda sederhana di dalam teks materi menjadi elemen:
- *   `kode`      -> potongan kode
- *   **penting** -> teks tebal
- * Sengaja dibatasi dua penanda ini saja supaya isi materi tetap mudah ditulis.
+ * Perenderan kecil untuk isi materi. Penanda yang dikenali:
+ *   `kode`        potongan kode di tengah kalimat
+ *   **penting**   teks tebal
+ *   ```           pagar kode beberapa baris
+ *   baris kosong  pemisah paragraf
+ * Sengaja dibatasi supaya isi materi tetap mudah ditulis dan diperiksa.
  */
-function format(text) {
-  const hasil = [];
-
-  // Pecah dulu pada backtick; bagian berindeks ganjil adalah kode.
-  text.split("`").forEach((bagian, i) => {
+function sebaris(teks, kunci) {
+  const keluar = [];
+  teks.split("`").forEach((bagian, i) => {
     if (i % 2 === 1) {
-      hasil.push(<code key={`k${i}`}>{bagian}</code>);
+      keluar.push(<code key={`${kunci}-k${i}`}>{bagian}</code>);
       return;
     }
-    // Di luar kode, kenali penanda tebal.
     bagian.split("**").forEach((potong, j) => {
       if (potong === "") return;
-      hasil.push(
-        j % 2 === 1 ? <strong key={`t${i}-${j}`}>{potong}</strong> : potong
+      keluar.push(
+        j % 2 === 1 ? <strong key={`${kunci}-t${i}${j}`}>{potong}</strong> : potong
       );
     });
   });
+  return keluar;
+}
 
-  return hasil;
+export function format(teks) {
+  const keluar = [];
+
+  // Bagian berindeks ganjil berada di antara sepasang pagar kode.
+  teks.split("```").forEach((bagian, i) => {
+    if (i % 2 === 1) {
+      keluar.push(
+        <pre className="code" key={`p${i}`}>
+          <code>{bagian.replace(/^\n/, "").replace(/\n$/, "")}</code>
+        </pre>
+      );
+      return;
+    }
+    bagian
+      .split(/\n\s*\n/)
+      .map((p) => p.trim())
+      .filter(Boolean)
+      .forEach((paragraf, j) => {
+        keluar.push(<p key={`a${i}${j}`}>{sebaris(paragraf, `${i}${j}`)}</p>);
+      });
+  });
+
+  return keluar;
 }
 
 /** Menampilkan satu blok isi sesuai jenisnya. */
-export function BlockView({ block }) {
+export function BlockView({ block, taskNumber }) {
   switch (block.type) {
     case "TEXT":
-      return <p className="block-text">{format(block.content)}</p>;
+      return <div className="block-text">{format(block.content)}</div>;
 
     case "CODE":
       return block.language === "html" ? (
@@ -53,7 +77,17 @@ export function BlockView({ block }) {
     case "MATH":
       return <div className="block-math">{block.content}</div>;
 
+    case "TASK":
+      return (
+        <TaskBlock
+          nomor={taskNumber}
+          content={block.content}
+          solution={block.solution}
+          format={format}
+        />
+      );
+
     default:
-      return <p className="block-text">{block.content}</p>;
+      return <div className="block-text">{format(block.content)}</div>;
   }
 }

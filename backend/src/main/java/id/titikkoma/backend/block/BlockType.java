@@ -13,5 +13,8 @@ public enum BlockType {
     MATH,
 
     /** Kotak catatan atau peringatan. */
-    NOTE
+    NOTE,
+
+    /** Latihan soal. Jawabannya disimpan terpisah dan disembunyikan sampai diminta. */
+    TASK
 }

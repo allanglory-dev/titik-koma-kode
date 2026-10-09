@@ -77,8 +77,14 @@ export function LessonPage() {
           <h1>{lesson.title}</h1>
           {lesson.summary && <p className="lead">{lesson.summary}</p>}
 
-          {blocks.map((block) => (
-            <BlockView key={block.id} block={block} />
+          {blocks.map((block, i) => (
+            <BlockView
+              key={block.id}
+              block={block}
+              taskNumber={
+                blocks.slice(0, i + 1).filter((b) => b.type === "TASK").length
+              }
+            />
           ))}
 
           <footer className="endnote">

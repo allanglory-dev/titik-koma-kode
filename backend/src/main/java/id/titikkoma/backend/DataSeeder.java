@@ -107,12 +107,14 @@ public class DataSeeder implements CommandLineRunner {
 
                 int blockOrder = 1;
                 for (SeedContent.SeedBlock seedBlock : seedLesson.blocks) {
-                    blockRepository.save(new Block(
+                    Block block = new Block(
                             BlockType.valueOf(seedBlock.type),
                             seedBlock.content,
                             seedBlock.language,
                             blockOrder++,
-                            lesson));
+                            lesson);
+                    block.setSolution(seedBlock.solution);
+                    blockRepository.save(block);
                     blockCount++;
                 }
             }

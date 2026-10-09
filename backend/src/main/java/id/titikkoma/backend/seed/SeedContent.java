@@ -52,5 +52,7 @@ public class SeedContent {
         public String type;
         public String content;
         public String language;
+        /** Pembahasan untuk blok TASK. */
+        public String solution;
     }
 }
