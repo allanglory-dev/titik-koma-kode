@@ -33,13 +33,13 @@ const BEBAS = [
     kind: "UMUM",
     nama: "Umum",
     catatan:
-      "Bukan syarat masuk. Ambil yang kamu butuhkan, lewati yang sudah kamu kuasai.",
+      "Bukan syarat masuk. Ambil yang Anda butuhkan, lewati yang sudah Anda kuasai.",
   },
   {
     kind: "KETERAMPILAN",
     nama: "Modul keterampilan",
     catatan:
-      "Perkakas kerja yang dipakai hampir setiap hari begitu kamu bekerja dengan data sungguhan.",
+      "Perkakas kerja yang dipakai hampir setiap hari begitu Anda bekerja dengan data sungguhan.",
   },
 ];
 
@@ -132,7 +132,7 @@ export function HomePage() {
           <p>
             Bukan cuma nyalin kode. Dari nol sampai bisa membangun model
             sendiri, dalam bahasa Indonesia. Setiap rumus ada asal-usulnya,
-            dan setiap kode bisa kamu jalankan langsung di halaman ini tanpa
+            dan setiap kode bisa Anda jalankan langsung di halaman ini tanpa
             memasang apa pun.
           </p>
           {adaIsi[0] && (

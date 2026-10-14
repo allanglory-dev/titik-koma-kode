@@ -44,7 +44,7 @@
         {
           "course": "DS306",
           "heading": "Mengerjakan satu daur penuh",
-          "reason": "Yang dinilai saat melamar bukan daftar kursus yang kamu selesaikan, melainkan satu pekerjaan utuh yang bisa kamu tunjukkan."
+          "reason": "Yang dinilai saat melamar bukan daftar kursus yang Anda selesaikan, melainkan satu pekerjaan utuh yang bisa Anda tunjukkan."
         }
       ]
     },
@@ -145,7 +145,7 @@
         {
           "course": "KT02",
           "heading": "Hidup di baris perintah",
-          "reason": "Hampir semua yang kamu urus berjalan di server tanpa antarmuka grafis."
+          "reason": "Hampir semua yang Anda urus berjalan di server tanpa antarmuka grafis."
         },
         {
           "course": "DS201",
@@ -160,7 +160,7 @@
         {
           "course": "KT03",
           "heading": "Membungkus supaya jalan di mana saja",
-          "reason": "Saluran yang jalan di laptopmu tetapi gagal di server adalah masalah paling umum di jalur ini."
+          "reason": "Saluran yang jalan di laptop Anda tetapi gagal di server adalah masalah paling umum di jalur ini."
         },
         {
           "course": "DS304",
@@ -218,7 +218,7 @@
         {
           "course": "DS302",
           "heading": "Jaringan saraf dari dasarnya",
-          "reason": "Menulis perambatan balik sendiri sekali akan mengubah cara kamu membaca kode kerangka siap pakai selamanya."
+          "reason": "Menulis perambatan balik sendiri sekali akan mengubah cara Anda membaca kode kerangka siap pakai selamanya."
         },
         {
           "course": "DS303",
@@ -265,8 +265,8 @@
         },
         {
           "course": "DS303",
-          "heading": "Memahami yang kamu pakai",
-          "reason": "Memakai model bahasa tanpa tahu cara kerja penyematan dan transformer membuatmu buta saat hasilnya aneh."
+          "heading": "Memahami yang Anda pakai",
+          "reason": "Memakai model bahasa tanpa tahu cara kerja penyematan dan transformer membuat Anda buta saat hasilnya aneh."
         },
         {
           "course": "DS305",
@@ -281,7 +281,7 @@
         {
           "course": "DS304",
           "heading": "Menyajikan dan memantau",
-          "reason": "Mutu keluaran model bisa berubah ketika penyedianya memperbarui modelnya, tanpa kodemu diubah sama sekali."
+          "reason": "Mutu keluaran model bisa berubah ketika penyedianya memperbarui modelnya, tanpa kode Anda diubah sama sekali."
         },
         {
           "course": "DS306",

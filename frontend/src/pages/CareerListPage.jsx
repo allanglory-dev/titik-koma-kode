@@ -26,9 +26,9 @@ export function CareerListPage() {
           Sepuluh jalur, <em>satu</em> kurikulum.
         </h1>
         <p className="lead" style={{ maxWidth: "48ch" }}>
-          Tiap jalur menyebut mata kuliah mana yang menyiapkanmu untuk itu, apa
+          Tiap jalur menyebut kursus mana yang menyiapkan Anda untuk itu, apa
           yang perlu dipelajari di luar kampus, dan berapa lama kira-kira
-          waktunya. Kamu tidak perlu memilih sekarang.
+          waktunya. Anda tidak perlu memilih sekarang.
         </p>
       </header>
 

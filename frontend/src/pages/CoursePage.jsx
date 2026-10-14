@@ -72,7 +72,7 @@ export function CoursePage() {
         </span>
       </div>
 
-      <h2>Setelah ini kamu bisa</h2>
+      <h2>Setelah ini Anda bisa</h2>
       <ol className="capaian">
         {course.outcomes.map((o, i) => (
           <li key={i}>{o}</li>
