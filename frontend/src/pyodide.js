@@ -5,7 +5,12 @@
  * ketika pembaca benar-benar menekan Jalankan untuk pertama kali.
  * Setelah itu dipakai bersama oleh semua panel di halaman.
  */
-const VERSI = "0.26.4";
+/**
+ * Sejak Pyodide menyelaraskan nomor versinya dengan versi Python, rilis
+ * "314.x" berarti Python 3.14. Versi ini membawa numpy 2.x dan pandas 3.x,
+ * yang penting karena materi jalur data akan mengacu ke keduanya.
+ */
+const VERSI = "314.0.7";
 const CDN = `https://cdn.jsdelivr.net/pyodide/v${VERSI}/full/`;
 
 let pemuatan = null;
