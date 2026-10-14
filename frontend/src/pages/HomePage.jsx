@@ -11,24 +11,35 @@ import { useFetch } from "../useFetch";
  */
 const TAHAP = [
   {
-    nama: "Bekal",
-    catatan: "Mulai dari sini, tidak ada yang diandaikan sudah kamu kuasai.",
-    semester: [1],
-  },
-  {
     nama: "Matematika dan Data",
     catatan: "Alas yang membuat model bisa dimengerti, bukan sekadar dijalankan.",
-    semester: [2],
+    semester: [1],
   },
   {
     nama: "Analisis Data",
     catatan: "Perkakas yang dipakai setiap hari di pekerjaan data.",
-    semester: [3],
+    semester: [2],
   },
   {
-    nama: "Pembelajaran Mesin",
+    nama: "Pembelajaran Mesin dan AI",
     catatan: "Model yang belajar sendiri, dibangun dari dasarnya.",
-    semester: [4],
+    semester: [3],
+  },
+];
+
+/** Bagian di luar urutan tahap. Dipilih sendiri, bukan dilewati berurutan. */
+const BEBAS = [
+  {
+    kind: "UMUM",
+    nama: "Umum",
+    catatan:
+      "Bukan syarat masuk. Ambil yang kamu butuhkan, lewati yang sudah kamu kuasai.",
+  },
+  {
+    kind: "KETERAMPILAN",
+    nama: "Modul keterampilan",
+    catatan:
+      "Perkakas kerja yang dipakai hampir setiap hari begitu kamu bekerja dengan data sungguhan.",
   },
 ];
 
@@ -64,6 +75,27 @@ function BarisTopik({ course, nomor }) {
   );
 }
 
+/** Satu rak topik dengan judul, catatan, dan daftar barisnya. */
+function Rak({ judul, catatan, milik }) {
+  if (milik.length === 0) return null;
+  return (
+    <section className="shelf">
+      <div className="shelf-head">
+        <h2>{judul}</h2>
+        <p>{milik.length} topik</p>
+      </div>
+      {catatan && <p className="area-desc">{catatan}</p>}
+      {milik.map((course, i) => (
+        <BarisTopik
+          key={course.code}
+          course={course}
+          nomor={String(i + 1).padStart(2, "0")}
+        />
+      ))}
+    </section>
+  );
+}
+
 export function HomePage() {
   const [semester, setSemester] = useState(null);
   const { data, error, loading } = useFetch(() => api.getCourses());
@@ -87,7 +119,6 @@ export function HomePage() {
   const semesters = [...new Set(courses.map((c) => c.semester))]
     .filter((s) => s != null)
     .sort((a, b) => a - b);
-  const modul = courses.filter((c) => c.semester == null);
 
   return (
     <main className="wide">
@@ -148,47 +179,28 @@ export function HomePage() {
             ))}
         </section>
       ) : (
-        TAHAP.map((tahap) => {
-          const milik = courses.filter((c) => tahap.semester.includes(c.semester));
-          if (milik.length === 0) return null;
-          return (
-            <section key={tahap.nama} className="shelf">
-              <div className="shelf-head">
-                <h2>{tahap.nama}</h2>
-                <p>{milik.length} topik</p>
-              </div>
-              <p className="area-desc">{tahap.catatan}</p>
-              {milik.map((course, i) => (
-                <BarisTopik
-                  key={course.code}
-                  course={course}
-                  nomor={String(i + 1).padStart(2, "0")}
-                />
-              ))}
-            </section>
-          );
-        })
-      )}
-
-      {semester === null && modul.length > 0 && (
-        <section className="shelf">
-          <div className="shelf-head">
-            <h2>Modul keterampilan</h2>
-            <p>{modul.length} modul</p>
-          </div>
-          <p className="area-desc">
-            Perkakas kerja yang tidak masuk tahap mana pun, tapi dipakai hampir
-            setiap hari begitu kamu bekerja dengan data sungguhan.
-          </p>
-          {modul.map((course, i) => (
-            <BarisTopik
-              key={course.code}
-              course={course}
-              nomor={String(i + 1).padStart(2, "0")}
+        <>
+          <Rak
+            judul={BEBAS[0].nama}
+            catatan={BEBAS[0].catatan}
+            milik={courses.filter((c) => c.kind === BEBAS[0].kind)}
+          />
+          {TAHAP.map((tahap) => (
+            <Rak
+              key={tahap.nama}
+              judul={tahap.nama}
+              catatan={tahap.catatan}
+              milik={courses.filter((c) => tahap.semester.includes(c.semester))}
             />
           ))}
-        </section>
+          <Rak
+            judul={BEBAS[1].nama}
+            catatan={BEBAS[1].catatan}
+            milik={courses.filter((c) => c.kind === BEBAS[1].kind)}
+          />
+        </>
       )}
+
     </main>
   );
 }

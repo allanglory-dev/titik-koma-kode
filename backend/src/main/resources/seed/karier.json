@@ -17,32 +17,32 @@
       "references": [],
       "stages": [
         {
-          "course": "DS102",
+          "course": "UM02",
           "heading": "Bisa menulis kode dulu",
           "reason": "Membersihkan data tidak bisa dikerjakan lewat antarmuka saja. Python adalah perkakas yang dipakai sepanjang jalur ini."
         },
         {
-          "course": "DS204",
+          "course": "DS104",
           "heading": "Mengambil datanya",
           "reason": "Hampir semua data perusahaan tinggal di basis data relasional. SQL adalah kemampuan pertama yang ditanyakan saat melamar."
         },
         {
-          "course": "DS302",
+          "course": "DS202",
           "heading": "Merapikan sebelum menganalisis",
           "reason": "Data yang datang hampir tidak pernah siap pakai. Bagian ini memakan porsi waktu terbesar dalam pekerjaan sehari-hari."
         },
         {
-          "course": "DS202",
+          "course": "DS102",
           "heading": "Membedakan pola dari kebetulan",
           "reason": "Tanpa statistika, kenaikan lima persen bisa disalahartikan sebagai keberhasilan padahal masih dalam batas keragaman biasa."
         },
         {
-          "course": "DS303",
+          "course": "DS203",
           "heading": "Menyampaikan temuan",
           "reason": "Analisis yang tidak bisa dibaca orang lain tidak mengubah keputusan apa pun."
         },
         {
-          "course": "DS406",
+          "course": "DS306",
           "heading": "Mengerjakan satu daur penuh",
           "reason": "Yang dinilai saat melamar bukan daftar kursus yang kamu selesaikan, melainkan satu pekerjaan utuh yang bisa kamu tunjukkan."
         }
@@ -65,47 +65,47 @@
       "references": [],
       "stages": [
         {
-          "course": "DS102",
+          "course": "UM02",
           "heading": "Dasar menulis kode",
           "reason": "Seluruh pekerjaan ini dikerjakan lewat kode, bukan lewat perkakas siap pakai."
         },
         {
-          "course": "DS201",
+          "course": "DS101",
           "heading": "Bahasa untuk menyatakan data",
           "reason": "Satu baris data adalah vektor dan satu tabel adalah matriks. Tanpa ini, rumus model hanya terbaca sebagai lambang."
         },
         {
-          "course": "DS202",
+          "course": "DS102",
           "heading": "Menalar di bawah ketidakpastian",
           "reason": "Inti pekerjaan jalur ini adalah memisahkan temuan nyata dari derau."
         },
         {
-          "course": "DS203",
+          "course": "DS103",
           "heading": "Memahami cara model belajar",
           "reason": "Penurunan gradien adalah mesin di balik hampir semua model. Tanpa turunan, bagian ini tetap jadi kotak hitam."
         },
         {
-          "course": "DS301",
+          "course": "DS201",
           "heading": "Menghitung dengan cepat",
           "reason": "NumPy membuat perhitungan atas jutaan baris selesai dalam hitungan detik, bukan menit."
         },
         {
-          "course": "DS302",
+          "course": "DS202",
           "heading": "Menyiapkan datanya",
           "reason": "Model sebagus apa pun tidak menolong kalau datanya belum benar."
         },
         {
-          "course": "DS401",
+          "course": "DS301",
           "heading": "Membangun dan menilai model",
           "reason": "Termasuk cara menilai dengan jujur, yang justru lebih sering salah daripada pemilihan modelnya."
         },
         {
-          "course": "DS402",
+          "course": "DS302",
           "heading": "Masuk ke jaringan saraf",
           "reason": "Dibangun dari NumPy lebih dulu supaya mekanismenya jelas sebelum memakai kerangka siap pakai."
         },
         {
-          "course": "DS406",
+          "course": "DS306",
           "heading": "Mengerjakan satu daur penuh",
           "reason": "Satu proyek yang tuntas lebih meyakinkan daripada sepuluh notebook yang berhenti di tengah."
         }
@@ -128,12 +128,12 @@
       "references": [],
       "stages": [
         {
-          "course": "DS102",
+          "course": "UM02",
           "heading": "Dasar menulis kode",
           "reason": "Saluran data adalah program yang harus jalan sendiri tanpa ditunggui."
         },
         {
-          "course": "DS204",
+          "course": "DS104",
           "heading": "Menguasai basis datanya",
           "reason": "Jalur ini menuntut SQL yang lebih dalam daripada jalur lain, termasuk cara kerja indeks dan rencana kueri."
         },
@@ -148,12 +148,12 @@
           "reason": "Hampir semua yang kamu urus berjalan di server tanpa antarmuka grafis."
         },
         {
-          "course": "DS301",
+          "course": "DS201",
           "heading": "Mengolah data besar dengan hemat",
           "reason": "Perbedaan antara perulangan dan operasi vektor menentukan apakah pekerjaannya selesai dalam menit atau jam."
         },
         {
-          "course": "DS302",
+          "course": "DS202",
           "heading": "Membentuk ulang data",
           "reason": "Menggabungkan dan meringkas tabel adalah pekerjaan harian di jalur ini."
         },
@@ -163,12 +163,12 @@
           "reason": "Saluran yang jalan di laptopmu tetapi gagal di server adalah masalah paling umum di jalur ini."
         },
         {
-          "course": "DS404",
+          "course": "DS304",
           "heading": "Menjalankannya sendiri",
           "reason": "Penjadwalan, pemantauan, dan penanganan kegagalan adalah inti pekerjaannya, bukan pelengkap."
         },
         {
-          "course": "DS406",
+          "course": "DS306",
           "heading": "Mengerjakan satu daur penuh",
           "reason": "Satu saluran yang berjalan terjadwal dan tahan data rusak adalah portofolio yang paling dicari di jalur ini."
         }
@@ -191,47 +191,47 @@
       "references": [],
       "stages": [
         {
-          "course": "DS102",
+          "course": "UM02",
           "heading": "Dasar menulis kode",
           "reason": "Jalur ini menuntut kode yang rapi, bukan sekadar kode yang jalan."
         },
         {
-          "course": "DS201",
+          "course": "DS101",
           "heading": "Bahasa untuk menyatakan model",
           "reason": "Perkalian matriks adalah operasi yang dikerjakan jaringan saraf jutaan kali."
         },
         {
-          "course": "DS203",
+          "course": "DS103",
           "heading": "Memahami cara model belajar",
           "reason": "Menyetel model tanpa mengerti gradien berarti menebak-nebak."
         },
         {
-          "course": "DS301",
+          "course": "DS201",
           "heading": "Menghitung dengan cepat",
           "reason": "Juga menjelaskan kenapa bilangan pecahan kadang menghasilkan NaN saat melatih model."
         },
         {
-          "course": "DS401",
+          "course": "DS301",
           "heading": "Dasar pembelajaran mesin",
           "reason": "Model sederhana sering mengalahkan model rumit. Bagian ini mengajarkan cara mengetahuinya."
         },
         {
-          "course": "DS402",
+          "course": "DS302",
           "heading": "Jaringan saraf dari dasarnya",
           "reason": "Menulis perambatan balik sendiri sekali akan mengubah cara kamu membaca kode kerangka siap pakai selamanya."
         },
         {
-          "course": "DS403",
+          "course": "DS303",
           "heading": "Model bahasa",
           "reason": "Sebagian besar lowongan di jalur ini sekarang menyentuh model bahasa, entah melatih atau memakainya."
         },
         {
-          "course": "DS404",
+          "course": "DS304",
           "heading": "Menyajikan dan memantau",
           "reason": "Model yang tidak dipakai siapa pun tidak bernilai, dan mutu model menurun seiring berubahnya data."
         },
         {
-          "course": "DS406",
+          "course": "DS306",
           "heading": "Mengerjakan satu daur penuh",
           "reason": "Satu model yang disajikan lewat layanan beserta pemantauannya lebih bernilai daripada sepuluh notebook pelatihan."
         }
@@ -254,22 +254,22 @@
       "references": [],
       "stages": [
         {
-          "course": "DS102",
+          "course": "UM02",
           "heading": "Dasar menulis kode",
           "reason": "Dari analisis lowongan 2026, Python muncul di sekitar 83 persen lowongan jalur ini."
         },
         {
-          "course": "DS302",
+          "course": "DS202",
           "heading": "Menyiapkan datanya",
           "reason": "Pengambilan konteks berdiri di atas data yang sudah dibersihkan dan dipotong dengan benar."
         },
         {
-          "course": "DS403",
+          "course": "DS303",
           "heading": "Memahami yang kamu pakai",
           "reason": "Memakai model bahasa tanpa tahu cara kerja penyematan dan transformer membuatmu buta saat hasilnya aneh."
         },
         {
-          "course": "DS405",
+          "course": "DS305",
           "heading": "Membangun dan menilainya",
           "reason": "RAG dan perancangan prompt adalah yang paling sering diminta, sementara penyetelan ulang model justru paling jarang."
         },
@@ -279,12 +279,12 @@
           "reason": "Aplikasi berbasis model bahasa punya banyak sekali ketergantungan pustaka."
         },
         {
-          "course": "DS404",
+          "course": "DS304",
           "heading": "Menyajikan dan memantau",
           "reason": "Mutu keluaran model bisa berubah ketika penyedianya memperbarui modelnya, tanpa kodemu diubah sama sekali."
         },
         {
-          "course": "DS406",
+          "course": "DS306",
           "heading": "Mengerjakan satu daur penuh",
           "reason": "Satu aplikasi beserta berkas uji dan angka ketepatannya jauh lebih meyakinkan daripada demo yang jalan sekali."
         }

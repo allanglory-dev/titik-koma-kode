@@ -4,6 +4,13 @@ import { api } from "../api";
 import { countDone, isLessonDone } from "../progress";
 import { useFetch } from "../useFetch";
 
+/** Label yang tampil di atas judul, menurut tempat kursusnya di katalog. */
+const JENIS = {
+  JALUR: "Jalur data",
+  UMUM: "Umum",
+  KETERAMPILAN: "Modul keterampilan",
+};
+
 export function CoursePage() {
   const { courseSlug } = useParams();
 
@@ -40,8 +47,7 @@ export function CoursePage() {
   return (
     <main className="reader">
       <span className="chapter-mark">
-        {course.kind === "KETERAMPILAN" ? "Modul keterampilan" : "Mata kuliah"} ·{" "}
-        {course.level}
+        {JENIS[course.kind] ?? "Kursus"} · {course.level}
       </span>
       <h1>{course.title}</h1>
       <p className="lead">{course.description}</p>

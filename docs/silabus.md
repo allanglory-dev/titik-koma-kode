@@ -1,7 +1,7 @@
 # Silabus Titik Koma Kode
 
 **Jalur Data dan Kecerdasan Buatan**
-Versi 1, 14 Oktober 2026
+Versi 2, 14 Oktober 2026
 
 Dokumen ini adalah sumber kebenaran untuk isi `backend/src/main/resources/seed/`.
 Kalau ada perbedaan antara dokumen ini dan berkas seed, yang berlaku dokumen ini,
@@ -54,67 +54,74 @@ mengajarkan daripada memanggil `model.fit()`.
 
 ## 3. Peta kursus
 
-Delapan belas kursus dalam empat tahap, ditambah tiga modul keterampilan.
+Delapan belas kursus: lima di bagian Umum yang bebas dipilih, tiga belas dalam
+tiga tahap berurutan, ditambah tiga modul keterampilan.
 
-### Tahap 1 — Bekal
+### Umum — bebas dipilih
 
-Lima kursus, seluruhnya sudah ditulis. Ini yang membuat jalur ini bisa dimulai
-oleh orang yang belum pernah menulis kode sama sekali.
+Lima kursus, seluruhnya sudah ditulis. **Bukan syarat masuk.** Bagian ini ada
+supaya orang yang belum pernah menulis kode punya tempat mulai, dan supaya yang
+sudah bisa tinggal melewatinya. Tidak ada urutan wajib di dalamnya; ambil yang
+kamu butuhkan.
+
+Kodenya diawali `UM` justru untuk menandai bahwa bagian ini di luar urutan
+tahap. Bagian ini juga yang akan tumbuh kalau nanti ada bahasa pemrograman lain
+atau topik umum lain yang layak ditambahkan.
 
 | Kode | Judul | Jam | Isi pokok |
 |---|---|---|---|
-| DS101 | Pengantar Ilmu Komputer | 45 | Bagaimana mesin menyimpan segala sesuatu sebagai bilangan, dan di mana letak data serta AI |
-| DS102 | Algoritma dan Pemrograman Python | 60 | Menyusun langkah dan menuliskannya dalam Python |
-| DS103 | Logika Informatika | 45 | Proposisi, tabel kebenaran, kuantor. Dasar penyaringan data dan kondisi pada kueri |
-| DS104 | Matematika Diskrit | 45 | Himpunan, relasi, fungsi, kombinatorik, graf |
-| DS105 | Bahasa Inggris untuk Teknologi | 30 | Membaca dokumentasi dan makalah, menguraikan pesan kesalahan |
+| UM01 | Pengantar Ilmu Komputer | 45 | Bagaimana mesin menyimpan segala sesuatu sebagai bilangan, dan di mana letak data serta AI |
+| UM02 | Algoritma dan Pemrograman Python | 60 | Menyusun langkah dan menuliskannya dalam Python |
+| UM03 | Logika Informatika | 45 | Proposisi, tabel kebenaran, kuantor. Dasar penyaringan data dan kondisi pada kueri |
+| UM04 | Matematika Diskrit | 45 | Himpunan, relasi, fungsi, kombinatorik, graf |
+| UM05 | Bahasa Inggris untuk Teknologi | 30 | Membaca dokumentasi dan makalah, menguraikan pesan kesalahan |
 
-Kombinatorik di DS104 adalah pintu masuk ke peluang di DS202. Teori himpunan di
-DS104 menjelaskan cara kerja penggabungan tabel di DS204. Kedua sambungan itu
+Kombinatorik di UM04 adalah pintu masuk ke peluang di DS102. Teori himpunan di
+UM04 menjelaskan cara kerja penggabungan tabel di DS104. Kedua sambungan itu
 disebut langsung di materinya.
 
-### Tahap 2 — Matematika dan Data
+### Tahap 1 — Matematika dan Data
 
 Alas yang membuat model bisa dimengerti, bukan sekadar dijalankan.
 
 | Kode | Judul | Jam | Isi pokok |
 |---|---|---|---|
-| DS201 | Aljabar Linear untuk Data | 45 | Vektor, matriks, perkalian matriks, nilai eigen |
-| DS202 | Statistika dan Probabilitas | 45 | Peluang, sebaran, sampel, uji hipotesis, uji A/B |
-| DS203 | Kalkulus untuk Pembelajaran Mesin | 35 | Turunan, aturan rantai, gradien, penurunan gradien |
-| DS204 | SQL dan Basis Data | 40 | Kueri, penggabungan, pengelompokan, indeks |
+| DS101 | Aljabar Linear untuk Data | 45 | Vektor, matriks, perkalian matriks, nilai eigen |
+| DS102 | Statistika dan Probabilitas | 45 | Peluang, sebaran, sampel, uji hipotesis, uji A/B |
+| DS103 | Kalkulus untuk Pembelajaran Mesin | 35 | Turunan, aturan rantai, gradien, penurunan gradien |
+| DS104 | SQL dan Basis Data | 40 | Kueri, penggabungan, pengelompokan, indeks |
 
-DS203 hanya memuat bagian kalkulus yang benar-benar dipakai. Tidak ada integral
+DS103 hanya memuat bagian kalkulus yang benar-benar dipakai. Tidak ada integral
 tentu, tidak ada deret Taylor. Yang ada hanya yang menjelaskan bagaimana sebuah
 model memperbaiki dirinya sendiri.
 
-### Tahap 3 — Analisis Data
+### Tahap 2 — Analisis Data
 
 Perkakas yang dipakai setiap hari.
 
 | Kode | Judul | Jam | Isi pokok |
 |---|---|---|---|
-| DS301 | NumPy dan Komputasi Numerik | 35 | Larik, operasi vektor, penyiaran, bilangan pecahan dan NaN |
-| DS302 | Analisis Data dengan Pandas | 45 | Memuat, membersihkan, menggabungkan, meringkas |
-| DS303 | Visualisasi dan Papan Pantau | 35 | Memilih bentuk grafik, merancang papan pantau, menentukan metrik |
+| DS201 | NumPy dan Komputasi Numerik | 35 | Larik, operasi vektor, penyiaran, bilangan pecahan dan NaN |
+| DS202 | Analisis Data dengan Pandas | 45 | Memuat, membersihkan, menggabungkan, meringkas |
+| DS203 | Visualisasi dan Papan Pantau | 35 | Memilih bentuk grafik, merancang papan pantau, menentukan metrik |
 
-Tiga bab dari Organisasi Komputer yang sudah ditulis dipindahkan ke DS301:
+Tiga bab dari Organisasi Komputer yang sudah ditulis dipindahkan ke DS201:
 sistem bilangan, bilangan pecahan, dan tembolok serta lokalitas. Ketiganya
 persis menjelaskan kenapa NumPy jauh lebih cepat daripada perulangan biasa, dan
 kenapa pelatihan model kadang menghasilkan NaN.
 
-### Tahap 4 — Pembelajaran Mesin dan AI
+### Tahap 3 — Pembelajaran Mesin dan AI
 
 | Kode | Judul | Jam | Isi pokok |
 |---|---|---|---|
-| DS401 | Pembelajaran Mesin | 60 | Regresi, klasifikasi, pengelompokan, penilaian model |
-| DS402 | Pembelajaran Mendalam | 55 | Jaringan saraf dan perambatan balik dari NumPy |
-| DS403 | Pemrosesan Bahasa Alami dan Model Bahasa | 50 | Dari pencacahan kata sampai penyematan dan transformer |
-| DS404 | Dari Notebook ke Produksi | 45 | Saluran data, penyajian model, pemantauan, versi data |
-| DS405 | Rekayasa Aplikasi AI | 45 | RAG, agen, perancangan prompt, dan cara menilai keluarannya |
-| DS406 | Proyek Data | 50 | Satu daur penuh, dari pertanyaan bisnis sampai laporan akhir |
+| DS301 | Pembelajaran Mesin | 60 | Regresi, klasifikasi, pengelompokan, penilaian model |
+| DS302 | Pembelajaran Mendalam | 55 | Jaringan saraf dan perambatan balik dari NumPy |
+| DS303 | Pemrosesan Bahasa Alami dan Model Bahasa | 50 | Dari pencacahan kata sampai penyematan dan transformer |
+| DS304 | Dari Notebook ke Produksi | 45 | Saluran data, penyajian model, pemantauan, versi data |
+| DS305 | Rekayasa Aplikasi AI | 45 | RAG, agen, perancangan prompt, dan cara menilai keluarannya |
+| DS306 | Proyek Data | 50 | Satu daur penuh, dari pertanyaan bisnis sampai laporan akhir |
 
-Setiap algoritma di DS401 ditulis sendiri lebih dulu sebelum memakai
+Setiap algoritma di DS301 ditulis sendiri lebih dulu sebelum memakai
 scikit-learn. Regresi linear, pohon keputusan, dan k-rata-rata cukup sederhana
 untuk dibangun dalam tiga puluh baris, dan sekali membangunnya mengubah cara
 membaca dokumentasi selamanya.
@@ -149,12 +156,12 @@ pindah dari bidang lain. Matematikanya paling ringan di antara kelima jalur.
 
 | Urutan | Kursus |
 |---|---|
-| 1 | DS101–DS105 Bekal |
-| 2 | DS204 SQL dan Basis Data |
-| 3 | DS302 Analisis Data dengan Pandas |
-| 4 | DS202 Statistika dan Probabilitas |
-| 5 | DS303 Visualisasi dan Papan Pantau |
-| 6 | DS406 Proyek Data |
+| 1 | Bagian Umum, sejauh yang kamu butuhkan |
+| 2 | DS104 SQL dan Basis Data |
+| 3 | DS202 Analisis Data dengan Pandas |
+| 4 | DS102 Statistika dan Probabilitas |
+| 5 | DS203 Visualisasi dan Papan Pantau |
+| 6 | DS306 Proyek Data |
 
 Tidak perlu: aljabar linear, kalkulus, pembelajaran mendalam.
 
@@ -171,13 +178,13 @@ Menuntut dasar matematika yang lebih kuat daripada jalur analis.
 
 | Urutan | Kursus |
 |---|---|
-| 1 | DS101–DS105 Bekal |
-| 2 | DS201 Aljabar Linear, DS202 Statistika, DS203 Kalkulus |
-| 3 | DS204 SQL |
-| 4 | DS301 NumPy, DS302 Pandas, DS303 Visualisasi |
-| 5 | DS401 Pembelajaran Mesin |
-| 6 | DS402 Pembelajaran Mendalam |
-| 7 | DS406 Proyek Data |
+| 1 | Bagian Umum, sejauh yang kamu butuhkan |
+| 2 | DS101 Aljabar Linear, DS102 Statistika, DS103 Kalkulus |
+| 3 | DS104 SQL |
+| 4 | DS201 NumPy, DS202 Pandas, DS203 Visualisasi |
+| 5 | DS301 Pembelajaran Mesin |
+| 6 | DS302 Pembelajaran Mendalam |
+| 7 | DS306 Proyek Data |
 
 **Keluaran portofolio.** Satu model beserta laporan yang menyebutkan batas
 kemampuannya, bukan cuma angka ketepatannya.
@@ -193,13 +200,13 @@ paling ringan, kodenya paling berat.
 
 | Urutan | Kursus |
 |---|---|
-| 1 | DS101–DS105 Bekal |
-| 2 | DS204 SQL dan Basis Data, lebih dalam daripada jalur lain |
+| 1 | Bagian Umum, sejauh yang kamu butuhkan |
+| 2 | DS104 SQL dan Basis Data, lebih dalam daripada jalur lain |
 | 3 | KT01 Git, KT02 Linux |
-| 4 | DS301 NumPy, DS302 Pandas |
+| 4 | DS201 NumPy, DS202 Pandas |
 | 5 | KT03 Docker |
-| 6 | DS404 Dari Notebook ke Produksi |
-| 7 | DS406 Proyek Data |
+| 6 | DS304 Dari Notebook ke Produksi |
+| 7 | DS306 Proyek Data |
 
 Tidak perlu: kalkulus, pembelajaran mendalam.
 
@@ -217,14 +224,14 @@ seorang rekayasawan. Jalur paling berat dari kelimanya.
 
 | Urutan | Kursus |
 |---|---|
-| 1 | DS101–DS105 Bekal |
-| 2 | DS201 Aljabar Linear, DS203 Kalkulus |
-| 3 | DS301 NumPy, DS302 Pandas |
-| 4 | DS401 Pembelajaran Mesin |
-| 5 | DS402 Pembelajaran Mendalam |
-| 6 | DS403 NLP dan Model Bahasa |
-| 7 | KT01 Git, KT03 Docker, DS404 Produksi |
-| 8 | DS406 Proyek Data |
+| 1 | Bagian Umum, sejauh yang kamu butuhkan |
+| 2 | DS101 Aljabar Linear, DS103 Kalkulus |
+| 3 | DS201 NumPy, DS202 Pandas |
+| 4 | DS301 Pembelajaran Mesin |
+| 5 | DS302 Pembelajaran Mendalam |
+| 6 | DS303 NLP dan Model Bahasa |
+| 7 | KT01 Git, KT03 Docker, DS304 Produksi |
+| 8 | DS306 Proyek Data |
 
 **Keluaran portofolio.** Satu model yang disajikan lewat layanan, beserta
 pemantauan yang menunjukkan mutunya dari waktu ke waktu.
@@ -246,14 +253,14 @@ persen. Python muncul di 83 persen lowongan.
 
 | Urutan | Kursus |
 |---|---|
-| 1 | DS101–DS105 Bekal |
-| 2 | DS301 NumPy, DS302 Pandas |
-| 3 | DS403 NLP dan Model Bahasa |
-| 4 | DS405 Rekayasa Aplikasi AI |
-| 5 | KT01 Git, KT03 Docker, DS404 Produksi |
-| 6 | DS406 Proyek Data |
+| 1 | Bagian Umum, sejauh yang kamu butuhkan |
+| 2 | DS201 NumPy, DS202 Pandas |
+| 3 | DS303 NLP dan Model Bahasa |
+| 4 | DS305 Rekayasa Aplikasi AI |
+| 5 | KT01 Git, KT03 Docker, DS304 Produksi |
+| 6 | DS306 Proyek Data |
 
-Tidak wajib: kalkulus, dan sebagian besar DS402.
+Tidak wajib: kalkulus, dan sebagian besar DS302.
 
 **Keluaran portofolio.** Satu aplikasi berbasis model bahasa, beserta berkas uji
 dan angka yang menunjukkan seberapa sering keluarannya benar.
@@ -261,24 +268,25 @@ dan angka yang menunjukkan seberapa sering keluarannya benar.
 ### Ringkasan dalam satu tabel
 
 Tanda centang berarti wajib, tanda hubung berarti sebaiknya ada, kosong berarti
-tidak perlu.
+tidak perlu. Bagian Umum tidak pernah wajib di jalur mana pun: ia ada untuk
+diambil seperlunya, bukan untuk dilewati seluruhnya.
 
 | Kursus | Analyst | Scientist | Engineer | ML Eng | AI Eng |
 |---|:--:|:--:|:--:|:--:|:--:|
-| DS101–105 Bekal | ✓ | ✓ | ✓ | ✓ | ✓ |
-| DS201 Aljabar Linear | | ✓ | | ✓ | |
-| DS202 Statistika | ✓ | ✓ | | ✓ | – |
-| DS203 Kalkulus | | ✓ | | ✓ | |
-| DS204 SQL | ✓ | ✓ | ✓ | – | – |
-| DS301 NumPy | – | ✓ | ✓ | ✓ | ✓ |
-| DS302 Pandas | ✓ | ✓ | ✓ | ✓ | ✓ |
-| DS303 Visualisasi | ✓ | ✓ | | | |
-| DS401 Pembelajaran Mesin | – | ✓ | | ✓ | – |
-| DS402 Pembelajaran Mendalam | | ✓ | | ✓ | – |
-| DS403 NLP dan Model Bahasa | | – | | ✓ | ✓ |
-| DS404 Produksi | | | ✓ | ✓ | ✓ |
-| DS405 Rekayasa Aplikasi AI | | | | – | ✓ |
-| DS406 Proyek Data | ✓ | ✓ | ✓ | ✓ | ✓ |
+| UM01–UM05 Umum | – | – | – | – | – |
+| DS101 Aljabar Linear | | ✓ | | ✓ | |
+| DS102 Statistika | ✓ | ✓ | | ✓ | – |
+| DS103 Kalkulus | | ✓ | | ✓ | |
+| DS104 SQL | ✓ | ✓ | ✓ | – | – |
+| DS201 NumPy | – | ✓ | ✓ | ✓ | ✓ |
+| DS202 Pandas | ✓ | ✓ | ✓ | ✓ | ✓ |
+| DS203 Visualisasi | ✓ | ✓ | | | |
+| DS301 Pembelajaran Mesin | – | ✓ | | ✓ | – |
+| DS302 Pembelajaran Mendalam | | ✓ | | ✓ | – |
+| DS303 NLP dan Model Bahasa | | – | | ✓ | ✓ |
+| DS304 Produksi | | | ✓ | ✓ | ✓ |
+| DS305 Rekayasa Aplikasi AI | | | | – | ✓ |
+| DS306 Proyek Data | ✓ | ✓ | ✓ | ✓ | ✓ |
 | KT01 Git | – | – | ✓ | ✓ | ✓ |
 | KT02 Linux | | | ✓ | ✓ | – |
 | KT03 Docker | | | ✓ | ✓ | ✓ |
@@ -293,31 +301,31 @@ Indonesia, jadi menutupnya memberi nilai yang nyata bagi pembaca.
 
 | Unit | Judul | Ditutup oleh |
 |---|---|---|
-| J.62DMI00.001.1 | Menentukan Objektif Bisnis | DS406 |
-| J.62DMI00.002.1 | Menentukan Tujuan Teknis Data Science | DS406 |
-| J.62DMI00.003.1 | Membuat Rencana Proyek Data Science | DS406 |
-| J.62DMI00.004.1 | Mengumpulkan Data | DS204, DS302 |
-| J.62DMI00.005.1 | Menelaah Data | DS302, DS303 |
-| J.62DMI00.006.1 | Memvalidasi Data | DS302 |
-| J.62DMI00.007.1 | Menentukan Objek Data | DS401 |
-| J.62DMI00.008.1 | Membersihkan Data | DS302 |
-| J.62DMI00.009.1 | Mengkonstruksi Data | DS302, DS401 |
-| J.62DMI00.010.1 | Menentukan Label Data | DS401 |
-| J.62DMI00.011.1 | Mengintegrasikan Data | DS204, DS404 |
-| J.62DMI00.012.1 | Membangun Skenario Model | DS401 |
-| J.62DMI00.013.1 | Membangun Model | DS401, DS402 |
-| J.62DMI00.014.1 | Mengevaluasi Hasil Pemodelan | DS401 |
-| J.62DMI00.015.1 | Melakukan Proses Review Pemodelan | DS401 |
-| J.62DMI00.016.1 | Membuat Rencana Deployment Model | DS404 |
-| J.62DMI00.017.1 | Melakukan Deployment Model | DS404 |
-| J.62DMI00.018.1 | Membuat Rencana Pemeliharaan Model | DS404 |
-| J.62DMI00.019.1 | Melakukan Pemeliharaan Model | DS404 |
-| J.62DMI00.020.1 | Melakukan Review Proyek Data Science | DS406 |
-| J.62DMI00.021.1 | Melakukan Laporan Akhir Proyek Data Science | DS406 |
+| J.62DMI00.001.1 | Menentukan Objektif Bisnis | DS306 |
+| J.62DMI00.002.1 | Menentukan Tujuan Teknis Data Science | DS306 |
+| J.62DMI00.003.1 | Membuat Rencana Proyek Data Science | DS306 |
+| J.62DMI00.004.1 | Mengumpulkan Data | DS104, DS202 |
+| J.62DMI00.005.1 | Menelaah Data | DS202, DS203 |
+| J.62DMI00.006.1 | Memvalidasi Data | DS202 |
+| J.62DMI00.007.1 | Menentukan Objek Data | DS301 |
+| J.62DMI00.008.1 | Membersihkan Data | DS202 |
+| J.62DMI00.009.1 | Mengkonstruksi Data | DS202, DS301 |
+| J.62DMI00.010.1 | Menentukan Label Data | DS301 |
+| J.62DMI00.011.1 | Mengintegrasikan Data | DS104, DS304 |
+| J.62DMI00.012.1 | Membangun Skenario Model | DS301 |
+| J.62DMI00.013.1 | Membangun Model | DS301, DS302 |
+| J.62DMI00.014.1 | Mengevaluasi Hasil Pemodelan | DS301 |
+| J.62DMI00.015.1 | Melakukan Proses Review Pemodelan | DS301 |
+| J.62DMI00.016.1 | Membuat Rencana Deployment Model | DS304 |
+| J.62DMI00.017.1 | Melakukan Deployment Model | DS304 |
+| J.62DMI00.018.1 | Membuat Rencana Pemeliharaan Model | DS304 |
+| J.62DMI00.019.1 | Melakukan Pemeliharaan Model | DS304 |
+| J.62DMI00.020.1 | Melakukan Review Proyek Data Science | DS306 |
+| J.62DMI00.021.1 | Melakukan Laporan Akhir Proyek Data Science | DS306 |
 
 Seluruh 21 unit tertutup. Skema Associate Data Scientist yang diujikan LSP hanya
 memakai sembilan di antaranya, yaitu unit 004 sampai 010 ditambah 013 dan 014,
-dan kesembilannya ada di DS204, DS302, dan DS401.
+dan kesembilannya ada di DS104, DS202, dan DS301.
 
 **Catatan yang perlu dipegang.** Menutup unitnya bukan berarti menerbitkan
 sertifikatnya. Sertifikat BNSP hanya boleh dikeluarkan Lembaga Sertifikasi
@@ -349,10 +357,10 @@ dikuasainya, dengan kode unit yang sama seperti yang dipakai di ujian sertifikas
 
 | Tahap | Ditulis | Rangka | Kosong |
 |---|---|---|---|
-| 1 Bekal | 5 | 0 | 0 |
-| 2 Matematika dan Data | 0 | 2 | 2 |
-| 3 Analisis Data | 0 | 3 | 0 |
-| 4 ML dan AI | 0 | 2 | 4 |
+| Umum | 5 | 0 | 0 |
+| 1 Matematika dan Data | 0 | 2 | 2 |
+| 2 Analisis Data | 0 | 3 | 0 |
+| 3 ML dan AI | 0 | 2 | 4 |
 | Modul | 0 | 3 | 0 |
 
 Sudah ditulis 58.651 kata. Sisanya sekitar 150.000 kata.
@@ -360,17 +368,17 @@ Sudah ditulis 58.651 kata. Sisanya sekitar 150.000 kata.
 Urutan pengerjaan yang disarankan, dipilih supaya tiap kursus yang selesai
 langsung membuka satu jalur lebih jauh:
 
-1. **DS301 NumPy dan Komputasi Numerik.** Hasilnya langsung terlihat, rangkanya
+1. **DS201 NumPy dan Komputasi Numerik.** Hasilnya langsung terlihat, rangkanya
    sudah ada, dan tiga bab dari Organisasi Komputer bisa dipindah ke sini.
-2. **DS302 Analisis Data dengan Pandas.** Menutup enam unit SKKNI sekaligus.
-3. **DS204 SQL dan Basis Data.** Bersama DS302, jalur Data Analyst mulai nyata.
-4. **DS202 Statistika dan Probabilitas.**
-5. **DS303 Visualisasi dan Papan Pantau.** Jalur Data Analyst selesai.
-6. **DS201 Aljabar Linear**, menggantikan draf lama yang babnya masih sekitar
+2. **DS202 Analisis Data dengan Pandas.** Menutup enam unit SKKNI sekaligus.
+3. **DS104 SQL dan Basis Data.** Bersama DS202, jalur Data Analyst mulai nyata.
+4. **DS102 Statistika dan Probabilitas.**
+5. **DS203 Visualisasi dan Papan Pantau.** Jalur Data Analyst selesai.
+6. **DS101 Aljabar Linear**, menggantikan draf lama yang babnya masih sekitar
    280 kata tanpa latihan.
-7. **DS203 Kalkulus**, lalu **DS401 Pembelajaran Mesin**. Jalur Data Scientist
+7. **DS103 Kalkulus**, lalu **DS301 Pembelajaran Mesin**. Jalur Data Scientist
    selesai.
-8. Sisanya: DS402, DS403, DS404, DS405, DS406, dan tiga modul keterampilan.
+8. Sisanya: DS302, DS303, DS304, DS305, DS306, dan tiga modul keterampilan.
 
 Jalur Data Analyst selesai paling dulu karena pintu masuknya paling lapang dan
 paling cepat memberi hasil yang bisa ditunjukkan.

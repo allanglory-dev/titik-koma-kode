@@ -39,10 +39,9 @@
   ],
   "courses": [
     {
-      "code": "DS101",
+      "code": "UM01",
       "title": "Pengantar Ilmu Komputer",
       "description": "Peta bidang komputasi untuk orang yang baru masuk: bagaimana mesin menyimpan dan mengolah apa pun sebagai bilangan, dan di mana letak data serta kecerdasan buatan di dalamnya.",
-      "semester": 1,
       "level": "Pemula",
       "hours": 45,
       "area": "SDF",
@@ -1075,13 +1074,13 @@
           "url": "https://www.nand2tetris.org/",
           "note": "Untuk mendalami bagian gerbang logika sampai prosesor dengan membangunnya sendiri."
         }
-      ]
+      ],
+      "kind": "UMUM"
     },
     {
-      "code": "DS102",
+      "code": "UM02",
       "title": "Algoritma dan Pemrograman Python",
-      "description": "Menyusun langkah penyelesaian dan menuliskannya dalam Python. Bekal yang dipakai di setiap tahap setelah ini, dari membersihkan data sampai melatih model.",
-      "semester": 1,
+      "description": "Menyusun langkah penyelesaian dan menuliskannya dalam Python. Kalau kamu sudah bisa memprogram, bagian ini boleh dilewati.",
       "level": "Pemula",
       "hours": 60,
       "area": "SDF",
@@ -2828,13 +2827,13 @@
           "url": "https://dl.acm.org/doi/10.1145/3077618",
           "note": "Sumber daftar kesalahpahaman yang dibahas di bagian perulangan dan penugasan nilai."
         }
-      ]
+      ],
+      "kind": "UMUM"
     },
     {
-      "code": "DS103",
+      "code": "UM03",
       "title": "Logika Informatika",
-      "description": "Proposisi, tabel kebenaran, dan kuantor. Dasar dari penyaringan data, kondisi pada kueri, dan cara menalar tentang benar atau salahnya sebuah klaim.",
-      "semester": 1,
+      "description": "Proposisi, tabel kebenaran, dan kuantor. Berguna untuk menalar tentang penyaringan data dan kondisi pada kueri, tapi bukan syarat untuk memulai.",
       "level": "Pemula",
       "hours": 45,
       "area": "MSF",
@@ -3700,13 +3699,13 @@
           "url": "https://docs.python.org/3/library/functions.html",
           "note": "Rujukan untuk padanan kuantor di dalam kode, termasuk perilakunya pada daftar kosong."
         }
-      ]
+      ],
+      "kind": "UMUM"
     },
     {
-      "code": "DS104",
+      "code": "UM04",
       "title": "Matematika Diskrit",
       "description": "Himpunan, relasi, fungsi, kombinatorik, dan graf. Kombinatoriknya menjadi pintu masuk ke peluang, himpunannya menjelaskan cara kerja penggabungan tabel.",
-      "semester": 1,
       "level": "Pemula",
       "hours": 45,
       "area": "MSF",
@@ -4917,13 +4916,13 @@
           "url": "https://docs.python.org/3/library/itertools.html",
           "note": "Rujukan untuk contoh kode pencacahan dan pendaftaran susunan."
         }
-      ]
+      ],
+      "kind": "UMUM"
     },
     {
-      "code": "DS105",
+      "code": "UM05",
       "title": "Bahasa Inggris untuk Teknologi",
-      "description": "Membaca dokumentasi pustaka dan makalah, menguraikan pesan kesalahan, serta menulis laporan dan catatan yang bisa dibaca orang lain.",
-      "semester": 1,
+      "description": "Membaca dokumentasi pustaka dan makalah, menguraikan pesan kesalahan, serta menulis laporan yang bisa dibaca orang lain.",
       "level": "Pemula",
       "hours": 30,
       "area": "SE",
@@ -5803,13 +5802,14 @@
           "url": "https://docs.python.org/3/tutorial/errors.html",
           "note": "Rujukan untuk bentuk jejak tumpukan Python dan arti kalimat most recent call last."
         }
-      ]
+      ],
+      "kind": "UMUM"
     },
     {
-      "code": "DS201",
+      "code": "DS101",
       "title": "Aljabar Linear untuk Data",
       "description": "Vektor, matriks, dan perkalian matriks. Satu baris data adalah vektor, satu tabel adalah matriks, dan hampir setiap model adalah perkalian matriks yang diulang.",
-      "semester": 2,
+      "semester": 1,
       "level": "Menengah",
       "hours": 45,
       "area": "MSF",
@@ -5820,7 +5820,7 @@
         "Mengenali peran aljabar linear pada grafika komputer dan pembelajaran mesin."
       ],
       "prerequisites": [
-        "DS102"
+        "UM02"
       ],
       "lessons": [
         {
@@ -6340,13 +6340,14 @@
           "url": "https://numpy.org/doc/stable/user/",
           "note": "Rujukan untuk contoh kode di tiap bagian."
         }
-      ]
+      ],
+      "kind": "JALUR"
     },
     {
-      "code": "DS202",
+      "code": "DS102",
       "title": "Statistika dan Probabilitas",
       "description": "Peluang, sebaran, pengambilan sampel, dan pengujian hipotesis. Cara membedakan pola yang nyata dari pola yang cuma kebetulan.",
-      "semester": 2,
+      "semester": 1,
       "level": "Menengah",
       "hours": 45,
       "area": "MSF",
@@ -6356,15 +6357,16 @@
         "Menguji hipotesis sederhana dan membaca hasilnya dengan hati-hati."
       ],
       "prerequisites": [
-        "DS104"
+        "UM04"
       ],
-      "lessons": []
+      "lessons": [],
+      "kind": "JALUR"
     },
     {
-      "code": "DS203",
+      "code": "DS103",
       "title": "Kalkulus untuk Pembelajaran Mesin",
       "description": "Turunan, aturan rantai, dan gradien. Hanya bagian kalkulus yang benar-benar dipakai, yaitu yang menjelaskan bagaimana sebuah model memperbaiki dirinya sendiri.",
-      "semester": 2,
+      "semester": 1,
       "level": "Menengah",
       "hours": 35,
       "area": "MSF",
@@ -6375,12 +6377,13 @@
         "Menurunkan gradien sebuah model sederhana dengan tangan."
       ],
       "prerequisites": [
-        "DS201"
+        "DS101"
       ],
-      "lessons": []
+      "lessons": [],
+      "kind": "JALUR"
     },
     {
-      "code": "DS204",
+      "code": "DS104",
       "title": "SQL dan Basis Data",
       "description": "Mengambil data dari basis data relasional dengan SQL, dari kueri satu tabel sampai penggabungan dan pengelompokan. Kemampuan pertama yang ditanyakan di hampir semua lowongan data.",
       "level": "Pemula",
@@ -6464,10 +6467,11 @@
           "blocks": []
         }
       ],
-      "semester": 2
+      "semester": 1,
+      "kind": "JALUR"
     },
     {
-      "code": "DS301",
+      "code": "DS201",
       "title": "NumPy dan Komputasi Numerik",
       "description": "Larik berdimensi banyak, operasi vektor, dan penyiaran. Termasuk kenapa perulangan Python ratusan kali lebih lambat, dan kenapa bilangan pecahan kadang memberi hasil yang mengejutkan.",
       "level": "Pemula",
@@ -6479,8 +6483,8 @@
         "Menyiapkan lingkungan kerja yang dapat diulang orang lain."
       ],
       "prerequisites": [
-        "DS102",
-        "DS201"
+        "UM02",
+        "DS101"
       ],
       "references": [
         {
@@ -6528,10 +6532,11 @@
           "blocks": []
         }
       ],
-      "semester": 3
+      "semester": 2,
+      "kind": "JALUR"
     },
     {
-      "code": "DS302",
+      "code": "DS202",
       "title": "Analisis Data dengan Pandas",
       "description": "Memuat, membersihkan, menggabungkan, dan meringkas data tabel dengan pandas. Bagian pekerjaan yang paling banyak memakan waktu, dan paling jarang diajarkan dengan serius.",
       "level": "Menengah",
@@ -6543,7 +6548,7 @@
         "Meringkas dan mengelompokkan untuk menjawab pertanyaan."
       ],
       "prerequisites": [
-        "DS301"
+        "DS201"
       ],
       "references": [
         {
@@ -6601,10 +6606,11 @@
           "blocks": []
         }
       ],
-      "semester": 3
+      "semester": 2,
+      "kind": "JALUR"
     },
     {
-      "code": "DS303",
+      "code": "DS203",
       "title": "Visualisasi dan Papan Pantau",
       "description": "Memilih bentuk grafik yang tepat, merancang papan pantau yang terbaca, dan menentukan metrik yang benar-benar menjawab pertanyaan. Termasuk grafik yang menyesatkan tanpa berbohong.",
       "level": "Menengah",
@@ -6616,7 +6622,7 @@
         "Menyusun papan pantau yang menjawab pertanyaan tertentu."
       ],
       "prerequisites": [
-        "DS302"
+        "DS202"
       ],
       "references": [
         {
@@ -6658,10 +6664,11 @@
           "blocks": []
         }
       ],
-      "semester": 3
+      "semester": 2,
+      "kind": "JALUR"
     },
     {
-      "code": "DS401",
+      "code": "DS301",
       "title": "Pembelajaran Mesin",
       "description": "Regresi, klasifikasi, pengelompokan, dan cara menilai model dengan jujur. Setiap algoritma ditulis sendiri lebih dulu sebelum memakai scikit-learn.",
       "level": "Lanjutan",
@@ -6673,9 +6680,9 @@
         "Menerbitkan model supaya bisa dipakai aplikasi lain."
       ],
       "prerequisites": [
-        "DS202",
-        "DS203",
-        "DS302"
+        "DS102",
+        "DS103",
+        "DS202"
       ],
       "references": [
         {
@@ -6738,13 +6745,14 @@
           "blocks": []
         }
       ],
-      "semester": 4
+      "semester": 3,
+      "kind": "JALUR"
     },
     {
-      "code": "DS402",
+      "code": "DS302",
       "title": "Pembelajaran Mendalam",
       "description": "Jaringan saraf dibangun dari nol dengan NumPy, termasuk perambatan balik yang ditulis sendiri. Kerangka siap pakai baru diperkenalkan setelah mekanismenya jelas.",
-      "semester": 4,
+      "semester": 3,
       "level": "Lanjut",
       "hours": 55,
       "area": "AI",
@@ -6755,16 +6763,17 @@
         "Mengenali gejala kelewat cocok dan menanganinya."
       ],
       "prerequisites": [
-        "DS203",
-        "DS401"
+        "DS103",
+        "DS301"
       ],
-      "lessons": []
+      "lessons": [],
+      "kind": "JALUR"
     },
     {
-      "code": "DS403",
+      "code": "DS303",
       "title": "Pemrosesan Bahasa Alami dan Model Bahasa",
       "description": "Dari pencacahan kata sampai penyematan dan transformer. Termasuk cara kerja model bahasa besar dan di mana batas kemampuannya.",
-      "semester": 4,
+      "semester": 3,
       "level": "Lanjutan",
       "hours": 50,
       "area": "AI",
@@ -6774,12 +6783,13 @@
         "Menilai keluaran model bahasa secara kritis."
       ],
       "prerequisites": [
-        "DS402"
+        "DS302"
       ],
-      "lessons": []
+      "lessons": [],
+      "kind": "JALUR"
     },
     {
-      "code": "DS404",
+      "code": "DS304",
       "title": "Dari Notebook ke Produksi",
       "description": "Menjadikan pekerjaan yang jalan di notebook bisa diulang orang lain dan berjalan sendiri: saluran data, penyajian model, pemantauan, dan versi data.",
       "level": "Lanjutan",
@@ -6791,8 +6801,8 @@
         "Menangani kegagalan tanpa merusak data."
       ],
       "prerequisites": [
-        "DS302",
-        "DS401"
+        "DS202",
+        "DS301"
       ],
       "references": [
         {
@@ -6845,13 +6855,14 @@
           "blocks": []
         }
       ],
-      "semester": 4
+      "semester": 3,
+      "kind": "JALUR"
     },
     {
-      "code": "DS405",
+      "code": "DS305",
       "title": "Rekayasa Aplikasi AI",
       "description": "Membangun produk di atas model bahasa yang sudah dilatih orang lain: pengambilan konteks, perancangan prompt, agen, dan yang paling sering diremehkan, cara menilai keluarannya.",
-      "semester": 4,
+      "semester": 3,
       "level": "Lanjut",
       "hours": 45,
       "area": "AI",
@@ -6862,15 +6873,16 @@
         "Mengenali kapan sebuah persoalan tidak perlu model bahasa sama sekali."
       ],
       "prerequisites": [
-        "DS403"
+        "DS303"
       ],
-      "lessons": []
+      "lessons": [],
+      "kind": "JALUR"
     },
     {
-      "code": "DS406",
+      "code": "DS306",
       "title": "Proyek Data",
       "description": "Satu daur penuh dikerjakan sendiri, dari merumuskan pertanyaan bisnis sampai menulis laporan akhir. Bagian yang jarang diajarkan, padahal inilah yang dinilai saat melamar.",
-      "semester": 4,
+      "semester": 3,
       "level": "Lanjut",
       "hours": 50,
       "area": "SE",
@@ -6881,10 +6893,11 @@
         "Menulis laporan akhir yang menyebut batas kemampuan hasilnya, bukan hanya angka keberhasilannya."
       ],
       "prerequisites": [
-        "DS302",
-        "DS303"
+        "DS202",
+        "DS203"
       ],
-      "lessons": []
+      "lessons": [],
+      "kind": "JALUR"
     }
   ]
 }
