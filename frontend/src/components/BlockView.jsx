@@ -7,10 +7,32 @@ import { TryIt } from "./TryIt";
  * Perenderan kecil untuk isi materi. Penanda yang dikenali:
  *   `kode`        potongan kode di tengah kalimat
  *   **penting**   teks tebal
+ *   *istilah*     teks miring, dipakai untuk istilah asing
  *   ```           pagar kode beberapa baris
  *   baris kosong  pemisah paragraf
  * Sengaja dibatasi supaya isi materi tetap mudah ditulis dan diperiksa.
  */
+
+/**
+ * Bintang pembuka harus langsung diikuti bukan spasi, dan bintang penutup
+ * harus didahului bukan spasi. Syarat itu membuat perkalian seperti
+ * `n * n` tidak ikut terbaca sebagai penanda miring. Keduanya juga tidak
+ * boleh menempel pada huruf, supaya `2*3*4` dibiarkan apa adanya.
+ */
+const MIRING = /(?<![\w*])\*(\S(?:[^*\n]*?\S)?)\*(?![\w*])/g;
+
+function miring(teks, kunci) {
+  const keluar = [];
+  let akhir = 0;
+  for (const cocok of teks.matchAll(MIRING)) {
+    if (cocok.index > akhir) keluar.push(teks.slice(akhir, cocok.index));
+    keluar.push(<em key={`${kunci}-m${cocok.index}`}>{cocok[1]}</em>);
+    akhir = cocok.index + cocok[0].length;
+  }
+  if (akhir < teks.length) keluar.push(teks.slice(akhir));
+  return keluar;
+}
+
 function sebaris(teks, kunci) {
   const keluar = [];
   teks.split("`").forEach((bagian, i) => {
@@ -20,9 +42,11 @@ function sebaris(teks, kunci) {
     }
     bagian.split("**").forEach((potong, j) => {
       if (potong === "") return;
-      keluar.push(
-        j % 2 === 1 ? <strong key={`${kunci}-t${i}${j}`}>{potong}</strong> : potong
-      );
+      if (j % 2 === 1) {
+        keluar.push(<strong key={`${kunci}-t${i}${j}`}>{potong}</strong>);
+      } else {
+        keluar.push(...miring(potong, `${kunci}-${i}${j}`));
+      }
     });
   });
   return keluar;

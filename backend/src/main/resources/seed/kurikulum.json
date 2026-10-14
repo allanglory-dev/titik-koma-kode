@@ -2513,6 +2513,540 @@
           ]
         },
         {
+          "title": "Tuple dan Pembongkaran",
+          "summary": "Kumpulan nilai yang tidak bisa diubah, dan cara mengambil isinya sekaligus.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "List bisa diubah isinya kapan saja, dan untuk sebagian besar keperluan itu memang yang Anda inginkan. Tetapi ada data yang justru lebih aman kalau tidak bisa diubah, dan di situlah *tuple* dipakai."
+            },
+            {
+              "type": "TEXT",
+              "content": "*Tuple* ditulis dengan tanda kurung biasa, dan isinya tidak bisa diganti setelah dibuat."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "titik = (3, 7)\nwarna = (255, 128, 0)\nkosong = ()\nsatu = (42,)          # perhatikan komanya, tanpa itu bukan tuple\n\nprint(titik, type(titik))\nprint(satu, type(satu))\nprint((42), type((42)))   # ini cuma bilangan di dalam kurung"
+            },
+            {
+              "type": "TEXT",
+              "content": "Koma itulah yang membentuk *tuple*, bukan kurungnya. `(42)` hanyalah bilangan 42 yang dikurung, sedangkan `(42,)` adalah *tuple* berisi satu anggota. Kekeliruan ini sering muncul ketika sebuah fungsi diminta mengembalikan satu nilai dalam bentuk *tuple*."
+            },
+            {
+              "type": "TEXT",
+              "content": "Mencoba mengubahnya akan ditolak, dan penolakan itu memang gunanya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "titik = (3, 7)\ntry:\n    titik[0] = 10\nexcept TypeError as e:\n    print(\"ditolak:\", e)\n\n# yang bisa dilakukan hanyalah membuat tuple baru\ntitik_baru = (10,) + titik[1:]\nprint(titik, \"->\", titik_baru)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pembongkaran.** Inilah alasan paling sering *tuple* dipakai: beberapa nilai bisa diambil sekaligus dalam satu baris, dan kode jadi jauh lebih enak dibaca daripada memanggil indeks satu per satu."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "titik = (3, 7)\nx, y = titik                 # pembongkaran\nprint(f\"x={x} y={y}\")\n\n# bekerja juga untuk list, dan untuk nilai kembalian fungsi\ndef bagi(a, b):\n    return a // b, a % b     # tanda kurungnya boleh dihilangkan\n\nhasil, sisa = bagi(17, 5)\nprint(f\"17 dibagi 5 = {hasil} sisa {sisa}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pertukaran nilai pun jadi satu baris, tanpa variabel bantu."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "a, b = 1, 2\na, b = b, a\nprint(a, b)\n\n# ruas kanan dikerjakan lebih dulu secara utuh, lalu dipasangkan\nnilai = [10, 20, 30]\nnilai[0], nilai[2] = nilai[2], nilai[0]\nprint(nilai)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Bintang untuk sisanya.** Kalau jumlah anggotanya tidak pasti, satu nama boleh diberi tanda bintang untuk menampung sisanya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = [90, 85, 77, 60, 55]\n\ntertinggi, *tengah, terendah = nilai\nprint(\"tertinggi:\", tertinggi)\nprint(\"tengah   :\", tengah)      # selalu berupa list\nprint(\"terendah :\", terendah)\n\npertama, *sisanya = nilai\nprint(pertama, sisanya)"
+            },
+            {
+              "type": "NOTE",
+              "content": "Nama `_` lazim dipakai untuk nilai yang sengaja diabaikan. `tanggal, _, tahun = \"9-10-2026\".split(\"-\")` menyatakan dengan jelas bahwa bagian tengahnya memang tidak dipakai. Ini kesepakatan antar pemrogram, bukan aturan bahasa; `_` tetap variabel biasa yang bisa dibaca."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kapan memilih yang mana.** Patokannya bukan selera, melainkan apakah isinya akan berubah."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Pakai list   kalau isinya akan bertambah, berkurang, atau berubah\n             daftar belanja, hasil pengukuran, baris yang sedang diolah\n\nPakai tuple  kalau isinya satu kesatuan yang tetap\n             koordinat, nilai RGB, satu baris hasil kueri basis data\n\nSatu lagi    tuple bisa dipakai sebagai kunci dictionary, list tidak"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# tuple bisa jadi kunci, list tidak bisa\njarak = {(\"Jakarta\", \"Bandung\"): 150, (\"Jakarta\", \"Surabaya\"): 780}\nprint(jarak[(\"Jakarta\", \"Bandung\")])\n\ntry:\n    salah = {[\"Jakarta\", \"Bandung\"]: 150}\nexcept TypeError as e:\n    print(\"ditolak:\", e)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Sebabnya akan jelas di bagian *dictionary* berikutnya: kuncinya harus bisa dihitung nilai *hash*-nya, dan sesuatu yang isinya bisa berubah tidak bisa punya *hash* yang tetap."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa keluaran kode berikut, dan kenapa?\n\n```python\na = (1, 2, 3)\nb = (1,)\nc = (1)\nprint(len(a), type(b).__name__, type(c).__name__)\n```",
+              "solution": "```\n3 tuple int\n```\n\nPenjelasannya ada pada koma.\n\n```\n(1, 2, 3)   tiga anggota, jelas sebuah tuple\n(1,)        komanya membuatnya tuple berisi satu anggota\n(1)         tidak ada koma, jadi ini bilangan 1 yang dikurung\n```\n\nKurung dalam Python punya dua peran: mengelompokkan ekspresi, dan membentuk *tuple*. Yang membedakannya adalah ada tidaknya koma.\n\nKekeliruan ini paling sering muncul saat menulis fungsi yang seharusnya mengembalikan *tuple* berisi satu nilai:\n\n```python\ndef ambil():\n    return (hasil)      # bukan tuple, cuma nilainya\ndef ambil_benar():\n    return (hasil,)     # tuple berisi satu anggota\n```"
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis fungsi `ringkas(nilai)` yang mengembalikan nilai terkecil, terbesar, dan rata-rata sekaligus, lalu ambil ketiganya dalam satu baris.",
+              "solution": "```python\ndef ringkas(nilai):\n    return min(nilai), max(nilai), sum(nilai) / len(nilai)\n\ndata = [72, 95, 60, 88, 79]\nterkecil, terbesar, rerata = ringkas(data)\nprint(f\"{terkecil} .. {terbesar}, rata-rata {rerata:.1f}\")\n```\n\nKeluarannya `60 .. 95, rata-rata 78.8`.\n\nPerhatikan bahwa `return` tidak memakai tanda kurung. Komanya sudah cukup membentuk *tuple*, dan menuliskan kurungnya boleh tetapi tidak wajib.\n\nInilah cara Python mengembalikan beberapa nilai sekaligus. Bahasa lain sering menuntut Anda membuat kelas khusus atau mengubah argumen di tempat; di sini cukup satu baris.\n\nSatu hal yang perlu dijaga: urutan pembongkarannya harus sama dengan urutan pengembaliannya. Kalau tertukar, Python tidak akan protes karena ketiganya sama-sama angka, dan kesalahannya baru terasa jauh kemudian."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut, lalu jelaskan kenapa barisnya tidak gagal padahal `nilai` punya lima anggota.\n\n```python\nnilai = [90, 85, 77, 60, 55]\npertama, kedua, *sisanya = nilai\nprint(pertama, kedua, sisanya)\n```",
+              "solution": "Keluarannya `90 85 [77, 60, 55]`.\n\nTanda bintang membuat `sisanya` menampung semua anggota yang tersisa, jadi jumlah anggota di kiri tidak harus sama persis dengan jumlah anggota di kanan.\n\n```\npertama   mengambil satu anggota dari depan\nkedua     mengambil satu anggota berikutnya\n*sisanya  menampung semua yang tersisa, selalu sebagai list\n```\n\nTanpa bintang, Python menuntut jumlahnya sama persis:\n\n```python\npertama, kedua = [90, 85, 77]\n# ValueError: too many values to unpack (expected 2)\n```\n\nDua hal yang perlu diingat. Hanya boleh ada **satu** nama berbintang dalam satu pembongkaran, karena kalau ada dua, Python tidak bisa menentukan batas pembagiannya. Dan hasil tangkapannya selalu berupa `list`, bukan `tuple`, meski yang dibongkar sebuah *tuple*."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `list` tidak bisa dipakai sebagai kunci *dictionary*, sementara `tuple` bisa?",
+              "solution": "Karena kunci *dictionary* harus punya nilai *hash* yang tetap, sedangkan isi `list` bisa berubah kapan saja.\n\nBayangkan kalau diizinkan:\n\n```\nkunci = [\"Jakarta\", \"Bandung\"]\njarak = {kunci: 150}          # andaikan ini boleh\n\nkunci[1] = \"Surabaya\"         # isinya diubah\njarak[kunci]                  # sekarang dicari di keranjang mana?\n```\n\nNilainya disimpan di keranjang yang dihitung dari isi kuncinya. Begitu isinya berubah, perhitungan itu memberi nomor keranjang yang berbeda, dan nilainya menjadi tidak bisa ditemukan lagi padahal masih ada di sana.\n\nPython menutup kemungkinan itu dengan menolak objek yang bisa diubah sebagai kunci:\n\n```python\nhash((1, 2))    # berhasil\nhash([1, 2])    # TypeError: unhashable type: 'list'\n```\n\nAturan yang sama berlaku untuk anggota `set`. Itu sebabnya `set` berisi *tuple* sah, sedangkan `set` berisi `list` tidak.\n\nKalau Anda terpaksa memakai sesuatu yang bisa berubah sebagai kunci, ubah dulu menjadi bentuk tetap: `tuple(daftar)` untuk urutan, atau `frozenset(himpunan)` untuk himpunan."
+            }
+          ]
+        },
+        {
+          "title": "Dictionary",
+          "summary": "Menyimpan nilai menurut namanya, bukan menurut nomor urutnya.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "List menyimpan nilai menurut nomor urutnya. Tetapi sebagian besar data yang Anda olah tidak punya nomor urut yang berarti, melainkan punya nama: nilai seorang mahasiswa, harga sebuah barang, jumlah penduduk sebuah kota. Untuk itulah *dictionary* ada."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = {\"ani\": 87, \"budi\": 92, \"citra\": 78}\n\nprint(nilai[\"budi\"])\nprint(len(nilai))\nprint(\"ani\" in nilai)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Setiap anggotanya berupa pasangan *key* (kunci) dan *value* (nilai). Kuncinya harus unik dan tidak bisa diubah; nilainya bebas berupa apa pun, termasuk *dictionary* lain."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Pencarian pada dictionary: kunci diolah fungsi hash menjadi nomor keranjang, lalu nilainya diambil langsung\">\n  <defs>\n    <marker id=\"pd-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"6\" markerHeight=\"6\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"var(--nila)\"/>\n    </marker>\n  </defs>\n\n  <text x=\"24\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">KENAPA PENCARIANNYA CEPAT</text>\n\n  <rect x=\"24\" y=\"44\" width=\"124\" height=\"40\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.22\"/>\n  <rect x=\"24\" y=\"44\" width=\"124\" height=\"40\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.4\"/>\n  <text x=\"86\" y=\"69\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--nila)\">\"budi\"</text>\n  <text x=\"86\" y=\"100\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">kunci</text>\n\n  <path d=\"M 148 64 L 196 64\" stroke=\"var(--nila)\" stroke-width=\"1.5\" marker-end=\"url(#pd-ujung)\"/>\n\n  <rect x=\"202\" y=\"44\" width=\"110\" height=\"40\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.45\"/>\n  <text x=\"257\" y=\"69\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12.5\" fill=\"currentColor\" opacity=\"0.85\">hash()</text>\n  <text x=\"257\" y=\"100\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">jadikan bilangan</text>\n\n  <path d=\"M 312 64 L 360 64\" stroke=\"var(--nila)\" stroke-width=\"1.5\" marker-end=\"url(#pd-ujung)\"/>\n  <text x=\"366\" y=\"69\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"var(--kunyit)\">keranjang 2</text>\n\n  <g>\n    <rect x=\"24\" y=\"140\" width=\"96\" height=\"34\" fill=\"currentColor\" opacity=\"0.05\"/>\n    <rect x=\"120\" y=\"140\" width=\"96\" height=\"34\" fill=\"currentColor\" opacity=\"0.05\"/>\n    <rect x=\"216\" y=\"140\" width=\"96\" height=\"34\" fill=\"var(--kunyit)\" opacity=\"0.2\"/>\n    <rect x=\"312\" y=\"140\" width=\"96\" height=\"34\" fill=\"currentColor\" opacity=\"0.05\"/>\n    <rect x=\"408\" y=\"140\" width=\"96\" height=\"34\" fill=\"currentColor\" opacity=\"0.05\"/>\n  </g>\n  <g stroke=\"currentColor\" stroke-opacity=\"0.25\" fill=\"none\">\n    <rect x=\"24\" y=\"140\" width=\"480\" height=\"34\"/>\n    <line x1=\"120\" y1=\"140\" x2=\"120\" y2=\"174\"/><line x1=\"216\" y1=\"140\" x2=\"216\" y2=\"174\"/>\n    <line x1=\"312\" y1=\"140\" x2=\"312\" y2=\"174\"/><line x1=\"408\" y1=\"140\" x2=\"408\" y2=\"174\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.4\" text-anchor=\"middle\">\n    <text x=\"72\" y=\"134\">0</text><text x=\"168\" y=\"134\">1</text><text x=\"264\" y=\"134\">2</text>\n    <text x=\"360\" y=\"134\">3</text><text x=\"456\" y=\"134\">4</text>\n  </g>\n  <text x=\"264\" y=\"162\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--kunyit)\">87</text>\n\n  <path d=\"M 420 84 L 420 112 L 276 112 L 276 134\" fill=\"none\" stroke=\"var(--nila)\"\n        stroke-width=\"1.4\" stroke-opacity=\"0.6\" marker-end=\"url(#pd-ujung)\"/>\n\n  <text x=\"24\" y=\"206\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.8\">Nomor keranjangnya dihitung, bukan dicari.</text>\n  <text x=\"24\" y=\"228\" font-family=\"system-ui, sans-serif\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.6\">Karena itu waktunya tetap sama entah isinya sepuluh atau sepuluh juta.</text>\n  <text x=\"24\" y=\"254\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">nilai[\"budi\"]  &#8594;  87</text>\n</svg>",
+              "solution": "Nomor keranjang sebuah kunci dihitung dengan fungsi hash, bukan dicari satu per satu. Karena itu waktu pencariannya tidak bertambah meski isinya membesar."
+            },
+            {
+              "type": "TEXT",
+              "content": "Perbedaan ini bukan soal kerapian penulisan. Mencari sebuah nama di dalam `list` menuntut Python memeriksa anggotanya satu per satu, sementara pada *dictionary* nomor keranjangnya langsung dihitung dari kuncinya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import time\n\nn = 200_000\ndaftar = [f\"orang{i}\" for i in range(n)]\nkamus = {f\"orang{i}\": i for i in range(n)}\nsasaran = f\"orang{n - 1}\"       # sengaja yang paling belakang\n\nt = time.perf_counter()\nsasaran in daftar\nwaktu_list = time.perf_counter() - t\n\nt = time.perf_counter()\nsasaran in kamus\nwaktu_dict = time.perf_counter() - t\n\nprint(f\"list : {waktu_list * 1000:.3f} ms\")\nprint(f\"dict : {waktu_dict * 1000:.3f} ms\")\nprint(f\"dict sekitar {waktu_list / max(waktu_dict, 1e-9):,.0f} kali lebih cepat\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Selisihnya ribuan kali, dan selisih itu makin besar seiring bertambahnya data. Inilah sebabnya *dictionary* muncul di mana-mana begitu Anda mulai mengolah data sungguhan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menambah, mengubah, dan menghapus.**"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = {\"ani\": 87, \"budi\": 92}\n\nnilai[\"citra\"] = 78          # menambah\nnilai[\"ani\"] = 90            # mengubah, kuncinya sudah ada\ndel nilai[\"budi\"]            # menghapus\n\nprint(nilai)\n\nterakhir = nilai.pop(\"citra\")    # menghapus sambil mengambil nilainya\nprint(\"diambil:\", terakhir, \"| sisa:\", nilai)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mengambil nilai yang mungkin tidak ada.** Memanggil kunci yang tidak ada akan menghentikan program, dan di sinilah pemula paling sering tersandung."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = {\"ani\": 87}\n\ntry:\n    print(nilai[\"dewi\"])\nexcept KeyError as e:\n    print(\"KeyError:\", e)\n\n# tiga cara yang aman\nprint(nilai.get(\"dewi\"))             # None kalau tidak ada\nprint(nilai.get(\"dewi\", 0))          # nilai cadangan\nprint(nilai.setdefault(\"dewi\", 0))   # sekalian menambahkannya\nprint(nilai)"
+            },
+            {
+              "type": "NOTE",
+              "content": "Bedakan `get` dan `setdefault`. `get` hanya membaca dan tidak mengubah apa pun, sedangkan `setdefault` ikut menambahkan kuncinya kalau belum ada. Memakai `setdefault` saat yang Anda maksud hanya membaca akan diam-diam menggelembungkan *dictionary* Anda."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menelusuri isinya.** Ada tiga cara, dan memilih yang tepat membuat maksud kode langsung terbaca."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nilai = {\"ani\": 87, \"budi\": 92, \"citra\": 78}\n\nfor nama in nilai:                    # kuncinya saja\n    print(nama, end=\" \")\nprint()\n\nfor angka in nilai.values():          # nilainya saja\n    print(angka, end=\" \")\nprint()\n\nfor nama, angka in nilai.items():     # keduanya sekaligus\n    print(f\"{nama:<6} {angka}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "`items()` memberi *tuple* berisi kunci dan nilai, yang langsung dibongkar menjadi dua nama. Pola `for k, v in d.items()` ini akan Anda tulis ratusan kali."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menghitung kemunculan.** Ini pemakaian *dictionary* yang paling sering muncul di pekerjaan data, dan patut Anda tulis sendiri sekali sebelum memakai perkakas siap pakai."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "kalimat = \"satu dua dua tiga tiga tiga\"\ncacah = {}\n\nfor kata in kalimat.split():\n    cacah[kata] = cacah.get(kata, 0) + 1\n\nprint(cacah)\n\n# cara siap pakainya, hasilnya sama\nfrom collections import Counter\nprint(dict(Counter(kalimat.split())))\nprint(Counter(kalimat.split()).most_common(2))"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Urutannya terjaga.** Sejak Python 3.7, *dictionary* mengingat urutan penyisipan kuncinya. Sebelum itu urutannya tidak dijamin, dan banyak tulisan lama masih memperingatkan hal yang sudah tidak berlaku."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "d = {}\nd[\"ketiga\"] = 3\nd[\"pertama\"] = 1\nd[\"kedua\"] = 2\nprint(list(d))                  # sesuai urutan dimasukkan\n\n# mengurutkan menurut nilainya\nnilai = {\"ani\": 87, \"budi\": 92, \"citra\": 78}\nprint(sorted(nilai.items(), key=lambda pasangan: pasangan[1], reverse=True))\nprint(max(nilai, key=nilai.get))"
+            },
+            {
+              "type": "NOTE",
+              "content": "`max(nilai, key=nilai.get)` memberi **kunci** dengan nilai tertinggi, bukan nilainya. Kalau yang Anda butuhkan angkanya, pakai `max(nilai.values())`. Tertukar di sini menghasilkan program yang jalan tanpa galat tetapi mencetak hal yang salah, dan itu jenis bug yang paling lama ditemukan."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa keluaran kode berikut? Jelaskan baris terakhirnya.\n\n```python\nd = {\"a\": 1, \"b\": 2}\nd[\"c\"] = 3\nd[\"a\"] = 10\nprint(len(d))\nprint(d.get(\"z\", \"tidak ada\"))\nprint(list(d))\n```",
+              "solution": "```\n3\ntidak ada\n['a', 'b', 'c']\n```\n\nBaris per baris:\n\n```\nd[\"c\"] = 3     kunci baru, jadi jumlahnya bertambah menjadi 3\nd[\"a\"] = 10    kunci lama, hanya nilainya yang diganti\n```\n\n`get(\"z\", \"tidak ada\")` mengembalikan nilai cadangannya karena kunci `z` memang tidak ada, dan yang penting: **tidak menghentikan program** seperti `d[\"z\"]`.\n\nBaris terakhir yang paling menarik. Urutannya `['a', 'b', 'c']`, bukan diurutkan abjad, melainkan sesuai urutan kunci itu pertama kali dimasukkan. Perhatikan bahwa `a` tetap di posisi pertama meski nilainya diubah belakangan: mengubah nilai tidak memindahkan kuncinya, dan hanya kunci yang benar-benar baru yang ditambahkan di belakang."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis fungsi `balik(kamus)` yang menukar kunci dengan nilainya. Apa yang terjadi kalau ada dua kunci bernilai sama?",
+              "solution": "```python\ndef balik(kamus):\n    return {nilai: kunci for kunci, nilai in kamus.items()}\n\nprint(balik({\"a\": 1, \"b\": 2}))\nprint(balik({\"a\": 1, \"b\": 1}))\n```\n\nKeluarannya:\n\n```\n{1: 'a', 2: 'b'}\n{1: 'b'}\n```\n\nKalau ada dua kunci bernilai sama, hasilnya **kehilangan salah satunya**. Yang bertahan adalah yang diproses terakhir, karena ia menimpa yang sebelumnya.\n\nIni bukan cacat yang bisa dihindari, melainkan akibat langsung dari aturan bahwa kunci harus unik. Dua kunci berbeda bisa punya nilai sama, tetapi setelah dibalik keduanya menuntut kunci yang sama.\n\nKalau semua pasangan perlu dipertahankan, nilainya dikumpulkan sebagai daftar:\n\n```python\ndef balik_semua(kamus):\n    hasil = {}\n    for kunci, nilai in kamus.items():\n        hasil.setdefault(nilai, []).append(kunci)\n    return hasil\n\nprint(balik_semua({\"a\": 1, \"b\": 1, \"c\": 2}))\n# {1: ['a', 'b'], 2: ['c']}\n```\n\nBaris `setdefault(nilai, []).append(kunci)` adalah pola yang sangat sering dipakai: siapkan daftar kosong kalau kuncinya belum ada, lalu tambahkan ke daftar itu."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan pengukuran kecepatan di atas. Kenapa `dict` jauh lebih cepat, dan apa yang terjadi kalau sasarannya diganti menjadi anggota pertama?",
+              "solution": "Hasilnya kira-kira seperti ini:\n\n```\nlist : 1.823 ms\ndict : 0.002 ms\ndict sekitar 868 kali lebih cepat\n```\n\nAngkanya berbeda-beda tiap kali dijalankan, dan di dalam panel halaman ini\nyang berjalan di atas WebAssembly biasanya lebih lambat daripada di komputer\nAnda sendiri. Yang perlu diperhatikan bukan angkanya, melainkan selisihnya\nyang ratusan sampai ribuan kali.\n\nPenyebabnya cara mencarinya, bukan kecepatan mesinnya.\n\n```\nlist  memeriksa anggotanya satu per satu dari depan.\n      Sasaran di posisi terakhir berarti 200.000 perbandingan.\n\ndict  menghitung nomor keranjang dari kuncinya, lalu melihat\n      keranjang itu saja. Satu perhitungan, berapa pun isinya.\n```\n\nKalau sasarannya diganti menjadi `\"orang0\"`, yaitu anggota pertama, `list` justru menang tipis atau seimbang, karena ia menemukannya pada perbandingan pertama.\n\nDan di situlah letak bedanya yang sesungguhnya. Kecepatan `list` **bergantung pada posisi**, sedangkan kecepatan `dict` tidak. Untuk data yang akan sering dicari, jangan bertaruh pada posisi yang kebetulan menguntungkan.\n\nPatokan praktisnya: kalau Anda menulis `if x in daftar` di dalam sebuah perulangan, hampir selalu `daftar` itu sebaiknya diubah menjadi `set` atau `dict` lebih dulu."
+            },
+            {
+              "type": "TASK",
+              "content": "Diberikan daftar transaksi berikut, hitung total belanja tiap orang.\n\n```python\ntransaksi = [\n    (\"ani\", 25000), (\"budi\", 15000), (\"ani\", 30000),\n    (\"citra\", 50000), (\"budi\", 12000), (\"ani\", 5000),\n]\n```",
+              "solution": "```python\ntransaksi = [\n    (\"ani\", 25000), (\"budi\", 15000), (\"ani\", 30000),\n    (\"citra\", 50000), (\"budi\", 12000), (\"ani\", 5000),\n]\n\ntotal = {}\nfor nama, jumlah in transaksi:\n    total[nama] = total.get(nama, 0) + jumlah\n\nfor nama, jumlah in sorted(total.items(), key=lambda p: p[1], reverse=True):\n    print(f\"{nama:<8} Rp {jumlah:>7,}\")\n```\n\nKeluarannya:\n\n```\nani      Rp  60,000\ncitra    Rp  50,000\nbudi     Rp  27,000\n```\n\nDua bagian yang patut diperhatikan.\n\n`for nama, jumlah in transaksi` membongkar tiap *tuple* langsung menjadi dua nama, jadi tidak perlu menulis `t[0]` dan `t[1]` yang tidak terbaca maksudnya.\n\n`total.get(nama, 0) + jumlah` menangani kemunculan pertama dan kemunculan berikutnya dengan satu baris yang sama. Tanpa `get`, Anda perlu memeriksa dulu apakah kuncinya sudah ada.\n\nCara siap pakainya memakai `defaultdict`, yang menyiapkan nilai awal secara otomatis:\n\n```python\nfrom collections import defaultdict\ntotal = defaultdict(int)\nfor nama, jumlah in transaksi:\n    total[nama] += jumlah\n```\n\nPola menjumlahkan per kelompok seperti ini akan Anda temui lagi di pandas, dengan nama `groupby`."
+            }
+          ]
+        },
+        {
+          "title": "Set",
+          "summary": "Kumpulan tanpa duplikat, dan cara memeriksa keanggotaan dengan cepat.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "*Set* (himpunan) menyimpan kumpulan nilai tanpa urutan dan tanpa anggota kembar. Sifat itu membuatnya menyelesaikan dua persoalan yang sering muncul: membuang duplikat, dan memeriksa keanggotaan dengan cepat."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "angka = {3, 1, 4, 1, 5, 9, 2, 6, 5}\nprint(angka)                 # duplikatnya hilang sendiri\nprint(len(angka))\n\nkosong = set()               # perhatikan: {} adalah dict kosong\nprint(type(kosong), type({}))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Aturan matematikanya persis yang Anda pelajari di Matematika Diskrit, dan Python menyediakan lambang operatornya langsung."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\n\nprint(a | b)    # gabungan\nprint(a & b)    # irisan\nprint(a - b)    # selisih\nprint(a ^ b)    # beda simetris\n\nprint(a.isdisjoint({9, 10}))\nprint({1, 2} <= a)          # himpunan bagian"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Membuang duplikat.** Ini pemakaian yang paling sering, dan hanya butuh satu panggilan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "email = [\"a@x.id\", \"b@x.id\", \"a@x.id\", \"c@x.id\", \"b@x.id\"]\n\nprint(\"baris   :\", len(email))\nprint(\"unik    :\", len(set(email)))\nprint(\"daftarnya:\", sorted(set(email)))"
+            },
+            {
+              "type": "NOTE",
+              "content": "`set` tidak menjaga urutan, jadi `list(set(x))` bisa memberi urutan yang berbeda dari aslinya. Kalau urutan kemunculan pertama perlu dipertahankan, pakai `list(dict.fromkeys(x))`, yang memanfaatkan sifat *dictionary* yang mengingat urutan penyisipan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "email = [\"c@x.id\", \"a@x.id\", \"c@x.id\", \"b@x.id\"]\n\nprint(sorted(set(email)))             # terurut abjad, urutan asli hilang\nprint(list(dict.fromkeys(email)))     # urutan kemunculan pertama terjaga"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Memeriksa keanggotaan.** Sama seperti *dictionary*, `set` menghitung letak anggotanya alih-alih menelusurinya satu per satu."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import time\n\nn = 200_000\ndaftar = list(range(n))\nhimpunan = set(daftar)\n\nt = time.perf_counter()\nfor _ in range(1000):\n    (n - 1) in daftar\nwaktu_list = time.perf_counter() - t\n\nt = time.perf_counter()\nfor _ in range(1000):\n    (n - 1) in himpunan\nwaktu_set = time.perf_counter() - t\n\nprint(f\"list : {waktu_list * 1000:7.2f} ms\")\nprint(f\"set  : {waktu_set * 1000:7.2f} ms\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menambah dan membuang.**"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "s = {1, 2, 3}\n\ns.add(4)                 # satu anggota\ns.update([5, 6])         # beberapa sekaligus\ns.discard(99)            # tidak ada? diam saja\nprint(s)\n\ntry:\n    s.remove(99)         # tidak ada? melempar galat\nexcept KeyError as e:\n    print(\"KeyError:\", e)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bedakan `discard` dan `remove`. Pakai `remove` ketika ketiadaan anggotanya memang menandakan ada yang salah, dan `discard` ketika Anda memang tidak peduli."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Anggotanya harus tidak bisa diubah.** Aturan yang sama dengan kunci *dictionary* berlaku di sini, dan sebabnya juga sama."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "sah = {(1, 2), (3, 4)}        # tuple boleh\nprint(sah)\n\ntry:\n    tidak = {[1, 2]}\nexcept TypeError as e:\n    print(\"ditolak:\", e)\n\n# kalau butuh himpunan berisi himpunan, pakai frozenset\nbersarang = {frozenset({1, 2}), frozenset({3, 4})}\nprint(bersarang)"
+            },
+            {
+              "type": "TASK",
+              "content": "Dua kelas mengambil mata kuliah berikut. Cari mata kuliah yang diambil keduanya, yang hanya diambil kelas A, dan seluruh mata kuliah yang diambil.\n\n```python\na = {\"Basis Data\", \"Jaringan\", \"Statistika\", \"Python\"}\nb = {\"Statistika\", \"Python\", \"Kalkulus\"}\n```",
+              "solution": "```python\na = {\"Basis Data\", \"Jaringan\", \"Statistika\", \"Python\"}\nb = {\"Statistika\", \"Python\", \"Kalkulus\"}\n\nprint(\"keduanya   :\", sorted(a & b))\nprint(\"hanya A    :\", sorted(a - b))\nprint(\"seluruhnya :\", sorted(a | b))\n```\n\nKeluarannya:\n\n```\nkeduanya   : ['Python', 'Statistika']\nhanya A    : ['Basis Data', 'Jaringan']\nseluruhnya : ['Basis Data', 'Jaringan', 'Kalkulus', 'Python', 'Statistika']\n```\n\n`sorted()` dipakai bukan karena perhitungannya butuh urutan, melainkan supaya keluarannya bisa diramalkan saat dibaca manusia. Tanpa itu, urutannya bisa berbeda antar jalannya program.\n\nPerhatikan juga bahwa jumlahnya cocok dengan rumus inklusi-eksklusi dari Matematika Diskrit:\n\n```\n|A ∪ B| = |A| + |B| − |A ∩ B|\n        = 4 + 3 − 2 = 5\n```"
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `{}` menghasilkan *dictionary* kosong, bukan *set* kosong? Bagaimana cara membuat *set* kosong?",
+              "solution": "Karena notasi kurung kurawal lebih dulu dipakai untuk *dictionary*, jauh sebelum *set* punya notasi sendiri. Ketika *set* ditambahkan, `{}` sudah terlanjur berarti *dictionary* kosong dan tidak bisa diubah tanpa merusak kode yang sudah ada.\n\n```python\nprint(type({}))            # <class 'dict'>\nprint(type({1, 2}))        # <class 'set'>\nprint(type(set()))         # <class 'set'>\n```\n\n*Set* kosong hanya bisa ditulis `set()`.\n\nBegitu ada isinya, Python bisa membedakan keduanya dari bentuk isinya: ada titik dua berarti *dictionary*, tidak ada berarti *set*.\n\n```python\n{\"a\": 1}     # dictionary, ada pasangan kunci dan nilai\n{\"a\"}        # set, cuma nilainya\n```\n\nKekeliruan ini sering muncul saat menyiapkan penampung kosong di awal perulangan. Menulis `hasil = {}` lalu memanggil `hasil.add(x)` akan gagal dengan `AttributeError`, karena yang terbentuk sebenarnya *dictionary*."
+            },
+            {
+              "type": "TASK",
+              "content": "Diberikan dua daftar, tulis kode yang menyebutkan berapa pelanggan yang membeli di kedua bulan, dan berapa yang berhenti setelah Januari.\n\n```python\njanuari = [\"ani\", \"budi\", \"citra\", \"dewi\", \"ani\"]\nfebruari = [\"budi\", \"citra\", \"eka\"]\n```",
+              "solution": "```python\njanuari = [\"ani\", \"budi\", \"citra\", \"dewi\", \"ani\"]\nfebruari = [\"budi\", \"citra\", \"eka\"]\n\njan, feb = set(januari), set(februari)\n\nprint(\"pelanggan Januari :\", len(jan))\nprint(\"bertahan          :\", len(jan & feb), sorted(jan & feb))\nprint(\"berhenti          :\", len(jan - feb), sorted(jan - feb))\nprint(\"pelanggan baru    :\", len(feb - jan), sorted(feb - jan))\n```\n\nKeluarannya:\n\n```\npelanggan Januari : 4\nbertahan          : 2 ['budi', 'citra']\nberhenti          : 2 ['ani', 'dewi']\npelanggan baru    : 1 ['eka']\n```\n\nPerhatikan baris pertama: daftar Januari punya lima baris tetapi hanya empat pelanggan, karena `ani` muncul dua kali. Mengubahnya menjadi `set` lebih dulu membuat pertanyaan \"berapa pelanggan\" terjawab benar; kalau tidak, satu orang akan terhitung dua kali.\n\nPerhitungan ini punya nama di dunia usaha. `jan - feb` adalah pelanggan yang hilang, dan nisbahnya terhadap `jan` disebut *churn rate*. Di sini 2 dari 4, atau 50 persen.\n\nAnda akan mengerjakan perhitungan yang sama nanti di pandas, hanya dengan sintaks yang berbeda."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa keluaran kode berikut, dan kenapa urutannya tidak seperti yang diharapkan?\n\n```python\nnama = [\"zaki\", \"ani\", \"zaki\", \"budi\"]\nprint(list(set(nama)))\nprint(list(dict.fromkeys(nama)))\n```",
+              "solution": "Baris pertama memberi urutan yang tidak bisa diramalkan, misalnya `['budi', 'ani', 'zaki']`. Baris kedua selalu memberi `['zaki', 'ani', 'budi']`.\n\nSebabnya, `set` menyimpan anggotanya menurut nomor keranjang hasil perhitungan *hash*, bukan menurut urutan dimasukkan. Nomor keranjang itu tidak ada hubungannya dengan abjad maupun urutan asli, sehingga hasilnya terlihat acak.\n\n`dict.fromkeys` memanfaatkan dua sifat sekaligus: kunci *dictionary* unik, dan sejak Python 3.7 urutan penyisipannya terjaga. Jadi duplikat tetap terbuang, tetapi urutan kemunculan pertamanya bertahan.\n\n```python\nprint(dict.fromkeys([\"zaki\", \"ani\", \"zaki\"]))\n# {'zaki': None, 'ani': None}\n```\n\nNilainya memang tidak dipakai dan diisi `None`; yang diambil hanya kuncinya.\n\nPatokan memilih:\n\n```\nset(x)               urutan tidak penting, paling singkat\ndict.fromkeys(x)     urutan kemunculan pertama harus terjaga\n```\n\nUntuk data yang akan ditampilkan kepada manusia, hampir selalu yang kedua yang Anda inginkan."
+            }
+          ]
+        },
+        {
+          "title": "String Secara Mendalam",
+          "summary": "Memotong, membersihkan, dan menyusun teks.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Sebagian besar data yang akan Anda olah datang sebagai teks: isi berkas CSV, jawaban dari sebuah API, nama kolom, label kategori. Mengolah teks dengan rapi karena itu bukan keterampilan tambahan, melainkan pekerjaan harian."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mengambil potongan.** Satu huruf diambil dengan indeksnya, beberapa huruf dengan rentangnya."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 240\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Penomoran potongan string: indeks maju dari nol dan indeks mundur dari minus satu\">\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"19\" fill=\"currentColor\" text-anchor=\"middle\">\n    <text x=\"60\" y=\"94\">P</text><text x=\"112\" y=\"94\">y</text><text x=\"164\" y=\"94\">t</text>\n    <text x=\"216\" y=\"94\">h</text><text x=\"268\" y=\"94\">o</text><text x=\"320\" y=\"94\">n</text>\n  </g>\n  <g stroke=\"currentColor\" stroke-opacity=\"0.2\" fill=\"none\">\n    <rect x=\"34\" y=\"68\" width=\"52\" height=\"38\"/><rect x=\"86\" y=\"68\" width=\"52\" height=\"38\"/>\n    <rect x=\"138\" y=\"68\" width=\"52\" height=\"38\"/><rect x=\"190\" y=\"68\" width=\"52\" height=\"38\"/>\n    <rect x=\"242\" y=\"68\" width=\"52\" height=\"38\"/><rect x=\"294\" y=\"68\" width=\"52\" height=\"38\"/>\n  </g>\n\n  <text x=\"24\" y=\"42\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--nila)\">indeks maju</text>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\" text-anchor=\"middle\">\n    <text x=\"60\" y=\"58\">0</text><text x=\"112\" y=\"58\">1</text><text x=\"164\" y=\"58\">2</text>\n    <text x=\"216\" y=\"58\">3</text><text x=\"268\" y=\"58\">4</text><text x=\"320\" y=\"58\">5</text>\n  </g>\n\n  <text x=\"24\" y=\"134\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--kunyit)\">indeks mundur</text>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--kunyit)\" text-anchor=\"middle\">\n    <text x=\"60\" y=\"126\">&#8722;6</text><text x=\"112\" y=\"126\">&#8722;5</text><text x=\"164\" y=\"126\">&#8722;4</text>\n    <text x=\"216\" y=\"126\">&#8722;3</text><text x=\"268\" y=\"126\">&#8722;2</text><text x=\"320\" y=\"126\">&#8722;1</text>\n  </g>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.45\">\n    <line x1=\"34\" y1=\"152\" x2=\"34\" y2=\"166\"/><line x1=\"86\" y1=\"152\" x2=\"86\" y2=\"166\"/>\n    <line x1=\"138\" y1=\"152\" x2=\"138\" y2=\"166\"/><line x1=\"190\" y1=\"152\" x2=\"190\" y2=\"166\"/>\n    <line x1=\"242\" y1=\"152\" x2=\"242\" y2=\"166\"/><line x1=\"294\" y1=\"152\" x2=\"294\" y2=\"166\"/>\n    <line x1=\"346\" y1=\"152\" x2=\"346\" y2=\"166\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\" text-anchor=\"middle\">\n    <text x=\"34\" y=\"182\">0</text><text x=\"86\" y=\"182\">1</text><text x=\"138\" y=\"182\">2</text>\n    <text x=\"190\" y=\"182\">3</text><text x=\"242\" y=\"182\">4</text><text x=\"294\" y=\"182\">5</text>\n    <text x=\"346\" y=\"182\">6</text>\n  </g>\n  <text x=\"380\" y=\"182\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">batas potongan ada di sela, bukan di hurufnya</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"13\" fill=\"currentColor\" opacity=\"0.85\">\n    <text x=\"24\" y=\"216\">kata[1:4]  &#8594;  \"yth\"</text>\n    <text x=\"260\" y=\"216\">kata[-2:]  &#8594;  \"on\"</text>\n    <text x=\"470\" y=\"216\" fill=\"var(--nila)\">batas kanan tidak ikut</text>\n  </g>\n</svg>",
+              "solution": "Indeks maju dimulai dari nol, indeks mundur dari minus satu. Batas potongan sebenarnya berada di sela antar huruf, dan itu menjelaskan kenapa batas kanannya tidak ikut terambil."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "kata = \"Python\"\n\nprint(kata[0], kata[-1])\nprint(kata[1:4])        # dari 1 sampai sebelum 4\nprint(kata[:3])         # dari awal\nprint(kata[3:])         # sampai akhir\nprint(kata[-2:])        # dua huruf terakhir\nprint(kata[::-1])       # dibalik\nprint(len(kata))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Batas kanan yang tidak ikut terambil sering terasa janggal pada awalnya, tetapi ia membuat dua sifat yang sangat berguna: `kata[:n]` dan `kata[n:]` selalu menyusun kembali teks aslinya, dan panjang potongan `a:b` selalu `b - a`."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Metode yang paling sering dipakai.** Semuanya menghasilkan teks baru dan tidak pernah mengubah yang asli, karena teks di Python tidak bisa diubah isinya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "teks = \"  Analisis Data Dengan Pandas  \"\n\nprint(repr(teks.strip()))        # buang spasi di kedua ujung\nprint(teks.lower())\nprint(teks.strip().split())      # pecah menurut spasi\nprint(teks.strip().replace(\" \", \"-\"))\nprint(teks.strip().startswith(\"Analisis\"))\nprint(\"data\" in teks.lower())"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "baris = \"ani,87,lulus\"\n\nbagian = baris.split(\",\")\nprint(bagian)\n\nnama, nilai, status = baris.split(\",\")\nprint(f\"{nama} mendapat {int(nilai)} dan {status}\")\n\nprint(\"|\".join(bagian))          # menyatukan kembali"
+            },
+            {
+              "type": "NOTE",
+              "content": "`split()` tanpa argumen memperlakukan deretan spasi sebagai satu pemisah dan membuang spasi di ujung, sedangkan `split(\" \")` memecah di setiap spasi sehingga dua spasi berturut-turut menghasilkan bagian kosong. Untuk memecah kalimat, hampir selalu yang Anda inginkan adalah `split()` tanpa argumen."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "teks = \"satu  dua   tiga\"\nprint(teks.split())        # ['satu', 'dua', 'tiga']\nprint(teks.split(\" \"))     # ada bagian kosong di antaranya"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Teks tidak bisa diubah.** Mencoba mengganti satu huruf akan ditolak, dan ini sering mengejutkan pendatang dari bahasa lain."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "kata = \"Python\"\ntry:\n    kata[0] = \"J\"\nexcept TypeError as e:\n    print(\"ditolak:\", e)\n\n# yang bisa dilakukan hanyalah menyusun teks baru\nprint(\"J\" + kata[1:])\nprint(kata.replace(\"P\", \"J\"))\nprint(kata)              # yang asli tetap utuh"
+            },
+            {
+              "type": "TEXT",
+              "content": "Akibat praktisnya: menyambung teks di dalam perulangan panjang itu boros, karena setiap penyambungan membuat teks baru. Untuk itu kumpulkan dulu potongannya, lalu satukan sekali di akhir."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import time\n\nn = 40_000\npotongan = [f\"baris {i}\" for i in range(n)]\n\nt = time.perf_counter()\nhasil = \"\"\nfor p in potongan:\n    hasil += p + \"\\n\"\ncara_lambat = time.perf_counter() - t\n\nt = time.perf_counter()\nhasil2 = \"\\n\".join(potongan) + \"\\n\"\ncara_cepat = time.perf_counter() - t\n\nprint(f\"disambung satu-satu : {cara_lambat * 1000:7.2f} ms\")\nprint(f\"dengan join         : {cara_cepat * 1000:7.2f} ms\")\nprint(\"hasilnya sama:\", hasil == hasil2)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**f-string.** Cara baku menyisipkan nilai ke dalam teks, dan sekaligus cara mengatur bentuk tampilannya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nama, nilai, harga = \"Ani\", 87.4567, 1250000\n\nprint(f\"{nama} mendapat {nilai}\")\nprint(f\"dua angka di belakang koma : {nilai:.2f}\")\nprint(f\"rata kanan selebar 10      : {nilai:>10.2f}\")\nprint(f\"rata kiri selebar 10       : {nama:<10}|\")\nprint(f\"di tengah selebar 10       : {nama:^10}|\")\nprint(f\"pemisah ribuan             : {harga:,}\")\nprint(f\"persen                     : {0.8734:.1%}\")"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# tanda = mencetak ekspresinya sekaligus, sangat berguna saat menelusuri bug\nx, y = 12, 5\nprint(f\"{x + y = }\")\nprint(f\"{x / y = :.3f}\")"
+            },
+            {
+              "type": "NOTE",
+              "content": "Tanda `=` di dalam f-string, misalnya `f\"{x + y = }\"`, mencetak ekspresinya beserta hasilnya. Ini jauh lebih hemat daripada menulis `print(\"x + y =\", x + y)`, dan sangat membantu ketika Anda sedang mencari sebab sebuah nilai tidak sesuai dugaan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Memeriksa isi teks.** Berguna untuk menyaring masukan sebelum diolah."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "for contoh in [\"123\", \"12.5\", \"abc\", \"ani123\", \"  \", \"\"]:\n    print(f\"{contoh!r:<10} digit={contoh.isdigit():<5} \"\n          f\"huruf={contoh.isalpha():<5} kosong={not contoh.strip()}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bahwa `\"12.5\".isdigit()` bernilai salah, karena titiknya bukan angka. Untuk memeriksa bilangan pecahan, cara yang lebih jujur adalah mencoba mengubahnya dan menangkap kegagalannya, yang akan dibahas di bagian penanganan galat."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa keluaran kode berikut? Jelaskan baris ketiga.\n\n```python\nkata = \"Informatika\"\nprint(kata[2:6])\nprint(kata[-5:])\nprint(kata[:3] + kata[3:] == kata)\n```",
+              "solution": "```\nform\natika\nTrue\n```\n\nBaris pertama mengambil indeks 2, 3, 4, dan 5. Indeks 6 tidak ikut, dan itulah sebabnya hasilnya empat huruf, bukan lima.\n\n```\nI n f o r m a t i k a\n0 1 2 3 4 5 6 7 8 9 10\n    ^-------^\n    ambil 2,3,4,5 -> \"form\"\n```\n\nBaris kedua mengambil lima huruf terakhir. `-5` berarti hitung lima langkah dari belakang, lalu ambil sampai akhir.\n\nBaris ketiga selalu bernilai `True`, berapa pun angkanya. Karena batas kanan tidak ikut terambil, `kata[:3]` berhenti tepat di tempat `kata[3:]` dimulai, tanpa celah dan tanpa tumpang tindih.\n\nSifat ini yang membuat aturan batas kanan itu masuk akal meski awalnya terasa janggal. Memotong teks di posisi mana pun selalu menghasilkan dua bagian yang bisa disatukan kembali utuh."
+            },
+            {
+              "type": "TASK",
+              "content": "Diberikan satu baris CSV, ambil namanya dan hitung rata-rata nilainya.\n\n```python\nbaris = \"ani,87,92,78\"\n```",
+              "solution": "```python\nbaris = \"ani,87,92,78\"\n\nnama, *angka_teks = baris.split(\",\")\nangka = [int(a) for a in angka_teks]\n\nprint(f\"{nama}: {angka} rata-rata {sum(angka) / len(angka):.1f}\")\n```\n\nKeluarannya `ani: [87, 92, 78] rata-rata 85.7`.\n\nTiga hal yang bekerja bersama di sini.\n\n`split(\",\")` memecah barisnya menjadi daftar teks. Perhatikan bahwa hasilnya **semuanya teks**, termasuk angkanya; `\"87\"` bukan `87`.\n\n`nama, *angka_teks` membongkarnya dengan tanda bintang, sehingga berapa pun jumlah nilainya tetap tertampung. Kalau ditulis `nama, a, b, c = ...`, kode ini akan gagal begitu ada baris dengan empat nilai.\n\n`[int(a) for a in angka_teks]` mengubah tiap teks menjadi bilangan. Tanpa langkah ini, `sum()` akan gagal karena teks tidak bisa dijumlahkan dengan teks secara aritmetika.\n\nUntuk berkas CSV sungguhan, jangan memecah sendiri dengan `split(\",\")`. Nilai yang mengandung koma di dalam tanda kutip akan terpecah salah. Pakai modul `csv` dari pustaka baku, yang akan dibahas di bagian berkas."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan perbandingan penyambungan teks di atas. Kenapa `join` jauh lebih cepat?",
+              "solution": "Hasilnya kira-kira:\n\n```\ndisambung satu-satu :  189.84 ms\ndengan join         :    0.56 ms\nhasilnya sama: True\n```\n\nSekitar tiga ratus kali, dan selisihnya makin lebar seiring bertambahnya\nbaris. Angka pastinya berbeda tiap mesin.\n\nSebabnya teks di Python tidak bisa diubah isinya.\n\n```\nhasil += p    tidak menambahkan ke teks yang sudah ada.\n              Python membuat teks BARU berisi gabungan keduanya,\n              lalu nama \"hasil\" dipindahkan ke teks baru itu.\n```\n\nPada putaran ke-40.000, teks yang disalin sudah panjang sekali, dan seluruh isinya disalin ulang hanya untuk menambahkan satu baris. Jumlah penyalinannya tumbuh kira-kira kuadrat terhadap jumlah barisnya.\n\n`join` bekerja berbeda. Ia melihat seluruh potongan lebih dulu, menghitung total panjang yang dibutuhkan, menyiapkan satu ruang sekali, lalu menyalin tiap potongan tepat satu kali.\n\nPatokan praktisnya: **kalau Anda menulis `+=` pada teks di dalam perulangan, hampir selalu ada `join` yang lebih baik.** Kumpulkan potongannya ke dalam list, lalu satukan sekali di akhir.\n\nCatatan jujur: CPython punya pengoptimalan khusus yang kadang membuat `+=` pada teks tidak selambat ini. Pengoptimalan itu tidak dijamin dan mudah batal, misalnya ketika ada nama lain yang menunjuk teks yang sama. Jangan menggantungkan diri padanya."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis fungsi `rapikan(nama)` yang membersihkan nama orang: buang spasi berlebih di mana pun, dan jadikan huruf awal tiap kata kapital.\n\nUji dengan `\"  bUDi   santoso  \"`.",
+              "solution": "```python\ndef rapikan(nama):\n    return \" \".join(bagian.capitalize() for bagian in nama.split())\n\nprint(repr(rapikan(\"  bUDi   santoso  \")))\nprint(repr(rapikan(\"ANI\")))\nprint(repr(rapikan(\"siti   nur   halimah\")))\n```\n\nKeluarannya:\n\n```\n'Budi Santoso'\n'Ani'\n'Siti Nur Halimah'\n```\n\nCaranya memanfaatkan satu sifat `split()` tanpa argumen: ia memperlakukan deretan spasi sebagai satu pemisah dan membuang spasi di ujung. Jadi satu panggilan sudah menyelesaikan spasi berlebih di depan, di belakang, dan di tengah sekaligus.\n\n`capitalize()` membuat huruf pertama kapital dan sisanya kecil, sehingga `\"bUDi\"` menjadi `\"Budi\"`.\n\nKenapa tidak memakai `title()` saja?\n\n```python\nprint(\"bUDi santoso\".title())      # 'Budi Santoso', kelihatan benar\nprint(\"o'brien\".title())           # \"O'Brien\" — benar\nprint(\"mcdonald\".title())          # 'Mcdonald' — bukan 'McDonald'\nprint(\"ani  budi\".title())         # spasi gandanya tetap ada\n```\n\n`title()` tidak membereskan spasi berlebih, dan aturannya tentang tanda baca sering tidak sesuai harapan. Untuk nama orang sungguhan, tidak ada satu pun aturan otomatis yang selalu benar; nama seperti `van der Berg` atau `bin Abdullah` punya kebiasaan penulisannya sendiri. Perlakukan fungsi semacam ini sebagai pembersih kasar, bukan penentu akhir."
+            }
+          ]
+        },
+        {
+          "title": "Comprehension",
+          "summary": "Satu baris untuk pola yang paling sering Anda tulis.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Pola berikut akan Anda tulis berulang kali: siapkan list kosong, telusuri sesuatu, ubah tiap anggotanya, lalu tambahkan hasilnya. Python menyediakan satu bentuk ringkas untuk pola itu, dan bentuk itu muncul di mana-mana dalam kode data."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "angka = [1, 2, 3, 4, 5]\n\n# cara panjang\nkuadrat = []\nfor n in angka:\n    kuadrat.append(n * n)\nprint(kuadrat)\n\n# comprehension, artinya sama persis\nkuadrat = [n * n for n in angka]\nprint(kuadrat)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bentuknya dibaca dari tengah ke kiri: *\"untuk setiap `n` di dalam `angka`, ambil `n * n`\"*. Bagian `for` menyebut sumbernya, bagian paling depan menyebut apa yang dikumpulkan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# bentuknya:  [ apa yang dikumpulkan   for  nama  in  sumber  if syarat ]\n\nangka = range(1, 11)\n\nprint([n for n in angka if n % 2 == 0])              # dengan saringan\nprint([n * n for n in angka if n % 2 == 0])          # disaring lalu diubah\nprint([n if n % 2 == 0 else 0 for n in angka])       # pilihan di bagian depan"
+            },
+            {
+              "type": "NOTE",
+              "content": "Perhatikan bedanya dua baris terakhir. `if` yang berada **setelah** `for` berfungsi sebagai saringan, sehingga anggota yang tidak lolos tidak ikut sama sekali. `if ... else` yang berada **sebelum** `for` adalah pemilihan nilai, sehingga semua anggota tetap ikut, hanya nilainya yang berbeda. Jumlah anggota hasilnya karena itu berbeda."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Bukan hanya untuk list.** Bentuk yang sama berlaku untuk *dictionary* dan *set*, dan itu membuat banyak pekerjaan berubah jadi satu baris yang masih terbaca."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nama = [\"ani\", \"budi\", \"citra\"]\nnilai = [87, 92, 78]\n\n# dictionary comprehension\nprint({n: v for n, v in zip(nama, nilai)})\nprint({n: len(n) for n in nama})\n\n# set comprehension\nkalimat = \"satu dua dua tiga\"\nprint({kata for kata in kalimat.split()})\n\n# menyaring dictionary yang sudah ada\nskor = {\"ani\": 87, \"budi\": 55, \"citra\": 78}\nprint({n: v for n, v in skor.items() if v >= 70})"
+            },
+            {
+              "type": "TEXT",
+              "content": "`zip` menggandengkan dua urutan menjadi pasangan, dan berhenti di yang terpendek. Ia pasangan alami dari *comprehension*."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nama = [\"ani\", \"budi\", \"citra\"]\nnilai = [87, 92]\n\nprint(list(zip(nama, nilai)))         # citra tidak kebagian pasangan\nprint(dict(zip(nama, nilai)))\n\n# enumerate memberi nomor urut, sering dipakai bersama\nfor i, n in enumerate(nama, start=1):\n    print(i, n)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Bersarang.** Bisa, tetapi di sinilah *comprehension* mulai kehilangan gunanya kalau dipaksakan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "matriks = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\n\n# meratakan: urutan for-nya sama dengan urutan perulangan bersarang biasa\nprint([nilai for baris in matriks for nilai in baris])\n\n# membentuk matriks baru\nprint([[n * 2 for n in baris] for baris in matriks])\n\n# transpos, memakai zip\nprint([list(kolom) for kolom in zip(*matriks)])"
+            },
+            {
+              "type": "NOTE",
+              "content": "Urutan `for` pada *comprehension* bersarang sama persis dengan urutan perulangan biasa kalau ditulis panjang: yang terluar di depan. Banyak orang keliru menyangka urutannya terbalik. Kalau Anda ragu, tulis dulu versi panjangnya, lalu pindahkan barisnya tanpa menukar urutan `for`-nya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kapan sebaiknya tidak dipakai.** Ringkas bukan tujuan; terbaca yang jadi tujuan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Pakai comprehension kalau\n  satu sumber, satu perubahan sederhana, boleh ditambah satu saringan\n\nTulis perulangan biasa kalau\n  ada beberapa langkah di dalamnya\n  ada percabangan yang bertingkat\n  perlu menangani galat per anggota\n  barisnya jadi lebih panjang dari sekitar 80 huruf"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# terlalu padat, maksudnya jadi kabur\nhasil = [int(x) for b in baris for x in b.split(\",\") if x.strip().isdigit()] \\\n    if False else \"contoh\"\n\n# versi yang lebih jujur, dan tidak lebih lambat\nbaris = [\"1,2,x\", \"3,,4\"]\nhasil = []\nfor b in baris:\n    for bagian in b.split(\",\"):\n        bagian = bagian.strip()\n        if bagian.isdigit():\n            hasil.append(int(bagian))\nprint(hasil)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Versi hemat memori.** Mengganti kurung siku dengan kurung biasa menghasilkan *generator*, yang menghitung anggotanya satu per satu saat diminta alih-alih menyiapkan seluruhnya sekaligus."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import sys\n\nbesar = 1_000_000\n\nsebagai_list = [n * n for n in range(besar)]\nsebagai_gen = (n * n for n in range(besar))\n\nprint(\"list     :\", f\"{sys.getsizeof(sebagai_list):>10,} bita\")\nprint(\"generator:\", f\"{sys.getsizeof(sebagai_gen):>10,} bita\")\nprint(\"jumlahnya sama:\", sum(sebagai_list) == sum(n * n for n in range(besar)))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Untuk sesuatu yang hanya ditelusuri sekali, misalnya langsung diserahkan ke `sum`, `max`, atau `any`, bentuk *generator* hampir selalu lebih tepat. Pembahasan lengkapnya ada di bagian iterator dan *generator*."
+            },
+            {
+              "type": "TASK",
+              "content": "Ubah perulangan berikut menjadi *comprehension*.\n\n```python\nhasil = []\nfor kata in [\"Python\", \"Data\", \"AI\", \"Statistika\"]:\n    if len(kata) > 3:\n        hasil.append(kata.upper())\n```",
+              "solution": "```python\nkata_kata = [\"Python\", \"Data\", \"AI\", \"Statistika\"]\nhasil = [kata.upper() for kata in kata_kata if len(kata) > 3]\nprint(hasil)\n```\n\nKeluarannya `['PYTHON', 'DATA', 'STATISTIKA']`. Kata `AI` tersaring karena panjangnya hanya dua.\n\nCara memindahkannya mekanis, dan patut dihafal urutannya:\n\n```\nfor kata in kata_kata:          ->  bagian tengah\n    if len(kata) > 3:           ->  bagian paling belakang\n        hasil.append(X)         ->  X pindah ke paling depan\n```\n\nJadi badan perulangan yang paling dalam justru menjadi bagian paling depan, sementara urutan `for` dan `if` tetap sama seperti aslinya.\n\nKalau hasilnya perlu berupa himpunan tanpa duplikat, cukup ganti kurungnya:\n\n```python\n{kata.upper() for kata in kata_kata if len(kata) > 3}\n```"
+            },
+            {
+              "type": "TASK",
+              "content": "Apa beda keluaran kedua baris berikut, dan kenapa jumlah anggotanya berbeda?\n\n```python\nangka = [1, 2, 3, 4, 5, 6]\na = [n for n in angka if n % 2 == 0]\nb = [n if n % 2 == 0 else 0 for n in angka]\n```",
+              "solution": "```\na = [2, 4, 6]              tiga anggota\nb = [0, 2, 0, 4, 0, 6]     enam anggota\n```\n\nLetak `if`-nya yang membedakan.\n\nPada `a`, `if` berada **setelah** `for`, jadi ia bertindak sebagai saringan. Anggota yang tidak lolos tidak ikut sama sekali, sehingga hasilnya lebih pendek dari sumbernya.\n\nPada `b`, bentuknya `if ... else` dan berada **sebelum** `for`. Itu bukan saringan melainkan pemilihan nilai, yang dikerjakan untuk setiap anggota. Semua anggota tetap ikut, hanya nilainya yang berbeda, sehingga panjangnya selalu sama dengan sumbernya.\n\nCara membedakannya cepat:\n\n```\n[X for n in s if C]           menyaring, panjang bisa berkurang\n[X if C else Y for n in s]    memilih nilai, panjang selalu tetap\n```\n\nPerhatikan juga bahwa bentuk kedua **wajib** punya `else`. Tanpa `else`, Python tidak tahu nilai apa yang harus diambil ketika syaratnya tidak terpenuhi, dan akan menolaknya sebagai `SyntaxError`.\n\nKeduanya boleh digabung, meski hasilnya sudah mulai sulit dibaca:\n\n```python\n[n * 10 if n > 3 else n for n in angka if n % 2 == 0]\n# [2, 40, 60]\n```"
+            },
+            {
+              "type": "TASK",
+              "content": "Diberikan daftar nilai, buat *dictionary* yang hanya memuat yang lulus, dengan kunci berupa nama dan nilai berupa huruf mutunya.\n\n```python\nnilai = {\"ani\": 87, \"budi\": 55, \"citra\": 78, \"dewi\": 92}\n```\nLulus kalau nilainya minimal 70. Huruf mutu: 85 ke atas A, 70 ke atas B.",
+              "solution": "```python\nnilai = {\"ani\": 87, \"budi\": 55, \"citra\": 78, \"dewi\": 92}\n\nmutu = {n: (\"A\" if v >= 85 else \"B\") for n, v in nilai.items() if v >= 70}\nprint(mutu)\n```\n\nKeluarannya `{'ani': 'A', 'citra': 'B', 'dewi': 'A'}`.\n\nPerhatikan bahwa kedua bentuk `if` dipakai sekaligus dan perannya berbeda.\n\n```\nif v >= 70            di belakang, menyaring siapa yang masuk\n\"A\" if v >= 85 else \"B\"   di depan, menentukan nilainya\n```\n\nBudi tidak muncul sama sekali karena tersaring, bukan karena nilainya diganti.\n\nUntuk aturan mutu yang lebih bertingkat, *comprehension* mulai menyulitkan dan sebaiknya diganti fungsi:\n\n```python\ndef huruf(v):\n    if v >= 85: return \"A\"\n    if v >= 70: return \"B\"\n    if v >= 55: return \"C\"\n    return \"D\"\n\nmutu = {n: huruf(v) for n, v in nilai.items()}\n```\n\nBentuk ini lebih panjang tetapi lebih mudah diubah ketika aturannya bertambah, dan itu hampir selalu terjadi."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan perbandingan memori di atas. Kenapa *generator* jauh lebih kecil padahal menghitung hal yang sama?",
+              "solution": "Hasilnya kira-kira:\n\n```\nlist     :  8,448,728 bita\ngenerator:        200 bita\njumlahnya sama: True\n```\n\nSelisihnya sekitar empat puluh ribu kali.\n\nSebabnya keduanya menyimpan hal yang berbeda.\n\n```\nlist       menghitung sejuta nilai lebih dulu, lalu menyimpan\n           semuanya. Isinya memang sejuta bilangan.\n\ngenerator  tidak menyimpan nilai sama sekali. Yang disimpan\n           hanya aturan perhitungannya dan posisi terakhir.\n           Nilainya dihitung satu per satu saat diminta.\n```\n\nKarena itu `sys.getsizeof` pada *generator* memberi angka yang hampir sama berapa pun ukuran sumbernya. Mengubah `1_000_000` menjadi `1_000_000_000` tidak mengubah angkanya, sementara versi `list` akan kehabisan memori.\n\nHarganya: *generator* hanya bisa ditelusuri **sekali**.\n\n```python\ng = (n for n in range(3))\nprint(list(g))     # [0, 1, 2]\nprint(list(g))     # []  sudah habis\n```\n\nJadi patokannya:\n\n```\nPakai generator   kalau hasilnya langsung diserahkan ke sum, max,\n                  any, atau sebuah perulangan, dan hanya sekali\n\nPakai list        kalau isinya akan dibaca lebih dari sekali,\n                  diakses lewat indeks, atau perlu diketahui\n                  panjangnya\n```"
+            }
+          ]
+        },
+        {
           "title": "Fungsi",
           "summary": "Memberi nama pada sepotong pekerjaan supaya bisa dipakai berulang.",
           "blocks": [
