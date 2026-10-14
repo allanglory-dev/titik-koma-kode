@@ -6,42 +6,52 @@ import { GlyphField } from "../components/GlyphField";
 import { useFetch } from "../useFetch";
 
 /**
- * Semester tetap dipakai di balik layar untuk mengurutkan topik,
- * tapi yang tampil adalah tahap dengan nama yang lebih manusiawi.
+ * Medan `semester` pada data dipakai sebagai nomor tahap, satu sampai empat.
+ * Yang tampil adalah nama tahapnya, bukan angkanya.
  */
 const TAHAP = [
   {
-    nama: "Mulai dari sini",
-    catatan: "Dasar yang dipakai hampir semua topik setelahnya.",
-    semester: [1, 2],
+    nama: "Bekal",
+    catatan: "Mulai dari sini, tidak ada yang diandaikan sudah kamu kuasai.",
+    semester: [1],
   },
   {
-    nama: "Setelah dasarnya kuat",
-    catatan: "Topik yang biasanya paling bikin nyangkut.",
-    semester: [3, 4],
+    nama: "Matematika dan Data",
+    catatan: "Alas yang membuat model bisa dimengerti, bukan sekadar dijalankan.",
+    semester: [2],
   },
   {
-    nama: "Pendalaman",
-    catatan: "Pilih yang sesuai arah yang kamu tuju.",
-    semester: [5, 6],
+    nama: "Analisis Data",
+    catatan: "Perkakas yang dipakai setiap hari di pekerjaan data.",
+    semester: [3],
   },
   {
-    nama: "Penutup",
-    catatan: "Menyatukan semuanya jadi sesuatu yang utuh.",
-    semester: [7, 8],
+    nama: "Pembelajaran Mesin",
+    catatan: "Model yang belajar sendiri, dibangun dari dasarnya.",
+    semester: [4],
   },
 ];
 
 function BarisTopik({ course, nomor }) {
-  const siap = course.lessonCount > 0;
+  // Bab yang baru punya judul tanpa isi tidak boleh terlihat siap dibaca.
+  const ditulis = course.writtenCount ?? 0;
+  const siap = ditulis > 0;
+  const tuntas = course.lessonCount > 0 && ditulis === course.lessonCount;
+
+  const keterangan = tuntas
+    ? `sekitar ${course.hours} jam`
+    : siap
+    ? `${ditulis} dari ${course.lessonCount} bab siap`
+    : course.lessonCount > 0
+    ? `${course.lessonCount} bab tersusun, isinya belum ditulis`
+    : "belum disusun";
+
   const isi = (
     <>
       <span className="row-num">{nomor}</span>
       <span className="row-title">{course.title}</span>
       <span className="row-desc">{course.description}</span>
-      <span className="row-meta">
-        {siap ? `sekitar ${course.hours} jam` : "belum ada isinya"}
-      </span>
+      <span className="row-meta">{keterangan}</span>
     </>
   );
 
@@ -71,21 +81,28 @@ export function HomePage() {
   }
 
   const courses = data;
-  const adaIsi = courses.filter((c) => c.lessonCount > 0);
-  const semesters = [...new Set(courses.map((c) => c.semester))].sort((a, b) => a - b);
+  const adaIsi = courses.filter((c) => c.writtenCount > 0);
+  // Modul keterampilan tidak punya nomor tahap, jadi jangan sampai
+  // memunculkan tombol saring tanpa nama.
+  const semesters = [...new Set(courses.map((c) => c.semester))]
+    .filter((s) => s != null)
+    .sort((a, b) => a - b);
+  const modul = courses.filter((c) => c.semester == null);
 
   return (
     <main className="wide">
       <header className="cover">
         <GlyphField />
         <div className="cover-isi">
-          <span className="chapter-mark">Untuk anak Informatika</span>
+          <span className="chapter-mark">Data dan kecerdasan buatan</span>
           <h1>
-            Kuliah Informatika nggak harus <em>bikin pusing.</em>
+            Belajar data sampai <em>ngerti dalamnya.</em>
           </h1>
           <p>
-            Materi yang sering bikin nyangkut, dijelaskan pelan-pelan dalam
-            bahasa Indonesia, dan bisa kamu utak-atik sendiri sambil baca.
+            Bukan cuma nyalin kode. Dari nol sampai bisa membangun model
+            sendiri, dalam bahasa Indonesia. Setiap rumus ada asal-usulnya,
+            dan setiap kode bisa kamu jalankan langsung di halaman ini tanpa
+            memasang apa pun.
           </p>
           {adaIsi[0] && (
             <Link className="btn" to={`/kursus/${adaIsi[0].slug}`}>
@@ -96,7 +113,7 @@ export function HomePage() {
       </header>
 
       <div className="saring">
-        <span className="saring-tanya">Lagi semester berapa?</span>
+        <span className="saring-tanya">Lagi di tahap mana?</span>
         <button
           className={semester === null ? "aktif" : ""}
           onClick={() => setSemester(null)}
@@ -109,7 +126,7 @@ export function HomePage() {
             className={semester === s ? "aktif" : ""}
             onClick={() => setSemester(s)}
           >
-            {s}
+            {TAHAP[s - 1]?.nama ?? s}
           </button>
         ))}
       </div>
@@ -117,7 +134,7 @@ export function HomePage() {
       {semester !== null ? (
         <section className="shelf">
           <div className="shelf-head">
-            <h2>Semester {semester}</h2>
+            <h2>{TAHAP[semester - 1]?.nama ?? `Tahap ${semester}`}</h2>
             <p>{courses.filter((c) => c.semester === semester).length} topik</p>
           </div>
           {courses
@@ -151,6 +168,26 @@ export function HomePage() {
             </section>
           );
         })
+      )}
+
+      {semester === null && modul.length > 0 && (
+        <section className="shelf">
+          <div className="shelf-head">
+            <h2>Modul keterampilan</h2>
+            <p>{modul.length} modul</p>
+          </div>
+          <p className="area-desc">
+            Perkakas kerja yang tidak masuk tahap mana pun, tapi dipakai hampir
+            setiap hari begitu kamu bekerja dengan data sungguhan.
+          </p>
+          {modul.map((course, i) => (
+            <BarisTopik
+              key={course.code}
+              course={course}
+              nomor={String(i + 1).padStart(2, "0")}
+            />
+          ))}
+        </section>
       )}
     </main>
   );

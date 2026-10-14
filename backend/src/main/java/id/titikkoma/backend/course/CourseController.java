@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import id.titikkoma.backend.block.BlockRepository;
+import id.titikkoma.backend.block.BlockType;
 import id.titikkoma.backend.lesson.Lesson;
 import id.titikkoma.backend.lesson.LessonRepository;
 
@@ -18,10 +20,14 @@ public class CourseController {
 
     private final CourseRepository courseRepository;
     private final LessonRepository lessonRepository;
+    private final BlockRepository blockRepository;
 
-    public CourseController(CourseRepository courseRepository, LessonRepository lessonRepository) {
+    public CourseController(CourseRepository courseRepository,
+            LessonRepository lessonRepository,
+            BlockRepository blockRepository) {
         this.courseRepository = courseRepository;
         this.lessonRepository = lessonRepository;
+        this.blockRepository = blockRepository;
     }
 
     /** GET /api/courses, boleh disaring dengan ?semester=2, ?area=SDF, atau ?kind=KETERAMPILAN */
@@ -39,7 +45,7 @@ public class CourseController {
         } else {
             courses = courseRepository.findAllByOrderBySemesterAscCodeAsc();
         }
-        courses.forEach(this::fillLessonCount);
+        courses.forEach(this::hitungBab);
         return courses;
     }
 
@@ -48,7 +54,7 @@ public class CourseController {
     public ResponseEntity<Course> findBySlug(@PathVariable String slug) {
         return courseRepository.findBySlug(slug)
                 .map(course -> {
-                    fillLessonCount(course);
+                    hitungBab(course);
                     return ResponseEntity.ok(course);
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -63,7 +69,17 @@ public class CourseController {
         return ResponseEntity.ok(lessonRepository.findByCourseSlugOrderByOrderIndexAsc(slug));
     }
 
-    private void fillLessonCount(Course course) {
-        course.setLessonCount(lessonRepository.countByCourseId(course.getId()));
+    /**
+     * Mengisi dua hitungan: berapa bab yang ada, dan berapa di antaranya yang
+     * sudah ditulis sampai standar. Ukurannya adanya latihan, bukan adanya
+     * paragraf, supaya bab yang masih berupa draf pendek tidak terlanjur
+     * ditampilkan seolah siap dibaca.
+     */
+    private void hitungBab(Course course) {
+        var bab = lessonRepository.findByCourseIdOrderByOrderIndexAsc(course.getId());
+        course.setLessonCount((long) bab.size());
+        course.setWrittenCount(bab.stream()
+                .filter(l -> blockRepository.countByLessonIdAndType(l.getId(), BlockType.TASK) > 0)
+                .count());
     }
 }

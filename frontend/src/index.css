@@ -1056,7 +1056,12 @@ pre.code {
 .cover-isi {
   position: relative;
   z-index: 1;
-  max-width: 24ch;
+  /* Jangan pakai satuan ch di sini. Satuan itu dihitung dari ukuran huruf
+     elemen ini sendiri, yang kecil, sedangkan judul di dalamnya sampai 82px.
+     Akibatnya kolomnya cuma selebar dua ratusan piksel dan judulnya pecah
+     satu kata per baris. Lebar tetap lebih aman untuk blok yang isinya
+     bercampur ukuran. */
+  max-width: 42rem;
 }
 
 .cover-isi::before {
@@ -1088,7 +1093,7 @@ pre.code {
 .cover p {
   font-size: 20px;
   color: var(--ink-soft);
-  max-width: 34ch;
+  max-width: 46ch;
   margin: 22px 0 30px;
 }
 

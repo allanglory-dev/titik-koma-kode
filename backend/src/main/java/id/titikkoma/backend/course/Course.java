@@ -86,6 +86,14 @@ public class Course {
     @Transient
     private Long lessonCount;
 
+    /**
+     * Banyaknya bab yang benar-benar sudah berisi, bukan sekadar judulnya.
+     * Kursus yang babnya sudah disusun tetapi isinya kosong punya lessonCount
+     * besar dan writtenCount nol, dan tidak boleh ditampilkan seolah siap baca.
+     */
+    @Transient
+    private Long writtenCount;
+
     public Course() {
     }
 
@@ -225,5 +233,13 @@ public class Course {
 
     public void setLessonCount(Long lessonCount) {
         this.lessonCount = lessonCount;
+    }
+
+    public Long getWrittenCount() {
+        return writtenCount;
+    }
+
+    public void setWrittenCount(Long writtenCount) {
+        this.writtenCount = writtenCount;
     }
 }

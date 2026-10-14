@@ -1,1048 +1,225 @@
 {
   "paths": [
     {
-      "code": "FE",
-      "slug": "frontend-developer",
-      "name": "Frontend Developer",
-      "tagline": "Membangun bagian aplikasi yang dilihat dan disentuh pengguna.",
-      "description": "Menerjemahkan rancangan antarmuka menjadi halaman yang bekerja di berbagai ukuran layar dan peramban. Bertanggung jawab atas kecepatan muat, kenyamanan pakai, dan keterjangkauan bagi pengguna disabilitas.",
-      "daily": "Membangun komponen tampilan, menyambungkannya ke API yang disediakan backend, memperbaiki tampilan yang meleset di peramban tertentu, dan menelaah rancangan bersama perancang antarmuka.",
-      "demand": "Tinggi",
-      "entry": "Mudah",
-      "salary": "Lulusan baru umumnya pada kisaran Rp5 juta sampai Rp9 juta per bulan. Angka ini kisaran kasar untuk lulusan baru dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Data gaji yang beredar di internet banyak yang tidak konsisten antarsumber, jadi perlakukan sebagai gambaran, bukan patokan.",
-      "orderIndex": 1,
-      "coreCourses": [
-        "IF205",
-        "IF304",
-        "IF404",
-        "IF102"
-      ],
-      "supportCourses": [
-        "IF201",
-        "IF601",
-        "IF403"
-      ],
-      "beyondCurriculum": [],
-      "stages": [
-        {
-          "course": "IF102",
-          "heading": "Membangun cara berpikir",
-          "reason": "Sebelum menyentuh kerangka kerja apa pun, kamu perlu terbiasa memecah persoalan menjadi langkah. Tanpa ini, React hanya akan terasa seperti mantra yang dihafal."
-        },
-        {
-          "course": "IF205",
-          "heading": "Menyusun isi halaman",
-          "reason": "HTML menentukan makna tiap bagian halaman. Penanda yang tepat membuat halamanmu terbaca pembaca layar dan mesin pencari, bukan sekadar terlihat rapi."
-        },
-        {
-          "course": "KT01",
-          "heading": "Menyimpan riwayat pekerjaan",
-          "reason": "Mulai pakai Git sejak proyek pertama, bukan nanti. Hampir semua lowongan menganggapnya kemampuan dasar, dan kebiasaannya perlu waktu untuk terbentuk."
-        },
-        {
-          "course": "KT10",
-          "heading": "Menghidupkan halaman",
-          "reason": "JavaScript membuat halaman menanggapi pengguna. Di sini juga kamu bertemu kode tak sinkron, yang menjadi dasar semua pengambilan data nanti."
-        },
-        {
-          "course": "KT04",
-          "heading": "Memahami percakapan web",
-          "reason": "Sebelum mengambil data dari server, pahami dulu apa yang sebenarnya dikirim dan diterima. Banyak kebingungan frontend berakar di sini."
-        },
-        {
-          "course": "KT11",
-          "heading": "Menangkap kesalahan lebih awal",
-          "reason": "TypeScript kini hampir menjadi syarat di lowongan frontend. Jenis data menangkap kekeliruan sebelum programmu dijalankan."
-        },
-        {
-          "course": "KT12",
-          "heading": "Membangun dengan komponen",
-          "reason": "React adalah kerangka kerja yang paling banyak diminta. Di sini seluruh bekal sebelumnya dipakai sekaligus."
-        },
-        {
-          "course": "IF404",
-          "heading": "Merancang untuk manusia",
-          "reason": "Antarmuka yang benar secara teknis tetap bisa menyusahkan. Mata kuliah ini mengajarkan menguji rancangan pada pengguna sungguhan."
-        },
-        {
-          "course": "KT13",
-          "heading": "Menjaga agar tetap bekerja",
-          "reason": "Tanpa pengujian otomatis, setiap perubahan berisiko merusak yang sudah jalan. Ini yang membedakan proyek latihan dari pekerjaan nyata."
-        },
-        {
-          "course": "IF304",
-          "heading": "Menyatukan semuanya",
-          "reason": "Membangun aplikasi web utuh, dari tampilan sampai sambungannya ke layanan di belakang."
-        }
-      ],
-      "references": [
-        {
-          "title": "Developer Roadmaps",
-          "author": "roadmap.sh",
-          "url": "https://roadmap.sh/roadmaps",
-          "note": "Acuan utama susunan tahapan tiap jalur karier."
-        },
-        {
-          "title": "Gaji Backend Developer di Indonesia",
-          "author": "KantorKu",
-          "url": "https://kantorku.id/blog/gaji-backend-developer/",
-          "note": "Salah satu sumber kisaran gaji yang dipakai, dengan catatan keterbatasannya."
-        },
-        {
-          "title": "Gaji Front End Developer di Indonesia",
-          "author": "Jobstreet",
-          "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
-          "note": "Pembanding kisaran gaji dari papan lowongan."
-        }
-      ],
-      "skillCourses": [
-        "KT01",
-        "KT04",
-        "KT10",
-        "KT11",
-        "KT12",
-        "KT13"
-      ]
-    },
-    {
-      "code": "BE",
-      "slug": "backend-developer",
-      "name": "Backend Developer",
-      "tagline": "Membangun bagian yang tidak terlihat: data, aturan, dan layanan.",
-      "description": "Menangani penyimpanan data, aturan usaha, autentikasi, dan penyediaan API yang dipakai aplikasi lain. Pekerjaannya tidak terlihat pengguna, tetapi semua yang terlihat bergantung padanya.",
-      "daily": "Merancang tabel dan API, menulis aturan usaha, menelusuri kueri yang lambat, menangani kesalahan yang hanya muncul di produksi, dan menulis pengujian.",
-      "demand": "Tinggi",
-      "entry": "Sedang",
-      "salary": "Lulusan baru umumnya pada kisaran Rp6 juta sampai Rp10 juta per bulan. Angka ini kisaran kasar untuk lulusan baru dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Data gaji yang beredar di internet banyak yang tidak konsisten antarsumber, jadi perlakukan sebagai gambaran, bukan patokan.",
-      "orderIndex": 2,
-      "coreCourses": [
-        "IF102",
-        "IF201",
-        "IF202",
-        "IF302",
-        "IF304",
-        "IF401"
-      ],
-      "supportCourses": [
-        "IF303",
-        "IF405",
-        "IF403",
-        "IF601",
-        "IF503"
-      ],
-      "beyondCurriculum": [],
-      "stages": [
-        {
-          "course": "IF102",
-          "heading": "Membangun cara berpikir",
-          "reason": "Dasar menyusun langkah penyelesaian. Semua yang datang setelah ini bersandar padanya."
-        },
-        {
-          "course": "IF201",
-          "heading": "Memilih cara menyimpan data",
-          "reason": "Pilihan struktur data menentukan cepat lambatnya program. Ini bekal yang paling sering diuji saat wawancara backend."
-        },
-        {
-          "course": "KT01",
-          "heading": "Menyimpan riwayat pekerjaan",
-          "reason": "Git dipakai setiap hari di tim mana pun. Biasakan sejak awal supaya tidak kelabakan saat masuk kerja."
-        },
-        {
-          "course": "IF202",
-          "heading": "Menyusun program sebagai objek",
-          "reason": "Hampir semua kerangka kerja backend berdiri di atas gagasan ini. Tanpa memahaminya, Spring Boot akan terasa ajaib."
-        },
-        {
-          "course": "IF302",
-          "heading": "Merancang penyimpanan data",
-          "reason": "Rancangan tabel yang keliru akan menghantui proyekmu sampai akhir. Normalisasi dipelajari di sini."
-        },
-        {
-          "course": "KT03",
-          "heading": "Menguasai SQL",
-          "reason": "SQL adalah perkakas sehari-hari backend. Bukan sekadar SELECT, tapi gabungan tabel, pengelompokan, dan penalaan kueri yang lambat."
-        },
-        {
-          "course": "KT04",
-          "heading": "Memahami percakapan web",
-          "reason": "Metode, kode status, dan header. Inilah yang akan kamu sediakan untuk dipakai aplikasi lain."
-        },
-        {
-          "course": "KT20",
-          "heading": "Membangun layanan",
-          "reason": "Spring Boot adalah kerangka kerja Java yang paling banyak dipakai perusahaan di Indonesia. Di sini seluruh bekal sebelumnya dirangkai."
-        },
-        {
-          "course": "KT21",
-          "heading": "Merancang API yang enak dipakai",
-          "reason": "API yang dirancang asal akan menyusahkan semua orang yang memakainya, termasuk dirimu enam bulan lagi."
-        },
-        {
-          "course": "KT22",
-          "heading": "Mengamankan layanan",
-          "reason": "Autentikasi yang keliru adalah celah keamanan yang paling sering ditemui. Pelajari sebelum layananmu dipakai orang sungguhan."
-        },
-        {
-          "course": "IF601",
-          "heading": "Memastikan tetap bekerja",
-          "reason": "Pengujian otomatis membuatmu berani mengubah kode. Tanpa itu, setiap perubahan terasa menakutkan."
-        },
-        {
-          "course": "KT30",
-          "heading": "Mengemas aplikasi",
-          "reason": "Docker menghapus kalimat jalan di komputer saya. Juga menjadi syarat untuk hampir semua cara penerbitan modern."
-        },
-        {
-          "course": "KT23",
-          "heading": "Menjaga tetap cepat",
-          "reason": "Saat pemakainya bertambah, penembolokan dan antrean yang menyelamatkan. Pelajari setelah dasarnya kokoh, bukan sebelumnya."
-        }
-      ],
-      "references": [
-        {
-          "title": "Developer Roadmaps",
-          "author": "roadmap.sh",
-          "url": "https://roadmap.sh/roadmaps",
-          "note": "Acuan utama susunan tahapan tiap jalur karier."
-        },
-        {
-          "title": "Gaji Backend Developer di Indonesia",
-          "author": "KantorKu",
-          "url": "https://kantorku.id/blog/gaji-backend-developer/",
-          "note": "Salah satu sumber kisaran gaji yang dipakai, dengan catatan keterbatasannya."
-        },
-        {
-          "title": "Gaji Front End Developer di Indonesia",
-          "author": "Jobstreet",
-          "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
-          "note": "Pembanding kisaran gaji dari papan lowongan."
-        }
-      ],
-      "skillCourses": [
-        "KT01",
-        "KT02",
-        "KT03",
-        "KT04",
-        "KT20",
-        "KT21",
-        "KT22",
-        "KT23",
-        "KT30"
-      ]
-    },
-    {
-      "code": "FS",
-      "slug": "full-stack-developer",
-      "name": "Full Stack Developer",
-      "tagline": "Mengerjakan tampilan sekaligus mesin di belakangnya.",
-      "description": "Menguasai kedua sisi secukupnya untuk membangun aplikasi utuh sendirian. Banyak dicari perusahaan rintisan yang timnya kecil.",
-      "daily": "Berpindah antara memperbaiki tampilan, menulis API, dan mengurus basis data dalam satu hari yang sama.",
-      "demand": "Tinggi",
-      "entry": "Sedang",
-      "salary": "Umumnya setara atau sedikit di atas backend, dengan tuntutan cakupan yang lebih luas. Angka ini kisaran kasar untuk lulusan baru dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Data gaji yang beredar di internet banyak yang tidak konsisten antarsumber, jadi perlakukan sebagai gambaran, bukan patokan.",
-      "orderIndex": 3,
-      "coreCourses": [
-        "IF102",
-        "IF201",
-        "IF202",
-        "IF205",
-        "IF302",
-        "IF304",
-        "IF401"
-      ],
-      "supportCourses": [
-        "IF404",
-        "IF505",
-        "IF601"
-      ],
-      "beyondCurriculum": [],
-      "stages": [
-        {
-          "course": "IF102",
-          "heading": "Membangun cara berpikir",
-          "reason": "Dasar yang dipakai kedua sisi, tampilan maupun layanan."
-        },
-        {
-          "course": "IF205",
-          "heading": "Menyusun isi halaman",
-          "reason": "Fondasi sisi tampilan. Mulai dari sini karena hasilnya langsung terlihat."
-        },
-        {
-          "course": "KT01",
-          "heading": "Menyimpan riwayat pekerjaan",
-          "reason": "Satu repositori untuk dua sisi sekaligus menuntut kebiasaan Git yang rapi."
-        },
-        {
-          "course": "KT10",
-          "heading": "Menghidupkan halaman",
-          "reason": "JavaScript dipakai di sisi tampilan, dan pemahamannya terbawa saat belajar bahasa lain."
-        },
-        {
-          "course": "IF201",
-          "heading": "Memilih cara menyimpan data",
-          "reason": "Mulai menyeberang ke sisi layanan. Struktur data adalah jembatannya."
-        },
-        {
-          "course": "IF302",
-          "heading": "Merancang penyimpanan data",
-          "reason": "Rancangan basis data menentukan bentuk API dan tampilan sekaligus."
-        },
-        {
-          "course": "KT03",
-          "heading": "Menguasai SQL",
-          "reason": "Sisi layanan berbicara dengan basis data lewat SQL hampir setiap saat."
-        },
-        {
-          "course": "KT04",
-          "heading": "Memahami percakapan web",
-          "reason": "Titik temu kedua sisi. Memahaminya membuatmu bisa memutuskan apa dikerjakan di mana."
-        },
-        {
-          "course": "KT12",
-          "heading": "Membangun dengan komponen",
-          "reason": "React untuk sisi tampilan yang sudah tersambung ke data sungguhan."
-        },
-        {
-          "course": "KT20",
-          "heading": "Membangun layanan",
-          "reason": "Spring Boot untuk menyediakan data yang dipakai tampilanmu sendiri."
-        },
-        {
-          "course": "KT30",
-          "heading": "Mengemas aplikasi",
-          "reason": "Menjalankan tampilan, layanan, dan basis data sekaligus di satu perintah."
-        },
-        {
-          "course": "IF401",
-          "heading": "Bekerja secara terkelola",
-          "reason": "Mengerjakan dua sisi sendirian menuntut disiplin. Mata kuliah ini memberi caranya."
-        }
-      ],
-      "references": [
-        {
-          "title": "Developer Roadmaps",
-          "author": "roadmap.sh",
-          "url": "https://roadmap.sh/roadmaps",
-          "note": "Acuan utama susunan tahapan tiap jalur karier."
-        },
-        {
-          "title": "Gaji Backend Developer di Indonesia",
-          "author": "KantorKu",
-          "url": "https://kantorku.id/blog/gaji-backend-developer/",
-          "note": "Salah satu sumber kisaran gaji yang dipakai, dengan catatan keterbatasannya."
-        },
-        {
-          "title": "Gaji Front End Developer di Indonesia",
-          "author": "Jobstreet",
-          "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
-          "note": "Pembanding kisaran gaji dari papan lowongan."
-        }
-      ],
-      "skillCourses": [
-        "KT01",
-        "KT03",
-        "KT04",
-        "KT10",
-        "KT12",
-        "KT20",
-        "KT30"
-      ]
-    },
-    {
-      "code": "MOB",
-      "slug": "mobile-developer",
-      "name": "Mobile Developer",
-      "tagline": "Membangun aplikasi yang hidup di dalam saku pengguna.",
-      "description": "Mengembangkan aplikasi untuk Android atau iOS, dengan keterbatasan yang tidak ada di web: baterai, jaringan yang putus nyambung, dan ruang simpan terbatas.",
-      "daily": "Membangun layar, mengelola keadaan ketika aplikasi dijeda, menangani izin perangkat, dan menyiapkan rilis ke toko aplikasi.",
-      "demand": "Sedang",
-      "entry": "Sedang",
-      "salary": "Umumnya sebanding dengan frontend, dengan tambahan bila menguasai kedua sistem operasi. Angka ini kisaran kasar untuk lulusan baru dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Data gaji yang beredar di internet banyak yang tidak konsisten antarsumber, jadi perlakukan sebagai gambaran, bukan patokan.",
-      "orderIndex": 4,
-      "coreCourses": [
-        "IF202",
-        "IF406",
-        "IF404",
-        "IF102"
-      ],
-      "supportCourses": [
-        "IF302",
-        "IF304",
-        "IF601"
-      ],
-      "beyondCurriculum": [],
-      "stages": [
-        {
-          "course": "IF102",
-          "heading": "Membangun cara berpikir",
-          "reason": "Dasar menyusun langkah, berlaku sama di mana pun kamu menulis kode."
-        },
-        {
-          "course": "IF202",
-          "heading": "Menyusun program sebagai objek",
-          "reason": "Android dan iOS keduanya berakar kuat pada pemrograman berorientasi objek."
-        },
-        {
-          "course": "KT01",
-          "heading": "Menyimpan riwayat pekerjaan",
-          "reason": "Git sejak awal, supaya percobaanmu tidak hilang saat mencoba hal baru."
-        },
-        {
-          "course": "KT04",
-          "heading": "Memahami percakapan web",
-          "reason": "Hampir semua aplikasi mengambil data dari server. Pahami percakapannya lebih dulu."
-        },
-        {
-          "course": "KT50",
-          "heading": "Membangun untuk Android",
-          "reason": "Kotlin dan Compose adalah cara resmi membangun aplikasi Android sekarang."
-        },
-        {
-          "course": "IF404",
-          "heading": "Merancang untuk layar kecil",
-          "reason": "Layar ponsel menuntut pertimbangan berbeda: jempol, perhatian yang terpecah, dan jaringan yang tidak stabil."
-        },
-        {
-          "course": "KT51",
-          "heading": "Menjangkau dua sistem sekaligus",
-          "reason": "Flutter memungkinkan satu basis kode untuk Android dan iOS. Pelajari setelah paham satu sistem secara mendalam."
-        },
-        {
-          "course": "IF406",
-          "heading": "Menyatukan semuanya",
-          "reason": "Membangun aplikasi utuh yang layak diunggah ke toko aplikasi."
-        }
-      ],
-      "references": [
-        {
-          "title": "Developer Roadmaps",
-          "author": "roadmap.sh",
-          "url": "https://roadmap.sh/roadmaps",
-          "note": "Acuan utama susunan tahapan tiap jalur karier."
-        },
-        {
-          "title": "Gaji Backend Developer di Indonesia",
-          "author": "KantorKu",
-          "url": "https://kantorku.id/blog/gaji-backend-developer/",
-          "note": "Salah satu sumber kisaran gaji yang dipakai, dengan catatan keterbatasannya."
-        },
-        {
-          "title": "Gaji Front End Developer di Indonesia",
-          "author": "Jobstreet",
-          "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
-          "note": "Pembanding kisaran gaji dari papan lowongan."
-        }
-      ],
-      "skillCourses": [
-        "KT01",
-        "KT04",
-        "KT50",
-        "KT51"
-      ]
-    },
-    {
       "code": "DA",
       "slug": "data-analyst",
       "name": "Data Analyst",
       "tagline": "Mengubah data menjadi keputusan yang bisa diambil.",
-      "description": "Menjawab pertanyaan usaha dengan data: apa yang terjadi, kenapa, dan apa yang sebaiknya dilakukan. Pintu masuk paling lapang menuju bidang data.",
+      "description": "Menjawab pertanyaan usaha dengan data: apa yang terjadi, kenapa, dan apa yang sebaiknya dilakukan. Pintu masuk paling lapang menuju bidang data, dan jalur yang paling sering dipakai orang yang pindah dari bidang lain.",
       "daily": "Menulis kueri SQL, membersihkan data yang berantakan, membuat papan pantau, dan menjelaskan temuan kepada orang non-teknis.",
       "demand": "Tinggi",
       "entry": "Mudah",
-      "salary": "Lulusan baru umumnya sedikit di bawah backend, dengan kenaikan cepat bila mendalami bidang usahanya. Angka ini kisaran kasar untuk lulusan baru dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Data gaji yang beredar di internet banyak yang tidak konsisten antarsumber, jadi perlakukan sebagai gambaran, bukan patokan.",
-      "orderIndex": 5,
-      "coreCourses": [
-        "IF204",
-        "IF302",
-        "IF102"
-      ],
-      "supportCourses": [
-        "IF506",
-        "IF405",
-        "IF306"
-      ],
+      "salary": "Angka yang beredar di internet banyak yang tidak konsisten antarsumber, dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Perlakukan sebagai gambaran kasar, bukan patokan.",
+      "orderIndex": 1,
+      "coreCourses": [],
+      "supportCourses": [],
       "beyondCurriculum": [],
+      "references": [],
       "stages": [
         {
-          "course": "IF102",
-          "heading": "Membangun cara berpikir",
-          "reason": "Analisis data tetap menuntut kemampuan menyusun langkah dan menulis kode."
+          "course": "DS102",
+          "heading": "Bisa menulis kode dulu",
+          "reason": "Membersihkan data tidak bisa dikerjakan lewat antarmuka saja. Python adalah perkakas yang dipakai sepanjang jalur ini."
         },
         {
-          "course": "IF302",
-          "heading": "Memahami bentuk data",
-          "reason": "Sebelum menanyai data, pahami dulu bagaimana data itu disusun dan dihubungkan."
+          "course": "DS204",
+          "heading": "Mengambil datanya",
+          "reason": "Hampir semua data perusahaan tinggal di basis data relasional. SQL adalah kemampuan pertama yang ditanyakan saat melamar."
         },
         {
-          "course": "KT03",
-          "heading": "Menguasai SQL",
-          "reason": "Ini perkakas utama seorang data analyst. Sebagian besar pekerjaan sehari-hari berupa kueri."
+          "course": "DS302",
+          "heading": "Merapikan sebelum menganalisis",
+          "reason": "Data yang datang hampir tidak pernah siap pakai. Bagian ini memakan porsi waktu terbesar dalam pekerjaan sehari-hari."
         },
         {
-          "course": "IF204",
-          "heading": "Menakar ketidakpastian",
-          "reason": "Tanpa statistika, kamu akan menarik kesimpulan dari pola yang sebenarnya kebetulan."
+          "course": "DS202",
+          "heading": "Membedakan pola dari kebetulan",
+          "reason": "Tanpa statistika, kenaikan angka lima persen bisa disalahartikan sebagai keberhasilan padahal masih dalam batas keragaman biasa."
         },
         {
-          "course": "KT40",
-          "heading": "Mengolah data dengan Python",
-          "reason": "Ketika SQL tidak lagi cukup, Python mengambil alih untuk pembersihan dan pengolahan."
+          "course": "DS303",
+          "heading": "Menyampaikan temuan",
+          "reason": "Analisis yang tidak bisa dibaca orang lain tidak mengubah keputusan apa pun."
         },
         {
-          "course": "KT41",
-          "heading": "Membersihkan dan meringkas",
-          "reason": "Data dunia nyata jarang rapi. Pandas adalah perkakas yang dipakai setiap hari."
-        },
-        {
-          "course": "KT42",
-          "heading": "Menyajikan temuan",
-          "reason": "Analisis yang tidak bisa dijelaskan tidak akan dipakai siapa pun. Di sini kamu belajar menyampaikannya."
-        },
-        {
-          "course": "IF306",
-          "heading": "Menimbang dampaknya",
-          "reason": "Data menyangkut orang sungguhan. Privasi dan bias bukan urusan sampingan."
+          "course": "DS105",
+          "heading": "Membaca sumbernya langsung",
+          "reason": "Dokumentasi pandas dan jawaban yang kamu butuhkan hampir seluruhnya berbahasa Inggris."
         }
-      ],
-      "references": [
-        {
-          "title": "Developer Roadmaps",
-          "author": "roadmap.sh",
-          "url": "https://roadmap.sh/roadmaps",
-          "note": "Acuan utama susunan tahapan tiap jalur karier."
-        },
-        {
-          "title": "Gaji Backend Developer di Indonesia",
-          "author": "KantorKu",
-          "url": "https://kantorku.id/blog/gaji-backend-developer/",
-          "note": "Salah satu sumber kisaran gaji yang dipakai, dengan catatan keterbatasannya."
-        },
-        {
-          "title": "Gaji Front End Developer di Indonesia",
-          "author": "Jobstreet",
-          "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
-          "note": "Pembanding kisaran gaji dari papan lowongan."
-        }
-      ],
-      "skillCourses": [
-        "KT03",
-        "KT40",
-        "KT41",
-        "KT42"
       ]
     },
     {
       "code": "DS",
       "slug": "data-scientist",
       "name": "Data Scientist",
-      "tagline": "Membangun model yang belajar dari data.",
-      "description": "Memakai statistika dan pembelajaran mesin untuk meramalkan dan mengelompokkan. Lebih bersandar pada matematika dibanding jalur lain.",
-      "daily": "Menyiapkan data, mencoba berbagai model, mengukur ketepatannya, dan menjelaskan keterbatasannya kepada pemangku kepentingan.",
+      "tagline": "Menjawab pertanyaan yang belum punya jawaban baku.",
+      "description": "Merancang percobaan, membangun model, dan menilai apakah hasilnya benar-benar berarti. Menuntut dasar matematika yang lebih kuat daripada jalur analis.",
+      "daily": "Menyusun hipotesis, membangun dan menguji model, membaca makalah, dan menjelaskan ketidakpastian hasil kepada pengambil keputusan.",
       "demand": "Tinggi",
-      "entry": "Sulit",
-      "salary": "Umumnya di atas rata-rata jalur lain, tetapi lowongan untuk lulusan baru lebih sedikit. Angka ini kisaran kasar untuk lulusan baru dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Data gaji yang beredar di internet banyak yang tidak konsisten antarsumber, jadi perlakukan sebagai gambaran, bukan patokan.",
-      "orderIndex": 6,
-      "coreCourses": [
-        "IF203",
-        "IF204",
-        "IF402",
-        "IF501",
-        "IF603"
-      ],
-      "supportCourses": [
-        "IF301",
-        "IF506",
-        "IF606",
-        "IF302"
-      ],
+      "entry": "Menengah",
+      "salary": "Angka yang beredar di internet banyak yang tidak konsisten antarsumber, dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Perlakukan sebagai gambaran kasar, bukan patokan.",
+      "orderIndex": 2,
+      "coreCourses": [],
+      "supportCourses": [],
       "beyondCurriculum": [],
+      "references": [],
       "stages": [
         {
-          "course": "IF102",
-          "heading": "Membangun cara berpikir",
-          "reason": "Dasar menulis kode, yang akan dipakai sepanjang jalur ini."
+          "course": "DS102",
+          "heading": "Dasar menulis kode",
+          "reason": "Seluruh pekerjaan ini dikerjakan lewat kode, bukan lewat perkakas siap pakai."
         },
         {
-          "course": "IF204",
-          "heading": "Menakar ketidakpastian",
-          "reason": "Statistika adalah fondasi pembelajaran mesin. Melewatinya berarti memakai model tanpa tahu batasnya."
+          "course": "DS201",
+          "heading": "Bahasa untuk menyatakan data",
+          "reason": "Satu baris data adalah vektor dan satu tabel adalah matriks. Tanpa ini, rumus model hanya terbaca sebagai lambang."
         },
         {
-          "course": "IF203",
-          "heading": "Memahami ruang dan transformasi",
-          "reason": "Aljabar linear menjelaskan apa yang sebenarnya dikerjakan sebuah model di balik layar."
+          "course": "DS202",
+          "heading": "Menalar di bawah ketidakpastian",
+          "reason": "Inti pekerjaan seorang data scientist adalah memisahkan temuan nyata dari derau."
         },
         {
-          "course": "KT40",
-          "heading": "Mengolah data dengan Python",
-          "reason": "Python adalah bahasa utama bidang ini. NumPy menjadi dasar hampir semua pustakanya."
+          "course": "DS203",
+          "heading": "Memahami cara model belajar",
+          "reason": "Penurunan gradien adalah mesin di balik hampir semua model. Tanpa turunan, bagian ini tetap jadi kotak hitam."
         },
         {
-          "course": "KT41",
-          "heading": "Membersihkan dan meringkas",
-          "reason": "Menyiapkan data biasanya memakan porsi terbesar pekerjaan, jauh melebihi melatih model."
+          "course": "DS301",
+          "heading": "Menghitung dengan cepat",
+          "reason": "NumPy membuat perhitungan atas jutaan baris selesai dalam hitungan detik, bukan menit."
         },
         {
-          "course": "IF402",
-          "heading": "Memahami penalaran mesin",
-          "reason": "Pencarian dan representasi pengetahuan, dasar sebelum masuk ke model yang belajar sendiri."
+          "course": "DS302",
+          "heading": "Menyiapkan datanya",
+          "reason": "Model sebagus apa pun tidak menolong kalau datanya belum benar."
         },
         {
-          "course": "IF501",
-          "heading": "Melatih model",
-          "reason": "Regresi, klasifikasi, dan pengelompokan beserta cara menilainya dengan jujur."
+          "course": "DS401",
+          "heading": "Membangun dan menilai model",
+          "reason": "Termasuk cara menilai dengan jujur, yang justru lebih sering salah daripada pemilihan modelnya."
         },
         {
-          "course": "KT43",
-          "heading": "Menerapkannya",
-          "reason": "Dari teori ke scikit-learn, termasuk kebocoran data yang membuat model tampak hebat tapi gagal di dunia nyata."
-        },
-        {
-          "course": "KT42",
-          "heading": "Menyajikan temuan",
-          "reason": "Model yang tidak bisa dijelaskan tidak akan dipercaya pengambil keputusan."
-        },
-        {
-          "course": "IF603",
-          "heading": "Menyatukan semuanya",
-          "reason": "Dari pertanyaan usaha sampai model yang benar-benar dipakai."
+          "course": "DS402",
+          "heading": "Masuk ke jaringan saraf",
+          "reason": "Dibangun dari NumPy lebih dulu supaya mekanismenya jelas sebelum memakai kerangka siap pakai."
         }
-      ],
-      "references": [
-        {
-          "title": "Developer Roadmaps",
-          "author": "roadmap.sh",
-          "url": "https://roadmap.sh/roadmaps",
-          "note": "Acuan utama susunan tahapan tiap jalur karier."
-        },
-        {
-          "title": "Gaji Backend Developer di Indonesia",
-          "author": "KantorKu",
-          "url": "https://kantorku.id/blog/gaji-backend-developer/",
-          "note": "Salah satu sumber kisaran gaji yang dipakai, dengan catatan keterbatasannya."
-        },
-        {
-          "title": "Gaji Front End Developer di Indonesia",
-          "author": "Jobstreet",
-          "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
-          "note": "Pembanding kisaran gaji dari papan lowongan."
-        }
-      ],
-      "skillCourses": [
-        "KT40",
-        "KT41",
-        "KT42",
-        "KT43"
       ]
     },
     {
       "code": "DE",
       "slug": "data-engineer",
       "name": "Data Engineer",
-      "tagline": "Membangun saluran yang mengalirkan data ke tempat yang tepat.",
-      "description": "Memastikan data berpindah dari sumbernya ke tempat penyimpanan secara andal, tepat waktu, dan dalam bentuk yang siap dipakai. Analis dan ilmuwan data bergantung pada pekerjaan ini.",
-      "daily": "Membangun saluran data, menjadwalkan proses berkala, menangani proses yang gagal semalam, dan menjaga mutu data.",
+      "tagline": "Membangun jalan supaya datanya sampai.",
+      "description": "Menyiapkan saluran yang memindahkan data dari sumbernya ke tempat yang bisa dipakai analis dan model, dan menjaganya tetap jalan. Lebih dekat ke rekayasa perangkat lunak daripada ke statistika.",
+      "daily": "Menulis dan memantau saluran data, mengurus penjadwalan, menangani data yang datang rusak, dan menjaga biaya tetap masuk akal.",
       "demand": "Tinggi",
-      "entry": "Sulit",
-      "salary": "Umumnya di atas data analyst, tetapi jarang membuka lowongan untuk lulusan baru. Angka ini kisaran kasar untuk lulusan baru dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Data gaji yang beredar di internet banyak yang tidak konsisten antarsumber, jadi perlakukan sebagai gambaran, bukan patokan.",
-      "orderIndex": 7,
-      "coreCourses": [
-        "IF302",
-        "IF405",
-        "IF502",
-        "IF505"
-      ],
-      "supportCourses": [
-        "IF102",
-        "IF602",
-        "IF506",
-        "IF206"
-      ],
+      "entry": "Menengah",
+      "salary": "Angka yang beredar di internet banyak yang tidak konsisten antarsumber, dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Perlakukan sebagai gambaran kasar, bukan patokan.",
+      "orderIndex": 3,
+      "coreCourses": [],
+      "supportCourses": [],
       "beyondCurriculum": [],
+      "references": [],
       "stages": [
         {
-          "course": "IF102",
-          "heading": "Membangun cara berpikir",
-          "reason": "Dasar menulis kode yang akan menjadi saluran datamu."
+          "course": "DS102",
+          "heading": "Dasar menulis kode",
+          "reason": "Saluran data adalah program yang harus jalan sendiri tanpa ditunggui."
         },
         {
-          "course": "IF302",
-          "heading": "Merancang penyimpanan data",
-          "reason": "Pemahaman mendalam tentang basis data adalah inti pekerjaan ini."
+          "course": "DS204",
+          "heading": "Menguasai basis datanya",
+          "reason": "Jalur ini menuntut SQL yang lebih dalam daripada jalur lain, termasuk cara kerja indeks dan rencana kueri."
+        },
+        {
+          "course": "KT01",
+          "heading": "Bekerja bersama orang lain",
+          "reason": "Kode saluran data dipakai bersama satu tim dan harus bisa ditelusuri perubahannya."
+        },
+        {
+          "course": "KT02",
+          "heading": "Hidup di baris perintah",
+          "reason": "Hampir semua yang kamu urus berjalan di server tanpa antarmuka grafis."
+        },
+        {
+          "course": "DS301",
+          "heading": "Mengolah data besar dengan hemat",
+          "reason": "Perbedaan antara perulangan dan operasi vektor menentukan apakah pekerjaannya selesai dalam menit atau jam."
+        },
+        {
+          "course": "DS302",
+          "heading": "Membentuk ulang data",
+          "reason": "Menggabungkan dan meringkas tabel adalah pekerjaan harian seorang data engineer."
         },
         {
           "course": "KT03",
-          "heading": "Menguasai SQL",
-          "reason": "Bukan sekadar menanyai data, tapi juga menalanya saat datanya berukuran besar."
+          "heading": "Membungkus supaya jalan di mana saja",
+          "reason": "Saluran yang jalan di laptopmu tetapi gagal di server adalah masalah paling umum di jalur ini."
         },
         {
-          "course": "KT02",
-          "heading": "Bekerja di server",
-          "reason": "Saluran data berjalan di server tanpa antarmuka grafis. Linux adalah tempat tinggalmu."
-        },
-        {
-          "course": "KT40",
-          "heading": "Mengolah data dengan Python",
-          "reason": "Bahasa yang dipakai menulis hampir semua saluran data."
-        },
-        {
-          "course": "IF405",
-          "heading": "Menala basis data",
-          "reason": "Pengindeksan dan penalaan kueri menjadi penting begitu datanya membesar."
-        },
-        {
-          "course": "KT30",
-          "heading": "Mengemas aplikasi",
-          "reason": "Saluran data dijalankan sebagai kontainer di hampir semua tempat kerja."
-        },
-        {
-          "course": "KT34",
-          "heading": "Memanfaatkan awan",
-          "reason": "Gudang data modern hampir selalu berada di awan. Biayanya juga perlu kamu pahami."
-        },
-        {
-          "course": "KT44",
-          "heading": "Membangun saluran",
-          "reason": "Menyatukan semuanya: mengambil, mengubah, memuat, dan menjadwalkannya."
-        },
-        {
-          "course": "IF502",
-          "heading": "Menghadapi skala besar",
-          "reason": "Ketika satu mesin tidak lagi cukup, kamu perlu memahami sistem terdistribusi."
+          "course": "DS404",
+          "heading": "Menjalankannya sendiri",
+          "reason": "Penjadwalan, pemantauan, dan penanganan kegagalan adalah inti pekerjaannya, bukan pelengkap."
         }
-      ],
-      "references": [
-        {
-          "title": "Developer Roadmaps",
-          "author": "roadmap.sh",
-          "url": "https://roadmap.sh/roadmaps",
-          "note": "Acuan utama susunan tahapan tiap jalur karier."
-        },
-        {
-          "title": "Gaji Backend Developer di Indonesia",
-          "author": "KantorKu",
-          "url": "https://kantorku.id/blog/gaji-backend-developer/",
-          "note": "Salah satu sumber kisaran gaji yang dipakai, dengan catatan keterbatasannya."
-        },
-        {
-          "title": "Gaji Front End Developer di Indonesia",
-          "author": "Jobstreet",
-          "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
-          "note": "Pembanding kisaran gaji dari papan lowongan."
-        }
-      ],
-      "skillCourses": [
-        "KT02",
-        "KT03",
-        "KT30",
-        "KT34",
-        "KT40",
-        "KT44"
       ]
     },
     {
-      "code": "DO",
-      "slug": "devops-engineer",
-      "name": "DevOps Engineer",
-      "tagline": "Merapatkan jarak antara menulis kode dan menjalankannya.",
-      "description": "Mengurus otomasi pembangunan, pengujian, penerbitan, dan pemantauan. Membuat tim lain bisa merilis lebih sering dengan risiko lebih kecil.",
-      "daily": "Memperbaiki alur integrasi yang gagal, mengatur infrastruktur sebagai kode, menanggapi peringatan, dan memulihkan sistem setelah penerbitan yang bermasalah.",
+      "code": "ML",
+      "slug": "machine-learning-engineer",
+      "name": "Machine Learning Engineer",
+      "tagline": "Membuat model bekerja di luar notebook.",
+      "description": "Menjembatani model yang berhasil di percobaan dengan sistem yang melayani pengguna sungguhan. Menuntut dasar matematika seorang data scientist sekaligus kebiasaan kerja seorang rekayasawan.",
+      "daily": "Melatih dan menyetel model, mengukur kinerjanya di keadaan nyata, menyajikannya lewat layanan, dan memantau apakah mutunya menurun.",
       "demand": "Tinggi",
       "entry": "Sulit",
-      "salary": "Umumnya di atas backend, tetapi hampir selalu menuntut pengalaman lebih dulu. Angka ini kisaran kasar untuk lulusan baru dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Data gaji yang beredar di internet banyak yang tidak konsisten antarsumber, jadi perlakukan sebagai gambaran, bukan patokan.",
-      "orderIndex": 8,
-      "coreCourses": [
-        "IF206",
-        "IF303",
-        "IF505",
-        "IF602"
-      ],
-      "supportCourses": [
-        "IF403",
-        "IF401",
-        "IF502",
-        "IF601"
-      ],
+      "salary": "Angka yang beredar di internet banyak yang tidak konsisten antarsumber, dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Perlakukan sebagai gambaran kasar, bukan patokan.",
+      "orderIndex": 4,
+      "coreCourses": [],
+      "supportCourses": [],
       "beyondCurriculum": [],
+      "references": [],
       "stages": [
         {
-          "course": "IF102",
-          "heading": "Membangun cara berpikir",
-          "reason": "DevOps tetap menuntut kemampuan menulis kode, terutama untuk otomasi."
+          "course": "DS102",
+          "heading": "Dasar menulis kode",
+          "reason": "Jalur ini menuntut kode yang rapi, bukan sekadar kode yang jalan."
         },
         {
-          "course": "KT02",
-          "heading": "Bekerja di server",
-          "reason": "Linux adalah tempat hampir semua aplikasi berjalan. Ini bekal paling dasar."
+          "course": "DS201",
+          "heading": "Bahasa untuk menyatakan model",
+          "reason": "Perkalian matriks adalah operasi yang dikerjakan jaringan saraf jutaan kali."
         },
         {
-          "course": "KT01",
-          "heading": "Menyimpan riwayat pekerjaan",
-          "reason": "Git bukan hanya untuk kode aplikasi, tapi juga untuk infrastruktur dan alur kerja."
+          "course": "DS203",
+          "heading": "Memahami cara model belajar",
+          "reason": "Menyetel model tanpa mengerti gradien berarti menebak-nebak."
         },
         {
-          "course": "IF206",
-          "heading": "Memahami mesinnya",
-          "reason": "Proses, memori, dan berkas. Tanpa ini kamu hanya menebak saat sistem bermasalah."
+          "course": "DS301",
+          "heading": "Menghitung dengan cepat",
+          "reason": "Juga menjelaskan kenapa bilangan pecahan kadang menghasilkan NaN saat melatih model."
         },
         {
-          "course": "IF303",
-          "heading": "Memahami jaringan",
-          "reason": "Sebagian besar persoalan produksi berakar di jaringan. DNS, TLS, dan perutean."
+          "course": "DS401",
+          "heading": "Dasar pembelajaran mesin",
+          "reason": "Model sederhana sering mengalahkan model rumit. Bagian ini mengajarkan cara mengetahuinya."
         },
         {
-          "course": "KT30",
-          "heading": "Mengemas aplikasi",
-          "reason": "Kontainer adalah satuan kerja sehari-hari seorang DevOps."
+          "course": "DS402",
+          "heading": "Jaringan saraf dari dasarnya",
+          "reason": "Menulis perambatan balik sendiri sekali akan mengubah cara kamu membaca kode kerangka siap pakai selamanya."
         },
         {
-          "course": "KT32",
-          "heading": "Mengotomatiskan rilis",
-          "reason": "Membuat penerbitan menjadi hal biasa, bukan peristiwa menegangkan tiap bulan."
+          "course": "DS403",
+          "heading": "Model bahasa",
+          "reason": "Sebagian besar lowongan di jalur ini sekarang menyentuh model bahasa, entah melatih atau memakainya."
         },
         {
-          "course": "KT34",
-          "heading": "Memanfaatkan awan",
-          "reason": "Hampir semua infrastruktur kini disewa, bukan dimiliki."
-        },
-        {
-          "course": "KT31",
-          "heading": "Mengatur banyak mesin",
-          "reason": "Kubernetes dipelajari setelah Docker benar-benar dikuasai, bukan sebelumnya."
-        },
-        {
-          "course": "KT33",
-          "heading": "Menuliskan infrastruktur",
-          "reason": "Infrastruktur yang diklik tidak bisa ditelaah maupun diulang. Terraform menjawabnya."
-        },
-        {
-          "course": "IF403",
-          "heading": "Mengamankannya",
-          "reason": "Otomasi yang bocor menyebarkan masalah lebih cepat daripada manual."
+          "course": "DS404",
+          "heading": "Menyajikan dan memantau",
+          "reason": "Model yang tidak dipakai siapa pun tidak bernilai, dan mutu model menurun seiring berubahnya data."
         }
-      ],
-      "references": [
-        {
-          "title": "Developer Roadmaps",
-          "author": "roadmap.sh",
-          "url": "https://roadmap.sh/roadmaps",
-          "note": "Acuan utama susunan tahapan tiap jalur karier."
-        },
-        {
-          "title": "Gaji Backend Developer di Indonesia",
-          "author": "KantorKu",
-          "url": "https://kantorku.id/blog/gaji-backend-developer/",
-          "note": "Salah satu sumber kisaran gaji yang dipakai, dengan catatan keterbatasannya."
-        },
-        {
-          "title": "Gaji Front End Developer di Indonesia",
-          "author": "Jobstreet",
-          "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
-          "note": "Pembanding kisaran gaji dari papan lowongan."
-        }
-      ],
-      "skillCourses": [
-        "KT01",
-        "KT02",
-        "KT30",
-        "KT31",
-        "KT32",
-        "KT33",
-        "KT34"
-      ]
-    },
-    {
-      "code": "SEC",
-      "slug": "cyber-security",
-      "name": "Cyber Security Engineer",
-      "tagline": "Mencari celah sebelum orang lain menemukannya.",
-      "description": "Menguji ketahanan sistem, menutup celah, dan menanggapi insiden. Bidang yang menuntut pemahaman luas, karena celah bisa ada di lapisan mana pun.",
-      "daily": "Menelaah kode dari sisi keamanan, menguji penetrasi dengan izin, memantau peringatan, dan menyusun tanggapan ketika terjadi insiden.",
-      "demand": "Tinggi",
-      "entry": "Sulit",
-      "salary": "Umumnya di atas rata-rata, tetapi hampir selalu menuntut sertifikasi atau pengalaman. Angka ini kisaran kasar untuk lulusan baru dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Data gaji yang beredar di internet banyak yang tidak konsisten antarsumber, jadi perlakukan sebagai gambaran, bukan patokan.",
-      "orderIndex": 9,
-      "coreCourses": [
-        "IF303",
-        "IF403",
-        "IF604",
-        "IF206"
-      ],
-      "supportCourses": [
-        "IF102",
-        "IF302",
-        "IF505",
-        "IF306"
-      ],
-      "beyondCurriculum": [],
-      "stages": [
-        {
-          "course": "IF102",
-          "heading": "Membangun cara berpikir",
-          "reason": "Kamu tidak bisa mengamankan sesuatu yang cara kerjanya tidak kamu pahami."
-        },
-        {
-          "course": "KT02",
-          "heading": "Bekerja di server",
-          "reason": "Hampir semua perkakas keamanan berjalan di Linux lewat baris perintah."
-        },
-        {
-          "course": "IF206",
-          "heading": "Memahami mesinnya",
-          "reason": "Banyak celah berakar pada cara sistem operasi mengelola proses dan hak akses."
-        },
-        {
-          "course": "IF303",
-          "heading": "Memahami jaringan",
-          "reason": "Protokol dan lalu lintas jaringan adalah medan kerja utama bidang ini."
-        },
-        {
-          "course": "KT04",
-          "heading": "Memahami percakapan web",
-          "reason": "Sebagian besar serangan masa kini menyasar aplikasi web lewat HTTP."
-        },
-        {
-          "course": "IF403",
-          "heading": "Mengenali ancaman",
-          "reason": "Kriptografi, kendali akses, dan cara menyusun model ancaman."
-        },
-        {
-          "course": "KT60",
-          "heading": "Menutup celah",
-          "reason": "Daftar OWASP dan cara memperbaikinya pada kode sendiri."
-        },
-        {
-          "course": "IF604",
-          "heading": "Mendalami sisi web",
-          "reason": "Pendalaman celah aplikasi web beserta pengujiannya."
-        },
-        {
-          "course": "KT61",
-          "heading": "Menguji dengan izin",
-          "reason": "Uji penetsasi hanya sah pada lingkungan yang memang disediakan. Batas hukumnya dibahas lebih dulu."
-        },
-        {
-          "course": "IF306",
-          "heading": "Menimbang tanggung jawabnya",
-          "reason": "Kemampuan menembus sistem menuntut pertimbangan etis yang jelas."
-        }
-      ],
-      "references": [
-        {
-          "title": "Developer Roadmaps",
-          "author": "roadmap.sh",
-          "url": "https://roadmap.sh/roadmaps",
-          "note": "Acuan utama susunan tahapan tiap jalur karier."
-        },
-        {
-          "title": "Gaji Backend Developer di Indonesia",
-          "author": "KantorKu",
-          "url": "https://kantorku.id/blog/gaji-backend-developer/",
-          "note": "Salah satu sumber kisaran gaji yang dipakai, dengan catatan keterbatasannya."
-        },
-        {
-          "title": "Gaji Front End Developer di Indonesia",
-          "author": "Jobstreet",
-          "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
-          "note": "Pembanding kisaran gaji dari papan lowongan."
-        }
-      ],
-      "skillCourses": [
-        "KT02",
-        "KT04",
-        "KT60",
-        "KT61"
-      ]
-    },
-    {
-      "code": "QA",
-      "slug": "qa-engineer",
-      "name": "QA Engineer",
-      "tagline": "Memastikan yang dibangun benar-benar bekerja.",
-      "description": "Merancang dan menjalankan pengujian, membangun otomasi pengujian, dan menjaga mutu sebelum sampai ke pengguna. Jalur masuk yang sering terlewat padahal lapang.",
-      "daily": "Menulis dan merawat pengujian otomatis, menelusuri laporan kegagalan sampai ke sebabnya, dan menjaga alur pengujian tetap jalan.",
-      "demand": "Sedang",
-      "entry": "Mudah",
-      "salary": "Umumnya sedikit di bawah developer pada awalnya, dengan selisih yang menyempit setelah menguasai otomasi. Angka ini kisaran kasar untuk lulusan baru dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Data gaji yang beredar di internet banyak yang tidak konsisten antarsumber, jadi perlakukan sebagai gambaran, bukan patokan.",
-      "orderIndex": 10,
-      "coreCourses": [
-        "IF601",
-        "IF401",
-        "IF102"
-      ],
-      "supportCourses": [
-        "IF304",
-        "IF602",
-        "IF201"
-      ],
-      "beyondCurriculum": [],
-      "stages": [
-        {
-          "course": "IF102",
-          "heading": "Membangun cara berpikir",
-          "reason": "Menulis pengujian tetap menulis kode. Dasarnya sama."
-        },
-        {
-          "course": "KT01",
-          "heading": "Menyimpan riwayat pekerjaan",
-          "reason": "Pengujian disimpan bersama kode yang diujinya."
-        },
-        {
-          "course": "IF401",
-          "heading": "Memahami cara perangkat lunak dibangun",
-          "reason": "Mutu dijaga sejak perancangan, bukan ditambahkan di akhir."
-        },
-        {
-          "course": "KT04",
-          "heading": "Memahami percakapan web",
-          "reason": "Sebagian besar pengujian otomatis menyasar API, bukan tampilan."
-        },
-        {
-          "course": "IF601",
-          "heading": "Memahami pengujian",
-          "reason": "Jenis pengujian, kapan masing-masing dipakai, dan apa yang layak diuji."
-        },
-        {
-          "course": "KT70",
-          "heading": "Mengotomatiskan pengujian",
-          "reason": "Pengujian yang berjalan sendiri setiap kali kode berubah."
-        },
-        {
-          "course": "KT13",
-          "heading": "Menguji tampilan",
-          "reason": "Menelusuri alur pengguna secara otomatis di peramban sungguhan."
-        },
-        {
-          "course": "IF604",
-          "heading": "Menguji keamanannya",
-          "reason": "Celah keamanan adalah cacat mutu yang paling mahal bila lolos."
-        }
-      ],
-      "references": [
-        {
-          "title": "Developer Roadmaps",
-          "author": "roadmap.sh",
-          "url": "https://roadmap.sh/roadmaps",
-          "note": "Acuan utama susunan tahapan tiap jalur karier."
-        },
-        {
-          "title": "Gaji Backend Developer di Indonesia",
-          "author": "KantorKu",
-          "url": "https://kantorku.id/blog/gaji-backend-developer/",
-          "note": "Salah satu sumber kisaran gaji yang dipakai, dengan catatan keterbatasannya."
-        },
-        {
-          "title": "Gaji Front End Developer di Indonesia",
-          "author": "Jobstreet",
-          "url": "https://id.jobstreet.com/id/career-advice/role/frontend-developer/salary",
-          "note": "Pembanding kisaran gaji dari papan lowongan."
-        }
-      ],
-      "skillCourses": [
-        "KT01",
-        "KT04",
-        "KT13",
-        "KT70"
       ]
     }
   ]
