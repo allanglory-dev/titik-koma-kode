@@ -5,8 +5,8 @@
       "slug": "data-analyst",
       "name": "Data Analyst",
       "tagline": "Mengubah data menjadi keputusan yang bisa diambil.",
-      "description": "Menjawab pertanyaan usaha dengan data: apa yang terjadi, kenapa, dan apa yang sebaiknya dilakukan. Pintu masuk paling lapang menuju bidang data, dan jalur yang paling sering dipakai orang yang pindah dari bidang lain.",
-      "daily": "Menulis kueri SQL, membersihkan data yang berantakan, membuat papan pantau, dan menjelaskan temuan kepada orang non-teknis.",
+      "description": "Menjawab apa yang terjadi dan kenapa. Pintu masuk paling lapang menuju bidang data, dan jalur yang paling sering dipakai orang yang pindah dari bidang lain. Matematikanya paling ringan di antara kelima jalur.",
+      "daily": "Menulis kueri SQL, membersihkan data yang berantakan, membuat papan pantau, dan menjelaskan temuan kepada orang yang bukan teknis.",
       "demand": "Tinggi",
       "entry": "Mudah",
       "salary": "Angka yang beredar di internet banyak yang tidak konsisten antarsumber, dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Perlakukan sebagai gambaran kasar, bukan patokan.",
@@ -34,7 +34,7 @@
         {
           "course": "DS202",
           "heading": "Membedakan pola dari kebetulan",
-          "reason": "Tanpa statistika, kenaikan angka lima persen bisa disalahartikan sebagai keberhasilan padahal masih dalam batas keragaman biasa."
+          "reason": "Tanpa statistika, kenaikan lima persen bisa disalahartikan sebagai keberhasilan padahal masih dalam batas keragaman biasa."
         },
         {
           "course": "DS303",
@@ -42,18 +42,18 @@
           "reason": "Analisis yang tidak bisa dibaca orang lain tidak mengubah keputusan apa pun."
         },
         {
-          "course": "DS105",
-          "heading": "Membaca sumbernya langsung",
-          "reason": "Dokumentasi pandas dan jawaban yang kamu butuhkan hampir seluruhnya berbahasa Inggris."
+          "course": "DS406",
+          "heading": "Mengerjakan satu daur penuh",
+          "reason": "Yang dinilai saat melamar bukan daftar kursus yang kamu selesaikan, melainkan satu pekerjaan utuh yang bisa kamu tunjukkan."
         }
       ]
     },
     {
-      "code": "DS",
+      "code": "DSC",
       "slug": "data-scientist",
       "name": "Data Scientist",
       "tagline": "Menjawab pertanyaan yang belum punya jawaban baku.",
-      "description": "Merancang percobaan, membangun model, dan menilai apakah hasilnya benar-benar berarti. Menuntut dasar matematika yang lebih kuat daripada jalur analis.",
+      "description": "Menyusun hipotesis, merancang percobaan, membangun model, dan menilai apakah hasilnya benar-benar berarti. Menuntut dasar matematika yang lebih kuat daripada jalur analis.",
       "daily": "Menyusun hipotesis, membangun dan menguji model, membaca makalah, dan menjelaskan ketidakpastian hasil kepada pengambil keputusan.",
       "demand": "Tinggi",
       "entry": "Menengah",
@@ -77,7 +77,7 @@
         {
           "course": "DS202",
           "heading": "Menalar di bawah ketidakpastian",
-          "reason": "Inti pekerjaan seorang data scientist adalah memisahkan temuan nyata dari derau."
+          "reason": "Inti pekerjaan jalur ini adalah memisahkan temuan nyata dari derau."
         },
         {
           "course": "DS203",
@@ -103,6 +103,11 @@
           "course": "DS402",
           "heading": "Masuk ke jaringan saraf",
           "reason": "Dibangun dari NumPy lebih dulu supaya mekanismenya jelas sebelum memakai kerangka siap pakai."
+        },
+        {
+          "course": "DS406",
+          "heading": "Mengerjakan satu daur penuh",
+          "reason": "Satu proyek yang tuntas lebih meyakinkan daripada sepuluh notebook yang berhenti di tengah."
         }
       ]
     },
@@ -111,7 +116,7 @@
       "slug": "data-engineer",
       "name": "Data Engineer",
       "tagline": "Membangun jalan supaya datanya sampai.",
-      "description": "Menyiapkan saluran yang memindahkan data dari sumbernya ke tempat yang bisa dipakai analis dan model, dan menjaganya tetap jalan. Lebih dekat ke rekayasa perangkat lunak daripada ke statistika.",
+      "description": "Menyiapkan saluran yang memindahkan data dari sumbernya ke tempat yang bisa dipakai analis dan model, lalu menjaganya tetap jalan. Lebih dekat ke rekayasa perangkat lunak daripada ke statistika: matematikanya paling ringan, kodenya paling berat.",
       "daily": "Menulis dan memantau saluran data, mengurus penjadwalan, menangani data yang datang rusak, dan menjaga biaya tetap masuk akal.",
       "demand": "Tinggi",
       "entry": "Menengah",
@@ -150,7 +155,7 @@
         {
           "course": "DS302",
           "heading": "Membentuk ulang data",
-          "reason": "Menggabungkan dan meringkas tabel adalah pekerjaan harian seorang data engineer."
+          "reason": "Menggabungkan dan meringkas tabel adalah pekerjaan harian di jalur ini."
         },
         {
           "course": "KT03",
@@ -161,6 +166,11 @@
           "course": "DS404",
           "heading": "Menjalankannya sendiri",
           "reason": "Penjadwalan, pemantauan, dan penanganan kegagalan adalah inti pekerjaannya, bukan pelengkap."
+        },
+        {
+          "course": "DS406",
+          "heading": "Mengerjakan satu daur penuh",
+          "reason": "Satu saluran yang berjalan terjadwal dan tahan data rusak adalah portofolio yang paling dicari di jalur ini."
         }
       ]
     },
@@ -168,8 +178,8 @@
       "code": "ML",
       "slug": "machine-learning-engineer",
       "name": "Machine Learning Engineer",
-      "tagline": "Membuat model bekerja di luar notebook.",
-      "description": "Menjembatani model yang berhasil di percobaan dengan sistem yang melayani pengguna sungguhan. Menuntut dasar matematika seorang data scientist sekaligus kebiasaan kerja seorang rekayasawan.",
+      "tagline": "Melatih model, lalu membuatnya bekerja di luar notebook.",
+      "description": "Menjembatani model yang berhasil di percobaan dengan sistem yang melayani pengguna sungguhan. Menuntut dasar matematika seorang data scientist sekaligus kebiasaan kerja seorang rekayasawan, dan karena itu jalur paling berat dari kelimanya.",
       "daily": "Melatih dan menyetel model, mengukur kinerjanya di keadaan nyata, menyajikannya lewat layanan, dan memantau apakah mutunya menurun.",
       "demand": "Tinggi",
       "entry": "Sulit",
@@ -219,6 +229,64 @@
           "course": "DS404",
           "heading": "Menyajikan dan memantau",
           "reason": "Model yang tidak dipakai siapa pun tidak bernilai, dan mutu model menurun seiring berubahnya data."
+        },
+        {
+          "course": "DS406",
+          "heading": "Mengerjakan satu daur penuh",
+          "reason": "Satu model yang disajikan lewat layanan beserta pemantauannya lebih bernilai daripada sepuluh notebook pelatihan."
+        }
+      ]
+    },
+    {
+      "code": "AI",
+      "slug": "ai-engineer",
+      "name": "AI Engineer",
+      "tagline": "Membangun produk di atas model yang sudah dilatih orang lain.",
+      "description": "Pembedaannya dari ML Engineer cukup tegas. Kalau timmu melatih model dari datanya sendiri, itu ML Engineer. Kalau timmu memanggil model yang dilatih orang lain dan membangun produk di sekitarnya, itu AI Engineer. Jalur ini paling dekat ke rekayasa perangkat lunak biasa.",
+      "daily": "Menyusun pengambilan konteks, merancang prompt, merangkai agen, menyambungkan model ke sistem yang sudah ada, dan menilai seberapa sering keluarannya benar.",
+      "demand": "Tinggi",
+      "entry": "Menengah",
+      "salary": "Angka yang beredar di internet banyak yang tidak konsisten antarsumber, dan sangat bergantung pada kota, ukuran perusahaan, serta portofolio. Perlakukan sebagai gambaran kasar, bukan patokan.",
+      "orderIndex": 5,
+      "coreCourses": [],
+      "supportCourses": [],
+      "beyondCurriculum": [],
+      "references": [],
+      "stages": [
+        {
+          "course": "DS102",
+          "heading": "Dasar menulis kode",
+          "reason": "Dari analisis lowongan 2026, Python muncul di sekitar 83 persen lowongan jalur ini."
+        },
+        {
+          "course": "DS302",
+          "heading": "Menyiapkan datanya",
+          "reason": "Pengambilan konteks berdiri di atas data yang sudah dibersihkan dan dipotong dengan benar."
+        },
+        {
+          "course": "DS403",
+          "heading": "Memahami yang kamu pakai",
+          "reason": "Memakai model bahasa tanpa tahu cara kerja penyematan dan transformer membuatmu buta saat hasilnya aneh."
+        },
+        {
+          "course": "DS405",
+          "heading": "Membangun dan menilainya",
+          "reason": "RAG dan perancangan prompt adalah yang paling sering diminta, sementara penyetelan ulang model justru paling jarang."
+        },
+        {
+          "course": "KT03",
+          "heading": "Membungkus supaya jalan di mana saja",
+          "reason": "Aplikasi berbasis model bahasa punya banyak sekali ketergantungan pustaka."
+        },
+        {
+          "course": "DS404",
+          "heading": "Menyajikan dan memantau",
+          "reason": "Mutu keluaran model bisa berubah ketika penyedianya memperbarui modelnya, tanpa kodemu diubah sama sekali."
+        },
+        {
+          "course": "DS406",
+          "heading": "Mengerjakan satu daur penuh",
+          "reason": "Satu aplikasi beserta berkas uji dan angka ketepatannya jauh lebih meyakinkan daripada demo yang jalan sekali."
         }
       ]
     }

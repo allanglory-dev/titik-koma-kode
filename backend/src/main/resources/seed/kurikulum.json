@@ -6605,10 +6605,10 @@
     },
     {
       "code": "DS303",
-      "title": "Visualisasi Data",
-      "description": "Memilih bentuk grafik yang tepat dan membuatnya terbaca. Termasuk grafik yang menyesatkan tanpa berbohong, dan cara menghindarinya.",
+      "title": "Visualisasi dan Papan Pantau",
+      "description": "Memilih bentuk grafik yang tepat, merancang papan pantau yang terbaca, dan menentukan metrik yang benar-benar menjawab pertanyaan. Termasuk grafik yang menyesatkan tanpa berbohong.",
       "level": "Menengah",
-      "hours": 30,
+      "hours": 35,
       "area": "DM",
       "outcomes": [
         "Memilih bentuk grafik yang sesuai jenis datanya.",
@@ -6846,6 +6846,45 @@
         }
       ],
       "semester": 4
+    },
+    {
+      "code": "DS405",
+      "title": "Rekayasa Aplikasi AI",
+      "description": "Membangun produk di atas model bahasa yang sudah dilatih orang lain: pengambilan konteks, perancangan prompt, agen, dan yang paling sering diremehkan, cara menilai keluarannya.",
+      "semester": 4,
+      "level": "Lanjut",
+      "hours": 45,
+      "area": "AI",
+      "outcomes": [
+        "Menyusun pengambilan konteks agar jawaban model bersandar pada sumber yang benar.",
+        "Merancang prompt yang hasilnya dapat diulang, bukan yang kebetulan bagus sekali.",
+        "Menyusun berkas uji dan mengukur seberapa sering keluaran model benar.",
+        "Mengenali kapan sebuah persoalan tidak perlu model bahasa sama sekali."
+      ],
+      "prerequisites": [
+        "DS403"
+      ],
+      "lessons": []
+    },
+    {
+      "code": "DS406",
+      "title": "Proyek Data",
+      "description": "Satu daur penuh dikerjakan sendiri, dari merumuskan pertanyaan bisnis sampai menulis laporan akhir. Bagian yang jarang diajarkan, padahal inilah yang dinilai saat melamar.",
+      "semester": 4,
+      "level": "Lanjut",
+      "hours": 50,
+      "area": "SE",
+      "outcomes": [
+        "Menerjemahkan pertanyaan bisnis menjadi tujuan teknis yang bisa diukur.",
+        "Menyusun rencana proyek data beserta batas waktu dan risikonya.",
+        "Mengerjakan satu daur penuh dari pengumpulan data sampai hasil yang bisa dipakai.",
+        "Menulis laporan akhir yang menyebut batas kemampuan hasilnya, bukan hanya angka keberhasilannya."
+      ],
+      "prerequisites": [
+        "DS302",
+        "DS303"
+      ],
+      "lessons": []
     }
   ]
 }
