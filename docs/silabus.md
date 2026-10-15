@@ -1,7 +1,7 @@
 # Silabus Titik Koma Kode
 
 **Jalur Data dan Kecerdasan Buatan**
-Versi 3, 15 Oktober 2026
+Versi 4, 15 Oktober 2026
 
 Dokumen ini adalah sumber kebenaran untuk isi `backend/src/main/resources/seed/`.
 Kalau ada perbedaan antara dokumen ini dan berkas seed, yang berlaku dokumen ini,
@@ -156,7 +156,7 @@ pindah dari bidang lain. Matematikanya paling ringan di antara kelima jalur.
 
 | Urutan | Kursus |
 |---|---|
-| 1 | Bagian Umum, sejauh yang kamu butuhkan |
+| 1 | Bagian Umum, sejauh yang Anda butuhkan |
 | 2 | DS104 SQL dan Basis Data |
 | 3 | DS202 Analisis Data dengan Pandas |
 | 4 | DS102 Statistika dan Probabilitas |
@@ -178,13 +178,17 @@ Menuntut dasar matematika yang lebih kuat daripada jalur analis.
 
 | Urutan | Kursus |
 |---|---|
-| 1 | Bagian Umum, sejauh yang kamu butuhkan |
-| 2 | DS101 Aljabar Linear, DS102 Statistika, DS103 Kalkulus |
-| 3 | DS104 SQL |
-| 4 | DS201 NumPy, DS202 Pandas, DS203 Visualisasi |
-| 5 | DS301 Pembelajaran Mesin |
-| 6 | DS302 Pembelajaran Mendalam |
-| 7 | DS306 Proyek Data |
+| 1 | Bagian Umum, sejauh yang Anda butuhkan |
+| 2 | DS104 SQL dan Basis Data |
+| 3 | DS101 Aljabar Linear untuk Data |
+| 4 | DS102 Statistika dan Probabilitas |
+| 5 | DS103 Kalkulus untuk Pembelajaran Mesin |
+| 6 | DS201 NumPy dan Komputasi Numerik |
+| 7 | DS202 Analisis Data dengan Pandas |
+| 8 | DS203 Visualisasi dan Papan Pantau |
+| 9 | DS301 Pembelajaran Mesin |
+| 10 | DS302 Pembelajaran Mendalam |
+| 11 | DS306 Proyek Data |
 
 **Keluaran portofolio.** Satu model beserta laporan yang menyebutkan batas
 kemampuannya, bukan cuma angka ketepatannya.
@@ -200,13 +204,15 @@ paling ringan, kodenya paling berat.
 
 | Urutan | Kursus |
 |---|---|
-| 1 | Bagian Umum, sejauh yang kamu butuhkan |
-| 2 | DS104 SQL dan Basis Data, lebih dalam daripada jalur lain |
-| 3 | KT01 Git, KT02 Linux |
-| 4 | DS201 NumPy, DS202 Pandas |
-| 5 | KT03 Docker |
-| 6 | DS304 Dari Notebook ke Produksi |
-| 7 | DS306 Proyek Data |
+| 1 | Bagian Umum, sejauh yang Anda butuhkan |
+| 2 | DS104 SQL dan Basis Data |
+| 3 | KT01 Git dan GitHub |
+| 4 | KT02 Linux dan Baris Perintah |
+| 5 | DS201 NumPy dan Komputasi Numerik |
+| 6 | DS202 Analisis Data dengan Pandas |
+| 7 | KT03 Docker |
+| 8 | DS304 Dari Notebook ke Produksi |
+| 9 | DS306 Proyek Data |
 
 Tidak perlu: kalkulus, pembelajaran mendalam.
 
@@ -224,14 +230,20 @@ seorang rekayasawan. Jalur paling berat dari kelimanya.
 
 | Urutan | Kursus |
 |---|---|
-| 1 | Bagian Umum, sejauh yang kamu butuhkan |
-| 2 | DS101 Aljabar Linear, DS103 Kalkulus |
-| 3 | DS201 NumPy, DS202 Pandas |
-| 4 | DS301 Pembelajaran Mesin |
-| 5 | DS302 Pembelajaran Mendalam |
-| 6 | DS303 NLP dan Model Bahasa |
-| 7 | KT01 Git, KT03 Docker, DS304 Produksi |
-| 8 | DS306 Proyek Data |
+| 1 | Bagian Umum, sejauh yang Anda butuhkan |
+| 2 | KT01 Git dan GitHub |
+| 3 | DS101 Aljabar Linear untuk Data |
+| 4 | DS102 Statistika dan Probabilitas |
+| 5 | DS103 Kalkulus untuk Pembelajaran Mesin |
+| 6 | DS201 NumPy dan Komputasi Numerik |
+| 7 | DS202 Analisis Data dengan Pandas |
+| 8 | DS301 Pembelajaran Mesin |
+| 9 | DS302 Pembelajaran Mendalam |
+| 10 | DS303 Pemrosesan Bahasa Alami dan Model Bahasa |
+| 11 | KT02 Linux dan Baris Perintah |
+| 12 | KT03 Docker |
+| 13 | DS304 Dari Notebook ke Produksi |
+| 14 | DS306 Proyek Data |
 
 **Keluaran portofolio.** Satu model yang disajikan lewat layanan, beserta
 pemantauan yang menunjukkan mutunya dari waktu ke waktu.
@@ -253,12 +265,15 @@ persen. Python muncul di 83 persen lowongan.
 
 | Urutan | Kursus |
 |---|---|
-| 1 | Bagian Umum, sejauh yang kamu butuhkan |
-| 2 | DS201 NumPy, DS202 Pandas |
-| 3 | DS303 NLP dan Model Bahasa |
-| 4 | DS305 Rekayasa Aplikasi AI |
-| 5 | KT01 Git, KT03 Docker, DS304 Produksi |
-| 6 | DS306 Proyek Data |
+| 1 | Bagian Umum, sejauh yang Anda butuhkan |
+| 2 | KT01 Git dan GitHub |
+| 3 | DS201 NumPy dan Komputasi Numerik |
+| 4 | DS202 Analisis Data dengan Pandas |
+| 5 | DS303 Pemrosesan Bahasa Alami dan Model Bahasa |
+| 6 | DS305 Rekayasa Aplikasi AI |
+| 7 | KT03 Docker |
+| 8 | DS304 Dari Notebook ke Produksi |
+| 9 | DS306 Proyek Data |
 
 Tidak wajib: kalkulus, dan sebagian besar DS302.
 

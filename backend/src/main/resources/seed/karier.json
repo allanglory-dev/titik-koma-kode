@@ -18,13 +18,13 @@
       "stages": [
         {
           "course": "UM02",
-          "heading": "Bisa menulis kode dulu",
-          "reason": "Membersihkan data tidak bisa dikerjakan lewat antarmuka saja. Python adalah perkakas yang dipakai sepanjang jalur ini."
+          "heading": "Dasar menulis kode",
+          "reason": "Seluruh pekerjaan di jalur ini dikerjakan lewat kode, bukan lewat perkakas siap pakai."
         },
         {
           "course": "DS104",
-          "heading": "Mengambil datanya",
-          "reason": "Hampir semua data perusahaan tinggal di basis data relasional. SQL adalah kemampuan pertama yang ditanyakan saat melamar."
+          "heading": "Mengambil datanya sendiri",
+          "reason": "Data yang dipakai hampir selalu tinggal di basis data, bukan dalam berkas CSV yang sudah rapi. Yang harus menunggu orang lain mengirimkan datanya akan selalu tertinggal satu langkah."
         },
         {
           "course": "DS202",
@@ -67,7 +67,12 @@
         {
           "course": "UM02",
           "heading": "Dasar menulis kode",
-          "reason": "Seluruh pekerjaan ini dikerjakan lewat kode, bukan lewat perkakas siap pakai."
+          "reason": "Seluruh pekerjaan di jalur ini dikerjakan lewat kode, bukan lewat perkakas siap pakai."
+        },
+        {
+          "course": "DS104",
+          "heading": "Mengambil datanya sendiri",
+          "reason": "Data yang dipakai hampir selalu tinggal di basis data, bukan dalam berkas CSV yang sudah rapi. Yang harus menunggu orang lain mengirimkan datanya akan selalu tertinggal satu langkah."
         },
         {
           "course": "DS101",
@@ -77,22 +82,27 @@
         {
           "course": "DS102",
           "heading": "Menalar di bawah ketidakpastian",
-          "reason": "Inti pekerjaan jalur ini adalah memisahkan temuan nyata dari derau."
+          "reason": "Menilai apakah sebuah model benar-benar lebih baik, atau hanya kebetulan beruntung pada data uji, adalah perkara statistika."
         },
         {
           "course": "DS103",
           "heading": "Memahami cara model belajar",
-          "reason": "Penurunan gradien adalah mesin di balik hampir semua model. Tanpa turunan, bagian ini tetap jadi kotak hitam."
+          "reason": "Penurunan gradien adalah mesin di balik hampir semua model. Tanpa turunan, bagian itu tetap jadi kotak hitam."
         },
         {
           "course": "DS201",
           "heading": "Menghitung dengan cepat",
-          "reason": "NumPy membuat perhitungan atas jutaan baris selesai dalam hitungan detik, bukan menit."
+          "reason": "NumPy membuat perhitungan atas jutaan baris selesai dalam hitungan detik. Ia juga menjelaskan kenapa pelatihan model kadang menghasilkan NaN."
         },
         {
           "course": "DS202",
           "heading": "Menyiapkan datanya",
-          "reason": "Model sebagus apa pun tidak menolong kalau datanya belum benar."
+          "reason": "Membersihkan, menggabungkan, dan membentuk ulang data adalah bagian yang paling banyak memakan waktu, dan paling jarang diajarkan dengan serius."
+        },
+        {
+          "course": "DS203",
+          "heading": "Membaca dan menyampaikan",
+          "reason": "Grafik dipakai dua kali: untuk melihat sebaran data sebelum memodelkannya, dan untuk menjelaskan hasilnya kepada orang yang tidak akan membaca kode Anda."
         },
         {
           "course": "DS301",
@@ -101,13 +111,13 @@
         },
         {
           "course": "DS302",
-          "heading": "Masuk ke jaringan saraf",
+          "heading": "Jaringan saraf dari dasarnya",
           "reason": "Dibangun dari NumPy lebih dulu supaya mekanismenya jelas sebelum memakai kerangka siap pakai."
         },
         {
           "course": "DS306",
           "heading": "Mengerjakan satu daur penuh",
-          "reason": "Satu proyek yang tuntas lebih meyakinkan daripada sepuluh notebook yang berhenti di tengah."
+          "reason": "Yang dinilai saat melamar bukan daftar kursus yang Anda selesaikan, melainkan satu pekerjaan utuh yang bisa Anda tunjukkan."
         }
       ]
     },
@@ -130,7 +140,7 @@
         {
           "course": "UM02",
           "heading": "Dasar menulis kode",
-          "reason": "Saluran data adalah program yang harus jalan sendiri tanpa ditunggui."
+          "reason": "Seluruh pekerjaan di jalur ini dikerjakan lewat kode, bukan lewat perkakas siap pakai."
         },
         {
           "course": "DS104",
@@ -140,7 +150,7 @@
         {
           "course": "KT01",
           "heading": "Bekerja bersama orang lain",
-          "reason": "Kode saluran data dipakai bersama satu tim dan harus bisa ditelusuri perubahannya."
+          "reason": "Kode yang dipakai bersama satu tim harus bisa ditelusuri perubahannya, dan bisa dikembalikan ketika ada yang rusak."
         },
         {
           "course": "KT02",
@@ -150,7 +160,7 @@
         {
           "course": "DS201",
           "heading": "Mengolah data besar dengan hemat",
-          "reason": "Perbedaan antara perulangan dan operasi vektor menentukan apakah pekerjaannya selesai dalam menit atau jam."
+          "reason": "Perbedaan antara perulangan dan operasi menyeluruh menentukan apakah pekerjaannya selesai dalam menit atau jam."
         },
         {
           "course": "DS202",
@@ -160,7 +170,7 @@
         {
           "course": "KT03",
           "heading": "Membungkus supaya jalan di mana saja",
-          "reason": "Saluran yang jalan di laptop Anda tetapi gagal di server adalah masalah paling umum di jalur ini."
+          "reason": "Jalan di laptop sendiri tetapi gagal di server adalah masalah paling umum begitu pekerjaan dipakai orang lain."
         },
         {
           "course": "DS304",
@@ -170,7 +180,7 @@
         {
           "course": "DS306",
           "heading": "Mengerjakan satu daur penuh",
-          "reason": "Satu saluran yang berjalan terjadwal dan tahan data rusak adalah portofolio yang paling dicari di jalur ini."
+          "reason": "Yang dinilai saat melamar bukan daftar kursus yang Anda selesaikan, melainkan satu pekerjaan utuh yang bisa Anda tunjukkan."
         }
       ]
     },
@@ -193,32 +203,47 @@
         {
           "course": "UM02",
           "heading": "Dasar menulis kode",
-          "reason": "Jalur ini menuntut kode yang rapi, bukan sekadar kode yang jalan."
+          "reason": "Seluruh pekerjaan di jalur ini dikerjakan lewat kode, bukan lewat perkakas siap pakai."
+        },
+        {
+          "course": "KT01",
+          "heading": "Bekerja bersama orang lain",
+          "reason": "Kode yang dipakai bersama satu tim harus bisa ditelusuri perubahannya, dan bisa dikembalikan ketika ada yang rusak."
         },
         {
           "course": "DS101",
-          "heading": "Bahasa untuk menyatakan model",
-          "reason": "Perkalian matriks adalah operasi yang dikerjakan jaringan saraf jutaan kali."
+          "heading": "Bahasa untuk menyatakan data",
+          "reason": "Satu baris data adalah vektor dan satu tabel adalah matriks. Tanpa ini, rumus model hanya terbaca sebagai lambang."
+        },
+        {
+          "course": "DS102",
+          "heading": "Menilai model dengan jujur",
+          "reason": "Menyatakan satu model lebih baik dari yang lain menuntut lebih dari membandingkan satu angka ketepatan."
         },
         {
           "course": "DS103",
           "heading": "Memahami cara model belajar",
-          "reason": "Menyetel model tanpa mengerti gradien berarti menebak-nebak."
+          "reason": "Penurunan gradien adalah mesin di balik hampir semua model. Tanpa turunan, bagian itu tetap jadi kotak hitam."
         },
         {
           "course": "DS201",
           "heading": "Menghitung dengan cepat",
-          "reason": "Juga menjelaskan kenapa bilangan pecahan kadang menghasilkan NaN saat melatih model."
+          "reason": "NumPy membuat perhitungan atas jutaan baris selesai dalam hitungan detik. Ia juga menjelaskan kenapa pelatihan model kadang menghasilkan NaN."
+        },
+        {
+          "course": "DS202",
+          "heading": "Menyiapkan data latih",
+          "reason": "Mutu data latih menentukan batas atas mutu model, dan tidak ada arsitektur yang bisa menutupi data yang salah."
         },
         {
           "course": "DS301",
-          "heading": "Dasar pembelajaran mesin",
-          "reason": "Model sederhana sering mengalahkan model rumit. Bagian ini mengajarkan cara mengetahuinya."
+          "heading": "Membangun dan menilai model",
+          "reason": "Termasuk cara menilai dengan jujur, yang justru lebih sering salah daripada pemilihan modelnya."
         },
         {
           "course": "DS302",
           "heading": "Jaringan saraf dari dasarnya",
-          "reason": "Menulis perambatan balik sendiri sekali akan mengubah cara Anda membaca kode kerangka siap pakai selamanya."
+          "reason": "Dibangun dari NumPy lebih dulu supaya mekanismenya jelas sebelum memakai kerangka siap pakai."
         },
         {
           "course": "DS303",
@@ -226,14 +251,24 @@
           "reason": "Sebagian besar lowongan di jalur ini sekarang menyentuh model bahasa, entah melatih atau memakainya."
         },
         {
+          "course": "KT02",
+          "heading": "Hidup di baris perintah",
+          "reason": "Hampir semua yang Anda urus berjalan di server tanpa antarmuka grafis."
+        },
+        {
+          "course": "KT03",
+          "heading": "Membungkus supaya jalan di mana saja",
+          "reason": "Jalan di laptop sendiri tetapi gagal di server adalah masalah paling umum begitu pekerjaan dipakai orang lain."
+        },
+        {
           "course": "DS304",
           "heading": "Menyajikan dan memantau",
-          "reason": "Model yang tidak dipakai siapa pun tidak bernilai, dan mutu model menurun seiring berubahnya data."
+          "reason": "Model yang tidak dipakai siapa pun tidak bernilai, dan mutunya menurun seiring berubahnya data."
         },
         {
           "course": "DS306",
           "heading": "Mengerjakan satu daur penuh",
-          "reason": "Satu model yang disajikan lewat layanan beserta pemantauannya lebih bernilai daripada sepuluh notebook pelatihan."
+          "reason": "Yang dinilai saat melamar bukan daftar kursus yang Anda selesaikan, melainkan satu pekerjaan utuh yang bisa Anda tunjukkan."
         }
       ]
     },
@@ -256,7 +291,17 @@
         {
           "course": "UM02",
           "heading": "Dasar menulis kode",
-          "reason": "Dari analisis lowongan 2026, Python muncul di sekitar 83 persen lowongan jalur ini."
+          "reason": "Seluruh pekerjaan di jalur ini dikerjakan lewat kode, bukan lewat perkakas siap pakai."
+        },
+        {
+          "course": "KT01",
+          "heading": "Bekerja bersama orang lain",
+          "reason": "Kode yang dipakai bersama satu tim harus bisa ditelusuri perubahannya, dan bisa dikembalikan ketika ada yang rusak."
+        },
+        {
+          "course": "DS201",
+          "heading": "Dasar perhitungan larik",
+          "reason": "Penyematan adalah vektor, dan membandingkan kedekatannya adalah perhitungan larik biasa."
         },
         {
           "course": "DS202",
@@ -270,23 +315,23 @@
         },
         {
           "course": "DS305",
-          "heading": "Membangun dan menilainya",
-          "reason": "RAG dan perancangan prompt adalah yang paling sering diminta, sementara penyetelan ulang model justru paling jarang."
+          "heading": "Membangun di atas model orang lain",
+          "reason": "Pengambilan konteks dan perancangan prompt adalah yang paling banyak diminta, sementara penyetelan ulang model justru paling jarang."
         },
         {
           "course": "KT03",
           "heading": "Membungkus supaya jalan di mana saja",
-          "reason": "Aplikasi berbasis model bahasa punya banyak sekali ketergantungan pustaka."
+          "reason": "Jalan di laptop sendiri tetapi gagal di server adalah masalah paling umum begitu pekerjaan dipakai orang lain."
         },
         {
           "course": "DS304",
           "heading": "Menyajikan dan memantau",
-          "reason": "Mutu keluaran model bisa berubah ketika penyedianya memperbarui modelnya, tanpa kode Anda diubah sama sekali."
+          "reason": "Model yang tidak dipakai siapa pun tidak bernilai, dan mutunya menurun seiring berubahnya data."
         },
         {
           "course": "DS306",
           "heading": "Mengerjakan satu daur penuh",
-          "reason": "Satu aplikasi beserta berkas uji dan angka ketepatannya jauh lebih meyakinkan daripada demo yang jalan sekali."
+          "reason": "Yang dinilai saat melamar bukan daftar kursus yang Anda selesaikan, melainkan satu pekerjaan utuh yang bisa Anda tunjukkan."
         }
       ]
     }
