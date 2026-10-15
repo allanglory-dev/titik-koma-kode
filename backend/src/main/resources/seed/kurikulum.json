@@ -2102,8 +2102,8 @@
             },
             {
               "type": "CODE",
-              "language": "python",
-              "content": "hitung = 1\n\nwhile hitung <= 5:\n    print(hitung)\n    # hitung tidak pernah bertambah\n    # program mencetak 1 tanpa henti"
+              "language": "text",
+              "content": "hitung = 1\n\nwhile hitung <= 5:\n    print(hitung)\n    # hitung tidak pernah bertambah,\n    # jadi syaratnya selamanya benar\n\n# Blok ini sengaja tidak bisa dijalankan di sini.\n# Kalau dijalankan, programnya mencetak 1 tanpa henti."
             },
             {
               "type": "DIAGRAM",
@@ -2409,7 +2409,7 @@
             {
               "type": "CODE",
               "language": "python",
-              "content": "print(nilai[-1])   # 65, terakhir\nprint(nilai[-2])   # 90, kedua dari belakang"
+              "content": "nilai = [80, 75, 90, 65]\n\nprint(nilai[-1])   # 65, terakhir\nprint(nilai[-2])   # 90, kedua dari belakang\nprint(nilai[0], nilai[-4])   # keduanya menunjuk anggota yang sama"
             },
             {
               "type": "NOTE",
@@ -3191,6 +3191,121 @@
           ]
         },
         {
+          "title": "Argumen dan Nilai Bawaan",
+          "summary": "Cara lain menyerahkan nilai ke fungsi, beserta jebakan yang paling terkenal.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Bab sebelumnya memperkenalkan fungsi dalam bentuk yang paling sederhana. Python menyediakan beberapa cara lain untuk menyerahkan nilai ke sebuah fungsi, dan salah satunya menyimpan jebakan yang menjerat hampir semua pemrogram Python setidaknya sekali."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Argumen berdasarkan nama.** Selain mengandalkan urutan, argumen bisa disebut namanya, dan itu membuat pemanggilan jauh lebih jelas maksudnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def kirim(pesan, penerima, mendesak=False, salinan=None):\n    tanda = \"[MENDESAK] \" if mendesak else \"\"\n    print(f\"{tanda}ke {penerima}: {pesan}\")\n    if salinan:\n        print(f\"   salinan ke {salinan}\")\n\nkirim(\"rapat jam 9\", \"ani\")\nkirim(\"server mati\", \"budi\", mendesak=True)\nkirim(\"laporan siap\", \"citra\", salinan=\"ani\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bandingkan `kirim(\"server mati\", \"budi\", True)` dengan `kirim(\"server mati\", \"budi\", mendesak=True)`. Keduanya sama hasilnya, tetapi yang kedua bisa dibaca tanpa membuka definisi fungsinya. Untuk argumen bertipe benar-salah, menyebut namanya hampir selalu lebih baik."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Nilai bawaan dikerjakan sekali.** Inilah jebakannya, dan sebabnya ada pada kapan nilai itu dibuat."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 260\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Nilai bawaan dibuat sekali saat fungsi didefinisikan, lalu dipakai bersama oleh semua pemanggilan\">\n  <defs>\n    <marker id=\"pb-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"var(--kunyit)\"/>\n    </marker>\n  </defs>\n\n  <text x=\"24\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">SAAT FUNGSI DIDEFINISIKAN, SEKALI SAJA</text>\n  <rect x=\"24\" y=\"36\" width=\"250\" height=\"40\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.2\"/>\n  <rect x=\"24\" y=\"36\" width=\"250\" height=\"40\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.4\"/>\n  <text x=\"38\" y=\"61\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">def tambah(x, isi=[]):</text>\n\n  <path d=\"M 274 56 L 330 56\" stroke=\"var(--nila)\" stroke-opacity=\"0.6\" stroke-width=\"1.4\"/>\n  <rect x=\"336\" y=\"36\" width=\"140\" height=\"40\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.22\"/>\n  <rect x=\"336\" y=\"36\" width=\"140\" height=\"40\" rx=\"3\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"1.5\"/>\n  <text x=\"406\" y=\"61\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12.5\" fill=\"var(--kunyit)\">[]</text>\n  <text x=\"406\" y=\"92\" text-anchor=\"middle\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">satu list, dibuat sekali</text>\n\n  <line x1=\"24\" y1=\"116\" x2=\"576\" y2=\"116\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n  <text x=\"24\" y=\"140\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">SETIAP PEMANGGILAN MENUNJUK LIST YANG SAMA</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.85\">\n    <text x=\"38\" y=\"172\">tambah(1)</text>\n    <text x=\"38\" y=\"202\">tambah(2)</text>\n    <text x=\"38\" y=\"232\">tambah(3)</text>\n  </g>\n  <g stroke=\"var(--kunyit)\" stroke-opacity=\"0.7\" fill=\"none\" stroke-width=\"1.3\">\n    <path d=\"M 140 168 L 330 168\" marker-end=\"url(#pb-ujung)\"/>\n    <path d=\"M 140 198 L 330 198\" marker-end=\"url(#pb-ujung)\"/>\n    <path d=\"M 140 228 L 330 228\" marker-end=\"url(#pb-ujung)\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12.5\" fill=\"currentColor\" opacity=\"0.85\">\n    <text x=\"344\" y=\"172\">[1]</text>\n    <text x=\"344\" y=\"202\">[1, 2]</text>\n    <text x=\"344\" y=\"232\">[1, 2, 3]</text>\n  </g>\n  <g font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">\n    <text x=\"440\" y=\"202\">isinya menumpuk,</text>\n    <text x=\"440\" y=\"218\">tidak kembali kosong</text>\n  </g>\n</svg>",
+              "solution": "Nilai bawaan dibuat satu kali ketika baris def dijalankan, bukan setiap kali fungsinya dipanggil. Kalau nilainya bisa diubah, perubahan itu terbawa ke pemanggilan berikutnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def tambah(x, isi=[]):\n    isi.append(x)\n    return isi\n\nprint(tambah(1))\nprint(tambah(2))\nprint(tambah(3))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Yang diharapkan `[1]`, `[2]`, `[3]`. Yang muncul `[1]`, `[1, 2]`, `[1, 2, 3]`. List kosong itu dibuat satu kali saat baris `def` dijalankan, lalu dipakai bersama oleh semua pemanggilan yang tidak menyertakan argumennya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def tambah(x, isi=[]):\n    isi.append(x)\n    return isi\n\n# buktinya: nilai bawaannya bisa dilihat, dan isinya memang berubah\nprint(tambah.__defaults__)\ntambah(1); tambah(2)\nprint(tambah.__defaults__)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Cara benarnya** memakai `None` sebagai penanda, lalu membuat objeknya di dalam fungsi."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def tambah(x, isi=None):\n    if isi is None:\n        isi = []\n    isi.append(x)\n    return isi\n\nprint(tambah(1))\nprint(tambah(2))\nprint(tambah(3))\n\n# tetap bisa menerima list yang sudah ada\npunya = [10, 20]\nprint(tambah(30, punya), punya)"
+            },
+            {
+              "type": "NOTE",
+              "content": "Aturannya: **nilai bawaan boleh berupa apa pun yang tidak bisa diubah.** Bilangan, teks, `True`, `False`, `None`, dan `tuple` aman. `list`, `dict`, dan `set` tidak. Perkakas pemeriksa kode seperti Ruff menandai pelanggarannya dengan aturan bernama `B006`, jadi Anda tidak perlu mengandalkan ingatan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menampung argumen yang jumlahnya tidak pasti.** Satu bintang menampung argumen berdasarkan urutan sebagai *tuple*, dua bintang menampung argumen bernama sebagai *dictionary*."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def catat(judul, *baris, **keterangan):\n    print(judul)\n    for b in baris:\n        print(\"  -\", b)\n    for kunci, nilai in keterangan.items():\n        print(f\"  {kunci}: {nilai}\")\n\ncatat(\"Rapat\", \"bahas anggaran\", \"tentukan tanggal\",\n      tempat=\"ruang 2\", mulai=\"09:00\")"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# dipakai juga untuk meneruskan argumen apa adanya ke fungsi lain\ndef bungkus(fungsi, *args, **kwargs):\n    print(f\"memanggil {fungsi.__name__} dengan {args} {kwargs}\")\n    return fungsi(*args, **kwargs)\n\nbungkus(print, \"halo\", \"dunia\", sep=\" | \")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Tanda bintang di tempat pemanggilan punya arti kebalikannya: ia **membongkar** urutan atau *dictionary* menjadi argumen terpisah."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def luas(panjang, lebar):\n    return panjang * lebar\n\nukuran_tuple = (4, 5)\nukuran_dict = {\"panjang\": 4, \"lebar\": 5}\n\nprint(luas(*ukuran_tuple))\nprint(luas(**ukuran_dict))"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Memaksa argumen disebut namanya.** Tanda bintang sendirian di daftar argumen menandai batas: apa pun setelahnya wajib disebut namanya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def potong(teks, *, panjang=10, akhiran=\"...\"):\n    return teks if len(teks) <= panjang else teks[:panjang] + akhiran\n\nprint(potong(\"Analisis Data dengan Pandas\"))\nprint(potong(\"Analisis Data dengan Pandas\", panjang=15))\n\ntry:\n    potong(\"Analisis Data\", 15)\nexcept TypeError as e:\n    print(\"ditolak:\", e)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pembatas ini berguna untuk argumen pengatur yang tidak akan terbaca maksudnya kalau cuma berupa angka atau benar-salah di tengah pemanggilan. Banyak pustaka besar memakainya, termasuk pandas dan scikit-learn."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa keluaran kode berikut, dan bagaimana memperbaikinya?\n\n```python\ndef kumpul(nama, daftar={}):\n    daftar[nama] = len(nama)\n    return daftar\n\nprint(kumpul(\"ani\"))\nprint(kumpul(\"budi\"))\n```",
+              "solution": "Keluarannya:\n\n```\n{'ani': 3}\n{'ani': 3, 'budi': 4}\n```\n\nPemanggilan kedua seharusnya memberi `{'budi': 4}` saja, tetapi isinya menumpuk.\n\nSebabnya *dictionary* kosong itu dibuat **sekali**, saat baris `def` dijalankan, bukan setiap kali fungsinya dipanggil. Kedua pemanggilan karena itu menunjuk *dictionary* yang sama.\n\nPerbaikannya memakai `None` sebagai penanda:\n\n```python\ndef kumpul(nama, daftar=None):\n    if daftar is None:\n        daftar = {}\n    daftar[nama] = len(nama)\n    return daftar\n\nprint(kumpul(\"ani\"))     # {'ani': 3}\nprint(kumpul(\"budi\"))    # {'budi': 4}\n```\n\nPerhatikan `is None`, bukan `if not daftar`. Keduanya terlihat mirip tetapi berbeda perilakunya: `not daftar` juga bernilai benar untuk *dictionary* kosong yang sengaja diserahkan pemanggil, sehingga argumen yang sah akan diam-diam dibuang dan diganti yang baru."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis fungsi `ringkas(*angka, pembulatan=2)` yang menerima sejumlah bilangan dan mengembalikan rata-ratanya. Pastikan `pembulatan` wajib disebut namanya.",
+              "solution": "```python\ndef ringkas(*angka, pembulatan=2):\n    if not angka:\n        return None\n    return round(sum(angka) / len(angka), pembulatan)\n\nprint(ringkas(1, 2, 3))\nprint(ringkas(1, 2, 3, pembulatan=4))\nprint(ringkas())\n\nnilai = [87, 92, 78]\nprint(ringkas(*nilai))\n```\n\nKeluarannya:\n\n```\n2.0\n2.0\nNone\n85.67\n```\n\n`*angka` sudah otomatis membuat `pembulatan` wajib disebut namanya, karena apa pun yang ditulis setelahnya tanpa nama akan ikut tertampung ke dalam `angka`. Jadi tanda `*` sendirian tidak diperlukan di sini.\n\nBaris `if not angka` menjaga pemanggilan tanpa argumen sama sekali. Tanpa itu, `len(angka)` bernilai nol dan pembagiannya menghentikan program dengan `ZeroDivisionError`.\n\nBaris terakhir menunjukkan arah sebaliknya: `*nilai` membongkar sebuah list menjadi argumen terpisah. Tanda bintang yang sama punya dua arti, dan yang menentukan adalah tempatnya — di definisi berarti mengumpulkan, di pemanggilan berarti membongkar."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `def f(x, isi=())` aman sementara `def f(x, isi=[])` berbahaya, padahal keduanya sama-sama dibuat sekali?",
+              "solution": "Keduanya memang sama-sama dibuat sekali. Bedanya pada apakah objek itu **bisa diubah**.\n\n```python\ndef dengan_tuple(x, isi=()):\n    isi = isi + (x,)      # membuat tuple BARU\n    return isi\n\nprint(dengan_tuple(1))    # (1,)\nprint(dengan_tuple(2))    # (2,)\n```\n\n`tuple` tidak punya `append`. Satu-satunya cara menambahkan sesuatu adalah membuat *tuple* baru, dan *tuple* bawaan yang asli tidak pernah tersentuh. Karena itu pemanggilan berikutnya tetap mulai dari yang kosong.\n\nPada `list`, `isi.append(x)` mengubah objek yang sama di tempatnya. Nilai bawaannya ikut berubah, dan perubahan itu terbawa selamanya.\n\nJadi aturan sesungguhnya bukan \"jangan pakai nilai bawaan\", melainkan:\n\n```\nAman      bilangan, teks, True, False, None, tuple\nBerbahaya list, dict, set, dan objek buatan sendiri yang bisa diubah\n```\n\nPerhatikan bahwa `isi = isi + (x,)` tetap aman, sedangkan `isi += [x]` pada list tidak. Untuk list, `+=` sama dengan `extend` dan mengubah di tempat, sementara `isi = isi + [x]` justru membuat list baru dan aman. Beda satu tanda, beda perilakunya."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut, lalu jelaskan kenapa `luas(**ukuran)` berhasil sementara `luas(ukuran)` gagal.\n\n```python\ndef luas(panjang, lebar):\n    return panjang * lebar\n\nukuran = {\"panjang\": 4, \"lebar\": 5}\nprint(luas(**ukuran))\nprint(luas(ukuran))\n```",
+              "solution": "Baris pertama memberi `20`. Baris kedua gagal:\n\n```\nTypeError: luas() missing 1 required positional argument: 'lebar'\n```\n\nBedanya pada apa yang sampai ke fungsinya.\n\n```\nluas(ukuran)      menyerahkan SATU nilai, yaitu dictionary-nya.\n                  Python mengisinya ke panjang, lalu lebar tidak\n                  kebagian apa-apa.\n\nluas(**ukuran)    membongkar dictionary-nya lebih dulu menjadi\n                  luas(panjang=4, lebar=5), jadi dua argumen.\n```\n\nDua bintang mencocokkan **kunci** dengan nama argumen. Karena itu kuncinya harus berupa teks dan harus sama persis dengan nama argumennya. Kunci yang tidak dikenali akan ditolak:\n\n```python\nprint(luas(**{\"panjang\": 4, \"tinggi\": 5}))\n# TypeError: luas() got an unexpected keyword argument 'tinggi'\n```\n\nPola ini sering dipakai untuk menyerahkan pengaturan yang tersimpan sebagai *dictionary*, misalnya hasil pembacaan berkas konfigurasi, langsung ke fungsi yang membutuhkannya."
+            }
+          ]
+        },
+        {
           "title": "Rekursi",
           "summary": "Fungsi yang memanggil dirinya sendiri.",
           "blocks": [
@@ -3332,6 +3447,963 @@
               "type": "TASK",
               "content": "Kenapa `fib(50)` dengan rekursi sederhana tidak selesai, padahal `faktorial(50)` selesai seketika?",
               "solution": "Karena bentuk percabangannya berbeda.\n\n`faktorial(n)` memanggil dirinya **sekali** per langkah. Untuk n = 50, totalnya 50 pemanggilan. Sangat murah.\n\n`fib(n)` memanggil dirinya **dua kali** per langkah. Jumlah pemanggilannya berlipat ganda di setiap tingkat.\n\n```\nfaktorial(50)  ->  sekitar 50 pemanggilan\nfib(50)        ->  lebih dari 20 miliar pemanggilan\n```\n\nYang membuatnya boros adalah pekerjaan yang terulang. `fib(48)` dihitung ulang berkali-kali di cabang yang berbeda, padahal jawabannya selalu sama.\n\nJalan keluarnya menyimpan jawaban yang sudah pernah dihitung agar tidak diulang. Teknik itu disebut memoisasi, dan dibahas di mata kuliah Analisis Algoritma."
+            }
+          ]
+        },
+        {
+          "title": "Type Hint",
+          "summary": "Menyebutkan tipe nilai supaya maksud kode terbaca dan kekeliruan tertangkap lebih awal.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Python tidak menuntut Anda menyebutkan tipe sebuah nilai, dan program tetap berjalan tanpanya. Tetapi menyebutkannya membuat maksud kode terbaca, membantu penyunting menawarkan pelengkapan yang benar, dan memungkinkan sebuah perkakas menemukan kekeliruan sebelum programnya dijalankan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def sapa(nama: str, ulang: int = 1) -> str:\n    return (f\"Halo, {nama}! \" * ulang).strip()\n\nprint(sapa(\"Ani\"))\nprint(sapa(\"Budi\", 3))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bacanya: `nama` diharapkan berupa teks, `ulang` berupa bilangan bulat dengan nilai bawaan 1, dan fungsinya mengembalikan teks. Tanda `->` menyebut tipe nilai kembaliannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tidak dipaksakan saat berjalan.** Ini yang paling sering disalahpahami: Python tidak memeriksanya sama sekali."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def tambah(a: int, b: int) -> int:\n    return a + b\n\nprint(tambah(2, 3))\nprint(tambah(\"ha\", \"lo\"))     # tetap jalan, tidak ada yang protes"
+            },
+            {
+              "type": "TEXT",
+              "content": "Yang memeriksanya adalah perkakas terpisah seperti *mypy*, *pyright*, atau *ty*, yang dijalankan sebelum programnya dijalankan. Anotasi itu sendiri hanyalah keterangan yang menempel pada fungsi, dan bisa dibaca kembali."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def tambah(a: int, b: int) -> int:\n    return a + b\n\nprint(tambah.__annotations__)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tipe bawaan yang sering dipakai.** Sejak Python 3.9 Anda bisa memakai tipe bawaan langsung, tanpa mengimpor apa pun."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "nama: str = \"Ani\"\numur: int = 20\nnilai: float = 87.5\nlulus: bool = True\n\nangka: list[int] = [1, 2, 3]\nskor: dict[str, int] = {\"ani\": 87}\ntitik: tuple[float, float] = (1.5, 2.5)\nunik: set[str] = {\"a\", \"b\"}\n\nprint(angka, skor, titik, unik)"
+            },
+            {
+              "type": "NOTE",
+              "content": "Tulisan lama sering memakai `List[int]` dan `Dict[str, int]` dari modul `typing`, dengan huruf besar di depan. Bentuk itu masih jalan tetapi sudah tidak dianjurkan sejak Python 3.9. Pakai `list[int]` dan `dict[str, int]` yang huruf kecil. Kalau Anda menemukan tutorial yang memakai bentuk lama, itu petunjuk bahwa tulisannya sudah usang."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Nilai yang boleh kosong.** Tanda garis tegak menyatakan beberapa kemungkinan tipe, dan `None` dituliskan apa adanya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def cari(nama: str, daftar: dict[str, int]) -> int | None:\n    return daftar.get(nama)\n\nskor = {\"ani\": 87}\nprint(cari(\"ani\", skor))\nprint(cari(\"budi\", skor))"
+            },
+            {
+              "type": "TEXT",
+              "content": "`int | None` menyatakan bahwa hasilnya mungkin bilangan, mungkin juga tidak ada. Bentuk ini jauh lebih jujur daripada membiarkan pembaca menebak, dan perkakas pemeriksa akan memperingatkan kalau hasilnya dipakai tanpa diperiksa lebih dulu."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def cari(nama: str, daftar: dict[str, int]) -> int | None:\n    return daftar.get(nama)\n\nskor = {\"ani\": 87}\n\nhasil = cari(\"budi\", skor)\nif hasil is None:\n    print(\"tidak ada datanya\")\nelse:\n    print(hasil + 10)       # aman, di sini hasil pasti bilangan"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pada data yang sesungguhnya.** Anotasi paling terasa gunanya ketika bentuk datanya mulai bersarang, dan di situlah pembaca paling mudah tersesat."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "Baris = dict[str, str | int]\n\ndef muat(baris_mentah: list[str]) -> list[Baris]:\n    hasil: list[Baris] = []\n    for baris in baris_mentah:\n        nama, nilai = baris.split(\",\")\n        hasil.append({\"nama\": nama, \"nilai\": int(nilai)})\n    return hasil\n\ndata = muat([\"ani,87\", \"budi,92\"])\nprint(data)\nprint(Baris)"
+            },
+            {
+              "type": "TEXT",
+              "content": "`Baris = dict[str, str | int]` memberi nama pada sebuah bentuk data. Setelah itu `list[Baris]` langsung terbaca sebagai \"daftar baris\", jauh lebih jelas daripada mengulang bentuk panjangnya di setiap tempat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kapan sebaiknya dipakai.** Bukan di setiap baris, melainkan di tempat yang menentukan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Beri anotasi\n  fungsi yang dipakai bagian lain dari program\n  fungsi yang argumennya mudah tertukar\n  bentuk data yang bersarang\n  nilai kembalian yang mungkin None\n\nTidak perlu\n  variabel yang tipenya sudah jelas dari nilainya\n  variabel sementara di dalam perulangan pendek\n  naskah sekali pakai"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# berlebihan, tipenya sudah jelas dari nilainya\njumlah: int = 0\nnama: str = \"Ani\"\n\n# secukupnya\njumlah = 0\nnama = \"Ani\"\n\n# berguna, karena tipenya tidak terbaca dari nilai awalnya\npenampung: dict[str, list[int]] = {}\nprint(penampung)"
+            },
+            {
+              "type": "NOTE",
+              "content": "Anotasi tidak membuat program lebih cepat. Ia juga tidak menjamin kebenaran, karena yang memeriksanya adalah perkakas terpisah yang harus Anda jalankan sendiri. Nilainya ada pada tiga hal: maksud kode jadi terbaca, penyunting bisa menawarkan pelengkapan yang tepat, dan kekeliruan tipe ditemukan sebelum programnya dijalankan."
+            },
+            {
+              "type": "TASK",
+              "content": "Beri anotasi pada fungsi berikut.\n\n```python\ndef rata(angka, bulatkan=2):\n    if not angka:\n        return None\n    return round(sum(angka) / len(angka), bulatkan)\n```",
+              "solution": "```python\ndef rata(angka: list[float], bulatkan: int = 2) -> float | None:\n    if not angka:\n        return None\n    return round(sum(angka) / len(angka), bulatkan)\n\nprint(rata([1, 2, 3]))\nprint(rata([]))\n```\n\nTiga keputusan yang perlu dijelaskan.\n\n`list[float]` dipilih, bukan `list[int]`, karena fungsinya juga benar untuk bilangan pecahan. Dalam sistem tipe Python, `int` dianggap bisa dipakai di tempat yang meminta `float`, jadi `rata([1, 2, 3])` tetap sah.\n\n`-> float | None` wajib, karena ada jalur `return None`. Kalau ditulis `-> float` saja, perkakas pemeriksa akan menandainya sebagai keliru, dan memang keliru.\n\n`bulatkan: int = 2` menyebutkan tipe sekaligus nilai bawaannya. Urutannya selalu nama, titik dua, tipe, lalu tanda sama dengan dan nilainya.\n\nAnotasi `-> float | None` inilah yang paling berguna di sini. Tanpanya, pemanggil mudah lupa bahwa hasilnya bisa kosong, lalu langsung memakainya dalam perhitungan dan baru tahu masalahnya ketika programnya berhenti."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut. Kenapa Python tidak menolak baris kedua padahal anotasinya jelas meminta bilangan?\n\n```python\ndef dua_kali(n: int) -> int:\n    return n * 2\n\nprint(dua_kali(5))\nprint(dua_kali(\"ha\"))\n```",
+              "solution": "Keluarannya `10` lalu `haha`. Keduanya berjalan tanpa keluhan.\n\nPython memperlakukan anotasi sebagai **keterangan**, bukan aturan. Saat program berjalan, anotasinya hanya disimpan di `__annotations__` dan tidak pernah diperiksa.\n\n```python\nprint(dua_kali.__annotations__)\n# {'n': <class 'int'>, 'return': <class 'int'>}\n```\n\nBaris kedua kebetulan tetap bekerja karena `\"ha\" * 2` memang sah di Python, yaitu mengulang teks. Hasilnya bukan yang dimaksud penulisnya, tetapi bukan pula galat.\n\nInilah jenis bug yang paling sulit ditemukan: program jalan, tidak ada pesan apa pun, hasilnya salah. Yang menangkapnya adalah perkakas pemeriksa tipe yang dijalankan terpisah:\n\n```\n$ mypy program.py\nerror: Argument 1 to \"dua_kali\" has incompatible type \"str\"; expected \"int\"\n```\n\nJadi anotasi hanya berguna kalau ada yang memeriksanya. Menuliskannya tanpa pernah menjalankan pemeriksa sama dengan menulis komentar yang rapi."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa beda `list[int]` dengan `List[int]`, dan mana yang sebaiknya dipakai sekarang?",
+              "solution": "Keduanya menyatakan hal yang sama, yaitu daftar berisi bilangan bulat. Bedanya pada dari mana bentuk itu berasal.\n\n```python\nfrom typing import List     # bentuk lama, perlu impor\nlama: List[int] = [1, 2, 3]\n\nbaru: list[int] = [1, 2, 3]  # bentuk sekarang, tanpa impor\n```\n\nSebelum Python 3.9, tipe bawaan seperti `list` dan `dict` tidak bisa diberi parameter, sehingga modul `typing` menyediakan versi berhuruf besar. Sejak 3.9 keterbatasan itu hilang, dan bentuk berhuruf besar menjadi tidak perlu.\n\n**Pakai yang huruf kecil.** Bentuk lama masih jalan demi kecocokan dengan kode lama, tetapi menulis kode baru dengannya cuma menambah satu baris impor tanpa manfaat.\n\nIni juga petunjuk yang berguna saat menilai tutorial. Kalau sebuah tulisan masih memakai `List`, `Dict`, dan `Optional[int]`, kemungkinan besar ia ditulis sebelum 2021 dan bagian lainnya pun perlu diperiksa ulang.\n\nSatu pasangan lagi yang berubah:\n\n```python\nfrom typing import Optional\nlama: Optional[int] = None    # bentuk lama\nbaru: int | None = None       # bentuk sekarang, sejak Python 3.10\n```"
+            },
+            {
+              "type": "TASK",
+              "content": "Bentuk data berikut muncul berulang di sebuah program. Beri nama pada bentuknya, lalu tulis anotasi fungsi yang mengolahnya.\n\n```python\ndata = [\n    {\"nama\": \"ani\", \"nilai\": [87, 92]},\n    {\"nama\": \"budi\", \"nilai\": [78]},\n]\n```",
+              "solution": "```python\nMahasiswa = dict[str, str | list[int]]\n\ndef rata_tiap(data: list[Mahasiswa]) -> dict[str, float]:\n    hasil: dict[str, float] = {}\n    for orang in data:\n        nama = orang[\"nama\"]\n        nilai = orang[\"nilai\"]\n        hasil[str(nama)] = sum(nilai) / len(nilai)\n    return hasil\n\ndata: list[Mahasiswa] = [\n    {\"nama\": \"ani\", \"nilai\": [87, 92]},\n    {\"nama\": \"budi\", \"nilai\": [78]},\n]\nprint(rata_tiap(data))\n```\n\nKeluarannya `{'ani': 89.5, 'budi': 78.0}`.\n\nMemberi nama pada bentuknya membuat `list[Mahasiswa]` langsung terbaca, jauh lebih baik daripada mengulang `list[dict[str, str | list[int]]]` di setiap tempat.\n\nTetapi perhatikan kelemahannya. Anotasi `dict[str, str | list[int]]` menyatakan bahwa **setiap** nilainya bisa berupa teks atau daftar bilangan, padahal kenyataannya `nama` selalu teks dan `nilai` selalu daftar. Perkakas pemeriksa karena itu tidak bisa membantu banyak, dan `str(nama)` di atas terpaksa ditulis untuk meyakinkannya.\n\nUntuk bentuk data seperti ini, Python menyediakan cara yang lebih tepat:\n\n```python\nfrom typing import TypedDict\n\nclass Mahasiswa(TypedDict):\n    nama: str\n    nilai: list[int]\n```\n\nSekarang tiap kunci punya tipenya sendiri. Cara lain yang sering lebih enak dipakai adalah `dataclass`, yang dibahas di bab kelas dan objek."
+            }
+          ]
+        },
+        {
+          "title": "Modul dan Paket",
+          "summary": "Memecah program menjadi beberapa berkas, dan memakai kode yang ditulis orang lain.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Sampai sini semua kode Anda tinggal dalam satu berkas. Program yang sesungguhnya tidak begitu: ia dipecah menjadi beberapa berkas, dan sebagian besar pekerjaannya diserahkan kepada kode yang ditulis orang lain."
+            },
+            {
+              "type": "TEXT",
+              "content": "Satu berkas Python adalah satu *module* (modul). Mengimpornya berarti menjalankan isinya sekali, lalu memakai nama-nama yang ada di dalamnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import math\n\nprint(math.sqrt(16))\nprint(math.pi)\nprint(math.floor(3.7), math.ceil(3.2))\nprint(math.__name__)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Empat bentuk impor**, dan masing-masing punya tempatnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import math                        # seluruh modul\nfrom math import sqrt, pi          # beberapa nama saja\nimport statistics as stat          # dengan nama panggilan\n# from math import *               # semuanya, sebaiknya dihindari\n\nprint(math.sqrt(9), sqrt(9))\nprint(stat.mean([1, 2, 3, 4]))"
+            },
+            {
+              "type": "NOTE",
+              "content": "Hindari `from modul import *`. Bentuk itu menumpahkan semua nama ke dalam berkas Anda, sehingga pembaca tidak bisa tahu sebuah nama berasal dari mana, dan nama yang sama dari dua modul akan saling menimpa tanpa peringatan. Nama panggilan yang sudah jadi kebiasaan umum tetap dipakai apa adanya, misalnya `import numpy as np` dan `import pandas as pd`."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Di mana Python mencarinya.** Urutan ini menjelaskan satu kekeliruan yang sering menjebak pemula."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Urutan tempat Python mencari sebuah modul ketika diimpor\">\n  <defs>\n    <marker id=\"pi-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"currentColor\"/>\n    </marker>\n  </defs>\n  <text x=\"24\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">URUTAN PENCARIAN SAAT ANDA MENULIS import math</text>\n\n  <g>\n    <rect x=\"24\" y=\"40\" width=\"330\" height=\"34\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.22\"/>\n    <rect x=\"24\" y=\"40\" width=\"330\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.4\"/>\n    <text x=\"40\" y=\"62\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">1. sudah pernah diimpor? sys.modules</text>\n    <text x=\"368\" y=\"62\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">langsung dipakai lagi</text>\n  </g>\n  <path d=\"M 189 74 L 189 90\" stroke=\"currentColor\" stroke-opacity=\"0.4\" marker-end=\"url(#pi-ujung)\"/>\n\n  <g>\n    <rect x=\"24\" y=\"94\" width=\"330\" height=\"34\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.2\"/>\n    <rect x=\"24\" y=\"94\" width=\"330\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"1.4\"/>\n    <text x=\"40\" y=\"116\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--kunyit)\">2. folder tempat program dijalankan</text>\n    <text x=\"368\" y=\"116\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">di sinilah bentrokan nama terjadi</text>\n  </g>\n  <path d=\"M 189 128 L 189 144\" stroke=\"currentColor\" stroke-opacity=\"0.4\" marker-end=\"url(#pi-ujung)\"/>\n\n  <g>\n    <rect x=\"24\" y=\"148\" width=\"330\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.4\"/>\n    <text x=\"40\" y=\"170\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.85\">3. folder pustaka baku</text>\n  </g>\n  <path d=\"M 189 182 L 189 198\" stroke=\"currentColor\" stroke-opacity=\"0.4\" marker-end=\"url(#pi-ujung)\"/>\n\n  <g>\n    <rect x=\"24\" y=\"202\" width=\"330\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.4\"/>\n    <text x=\"40\" y=\"224\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.85\">4. folder site-packages, hasil pemasangan</text>\n  </g>\n\n  <text x=\"368\" y=\"170\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">math, json, csv, pathlib</text>\n  <text x=\"368\" y=\"224\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">numpy, pandas, requests</text>\n</svg>",
+              "solution": "Python memeriksa folder tempat program dijalankan sebelum folder pustaka baku. Berkas buatan sendiri yang bernama sama dengan modul baku karena itu akan menang, dan menutupi yang asli."
+            },
+            {
+              "type": "TEXT",
+              "content": "Akibatnya: menamai berkas Anda `math.py`, `random.py`, atau `json.py` akan membuat `import math` mengambil berkas Anda, bukan modul baku. Pesan galat yang muncul biasanya tidak menyebut sebab sesungguhnya, dan ini termasuk jebakan yang paling lama dicari penyebabnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import sys\n\nprint(\"tempat mencari, berurutan:\")\nfor i, jalur in enumerate(sys.path[:4]):\n    print(f\"  {i}. {jalur or '(folder saat ini)'}\")\n\nprint()\nprint(\"yang sudah diimpor:\", len(sys.modules), \"modul\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pustaka baku.** Python datang dengan ratusan modul siap pakai, dan sebagian besar pekerjaan sehari-hari sudah tersedia di sana tanpa perlu memasang apa pun."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Sering dipakai di pekerjaan data\n\nmath         akar, pembulatan, tetapan\nstatistics   rata-rata, median, simpangan baku\nrandom       pengambilan acak, pengacakan\ndatetime     tanggal dan waktu\npathlib      jalur berkas\ncsv          membaca dan menulis CSV\njson         membaca dan menulis JSON\ncollections  Counter, defaultdict, deque\nitertools    kombinasi, permutasi, pengelompokan\nre           pencocokan pola teks"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "from collections import Counter\nfrom datetime import date\nimport statistics\nimport random\n\nprint(Counter(\"abracadabra\").most_common(3))\nprint(statistics.median([3, 1, 4, 1, 5]))\n\nrandom.seed(42)                       # supaya hasilnya bisa diulang\nprint(random.sample(range(1, 50), 6))\n\nlahir = date(2004, 8, 17)\nprint(\"umur sekitar\", (date.today() - lahir).days // 365, \"tahun\")"
+            },
+            {
+              "type": "NOTE",
+              "content": "`random.seed(42)` membuat deretan acaknya selalu sama setiap kali dijalankan. Ini wajib di pekerjaan data, karena hasil percobaan yang tidak bisa diulang tidak bisa diperiksa orang lain. Angka 42 tidak istimewa; yang penting angkanya dicatat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Membuat modul sendiri.** Begitu sebuah program melewati beberapa ratus baris, memecahnya menjadi beberapa berkas membuatnya jauh lebih mudah diurus."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "# berkas: hitung.py\ndef rata(angka):\n    return sum(angka) / len(angka)\n\ndef rentang(angka):\n    return max(angka) - min(angka)\n\n# berkas: main.py\n# from hitung import rata, rentang\n# print(rata([1, 2, 3]))"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Penjaga `__main__`.** Baris ini muncul di hampir semua kode Python yang serius, dan gunanya memisahkan kode yang dijalankan langsung dari kode yang diimpor."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def rata(angka):\n    return sum(angka) / len(angka)\n\nprint(\"baris ini jalan meski berkasnya diimpor\")\n\nif __name__ == \"__main__\":\n    print(\"baris ini hanya jalan kalau berkasnya dijalankan langsung\")\n    print(rata([1, 2, 3]))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Python mengisi `__name__` dengan `\"__main__\"` kalau berkasnya dijalankan langsung, dan dengan nama modulnya kalau ia diimpor. Tanpa penjaga itu, kode percobaan di dalam sebuah modul akan ikut berjalan setiap kali modul itu diimpor orang lain."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Memasang pustaka pihak ketiga.** Yang tidak ada di pustaka baku dipasang dari PyPI, lumbung paket Python."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Cara lama, masih jalan di mana-mana\n  python -m pip install requests\n\nCara yang sekarang dianjurkan, jauh lebih cepat\n  uv add requests\n\nMemeriksa apa yang sudah terpasang\n  uv pip list"
+            },
+            {
+              "type": "NOTE",
+              "content": "Jangan memasang pustaka ke Python sistem. Tiap proyek sebaiknya punya lingkungannya sendiri, supaya dua proyek yang membutuhkan versi berbeda dari pustaka yang sama tidak saling merusak. Cara menyiapkannya dibahas di bab Menata Lingkungan Kerja."
+            },
+            {
+              "type": "TASK",
+              "content": "Seorang pemula menamai berkasnya `random.py`, lalu menulis `import random` di dalamnya dan memanggil `random.randint(1, 10)`. Apa yang terjadi, dan kenapa?",
+              "solution": "Programnya gagal dengan pesan yang membingungkan:\n\n```\nAttributeError: module 'random' has no attribute 'randint'\n```\n\nSebabnya urutan pencarian modul. Python memeriksa folder tempat program dijalankan **sebelum** folder pustaka baku. Berkas `random.py` buatan sendiri karena itu ditemukan lebih dulu, dan `import random` mengambil berkas itu, bukan modul baku.\n\nBerkas itu tentu saja tidak punya `randint`, sehingga muncul `AttributeError`. Yang menyesatkan: pesannya menyebut \"module 'random'\", sehingga pembacanya menyangka modul baku Python yang rusak.\n\nMemastikannya mudah:\n\n```python\nimport random\nprint(random.__file__)\n```\n\nKalau yang muncul jalur ke berkas Anda sendiri, itulah sebabnya.\n\nPerbaikannya ganti nama berkasnya, dan hapus juga folder `__pycache__` kalau ada, karena versi terkompilasinya bisa tertinggal di sana.\n\nNama yang paling sering menimbulkan masalah: `random.py`, `math.py`, `json.py`, `csv.py`, `string.py`, `time.py`, `email.py`, dan `test.py`."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa keluaran kode berikut kalau berkasnya dijalankan langsung, dan apa yang berubah kalau ia diimpor dari berkas lain?\n\n```python\nprint(\"A\")\n\ndef kerja():\n    print(\"B\")\n\nif __name__ == \"__main__\":\n    print(\"C\")\n    kerja()\n```",
+              "solution": "Dijalankan langsung:\n\n```\nA\nC\nB\n```\n\nDiimpor dari berkas lain, misalnya `import modul_ini`:\n\n```\nA\n```\n\nYang berubah hanya isi `__name__`.\n\n```\ndijalankan langsung   __name__ == \"__main__\"   penjaganya lolos\ndiimpor               __name__ == \"modul_ini\"  penjaganya tidak lolos\n```\n\nPerhatikan bahwa `print(\"A\")` **tetap jalan** pada kedua keadaan, karena ia berada di tingkat paling luar tanpa penjaga. Inilah sebabnya kode yang bekerja, seperti mencetak atau membaca berkas, tidak boleh ditaruh di tingkat paling luar sebuah modul.\n\nDefinisi `def kerja()` juga selalu dikerjakan, tetapi isinya tidak. Mendefinisikan fungsi hanya membuat namanya tersedia; badannya baru berjalan saat dipanggil.\n\nPola ini dipakai supaya satu berkas bisa berperan ganda: sebagai program yang dijalankan, sekaligus sebagai modul yang menyediakan fungsinya untuk berkas lain."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis kode yang menghitung sepuluh kata paling sering muncul dari sebuah kalimat, memakai pustaka baku saja.",
+              "solution": "```python\nfrom collections import Counter\nimport re\n\nteks = \"\"\"Data adalah bahan mentah. Analisis data mengubah data\nmenjadi keputusan. Tanpa data, keputusan hanyalah dugaan.\"\"\"\n\nkata = re.findall(r\"[a-z]+\", teks.lower())\ncacah = Counter(kata)\n\nfor kata_itu, jumlah in cacah.most_common(5):\n    print(f\"{kata_itu:<12} {jumlah}\")\n```\n\nKeluarannya:\n\n```\ndata         4\nkeputusan    2\nadalah       1\nbahan        1\nmentah       1\n```\n\nTiga bagiannya bekerja bersama.\n\n`teks.lower()` menyamakan huruf besar dan kecil, sehingga `Data` dan `data` terhitung sebagai kata yang sama.\n\n`re.findall(r\"[a-z]+\", ...)` mengambil hanya deretan huruf, sehingga titik dan koma terbuang dengan sendirinya. Memakai `split()` saja akan menyisakan `\"mentah.\"` beserta titiknya, dan kata itu terhitung berbeda dari `\"mentah\"`.\n\n`Counter.most_common(5)` sudah mengurutkan dari yang terbanyak, jadi tidak perlu `sorted` sendiri.\n\nUntuk teks berbahasa Indonesia yang sungguhan, polanya perlu diperlebar menjadi `[a-zA-Z]+` atau yang mengenali huruf beraksen. Dan kata umum seperti `yang`, `di`, dan `dan` biasanya dibuang lebih dulu, karena ia selalu menang jumlah tanpa membawa arti. Daftar kata semacam itu disebut *stop words*, dan akan dibahas lagi di jalur pemrosesan bahasa."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `from modul import *` sebaiknya dihindari? Berikan satu contoh keadaan yang merugikan.",
+              "solution": "Tiga alasan, dan yang ketiga paling berbahaya.\n\n**Pembaca tidak tahu sebuah nama berasal dari mana.** Melihat `sqrt(x)` di tengah berkas, pembaca tidak bisa memastikan apakah itu dari `math`, dari `numpy`, atau fungsi buatan sendiri di berkas lain.\n\n**Penyunting kehilangan jejaknya.** Pelengkapan otomatis dan penelusuran definisi bekerja jauh lebih buruk, karena namanya tidak tertulis di mana pun.\n\n**Nama yang sama saling menimpa tanpa peringatan.** Contohnya:\n\n```python\nfrom math import *\nfrom numpy import *\n\nprint(sqrt(-1))\n```\n\nKeduanya punya `sqrt`. Yang diimpor belakangan menang, sehingga yang terpakai adalah milik `numpy`. Perbedaannya nyata: `math.sqrt(-1)` menghentikan program dengan `ValueError`, sedangkan versi `numpy` mengembalikan `nan` beserta sebuah peringatan.\n\nJadi menukar urutan dua baris impor di atas mengubah perilaku program, dan tidak ada apa pun di tempat pemakaiannya yang menunjukkan hal itu.\n\nBentuk yang jelas:\n\n```python\nimport math\nimport numpy as np\n\nprint(np.sqrt(-1))      # jelas milik siapa\n```\n\nSatu pengecualian yang diterima umum: beberapa pustaka memang dirancang untuk diimpor begitu dan menyediakan daftar `__all__` yang membatasi apa yang tertumpah. Bahkan dalam kasus itu, menyebut namanya satu per satu tetap lebih jelas."
+            }
+          ]
+        },
+        {
+          "title": "Menangani Galat",
+          "summary": "Membuat program tetap waras ketika yang diharapkan tidak terjadi.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Program yang hanya benar ketika semuanya berjalan lancar belum selesai ditulis. Berkas bisa tidak ada, pengguna bisa mengetik huruf ketika yang diminta angka, dan jaringan bisa putus di tengah. Python menyediakan cara menangani keadaan itu tanpa membuat kodenya penuh pemeriksaan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "masukan = \"dua puluh\"\n\ntry:\n    umur = int(masukan)\n    print(\"umur:\", umur)\nexcept ValueError:\n    print(\"itu bukan angka\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Baris di dalam `try` dijalankan seperti biasa. Begitu ada yang gagal, sisanya dilewati dan Python mencari blok `except` yang cocok dengan jenis galatnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tangkap yang spesifik.** Menangkap semua galat sekaligus menyembunyikan kekeliruan yang seharusnya Anda ketahui."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def bagi(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return None\n    except TypeError:\n        return \"bukan angka\"\n\nprint(bagi(10, 2))\nprint(bagi(10, 0))\nprint(bagi(10, \"x\"))"
+            },
+            {
+              "type": "NOTE",
+              "content": "`except:` tanpa menyebut jenisnya, atau `except Exception:` yang terlalu luas, akan ikut menelan kekeliruan ketik, galat pemrograman, dan bahkan penekanan Ctrl+C. Akibatnya program terlihat berjalan padahal ada yang rusak di dalamnya. Sebutkan jenis galat yang memang Anda harapkan; biarkan sisanya menghentikan program supaya Anda tahu."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Membaca keterangan galatnya.** Objek galatnya bisa diambil dan dibaca isinya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "for masukan in [\"20\", \"dua puluh\", \"\"]:\n    try:\n        print(int(masukan))\n    except ValueError as e:\n        print(f\"{masukan!r:<12} gagal: {e}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**`else` dan `finally`.** Dua bagian tambahan yang sering terlewat padahal memperjelas maksud."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 270\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Jalannya try, except, else, dan finally pada dua keadaan: berhasil dan gagal\">\n  <defs>\n    <marker id=\"pg-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"currentColor\"/>\n    </marker>\n  </defs>\n\n  <text x=\"24\" y=\"22\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--nila)\">BERHASIL</text>\n  <g>\n    <rect x=\"24\" y=\"34\" width=\"110\" height=\"34\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.22\"/>\n    <rect x=\"24\" y=\"34\" width=\"110\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.3\"/>\n    <text x=\"79\" y=\"56\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">try</text>\n\n    <rect x=\"168\" y=\"34\" width=\"110\" height=\"34\" rx=\"3\" fill=\"currentColor\" opacity=\"0.05\"/>\n    <rect x=\"168\" y=\"34\" width=\"110\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.25\" stroke-dasharray=\"4 3\"/>\n    <text x=\"223\" y=\"56\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.35\">except</text>\n\n    <rect x=\"312\" y=\"34\" width=\"110\" height=\"34\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.22\"/>\n    <rect x=\"312\" y=\"34\" width=\"110\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.3\"/>\n    <text x=\"367\" y=\"56\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">else</text>\n\n    <rect x=\"456\" y=\"34\" width=\"110\" height=\"34\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.22\"/>\n    <rect x=\"456\" y=\"34\" width=\"110\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"1.3\"/>\n    <text x=\"511\" y=\"56\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--kunyit)\">finally</text>\n  </g>\n  <g stroke=\"var(--nila)\" stroke-opacity=\"0.5\" fill=\"none\">\n    <path d=\"M 134 51 L 162 51\" stroke-dasharray=\"3 3\"/>\n    <path d=\"M 134 51 L 134 86 L 367 86 L 367 72\" marker-end=\"url(#pg-ujung)\"/>\n    <path d=\"M 422 51 L 450 51\" marker-end=\"url(#pg-ujung)\"/>\n  </g>\n  <text x=\"200\" y=\"100\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">except dilewati</text>\n\n  <line x1=\"24\" y1=\"126\" x2=\"576\" y2=\"126\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n\n  <text x=\"24\" y=\"152\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--kunyit)\">GAGAL DI TENGAH try</text>\n  <g>\n    <rect x=\"24\" y=\"164\" width=\"110\" height=\"34\" rx=\"3\" fill=\"var(--nila)\" opacity=\"0.22\"/>\n    <rect x=\"24\" y=\"164\" width=\"110\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.3\"/>\n    <text x=\"79\" y=\"186\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">try</text>\n\n    <rect x=\"168\" y=\"164\" width=\"110\" height=\"34\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.28\"/>\n    <rect x=\"168\" y=\"164\" width=\"110\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"1.4\"/>\n    <text x=\"223\" y=\"186\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--kunyit)\">except</text>\n\n    <rect x=\"312\" y=\"164\" width=\"110\" height=\"34\" rx=\"3\" fill=\"currentColor\" opacity=\"0.05\"/>\n    <rect x=\"312\" y=\"164\" width=\"110\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-opacity=\"0.25\" stroke-dasharray=\"4 3\"/>\n    <text x=\"367\" y=\"186\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.35\">else</text>\n\n    <rect x=\"456\" y=\"164\" width=\"110\" height=\"34\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.22\"/>\n    <rect x=\"456\" y=\"164\" width=\"110\" height=\"34\" rx=\"3\" fill=\"none\" stroke=\"var(--kunyit)\" stroke-width=\"1.3\"/>\n    <text x=\"511\" y=\"186\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--kunyit)\">finally</text>\n  </g>\n  <g stroke=\"var(--kunyit)\" stroke-opacity=\"0.65\" fill=\"none\">\n    <path d=\"M 134 181 L 162 181\" marker-end=\"url(#pg-ujung)\"/>\n    <path d=\"M 278 181 L 278 216 L 511 216 L 511 202\" marker-end=\"url(#pg-ujung)\"/>\n  </g>\n  <text x=\"330\" y=\"230\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">else dilewati</text>\n\n  <text x=\"24\" y=\"258\" font-family=\"system-ui, sans-serif\" font-size=\"11.5\" fill=\"var(--kunyit)\">finally selalu dijalankan, pada kedua keadaan.</text>\n</svg>",
+              "solution": "Blok else hanya jalan ketika try selesai tanpa galat, dan finally selalu jalan pada kedua keadaan. Keduanya memisahkan jalur normal dari jalur pembersihan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def baca_angka(teks):\n    try:\n        n = int(teks)\n    except ValueError:\n        print(\"  gagal diubah\")\n        return None\n    else:\n        print(\"  berhasil, lanjut diolah\")\n        return n * 2\n    finally:\n        print(\"  selesai, apa pun hasilnya\")\n\nprint(\"masukan '21':\"); print(\" ->\", baca_angka(\"21\"))\nprint(\"masukan 'x':\");  print(\" ->\", baca_angka(\"x\"))"
+            },
+            {
+              "type": "TEXT",
+              "content": "`else` menampung kode yang hanya masuk akal kalau `try` berhasil, sehingga blok `try` bisa dijaga tetap sependek mungkin. `finally` menampung pembersihan yang wajib terjadi, misalnya menutup berkas atau sambungan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Melempar galat sendiri.** Fungsi yang menerima nilai tidak masuk akal sebaiknya berhenti dan mengatakannya, bukan diam-diam mengembalikan hasil yang salah."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def akar(n):\n    if n < 0:\n        raise ValueError(f\"akar bilangan negatif tidak didukung: {n}\")\n    return n ** 0.5\n\nprint(akar(16))\ntry:\n    akar(-4)\nexcept ValueError as e:\n    print(\"ditolak:\", e)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pilih jenis galat yang sudah ada sebelum membuat yang baru. `ValueError` untuk nilai yang salah, `TypeError` untuk tipe yang salah, `KeyError` untuk kunci yang tidak ada, `FileNotFoundError` untuk berkas yang hilang."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Galat buatan sendiri.** Berguna ketika pemanggil perlu membedakan kegagalan Anda dari kegagalan lain."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "class DataTidakLengkap(Exception):\n    pass\n\ndef olah(baris):\n    bagian = baris.split(\",\")\n    if len(bagian) != 3:\n        raise DataTidakLengkap(f\"butuh 3 kolom, dapat {len(bagian)}: {baris!r}\")\n    return bagian\n\nfor baris in [\"a,b,c\", \"a,b\"]:\n    try:\n        print(olah(baris))\n    except DataTidakLengkap as e:\n        print(\"dilewati:\", e)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Minta maaf, bukan minta izin.** Python lebih condong ke mencoba lalu menangkap kegagalannya daripada memeriksa semua syarat lebih dulu."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "data = {\"ani\": 87}\n\n# memeriksa dulu\nif \"budi\" in data:\n    nilai = data[\"budi\"]\nelse:\n    nilai = 0\nprint(nilai)\n\n# mencoba lalu menangkap, lebih lazim di Python\ntry:\n    nilai = data[\"budi\"]\nexcept KeyError:\n    nilai = 0\nprint(nilai)\n\n# untuk kasus ini sebenarnya ada yang lebih singkat\nprint(data.get(\"budi\", 0))"
+            },
+            {
+              "type": "NOTE",
+              "content": "Jangan memakai `try` untuk hal yang punya cara langsung. `d.get(k, bawaan)` lebih jelas daripada membungkus `d[k]` dengan `try`. Penanganan galat dipakai untuk keadaan yang memang di luar kendali Anda, seperti berkas yang hilang atau masukan pengguna yang tidak terduga."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa keluaran kode berikut, dan kenapa barisnya muncul dalam urutan itu?\n\n```python\ndef f():\n    try:\n        return \"dari try\"\n    finally:\n        print(\"finally jalan\")\n\nprint(f())\n```",
+              "solution": "Keluarannya:\n\n```\nfinally jalan\ndari try\n```\n\n`finally` jalan **sebelum** nilainya benar-benar dikembalikan, meski `return` sudah ditulis di dalam `try`.\n\nUrutan sesungguhnya:\n\n```\n1. try dijalankan, nilainya \"dari try\" disiapkan\n2. sebelum keluar dari fungsi, finally dikerjakan\n3. baru nilainya dikembalikan ke pemanggil\n4. print() di luar mencetaknya\n```\n\nInilah yang membuat `finally` bisa diandalkan untuk pembersihan: ia tetap jalan meski ada `return`, `break`, atau galat yang tidak tertangkap.\n\nSatu hal yang perlu diwaspadai. Kalau `finally` sendiri punya `return`, nilainya akan **menimpa** nilai dari `try`:\n\n```python\ndef g():\n    try:\n        return \"A\"\n    finally:\n        return \"B\"\n\nprint(g())    # B, bukan A\n```\n\nPerilaku ini membingungkan pembaca dan hampir selalu tidak disengaja. Jangan menaruh `return` di dalam `finally`."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis fungsi `ke_angka(teks)` yang mengembalikan bilangan kalau bisa, dan `None` kalau tidak. Uji dengan `\"42\"`, `\"3.14\"`, `\"abc\"`, dan `\"\"`.",
+              "solution": "```python\ndef ke_angka(teks):\n    try:\n        return int(teks)\n    except ValueError:\n        pass\n    try:\n        return float(teks)\n    except ValueError:\n        return None\n\nfor contoh in [\"42\", \"3.14\", \"abc\", \"\", \"  7  \", \"1e3\"]:\n    print(f\"{contoh!r:<8} -> {ke_angka(contoh)!r}\")\n```\n\nKeluarannya:\n\n```\n'42'     -> 42\n'3.14'   -> 3.14\n'abc'    -> None\n''       -> None\n'  7  '  -> 7\n'1e3'    -> 1000.0\n```\n\nUrutannya penting. `int` dicoba lebih dulu supaya `\"42\"` menghasilkan bilangan bulat, bukan `42.0`. Kalau `float` yang dicoba duluan, semua hasilnya jadi pecahan.\n\nDua hal yang mungkin mengejutkan. Spasi di ujung diterima, karena `int` dan `float` memang membuangnya sendiri. Dan `\"1e3\"` diterima oleh `float` sebagai notasi ilmiah, menghasilkan 1000.0.\n\nKenapa tidak memakai `isdigit()` saja?\n\n```python\nprint(\"3.14\".isdigit())    # False, padahal bilangan yang sah\nprint(\"-5\".isdigit())      # False, tanda minusnya tidak terhitung\nprint(\"١٢٣\".isdigit())      # True, angka Arab-Hindi\n```\n\n`isdigit` menjawab pertanyaan yang berbeda dari \"bisakah ini jadi bilangan\". Mencoba mengubah lalu menangkap kegagalannya jauh lebih jujur."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `except Exception:` yang membungkus seluruh program itu berbahaya? Berikan contoh kerugiannya.",
+              "solution": "Karena ia menelan kekeliruan yang seharusnya Anda ketahui, dan programnya tetap terlihat berjalan.\n\n```python\ndef olah_semua(data):\n    hasil = []\n    for baris in data:\n        try:\n            hasil.append(int(baris) * 2)\n        except Exception:\n            continue\n    return hasil\n\nprint(olah_semua([\"1\", \"2\", \"x\", \"4\"]))\n```\n\nHasilnya `[2, 4, 8]`, dan baris `\"x\"` terlewati diam-diam. Sejauh ini masih terlihat wajar.\n\nSekarang bayangkan ada kekeliruan ketik di dalamnya:\n\n```python\nhasil.appned(int(baris) * 2)     # salah ketik\n```\n\nDengan `except Exception:`, `AttributeError` dari salah ketik itu **ikut tertangkap**. Fungsinya mengembalikan list kosong, tanpa satu pesan pun, dan Anda akan menghabiskan waktu lama mencari kenapa datanya hilang.\n\nKerugian lain: `except Exception` juga menelan `MemoryError` dan galat yang menandakan sistemnya bermasalah, sehingga program berjalan dalam keadaan rusak.\n\nYang benar, sebutkan yang memang Anda harapkan:\n\n```python\ntry:\n    hasil.append(int(baris) * 2)\nexcept ValueError:\n    continue\n```\n\nSekarang `\"x\"` tetap dilewati, tetapi salah ketik langsung menghentikan program dan menunjukkan barisnya.\n\nKalau Anda memang perlu menangkap luas, misalnya pada program yang harus tetap hidup, catat galatnya jangan dibuang:\n\n```python\nexcept Exception as e:\n    print(f\"dilewati karena {type(e).__name__}: {e}\")\n```"
+            },
+            {
+              "type": "TASK",
+              "content": "Kapan sebaiknya membuat kelas galat sendiri, dan kapan cukup memakai yang sudah ada?",
+              "solution": "Patokannya: **apakah pemanggil perlu membedakan kegagalan ini dari kegagalan lain?**\n\nPakai yang sudah ada kalau artinya sudah pas.\n\n```\nValueError          nilainya salah, tipenya benar\nTypeError           tipenya salah\nKeyError            kunci tidak ada\nIndexError          indeks di luar batas\nFileNotFoundError   berkas tidak ada\n```\n\nMembuat `NilaiNegatifError` untuk menggantikan `ValueError` cuma menambah nama tanpa menambah keterangan, dan memaksa pemanggil mengimpor kelas Anda.\n\nBuat sendiri kalau pemanggil perlu menanganinya secara berbeda:\n\n```python\nclass KonfigurasiRusak(Exception):\n    pass\n\nclass SumberTidakTerjangkau(Exception):\n    pass\n```\n\nSekarang pemanggil bisa memilih tindakannya:\n\n```python\ntry:\n    muat()\nexcept KonfigurasiRusak:\n    print(\"berhenti, berkas pengaturannya perlu diperbaiki\")\nexcept SumberTidakTerjangkau:\n    print(\"coba lagi beberapa saat\")\n```\n\nDengan `ValueError` untuk keduanya, pembedaan itu tidak mungkin dilakukan tanpa membaca teks pesannya, dan membaca teks pesan untuk mengambil keputusan adalah cara yang rapuh.\n\nKebiasaan yang baik pada pustaka: buat satu kelas induk untuk seluruh galat pustaka Anda, lalu turunkan yang lain darinya. Pemanggil bisa menangkap semuanya sekaligus atau satu per satu, sesuai kebutuhannya."
+            }
+          ]
+        },
+        {
+          "title": "Membaca dan Menulis Berkas",
+          "summary": "Mengambil data dari luar program, dan menyimpan hasilnya kembali.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Data yang Anda olah hampir tidak pernah ditulis langsung di dalam kode. Ia datang dari berkas, dan hasilnya kembali disimpan sebagai berkas."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# menulis, lalu membaca kembali\nwith open(\"catatan.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"baris pertama\\n\")\n    f.write(\"baris kedua\\n\")\n\nwith open(\"catatan.txt\", encoding=\"utf-8\") as f:\n    isi = f.read()\n\nprint(repr(isi))"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Selalu pakai `with`.** Ia menutup berkasnya sendiri, bahkan ketika terjadi galat di tengah. Tanpa itu, berkas bisa tertinggal terbuka dan isinya belum tentu tersimpan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# jangan begini\nf = open(\"catatan.txt\", encoding=\"utf-8\")\nisi = f.read()\nf.close()          # terlewat kalau ada galat di atasnya\n\n# begini\nwith open(\"catatan.txt\", encoding=\"utf-8\") as f:\n    isi = f.read()\n\nprint(\"sudah tertutup:\", f.closed)"
+            },
+            {
+              "type": "NOTE",
+              "content": "Sebutkan `encoding=\"utf-8\"` secara tegas. Sampai Python 3.14, pengodean bawaannya mengikuti pengaturan sistem, sehingga berkas yang ditulis di satu komputer bisa gagal dibaca di komputer lain. Python 3.15 menjadikan UTF-8 sebagai bawaan, tetapi menuliskannya tetap lebih aman karena kode Anda mungkin dijalankan di versi lama."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tiga mode yang perlu Anda bedakan.**"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "\"r\"   membaca, bawaan. Gagal kalau berkasnya tidak ada\n\"w\"   menulis. MENGOSONGKAN isinya lebih dulu\n\"a\"   menambah di akhir, isi lama dipertahankan"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "with open(\"log.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"awal\\n\")\n\nwith open(\"log.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(\"tambahan\\n\")\n\nwith open(\"log.txt\", encoding=\"utf-8\") as f:\n    print(f.read())\n\n# \"w\" akan menghapus semuanya\nwith open(\"log.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"isinya hilang\\n\")\n\nwith open(\"log.txt\", encoding=\"utf-8\") as f:\n    print(f.read())"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Membaca baris demi baris.** Untuk berkas besar, jangan memanggil `read()` yang memuat seluruh isinya ke memori sekaligus."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "with open(\"angka.txt\", \"w\", encoding=\"utf-8\") as f:\n    for i in range(1, 6):\n        f.write(f\"{i * 10}\\n\")\n\ntotal = 0\nwith open(\"angka.txt\", encoding=\"utf-8\") as f:\n    for baris in f:                 # satu baris pada satu waktu\n        total += int(baris.strip())\nprint(\"total:\", total)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan `strip()`. Tiap baris yang dibaca masih membawa tanda baris baru di ujungnya, dan `int(\"10\\n\")` kebetulan berhasil sementara banyak hal lain tidak."
+            },
+            {
+              "type": "TEXT",
+              "content": "**pathlib untuk jalur berkas.** Modul `pathlib` menggantikan cara lama yang menyambung jalur sebagai teks."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "from pathlib import Path\n\nberkas = Path(\"data\") / \"mentah\" / \"nilai.csv\"\nprint(berkas)\nprint(\"nama        :\", berkas.name)\nprint(\"tanpa akhiran:\", berkas.stem)\nprint(\"akhiran     :\", berkas.suffix)\nprint(\"foldernya   :\", berkas.parent)\nprint(\"ada?        :\", berkas.exists())"
+            },
+            {
+              "type": "TEXT",
+              "content": "Tanda garis miring di antara dua `Path` menyambungnya dengan pemisah yang benar untuk sistem operasinya, jadi kode yang sama jalan di Windows maupun Linux. Menyambung jalur dengan `+` dan `\"/\"` sendiri adalah sumber bug yang klasik."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "from pathlib import Path\n\nfolder = Path(\"contoh\")\nfolder.mkdir(exist_ok=True)\n\n(folder / \"a.txt\").write_text(\"isi A\\n\", encoding=\"utf-8\")\n(folder / \"b.txt\").write_text(\"isi B\\n\", encoding=\"utf-8\")\n\nfor p in sorted(folder.glob(\"*.txt\")):\n    print(p.name, \"->\", repr(p.read_text(encoding=\"utf-8\")))"
+            },
+            {
+              "type": "TEXT",
+              "content": "`write_text` dan `read_text` adalah jalan pintas untuk berkas kecil, dan keduanya menutup berkasnya sendiri. Untuk berkas besar tetap pakai `with open`."
+            },
+            {
+              "type": "TEXT",
+              "content": "**CSV.** Jangan memecah sendiri dengan `split(\",\")`. Nilai yang mengandung koma di dalam tanda kutip akan terpecah salah, dan itu terjadi lebih sering daripada dugaan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import csv\n\nbaris = [\n    [\"nama\", \"kota\", \"nilai\"],\n    [\"Ani\", \"Bandung\", 87],\n    [\"Budi\", \"Jakarta, Pusat\", 92],      # ada koma di dalam nilainya\n]\n\nwith open(\"nilai.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    csv.writer(f).writerows(baris)\n\nprint(\"--- isi mentahnya\")\nwith open(\"nilai.csv\", encoding=\"utf-8\") as f:\n    print(f.read())\n\nprint(\"--- dibaca dengan csv\")\nwith open(\"nilai.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    for r in csv.reader(f):\n        print(r)\n\nprint(\"--- dipecah sendiri, salah\")\nfor b in open(\"nilai.csv\", encoding=\"utf-8\").read().splitlines():\n    print(b.split(\",\"))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Baris Budi punya koma di dalam nama kotanya. Modul `csv` membacanya sebagai satu nilai, sedangkan `split(\",\")` memecahnya menjadi dua kolom dan merusak seluruh barisnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import csv\n\n# DictReader memberi tiap baris sebagai dictionary, jauh lebih terbaca\nwith open(\"nilai.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    for baris in csv.DictReader(f):\n        print(f\"{baris['nama']:<6} {baris['kota']:<16} {baris['nilai']}\")"
+            },
+            {
+              "type": "NOTE",
+              "content": "`newline=\"\"` pada `open` untuk CSV bukan hiasan. Tanpa itu, di Windows akan muncul baris kosong di antara setiap baris data, karena tanda baris baru diterjemahkan dua kali. Ini disebutkan langsung di dokumentasi modul `csv`."
+            },
+            {
+              "type": "TEXT",
+              "content": "**JSON.** Bentuk pertukaran data yang paling umum di antarmuka web."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import json\n\ndata = {\"nama\": \"Ani\", \"nilai\": [87, 92], \"lulus\": True, \"catatan\": None}\n\nteks = json.dumps(data, indent=2, ensure_ascii=False)\nprint(teks)\n\nkembali = json.loads(teks)\nprint(kembali[\"nilai\"], type(kembali[\"lulus\"]), kembali[\"catatan\"])"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan terjemahan tipenya: `True` menjadi `true`, `None` menjadi `null`, dan *tuple* menjadi daftar. Setelah dibaca kembali, *tuple* tidak kembali menjadi *tuple*."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa bedanya mode `\"w\"` dan `\"a\"`, dan apa yang terjadi pada kode berikut?\n\n```python\nwith open(\"x.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"satu\\n\")\nwith open(\"x.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"dua\\n\")\nprint(open(\"x.txt\", encoding=\"utf-8\").read())\n```",
+              "solution": "Keluarannya hanya `dua`.\n\nMode `\"w\"` **mengosongkan berkasnya** saat dibuka, sebelum satu bita pun ditulis. Pembukaan kedua karena itu menghapus `satu`, lalu menulis `dua` ke berkas yang sudah kosong.\n\n```\n\"w\"   kosongkan dulu, lalu tulis\n\"a\"   jangan dikosongkan, tulis di akhir\n```\n\nDengan `\"a\"` pada pembukaan kedua, hasilnya menjadi:\n\n```\nsatu\ndua\n```\n\nIni jebakan yang mahal. Membuka berkas data dengan `\"w\"` untuk sekadar menambahkan satu baris akan menghapus seluruh isinya, dan tidak ada peringatan apa pun.\n\nSatu mode lagi yang berguna sebagai pengaman:\n\n```python\nwith open(\"x.txt\", \"x\", encoding=\"utf-8\") as f:\n    ...\n# FileExistsError kalau berkasnya sudah ada\n```\n\nMode `\"x\"` menolak menimpa. Pakai itu ketika menimpa berkas lama memang tidak pernah Anda inginkan."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis kode yang membaca `nilai.csv` dan menghitung rata-rata nilainya, dengan melewati baris yang nilainya tidak bisa diubah menjadi angka.",
+              "solution": "```python\nimport csv\n\nbaris = [\n    [\"nama\", \"nilai\"],\n    [\"Ani\", \"87\"],\n    [\"Budi\", \"kosong\"],\n    [\"Citra\", \"92\"],\n]\nwith open(\"uji.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    csv.writer(f).writerows(baris)\n\nangka = []\ndilewati = []\nwith open(\"uji.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    for b in csv.DictReader(f):\n        try:\n            angka.append(int(b[\"nilai\"]))\n        except ValueError:\n            dilewati.append(b[\"nama\"])\n\nprint(f\"terbaca  : {len(angka)} baris\")\nprint(f\"dilewati : {dilewati}\")\nprint(f\"rata-rata: {sum(angka) / len(angka):.1f}\" if angka else \"tidak ada data\")\n```\n\nKeluarannya:\n\n```\nterbaca  : 2 baris\ndilewati : ['Budi']\nrata-rata: 89.5\n```\n\nTiga keputusan yang membuat kode ini layak dipakai.\n\n`DictReader` dipakai sehingga kolomnya dirujuk dengan namanya, bukan dengan nomor. Kalau urutan kolom di berkasnya berubah, kode ini tetap benar.\n\n`except ValueError` menyebut jenis galatnya, bukan menangkap semuanya. Kolom yang tidak ada akan memunculkan `KeyError` dan tetap menghentikan program, dan itu memang yang Anda inginkan.\n\nBaris yang dilewati **dicatat namanya**, tidak dibuang diam-diam. Data yang hilang tanpa jejak adalah salah satu sebab laporan tidak bisa dipercaya."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `split(\",\")` berbahaya untuk membaca CSV? Tunjukkan satu baris yang merusaknya.",
+              "solution": "Karena koma di dalam sebuah nilai tidak bisa dibedakan dari koma pemisah kolom.\n\n```python\nbaris = 'Budi,\"Jakarta, Pusat\",92'\n\nprint(baris.split(\",\"))\n# ['Budi', '\"Jakarta', ' Pusat\"', '92']   empat bagian, seharusnya tiga\n\nimport csv, io\nprint(next(csv.reader(io.StringIO(baris))))\n# ['Budi', 'Jakarta, Pusat', '92']        benar\n```\n\nAturan CSV menyatakan bahwa nilai yang mengandung koma dibungkus tanda kutip, dan koma di dalam kutip itu bukan pemisah. `split` tidak tahu aturan itu; ia hanya memotong di setiap koma.\n\nAkibatnya bukan sekadar satu nilai salah. Jumlah kolomnya berubah, sehingga pembongkaran seperti `nama, kota, nilai = baris.split(\",\")` langsung gagal, atau lebih buruk, nilainya bergeser dan terbaca di kolom yang salah tanpa galat apa pun.\n\nHal lain yang ditangani modul `csv` dan tidak ditangani `split`:\n\n```\n\"Ani \"\"Si Jago\"\" Wijaya\"     tanda kutip di dalam nilai\n\"Baris satu\nbaris dua\"                    baris baru di dalam satu nilai\n;  atau  \\t                   pemisah selain koma\n```\n\nData sungguhan memuat ketiganya lebih sering daripada dugaan, terutama data yang pernah lewat Excel."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `pathlib` lebih dianjurkan daripada menyambung jalur sebagai teks?",
+              "solution": "Tiga alasan, dan yang pertama paling sering menggigit.\n\n**Pemisah jalurnya berbeda antar sistem.**\n\n```python\nfrom pathlib import Path\n\njalur = Path(\"data\") / \"mentah\" / \"nilai.csv\"\nprint(jalur)\n# Windows : data\\mentah\\nilai.csv\n# Linux   : data/mentah/nilai.csv\n```\n\nMenulis `\"data\" + \"/\" + \"mentah\"` kebetulan jalan di Windows juga, tetapi menulis `\"data\\\\mentah\"` tidak akan jalan di Linux. `pathlib` memilih yang benar sendiri.\n\n**Penyambungan teks mudah salah di sambungannya.**\n\n```python\nfolder = \"data/\"\nnama = \"/nilai.csv\"\nprint(folder + nama)          # 'data//nilai.csv', ada dua garis\nprint(Path(folder) / nama.lstrip(\"/\"))\n```\n\nGaris miring ganda sering masih bekerja, tetapi tidak selalu, dan ia muncul di pesan galat sehingga menyulitkan penelusuran.\n\n**Operasi yang sering dibutuhkan sudah tersedia.**\n\n```python\np = Path(\"data/nilai.csv\")\np.name        # 'nilai.csv'\np.stem        # 'nilai'\np.suffix      # '.csv'\np.parent      # Path('data')\np.exists()\np.with_suffix(\".json\")\n```\n\nDengan teks biasa, setiap baris di atas butuh pemanggilan `os.path` tersendiri, dan sebagian menuntut pemotongan teks dengan tangan.\n\nCatatan jujur: `pathlib` ditulis dalam Python murni, jadi sedikit lebih lambat daripada `os.path`. Selisihnya baru terasa pada program yang menyentuh ratusan ribu jalur; untuk hampir semua keperluan, keterbacaannya jauh lebih berharga."
+            }
+          ]
+        },
+        {
+          "title": "Iterator dan Generator",
+          "summary": "Mengolah data yang lebih besar daripada memori yang tersedia.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Perulangan `for` bisa menelusuri list, *tuple*, teks, *dictionary*, dan berkas. Keempatnya bentuknya berbeda, tetapi Python memperlakukannya lewat satu kesepakatan yang sama, dan memahami kesepakatan itu membuka cara mengolah data yang tidak muat di memori."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Iterator.** Sesuatu yang bisa ditelusuri menyediakan *iterator*, dan *iterator* menyerahkan anggotanya satu per satu lewat `next`."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "angka = [10, 20, 30]\nit = iter(angka)\n\nprint(next(it))\nprint(next(it))\nprint(next(it))\ntry:\n    next(it)\nexcept StopIteration:\n    print(\"habis\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perulangan `for` sebenarnya mengerjakan persis itu: memanggil `iter`, lalu `next` berulang kali sampai muncul `StopIteration`. Semua yang bisa ditelusuri `for` hanyalah hal yang memenuhi kesepakatan ini."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Generator.** Fungsi yang memakai `yield` alih-alih `return` menghasilkan *iterator* tanpa Anda perlu menulis `iter` dan `next` sendiri."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def hitung_mundur(n):\n    while n > 0:\n        yield n\n        n -= 1\n\nfor x in hitung_mundur(3):\n    print(x)\n\nprint(list(hitung_mundur(5)))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perbedaan `yield` dengan `return` terletak pada apa yang terjadi setelahnya. `return` mengakhiri fungsinya; `yield` menyerahkan satu nilai lalu **membekukan** fungsinya di tempat itu, dan melanjutkannya ketika nilai berikutnya diminta."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def dengan_jejak():\n    print(\"  mulai\")\n    yield 1\n    print(\"  lanjut setelah yield pertama\")\n    yield 2\n    print(\"  selesai\")\n\ng = dengan_jejak()\nprint(\"generator dibuat, badannya belum jalan sama sekali\")\nprint(\"minta pertama :\", next(g))\nprint(\"minta kedua   :\", next(g))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bahwa `print(\"  mulai\")` baru jalan ketika nilai pertama diminta, bukan ketika generatornya dibuat. Inilah yang disebut perhitungan yang ditunda."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 250\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Perbandingan list yang menyiapkan seluruh nilai lebih dulu dengan generator yang menghitung satu per satu\">\n  <defs>\n    <marker id=\"pgn-ujung\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\"\n            markerWidth=\"5\" markerHeight=\"5\" orient=\"auto-start-reverse\">\n      <path d=\"M 0 0 L 10 5 L 0 10 z\" fill=\"currentColor\"/>\n    </marker>\n  </defs>\n\n  <text x=\"24\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--kunyit)\">LIST &#8212; SEMUANYA DISIAPKAN DULU</text>\n  <g>\n    <rect x=\"24\" y=\"38\" width=\"42\" height=\"30\" fill=\"var(--kunyit)\" opacity=\"0.28\"/>\n    <rect x=\"66\" y=\"38\" width=\"42\" height=\"30\" fill=\"var(--kunyit)\" opacity=\"0.28\"/>\n    <rect x=\"108\" y=\"38\" width=\"42\" height=\"30\" fill=\"var(--kunyit)\" opacity=\"0.28\"/>\n    <rect x=\"150\" y=\"38\" width=\"42\" height=\"30\" fill=\"var(--kunyit)\" opacity=\"0.28\"/>\n    <rect x=\"192\" y=\"38\" width=\"42\" height=\"30\" fill=\"var(--kunyit)\" opacity=\"0.28\"/>\n    <rect x=\"234\" y=\"38\" width=\"42\" height=\"30\" fill=\"var(--kunyit)\" opacity=\"0.28\"/>\n  </g>\n  <g stroke=\"currentColor\" stroke-opacity=\"0.25\" fill=\"none\">\n    <rect x=\"24\" y=\"38\" width=\"252\" height=\"30\"/>\n    <line x1=\"66\" y1=\"38\" x2=\"66\" y2=\"68\"/><line x1=\"108\" y1=\"38\" x2=\"108\" y2=\"68\"/>\n    <line x1=\"150\" y1=\"38\" x2=\"150\" y2=\"68\"/><line x1=\"192\" y1=\"38\" x2=\"192\" y2=\"68\"/>\n    <line x1=\"234\" y1=\"38\" x2=\"234\" y2=\"68\"/>\n  </g>\n  <text x=\"290\" y=\"58\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">semuanya ada di memori sekaligus</text>\n  <text x=\"290\" y=\"76\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.45\">8,4 MB untuk sejuta anggota</text>\n\n  <line x1=\"24\" y1=\"104\" x2=\"576\" y2=\"104\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n\n  <text x=\"24\" y=\"130\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--nila)\">GENERATOR &#8212; DIHITUNG SAAT DIMINTA</text>\n  <g>\n    <rect x=\"24\" y=\"144\" width=\"42\" height=\"30\" fill=\"var(--nila)\" opacity=\"0.3\"/>\n    <rect x=\"24\" y=\"144\" width=\"42\" height=\"30\" fill=\"none\" stroke=\"var(--nila)\" stroke-width=\"1.4\"/>\n  </g>\n  <g stroke=\"currentColor\" stroke-opacity=\"0.2\" fill=\"none\" stroke-dasharray=\"3 3\">\n    <rect x=\"66\" y=\"144\" width=\"42\" height=\"30\"/><rect x=\"108\" y=\"144\" width=\"42\" height=\"30\"/>\n    <rect x=\"150\" y=\"144\" width=\"42\" height=\"30\"/><rect x=\"192\" y=\"144\" width=\"42\" height=\"30\"/>\n    <rect x=\"234\" y=\"144\" width=\"42\" height=\"30\"/>\n  </g>\n  <text x=\"45\" y=\"164\" text-anchor=\"middle\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\">1</text>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"currentColor\" opacity=\"0.25\" text-anchor=\"middle\">\n    <text x=\"87\" y=\"164\">?</text><text x=\"129\" y=\"164\">?</text><text x=\"171\" y=\"164\">?</text>\n    <text x=\"213\" y=\"164\">?</text><text x=\"255\" y=\"164\">?</text>\n  </g>\n  <path d=\"M 45 186 L 45 200\" stroke=\"var(--nila)\" stroke-opacity=\"0.6\" marker-end=\"url(#pgn-ujung)\"/>\n  <text x=\"56\" y=\"205\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.55\">yang sudah lewat tidak disimpan</text>\n\n  <text x=\"290\" y=\"164\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">satu nilai saja pada satu waktu</text>\n  <text x=\"290\" y=\"182\" font-family=\"ui-monospace, Consolas, monospace\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.45\">200 bita, berapa pun jumlahnya</text>\n\n  <text x=\"24\" y=\"236\" font-family=\"system-ui, sans-serif\" font-size=\"11.5\" fill=\"currentColor\" opacity=\"0.7\">Harganya: generator hanya bisa ditelusuri sekali.</text>\n</svg>",
+              "solution": "List menyiapkan seluruh nilainya lebih dulu dan menyimpannya. Generator menghitung satu nilai pada satu waktu dan tidak menyimpan yang sudah lewat."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kenapa ini penting.** Ia memungkinkan mengolah data yang jauh lebih besar daripada memori yang tersedia."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import sys\n\ndef kuadrat_list(n):\n    return [i * i for i in range(n)]\n\ndef kuadrat_gen(n):\n    for i in range(n):\n        yield i * i\n\nn = 1_000_000\nprint(\"list     :\", f\"{sys.getsizeof(kuadrat_list(n)):>10,} bita\")\nprint(\"generator:\", f\"{sys.getsizeof(kuadrat_gen(n)):>10,} bita\")\nprint(\"jumlahnya sama:\", sum(kuadrat_list(n)) == sum(kuadrat_gen(n)))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pola yang sama dipakai untuk membaca berkas besar. Berkas sendiri sudah berupa *iterator* baris, jadi menelusurinya tidak pernah memuat seluruh isinya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "with open(\"besar.txt\", \"w\", encoding=\"utf-8\") as f:\n    for i in range(1, 1001):\n        f.write(f\"{i}\\n\")\n\ndef baris_genap(nama):\n    with open(nama, encoding=\"utf-8\") as f:\n        for baris in f:\n            n = int(baris)\n            if n % 2 == 0:\n                yield n\n\ngen = baris_genap(\"besar.txt\")\nprint(\"sepuluh pertama:\", [next(gen) for _ in range(10)])\nprint(\"sisanya dijumlah:\", sum(gen))"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Hanya sekali jalan.** Inilah harga yang dibayar, dan sumber kebingungan yang paling sering."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "g = (n for n in range(3))\n\nprint(list(g))\nprint(list(g))      # sudah habis\nprint(sum(n for n in range(3)))"
+            },
+            {
+              "type": "NOTE",
+              "content": "Kalau hasilnya perlu dibaca lebih dari sekali, bungkus dengan `list()` sejak awal. Memanggil `len()` pada *generator* juga tidak bisa, karena jumlah anggotanya memang belum tentu diketahui sebelum ditelusuri habis."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Perkakas dari `itertools`.** Modul baku ini berisi *generator* siap pakai yang hemat memori."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import itertools\n\nprint(list(itertools.islice(itertools.count(10), 5)))      # lima dari deret tak hingga\nprint(list(itertools.chain([1, 2], [3, 4])))               # sambung beberapa sumber\nprint(list(itertools.combinations(\"ABC\", 2)))\nprint(list(itertools.permutations(\"AB\")))\n\ndata = [(\"a\", 1), (\"a\", 2), (\"b\", 3)]\nfor kunci, kelompok in itertools.groupby(data, key=lambda p: p[0]):\n    print(kunci, [v for _, v in kelompok])"
+            },
+            {
+              "type": "NOTE",
+              "content": "`itertools.groupby` hanya mengelompokkan anggota yang **berdampingan**, jadi datanya harus diurutkan lebih dulu menurut kunci yang sama. Ini berbeda dari `groupby` di pandas, yang mengelompokkan di mana pun letaknya. Perbedaan ini sering menjebak orang yang berpindah di antara keduanya."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa keluaran kode berikut, dan kenapa baris kedua kosong?\n\n```python\ng = (n * 2 for n in [1, 2, 3])\nprint(sum(g))\nprint(sum(g))\n```",
+              "solution": "Keluarannya:\n\n```\n12\n0\n```\n\n`sum` yang pertama menelusuri generatornya sampai habis, yaitu 2 + 4 + 6 = 12. Setelah itu generatornya berada di posisi akhir dan tidak bisa diulang.\n\n`sum` yang kedua langsung menemui `StopIteration` tanpa satu nilai pun, dan `sum` atas urutan kosong bernilai 0.\n\nYang berbahaya: **tidak ada galat apa pun.** Program berjalan dan mencetak 0, seolah datanya memang nol. Kalau ini terjadi di tengah perhitungan panjang, sebabnya sulit dicari.\n\nDua cara menanganinya:\n\n```python\n# simpan hasilnya kalau memang perlu dipakai ulang\nnilai = [n * 2 for n in [1, 2, 3]]\nprint(sum(nilai), sum(nilai))      # 12 12\n\n# atau buat generator baru tiap kali\ndef buat():\n    return (n * 2 for n in [1, 2, 3])\nprint(sum(buat()), sum(buat()))    # 12 12\n```\n\nPatokannya: pakai *generator* kalau hasilnya diserahkan ke satu pemakai sekali jalan. Begitu ada dua pemakai, pakai `list`."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis generator `baca_angka(nama_berkas)` yang menghasilkan bilangan dari tiap baris, melewati baris yang tidak bisa diubah. Lalu hitung totalnya tanpa memuat seluruh berkas.",
+              "solution": "```python\ndef baca_angka(nama_berkas):\n    with open(nama_berkas, encoding=\"utf-8\") as f:\n        for nomor, baris in enumerate(f, start=1):\n            baris = baris.strip()\n            if not baris:\n                continue\n            try:\n                yield int(baris)\n            except ValueError:\n                print(f\"  baris {nomor} dilewati: {baris!r}\")\n\nwith open(\"campur.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"10\\nabc\\n20\\n\\n30\\n\")\n\nprint(\"total:\", sum(baca_angka(\"campur.txt\")))\n```\n\nKeluarannya:\n\n```\n  baris 2 dilewati: 'abc'\ntotal: 60\n```\n\nTiga hal yang bekerja bersama di sini.\n\n`with` berada **di dalam** generatornya, jadi berkasnya baru dibuka ketika nilai pertama diminta, dan tertutup sendiri ketika penelusurannya selesai.\n\n`enumerate(f, start=1)` memberi nomor baris, sehingga pesan yang dilewati bisa menyebut letaknya. Tanpa nomor itu, laporan \"ada baris yang dilewati\" nyaris tidak berguna.\n\n`sum` menelusurinya satu baris pada satu waktu, jadi berkas berukuran berapa pun bisa diolah. Mengganti `sum(baca_angka(...))` dengan `sum(list(baca_angka(...)))` akan membuang seluruh keuntungannya.\n\nSatu peringatan: kalau penelusurannya dihentikan di tengah, misalnya dengan `break`, berkasnya baru tertutup ketika generatornya dibersihkan Python. Untuk program yang berjalan lama, tutup dengan tegas memakai `contextlib.closing` atau selesaikan penelusurannya."
+            },
+            {
+              "type": "TASK",
+              "content": "Kapan memilih *generator*, dan kapan `list`? Sebutkan tiga keadaan untuk masing-masing.",
+              "solution": "**Pakai generator kalau:**\n\n```\n1. Datanya besar atau tidak diketahui jumlahnya.\n   Membaca berkas log jutaan baris, atau deret tak hingga.\n\n2. Hasilnya langsung diserahkan ke satu pemakai.\n   sum(...), max(...), any(...), atau sebuah perulangan for.\n\n3. Anda hanya butuh beberapa anggota pertama.\n   Generator berhenti menghitung begitu Anda berhenti meminta.\n```\n\n**Pakai list kalau:**\n\n```\n1. Isinya akan dibaca lebih dari sekali.\n\n2. Anda perlu mengaksesnya lewat indeks, misalnya data[5],\n   atau memotongnya dengan data[2:7].\n\n3. Anda perlu tahu panjangnya dengan len().\n```\n\nContoh poin ketiga pada generator:\n\n```python\nimport itertools\n\ndef tak_hingga():\n    n = 0\n    while True:\n        yield n\n        n += 1\n\nprint(list(itertools.islice(tak_hingga(), 5)))\n```\n\nDeret itu tidak pernah berakhir, tetapi programnya selesai karena hanya lima nilai yang diminta. Dengan `list`, baris itu akan menggantung selamanya sampai memorinya habis.\n\nPatokan singkat: **generator untuk aliran, list untuk kumpulan.** Kalau Anda menyebutnya \"data saya\", biasanya `list`. Kalau Anda menyebutnya \"baris yang masuk\", biasanya *generator*."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan kode berikut, lalu jelaskan kenapa urutan tulisannya seperti itu.\n\n```python\ndef g():\n    print(\"A\")\n    yield 1\n    print(\"B\")\n    yield 2\n\nprint(\"sebelum\")\nit = g()\nprint(\"sesudah dibuat\")\nprint(next(it))\nprint(next(it))\n```",
+              "solution": "Keluarannya:\n\n```\nsebelum\nsesudah dibuat\nA\n1\nB\n2\n```\n\nYang mengejutkan: `A` tidak muncul di antara `sebelum` dan `sesudah dibuat`.\n\nMemanggil `g()` **tidak menjalankan badan fungsinya sama sekali.** Yang terjadi hanyalah sebuah objek generator dibuat dan dikembalikan. Badannya masih utuh, belum tersentuh.\n\nBadannya baru mulai jalan pada `next(it)` yang pertama, sampai bertemu `yield` pertama. Di situ fungsinya dibekukan, dan nilai 1 diserahkan.\n\n`next(it)` yang kedua melanjutkan dari tempat pembekuan tadi, mencetak `B`, lalu berhenti di `yield` berikutnya.\n\n```\ng()        objek dibuat, badan belum jalan\nnext(it)   jalan sampai yield pertama -> cetak A, serahkan 1\nnext(it)   lanjut dari situ -> cetak B, serahkan 2\n```\n\nAkibat praktisnya penting. Kalau generator Anda memeriksa sesuatu di awal, misalnya memastikan berkasnya ada, pemeriksaan itu **tidak terjadi** sampai nilai pertama diminta:\n\n```python\ndef baca(nama):\n    if not Path(nama).exists():\n        raise FileNotFoundError(nama)\n    ...\n    yield ...\n\ng = baca(\"tidak_ada.txt\")     # tidak ada galat di sini\nnext(g)                       # galatnya baru muncul sekarang\n```\n\nGalat yang muncul jauh dari tempat pemanggilannya seperti ini sulit dilacak. Kalau pemeriksaan harus terjadi segera, pisahkan menjadi fungsi biasa yang di dalamnya mengembalikan generator."
+            }
+          ]
+        },
+        {
+          "title": "Kelas dan Objek",
+          "summary": "Menyatukan data dengan perilaku yang menempel padanya.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Sejauh ini data dan fungsi yang mengolahnya hidup terpisah. Untuk banyak keperluan itu sudah cukup. Tetapi begitu sebuah data punya beberapa bagian yang selalu dibawa bersama, menyatukannya dengan fungsi yang mengolahnya membuat kodenya jauh lebih mudah diikuti."
+            },
+            {
+              "type": "TEXT",
+              "content": "Anda sebenarnya sudah memakai objek sejak bab pertama. Setiap nilai di Python adalah objek, dan metode seperti `.append` atau `.upper` adalah fungsi yang menempel padanya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "teks = \"halo\"\ndaftar = [1, 2]\n\nprint(type(teks), type(daftar))\nprint(teks.upper())        # fungsi milik teks\nprint(daftar.append)       # fungsi milik list"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Membuat kelas sendiri.** `class` mendefinisikan jenis baru, dan `__init__` menyiapkan isi tiap objek yang dibuat darinya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "class Mahasiswa:\n    def __init__(self, nama, nilai):\n        self.nama = nama\n        self.nilai = nilai\n\n    def rata(self):\n        return sum(self.nilai) / len(self.nilai)\n\n    def lulus(self, batas=70):\n        return self.rata() >= batas\n\nani = Mahasiswa(\"Ani\", [87, 92, 78])\nprint(ani.nama, ani.rata(), ani.lulus())"
+            },
+            {
+              "type": "TEXT",
+              "content": "`self` adalah objek itu sendiri, diserahkan Python secara otomatis. Menulis `ani.rata()` sama dengan `Mahasiswa.rata(ani)`; nama `self` hanya kesepakatan, tetapi kesepakatan yang dipatuhi semua orang."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "class Mahasiswa:\n    def __init__(self, nama, nilai):\n        self.nama = nama\n        self.nilai = nilai\n\n    def rata(self):\n        return sum(self.nilai) / len(self.nilai)\n\nani = Mahasiswa(\"Ani\", [87, 92])\nprint(ani.rata())\nprint(Mahasiswa.rata(ani))      # persis sama"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menampilkan objek dengan layak.** Tanpa `__repr__`, objek Anda tercetak sebagai keterangan alamat memori yang tidak berguna saat menelusuri bug."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "class Titik:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n\np = Titik(3, 4)\nprint(p)\n\nclass TitikBaik:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n\n    def __repr__(self):\n        return f\"TitikBaik(x={self.x}, y={self.y})\"\n\nq = TitikBaik(3, 4)\nprint(q)\nprint([q, q])          # ikut terpakai di dalam list"
+            },
+            {
+              "type": "TEXT",
+              "content": "**dataclass.** Untuk objek yang tugasnya hanya membawa data, menulis `__init__` dan `__repr__` sendiri itu pekerjaan berulang. `dataclass` membuatkannya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "from dataclasses import dataclass\n\n@dataclass\nclass Mahasiswa:\n    nama: str\n    nilai: list[int]\n    angkatan: int = 2026\n\n    def rata(self) -> float:\n        return sum(self.nilai) / len(self.nilai)\n\nani = Mahasiswa(\"Ani\", [87, 92])\nbudi = Mahasiswa(\"Budi\", [78], angkatan=2025)\n\nprint(ani)\nprint(ani.rata())\nprint(ani == Mahasiswa(\"Ani\", [87, 92]))     # perbandingan ikut dibuatkan"
+            },
+            {
+              "type": "NOTE",
+              "content": "`@dataclass` memakai anotasi tipe untuk menentukan medannya, jadi anotasinya di sini **wajib** ada, berbeda dari pemakaian biasa yang sifatnya pilihan. Hati-hati dengan nilai bawaan yang bisa diubah: `nilai: list[int] = []` akan ditolak oleh `dataclass` justru karena jebakan yang Anda pelajari di bab Argumen dan Nilai Bawaan. Pakai `field(default_factory=list)`."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "from dataclasses import dataclass, field\n\n@dataclass\nclass Keranjang:\n    pemilik: str\n    isi: list[str] = field(default_factory=list)\n\na = Keranjang(\"Ani\")\nb = Keranjang(\"Budi\")\na.isi.append(\"buku\")\nprint(a)\nprint(b)           # tidak ikut terisi"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Pewarisan.** Sebuah kelas bisa mengambil seluruh isi kelas lain lalu menambah atau mengganti sebagian."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "class Pegawai:\n    def __init__(self, nama, gaji):\n        self.nama, self.gaji = nama, gaji\n\n    def bayaran(self):\n        return self.gaji\n\n    def __repr__(self):\n        return f\"{type(self).__name__}({self.nama})\"\n\nclass Manajer(Pegawai):\n    def __init__(self, nama, gaji, tunjangan):\n        super().__init__(nama, gaji)\n        self.tunjangan = tunjangan\n\n    def bayaran(self):\n        return super().bayaran() + self.tunjangan\n\norang = [Pegawai(\"Ani\", 5_000_000), Manajer(\"Budi\", 7_000_000, 2_000_000)]\nfor o in orang:\n    print(f\"{o!r:<16} {o.bayaran():,}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "`super()` memanggil versi milik kelas induknya, sehingga bagian yang sama tidak perlu ditulis dua kali. Perhatikan juga bahwa perulangan di atas memanggil `bayaran()` tanpa peduli jenis objeknya, dan masing-masing menjalankan versinya sendiri."
+            },
+            {
+              "type": "NOTE",
+              "content": "Jangan memakai pewarisan hanya untuk berbagi kode. Pakai kalau hubungannya memang \"sejenis\": seorang Manajer memang seorang Pegawai. Kalau yang Anda butuhkan sekadar memakai kemampuan kelas lain, menyimpannya sebagai medan biasa hampir selalu lebih mudah diurus. Pewarisan bertingkat dalam adalah sumber kerumitan yang sulit dibongkar kembali."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kapan kelas tidak diperlukan.** Ini sama pentingnya dengan tahu cara membuatnya."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Buat kelas kalau\n  beberapa data selalu dibawa bersama\n  ada perilaku yang menempel pada data itu\n  ada beberapa jenis yang perlu diperlakukan seragam\n\nJangan buat kelas kalau\n  isinya cuma satu metode, itu sebaiknya fungsi biasa\n  cuma membawa data tanpa perilaku, pakai dataclass\n    atau dictionary biasa\n  dibuat sekali lalu tidak pernah dipakai lagi"
+            },
+            {
+              "type": "TASK",
+              "content": "Apa keluaran kode berikut, dan kenapa `b` ikut berubah?\n\n```python\nclass Keranjang:\n    isi = []\n    def __init__(self, pemilik):\n        self.pemilik = pemilik\n\na = Keranjang(\"Ani\")\nb = Keranjang(\"Budi\")\na.isi.append(\"buku\")\nprint(a.isi, b.isi)\n```",
+              "solution": "Keluarannya `['buku'] ['buku']`. Keranjang Budi ikut terisi.\n\nSebabnya `isi = []` ditulis di **tingkat kelas**, bukan di dalam `__init__`. List itu dibuat satu kali ketika kelasnya didefinisikan, dan dimiliki bersama oleh semua objek yang dibuat darinya.\n\n```python\nprint(a.isi is b.isi)              # True, benda yang sama\nprint(Keranjang.isi)               # ['buku'], melekat di kelasnya\n```\n\nIni jebakan yang sama persis dengan nilai bawaan argumen yang bisa diubah, hanya berpindah tempat.\n\nPerbaikannya buat di dalam `__init__`, supaya tiap objek punya sendiri:\n\n```python\nclass Keranjang:\n    def __init__(self, pemilik):\n        self.pemilik = pemilik\n        self.isi = []\n```\n\nAtau dengan `dataclass`:\n\n```python\nfrom dataclasses import dataclass, field\n\n@dataclass\nclass Keranjang:\n    pemilik: str\n    isi: list[str] = field(default_factory=list)\n```\n\nMedan di tingkat kelas tetap berguna untuk nilai yang memang dibagi bersama dan tidak diubah, misalnya `PAJAK = 0.11`. Yang berbahaya hanya yang bisa diubah."
+            },
+            {
+              "type": "TASK",
+              "content": "Ubah kelas berikut menjadi `dataclass`, dan jelaskan apa saja yang jadi tidak perlu ditulis.\n\n```python\nclass Buku:\n    def __init__(self, judul, penulis, tahun=2026):\n        self.judul = judul\n        self.penulis = penulis\n        self.tahun = tahun\n    def __repr__(self):\n        return f\"Buku({self.judul!r}, {self.penulis!r}, {self.tahun})\"\n    def __eq__(self, lain):\n        return (self.judul, self.penulis, self.tahun) == \\\n               (lain.judul, lain.penulis, lain.tahun)\n```",
+              "solution": "```python\nfrom dataclasses import dataclass\n\n@dataclass\nclass Buku:\n    judul: str\n    penulis: str\n    tahun: int = 2026\n\nb = Buku(\"Think Python\", \"Downey\")\nprint(b)\nprint(b == Buku(\"Think Python\", \"Downey\"))\n```\n\nKeluarannya:\n\n```\nBuku(judul='Think Python', penulis='Downey', tahun=2026)\nTrue\n```\n\nDua puluh satu baris menjadi enam. Yang dibuatkan otomatis:\n\n```\n__init__    dari daftar medan beserta nilai bawaannya\n__repr__    menampilkan nama kelas dan semua medannya\n__eq__      membandingkan seluruh medan sekaligus\n```\n\nYang perlu Anda tulis hanyalah nama medan dan tipenya. Urutan medan di `__init__` mengikuti urutan penulisannya, dan medan bernilai bawaan harus berada setelah yang tidak bernilai bawaan, sama seperti aturan argumen fungsi biasa.\n\nBeberapa pilihan yang sering berguna:\n\n```python\n@dataclass(frozen=True)     # objeknya tidak bisa diubah, dan bisa jadi kunci dict\n@dataclass(order=True)      # ikut membuatkan <, >, <=, >=\n@dataclass(slots=True)      # lebih hemat memori untuk objek yang sangat banyak\n```\n\n`frozen=True` patut dipertimbangkan sebagai bawaan untuk data yang memang tidak seharusnya berubah setelah dibuat."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `__repr__` layak ditulis, padahal programnya tetap jalan tanpanya?",
+              "solution": "Karena tanpa itu, objek Anda tercetak sebagai keterangan yang tidak membantu.\n\n```python\nclass Titik:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n\nprint(Titik(3, 4))\n# <__main__.Titik object at 0x7f8b1c0d5e10>\n```\n\nAlamat memori itu berbeda setiap kali program dijalankan dan tidak mengatakan apa pun tentang isinya.\n\nDampaknya terasa justru ketika Anda sedang mencari bug, yaitu saat paling membutuhkan keterangan:\n\n```python\ndaftar = [Titik(1, 2), Titik(3, 4)]\nprint(daftar)\n# [<__main__.Titik object at 0x...>, <__main__.Titik object at 0x...>]\n```\n\nMencetak sebuah list berisi objek Anda menjadi sia-sia. Begitu pula pesan galat, keluaran penelusuran, dan tampilan di notebook.\n\nDengan `__repr__`:\n\n```python\ndef __repr__(self):\n    return f\"Titik(x={self.x}, y={self.y})\"\n\nprint([Titik(1, 2), Titik(3, 4)])\n# [Titik(x=1, y=2), Titik(x=3, y=4)]\n```\n\nKebiasaan yang dianjurkan: buat hasilnya terlihat seperti kode yang bisa dipakai untuk membuat ulang objeknya. Itu sebabnya bentuk `NamaKelas(medan=nilai)` menjadi pola yang umum.\n\n`dataclass` membuatkannya tanpa diminta, dan itu salah satu alasan terkuat memakainya."
+            },
+            {
+              "type": "TASK",
+              "content": "Kapan sebaiknya memakai `dataclass`, kapan `dictionary` biasa, dan kapan kelas penuh?",
+              "solution": "```\ndictionary        bentuknya belum tetap atau datang dari luar\n                  hasil baca JSON, baris CSV, jawaban API\n                  kuncinya bisa berbeda antar baris\n\ndataclass         bentuknya tetap dan diketahui saat menulis kode\n                  perilakunya sedikit atau tidak ada\n                  satu baris data, satu catatan, satu pengaturan\n\nkelas penuh       ada perilaku yang cukup banyak\n                  ada keadaan yang berubah dan perlu dijaga\n                  ada beberapa jenis yang perlu seragam\n```\n\nPerbandingan langsungnya:\n\n```python\n# dictionary: lentur, tetapi tidak ada yang menjaga\nm = {\"nama\": \"Ani\", \"nilai\": 87}\nprint(m[\"nilia\"])     # KeyError, dan salah ketiknya baru ketahuan saat jalan\n\n# dataclass: bentuknya dijaga, penyunting bisa melengkapi\nfrom dataclasses import dataclass\n\n@dataclass\nclass Mahasiswa:\n    nama: str\n    nilai: int\n\nm = Mahasiswa(\"Ani\", 87)\nprint(m.nama)\n```\n\nDengan `dataclass`, salah ketik `m.nilia` ditandai penyunting sebelum programnya dijalankan, dan pelengkapan otomatis menawarkan nama medan yang benar.\n\nPatokan praktis di pekerjaan data: data yang baru masuk dari luar biasanya tetap berupa *dictionary* atau baris pandas, karena bentuknya belum tentu seragam. Begitu datanya sudah dibersihkan dan bentuknya dipastikan, memindahkannya ke `dataclass` membuat sisa programnya jauh lebih aman."
+            }
+          ]
+        },
+        {
+          "title": "Menata Lingkungan Kerja",
+          "summary": "Menjalankan Python di komputer sendiri, dan menjaga tiap proyek terpisah.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Sampai sini semua kode Anda dijalankan di dalam halaman ini. Untuk pekerjaan yang sesungguhnya, Python perlu berjalan di komputer Anda sendiri, dan tiap proyek perlu lingkungannya sendiri supaya tidak saling merusak."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Kenapa tiap proyek butuh lingkungan terpisah.** Dua proyek bisa membutuhkan versi berbeda dari pustaka yang sama, dan hanya satu versi yang bisa terpasang pada satu lingkungan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Proyek A butuh pandas 2.2\nProyek B butuh pandas 3.0\n\nKalau keduanya memakai Python sistem yang sama:\n  memasang pandas 3.0 untuk B akan merusak A\n  memasang balik 2.2 untuk A akan merusak B\n\nDengan lingkungan terpisah:\n  A punya pandas 2.2 sendiri\n  B punya pandas 3.0 sendiri\n  keduanya jalan tanpa saling menyentuh"
+            },
+            {
+              "type": "NOTE",
+              "content": "Jangan memasang pustaka ke Python bawaan sistem operasi, terutama di Linux dan macOS. Beberapa perkakas sistem bergantung padanya, dan memperbarui sebuah pustaka di sana bisa merusak hal yang tidak ada hubungannya dengan pekerjaan Anda."
+            },
+            {
+              "type": "TEXT",
+              "content": "**uv.** Sejak beberapa tahun terakhir, satu perkakas bernama *uv* menggantikan sekumpulan perkakas lama sekaligus: pemasang paket, pembuat lingkungan, dan pengatur versi Python."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Yang digantikan uv\n\npip          memasang paket\nvenv         membuat lingkungan terpisah\npyenv        mengatur versi Python\npipx         memasang perkakas baris perintah\n\nSatu perintah, satu berkas pengaturan, jauh lebih cepat."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Memasang uv\n\n  Windows    powershell -c \"irm https://astral.sh/uv/install.ps1 | iex\"\n  macOS      curl -LsSf https://astral.sh/uv/install.sh | sh\n  Linux      curl -LsSf https://astral.sh/uv/install.sh | sh\n\nPython sendiri tidak perlu dipasang lebih dulu; uv mengunduhnya\nsendiri saat dibutuhkan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Memulai sebuah proyek.** Lima perintah, dan setelah itu lingkungannya terurus sendiri."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "uv init analisis-nilai        # membuat folder beserta pyproject.toml\ncd analisis-nilai\n\nuv add pandas matplotlib      # menambah pustaka yang dipakai\nuv add --dev ruff pytest      # perkakas pengembangan, dipisah\n\nuv run python main.py         # menjalankan, tanpa mengaktifkan apa pun\nuv run ruff check             # memeriksa kode"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan `uv run`. Anda tidak perlu lagi menjalankan perintah aktivasi lingkungan yang dulu menjadi sumber kebingungan; `uv run` memakai lingkungan proyeknya sendiri."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 290\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"Susunan folder sebuah proyek Python beserta keterangan tiap berkasnya\">\n  <text x=\"24\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">SUSUNAN PROYEK YANG LAZIM</text>\n\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12.5\">\n    <text x=\"24\" y=\"52\" fill=\"var(--nila)\">analisis-nilai/</text>\n    <text x=\"48\" y=\"76\" fill=\"currentColor\" opacity=\"0.85\">pyproject.toml</text>\n    <text x=\"48\" y=\"100\" fill=\"currentColor\" opacity=\"0.85\">uv.lock</text>\n    <text x=\"48\" y=\"124\" fill=\"currentColor\" opacity=\"0.85\">.python-version</text>\n    <text x=\"48\" y=\"148\" fill=\"currentColor\" opacity=\"0.4\">.venv/</text>\n    <text x=\"48\" y=\"172\" fill=\"currentColor\" opacity=\"0.85\">.gitignore</text>\n    <text x=\"48\" y=\"196\" fill=\"var(--kunyit)\">src/</text>\n    <text x=\"72\" y=\"220\" fill=\"currentColor\" opacity=\"0.85\">muat.py</text>\n    <text x=\"72\" y=\"244\" fill=\"currentColor\" opacity=\"0.85\">hitung.py</text>\n    <text x=\"48\" y=\"268\" fill=\"var(--kunyit)\">tests/</text>\n  </g>\n\n  <g stroke=\"currentColor\" stroke-opacity=\"0.12\">\n    <line x1=\"300\" y1=\"62\" x2=\"300\" y2=\"278\"/>\n  </g>\n\n  <g font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">\n    <text x=\"316\" y=\"76\">daftar pustaka yang dipakai proyek ini</text>\n    <text x=\"316\" y=\"100\">versi persisnya, supaya orang lain dapat yang sama</text>\n    <text x=\"316\" y=\"124\">versi Python yang dipakai</text>\n    <text x=\"316\" y=\"148\">lingkungan terpasang, jangan masuk Git</text>\n    <text x=\"316\" y=\"172\">daftar yang tidak ikut dilacak Git</text>\n    <text x=\"316\" y=\"196\">kode programnya</text>\n    <text x=\"316\" y=\"268\">pengujiannya</text>\n  </g>\n\n  <rect x=\"40\" y=\"136\" width=\"250\" height=\"22\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.12\"/>\n  <text x=\"24\" y=\"288\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--kunyit)\">Yang dikirim ke Git: semuanya kecuali .venv</text>\n</svg>",
+              "solution": "Susunan folder proyek yang lazim. Semua berkas pengaturan ikut masuk Git supaya orang lain mendapat lingkungan yang sama persis, kecuali folder .venv yang isinya bisa dibangun ulang."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Dua berkas yang menentukan.**"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "pyproject.toml   apa yang dibutuhkan proyek ini\n                 ditulis manusia, mudah dibaca\n\n[project]\nname = \"analisis-nilai\"\nrequires-python = \">=3.12\"\ndependencies = [\"pandas>=3.0\", \"matplotlib>=3.9\"]\n\nuv.lock          versi persis setiap pustaka beserta turunannya\n                 dibuat mesin, jangan disunting tangan\n                 ini yang membuat hasilnya bisa diulang"
+            },
+            {
+              "type": "TEXT",
+              "content": "Keduanya masuk Git. Dengan begitu, orang lain yang menjalankan `uv sync` mendapat lingkungan yang sama persis dengan Anda, sampai ke versi pustaka turunannya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Ruff.** Satu perkakas yang memeriksa dan merapikan kode, menggantikan beberapa perkakas lama sekaligus."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "uv run ruff check             # mencari masalah\nuv run ruff check --fix       # memperbaiki yang bisa diperbaiki sendiri\nuv run ruff format            # merapikan tata letaknya\n\nYang ditemukannya, antara lain:\n  impor yang tidak terpakai\n  variabel yang dibuat tapi tidak dipakai\n  nilai bawaan argumen yang bisa diubah, aturan B006\n  perbandingan dengan None memakai == alih-alih is"
+            },
+            {
+              "type": "NOTE",
+              "content": "Aturan `B006` yang disebut di atas adalah persis jebakan nilai bawaan yang Anda pelajari di bab Argumen dan Nilai Bawaan. Inilah gunanya perkakas semacam ini: ia mengingat hal-hal yang mudah terlewat, sehingga Anda tidak perlu mengandalkan ingatan saat sedang buru-buru."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Berkas `.gitignore`.** Beberapa hal tidak boleh ikut masuk Git."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": ".venv/\n__pycache__/\n*.pyc\n.env\n.ipynb_checkpoints/\ndata/mentah/"
+            },
+            {
+              "type": "TEXT",
+              "content": "`.venv` bisa dibangun ulang kapan saja dari `uv.lock`, jadi menyimpannya hanya membuat repositori membengkak. `.env` berisi kata sandi dan kunci yang tidak boleh keluar. Data mentah biasanya terlalu besar dan punya tempat penyimpanannya sendiri."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Notebook.** Untuk menjelajah data, Jupyter sering lebih enak dipakai daripada berkas biasa."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "uv add --dev jupyterlab\nuv run jupyter lab\n\nBerguna untuk\n  menjelajah data dan mencoba-coba\n  menampilkan grafik berdampingan dengan kodenya\n  menjelaskan langkah analisis kepada orang lain\n\nTidak cocok untuk\n  kode yang dipakai berulang, pindahkan ke berkas .py\n  sesuatu yang harus jalan terjadwal\n  kode yang dikerjakan beberapa orang bersama"
+            },
+            {
+              "type": "NOTE",
+              "content": "Notebook menyimpan urutan menjalankan sel, bukan urutan tampilannya. Sel yang dijalankan tidak berurutan bisa memberi hasil yang tidak bisa diulang orang lain. Sebelum membagikannya, jalankan ulang dari awal lewat Restart and Run All, dan pastikan hasilnya tetap sama."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `uv.lock` perlu masuk Git padahal `pyproject.toml` sudah menyebutkan pustaka yang dipakai?",
+              "solution": "Karena keduanya menjawab pertanyaan yang berbeda.\n\n```\npyproject.toml   apa yang dibutuhkan, dengan batas longgar\n                 \"pandas>=3.0\"\n\nuv.lock          apa yang benar-benar terpasang, persis\n                 pandas 3.0.2, numpy 2.4.6, python-dateutil 2.9.0,\n                 pytz 2026.1, dan seterusnya sampai ke akar\n```\n\nTanpa `uv.lock`, orang yang memasang hari ini bisa mendapat `pandas 3.1` sementara Anda memakai `3.0.2`. Keduanya memenuhi `>=3.0`, tetapi perilakunya bisa berbeda, dan program yang jalan di komputer Anda gagal di komputernya tanpa sebab yang jelas.\n\nYang lebih sering menggigit adalah pustaka **turunan**. `pandas` membutuhkan `numpy`, dan `numpy` punya versinya sendiri yang tidak pernah Anda sebutkan. Versi turunan itulah yang paling sering berubah diam-diam.\n\n`uv.lock` juga menyimpan sidik jari tiap paket, sehingga paket yang berubah isinya setelah diterbitkan akan ketahuan.\n\nPatokannya:\n\n```\nMasuk Git       pyproject.toml, uv.lock, .python-version\nTidak masuk     .venv/\n```\n\nUntuk pustaka yang Anda terbitkan sendiri, aturannya sedikit berbeda: `uv.lock` biasanya tidak ikut, karena pemakainya justru perlu kebebasan memilih versi. Untuk aplikasi dan proyek analisis, selalu ikut."
+            },
+            {
+              "type": "TASK",
+              "content": "Seorang teman menjalankan program Anda dan mendapat `ModuleNotFoundError: No module named 'pandas'`, padahal di komputer Anda jalan. Sebutkan dua sebab yang paling mungkin.",
+              "solution": "**Sebab pertama: ia belum menyiapkan lingkungannya.**\n\n```bash\nuv sync          # membaca uv.lock, memasang semuanya persis\nuv run python main.py\n```\n\nIni yang paling sering. Mengirim kode tanpa memberitahu perintah penyiapannya membuat orang menebak-nebak.\n\n**Sebab kedua: ia menjalankannya di luar lingkungan proyek.**\n\n```bash\npython main.py           # memakai Python sistem, pandas tidak ada di sana\nuv run python main.py    # memakai lingkungan proyek\n```\n\nKesalahan ini mudah terjadi karena perintah `python` tetap ada dan tetap jalan, hanya saja menunjuk Python yang berbeda.\n\nCara memastikan yang mana:\n\n```python\nimport sys\nprint(sys.executable)\n```\n\nKalau yang muncul jalur yang memuat `.venv`, berarti lingkungan proyeknya terpakai. Kalau yang muncul jalur sistem, itu sebabnya.\n\nPencegahannya tulis di `README.md`:\n\n```\n## Menjalankan\n    uv sync\n    uv run python main.py\n```\n\nDua baris itu menghemat banyak waktu, milik Anda maupun milik orang lain."
+            },
+            {
+              "type": "TASK",
+              "content": "Apa yang salah dengan menyimpan `.env` berisi kunci API ke dalam Git, dan bagaimana menanganinya dengan benar?",
+              "solution": "Begitu masuk Git, kuncinya **tidak bisa dianggap aman lagi**, meski berkasnya dihapus di commit berikutnya. Riwayat Git menyimpan seluruh versi, dan siapa pun yang punya salinan repositorinya bisa membacanya kembali.\n\nKalau repositorinya pernah publik, anggap kuncinya sudah bocor. Perayap otomatis memindai GitHub untuk mencari pola kunci, dan sebagian menemukannya dalam hitungan menit.\n\n**Cara menanganinya:**\n\n```\n1. Cabut kuncinya sekarang juga di layanan penerbitnya,\n   lalu terbitkan yang baru. Ini langkah pertama, bukan terakhir.\n\n2. Tambahkan .env ke .gitignore sebelum commit pertama.\n\n3. Sediakan .env.example berisi nama variabelnya saja,\n   tanpa nilainya, supaya orang lain tahu apa yang dibutuhkan.\n```\n\nIsi `.env.example`:\n\n```\nAPI_KEY=\nDATABASE_URL=\n```\n\nCara membacanya di kode:\n\n```python\nimport os\nkunci = os.environ.get(\"API_KEY\")\nif not kunci:\n    raise RuntimeError(\"API_KEY belum disetel, lihat .env.example\")\n```\n\nPerhatikan bahwa programnya berhenti dengan pesan yang jelas kalau kuncinya belum ada, bukan berjalan lalu gagal dengan pesan aneh dari layanan di seberang.\n\nMembersihkan riwayat Git memang mungkin, misalnya dengan `git filter-repo`, tetapi itu menulis ulang riwayat dan menyulitkan semua orang yang sudah menyalinnya. Mencabut kuncinya tetap langkah yang pertama dan yang paling penting."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa notebook sebaiknya tidak dipakai untuk kode yang dijalankan berulang?",
+              "solution": "Tiga sebab, dan yang pertama paling berbahaya.\n\n**Urutan menjalankannya tidak sama dengan urutan tampilannya.**\n\n```\nSel 1   data = muat()\nSel 2   data = bersihkan(data)\nSel 3   print(len(data))\n```\n\nKalau Anda menjalankan sel 2 dua kali, datanya dibersihkan dua kali. Kalau Anda menyunting sel 1 lalu hanya menjalankan sel 3, hasilnya berasal dari data lama. Tidak ada apa pun di tampilannya yang menunjukkan hal itu, dan orang lain yang membukanya akan melihat keluaran yang tidak bisa ia hasilkan ulang.\n\n**Sulit dikerjakan beberapa orang.** Berkas notebook menyimpan kode beserta keluarannya dalam satu berkas JSON, sehingga dua orang yang menyunting sel berbeda tetap menghasilkan bentrokan Git yang menyakitkan.\n\n**Sulit diuji dan dijadwalkan.** Tidak ada cara wajar menjalankan pengujian atas sebuah sel, dan menjalankan notebook secara terjadwal menuntut perkakas tambahan.\n\nPembagian yang sehat:\n\n```\nNotebook    menjelajah, mencoba, menjelaskan hasil\nBerkas .py  apa pun yang dipakai lebih dari sekali\n```\n\nBegitu sepotong kode di notebook terbukti berguna, pindahkan ke berkas `.py`, lalu panggil dari notebook:\n\n```python\nfrom src.bersihkan import buang_duplikat\n```\n\nDengan begitu notebooknya tetap enak dipakai untuk menjelajah, sementara kode yang sesungguhnya bisa diuji, diperiksa Ruff, dan dipakai ulang.\n\nSebelum membagikan notebook, selalu jalankan Restart and Run All. Kalau hasilnya berubah, berarti notebooknya memang tidak bisa diulang."
+            }
+          ]
+        },
+        {
+          "title": "Menguji dan Menelusuri Kesalahan",
+          "summary": "Mengubah keyakinan bahwa kode Anda benar menjadi sesuatu yang bisa diperiksa.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Program yang baru ditulis selalu terlihat benar bagi penulisnya. Pengujian mengubah keyakinan itu menjadi sesuatu yang bisa diperiksa, dan yang lebih penting, menjaga supaya perubahan berikutnya tidak diam-diam merusak yang sudah jalan."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mulai dari `assert`.** Satu kata kunci, tanpa perkakas tambahan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def rata(angka):\n    return sum(angka) / len(angka)\n\nassert rata([2, 4]) == 3\nassert rata([10]) == 10\nprint(\"semua pemeriksaan lolos\")\n\ntry:\n    assert rata([1, 2]) == 2, f\"seharusnya 1.5, dapat {rata([1, 2])}\"\nexcept AssertionError as e:\n    print(\"gagal:\", e)"
+            },
+            {
+              "type": "TEXT",
+              "content": "`assert` berguna untuk pemeriksaan cepat, tetapi punya satu sifat yang membuatnya tidak cocok sebagai pengaman di program yang dijalankan sungguhan: ia bisa dimatikan."
+            },
+            {
+              "type": "NOTE",
+              "content": "Menjalankan Python dengan `python -O program.py` membuang seluruh `assert`. Karena itu jangan memakainya untuk memeriksa masukan pengguna atau hal lain yang keamanannya bergantung pada pemeriksaan itu. Untuk keperluan tersebut pakai `if` dan `raise`. `assert` adalah alat pengujian dan pemeriksaan anggapan di dalam kode, bukan pengaman."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menyusunnya menjadi fungsi uji.** Memisahkan tiap pemeriksaan membuat kegagalan mudah dilacak."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def rata(angka):\n    if not angka:\n        raise ValueError(\"daftar kosong\")\n    return sum(angka) / len(angka)\n\ndef uji_rata_biasa():\n    assert rata([2, 4]) == 3\n\ndef uji_rata_satu_anggota():\n    assert rata([10]) == 10\n\ndef uji_rata_kosong():\n    try:\n        rata([])\n    except ValueError:\n        return\n    raise AssertionError(\"seharusnya menolak daftar kosong\")\n\nfor fungsi in [uji_rata_biasa, uji_rata_satu_anggota, uji_rata_kosong]:\n    try:\n        fungsi()\n        print(f\"  lolos  {fungsi.__name__}\")\n    except AssertionError as e:\n        print(f\"  GAGAL  {fungsi.__name__}: {e}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**pytest.** Perkakas yang mengerjakan pencarian dan pelaporan itu untuk Anda. Ia menemukan sendiri berkas bernama `test_*.py` dan fungsi bernama `test_*`."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "# berkas: tests/test_hitung.py\nimport pytest\nfrom src.hitung import rata\n\ndef test_rata_biasa():\n    assert rata([2, 4]) == 3\n\ndef test_rata_satu_anggota():\n    assert rata([10]) == 10\n\ndef test_rata_kosong_ditolak():\n    with pytest.raises(ValueError):\n        rata([])\n\n@pytest.mark.parametrize(\"masukan, harapan\", [\n    ([1, 2, 3], 2),\n    ([5], 5),\n    ([0, 10], 5),\n])\ndef test_beberapa_kasus(masukan, harapan):\n    assert rata(masukan) == harapan"
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Menjalankannya\n\n  uv run pytest              seluruhnya\n  uv run pytest -v           sebutkan tiap uji\n  uv run pytest -k rata      hanya yang namanya memuat \"rata\"\n  uv run pytest -x           berhenti di kegagalan pertama"
+            },
+            {
+              "type": "TEXT",
+              "content": "`parametrize` menjalankan fungsi yang sama untuk beberapa pasangan masukan dan harapan, sehingga menambah kasus uji cukup menambah satu baris."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Membandingkan bilangan pecahan.** Jangan memakai `==`, karena hasilnya hampir selalu berupa pembulatan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import math\n\nprint(0.1 + 0.2 == 0.3)\nprint(math.isclose(0.1 + 0.2, 0.3))\n\n# di pytest, yang dipakai pytest.approx\n# assert rata([0.1, 0.2]) == pytest.approx(0.15)"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Apa yang layak diuji.** Menguji semuanya itu boros; menguji yang tepat jauh lebih berharga."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Layak diuji\n  perhitungan yang punya jawaban pasti\n  penanganan masukan yang tidak wajar: kosong, nol, negatif\n  bagian yang pernah rusak, supaya tidak rusak lagi\n  batas-batasnya: anggota pertama, terakhir, satu-satunya\n\nTidak perlu\n  kode yang cuma meneruskan nilai tanpa mengubahnya\n  pustaka orang lain, itu sudah diuji pembuatnya\n  tampilan yang sering berubah"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Menelusuri kesalahan.** Ketika sesuatu salah, tiga cara ini menutup hampir semua keperluan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "def hitung_diskon(harga, persen):\n    potongan = harga * persen / 100\n    print(f\"{harga = }, {persen = }, {potongan = }\")   # cara pertama\n    return harga - potongan\n\nprint(hitung_diskon(100_000, 15))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Bentuk `f\"{harga = }\"` mencetak nama variabelnya sekaligus nilainya, jadi tidak ada lagi keluaran berisi angka tanpa keterangan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "# cara kedua: memeriksa anggapan di tengah jalan\ndef hitung_diskon(harga, persen):\n    assert 0 <= persen <= 100, f\"persen di luar batas: {persen}\"\n    return harga - harga * persen / 100\n\nprint(hitung_diskon(100_000, 15))\ntry:\n    hitung_diskon(100_000, 150)\nexcept AssertionError as e:\n    print(\"tertangkap:\", e)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Cara ketiga adalah penelusur langkah demi langkah. Jalankan `python -m pdb program.py`, lalu pakai `n` untuk satu langkah, `s` untuk masuk ke dalam fungsi, `p nama` untuk mencetak nilai, dan `c` untuk melanjutkan. Menyisipkan `breakpoint()` di dalam kode menghentikan programnya tepat di baris itu."
+            },
+            {
+              "type": "NOTE",
+              "content": "Urutan yang hemat waktu saat menghadapi bug: baca pesan galatnya sampai habis, cetak nilai di sekitar baris yang disebut, kecilkan kasusnya sampai sesederhana mungkin, baru pakai penelusur. Banyak orang melompat langsung ke langkah terakhir, padahal tiga langkah pertama biasanya sudah cukup dan jauh lebih cepat."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `assert` tidak boleh dipakai untuk memeriksa masukan pengguna?",
+              "solution": "Karena `assert` bisa dimatikan, dan kalau dimatikan pemeriksaannya hilang sama sekali.\n\n```bash\npython program.py        # assert aktif\npython -O program.py     # seluruh assert dibuang\n```\n\nTanda `-O` dipakai untuk menjalankan program dalam mode yang sedikit lebih cepat, dan sebagian sistem penggelaran memakainya tanpa pemberitahuan. Kode berikut karena itu berbahaya:\n\n```python\ndef tarik(saldo, jumlah):\n    assert jumlah <= saldo, \"saldo tidak cukup\"\n    return saldo - jumlah\n```\n\nDengan `-O`, penarikan melebihi saldo lolos tanpa hambatan.\n\nYang benar memakai `if` dan `raise`:\n\n```python\ndef tarik(saldo, jumlah):\n    if jumlah > saldo:\n        raise ValueError(\"saldo tidak cukup\")\n    return saldo - jumlah\n```\n\nPembagiannya:\n\n```\nassert   untuk anggapan yang menurut Anda PASTI benar,\n         dan kalau salah berarti ada bug di kode Anda sendiri\n\nraise    untuk keadaan yang memang MUNGKIN terjadi,\n         seperti masukan pengguna atau data dari luar\n```\n\nDengan kata lain, `assert` memeriksa pemrogramnya, `raise` memeriksa dunia luar."
+            },
+            {
+              "type": "TASK",
+              "content": "Tulis tiga fungsi uji untuk fungsi berikut, termasuk satu yang menguji penolakannya.\n\n```python\ndef bagi(a, b):\n    if b == 0:\n        raise ZeroDivisionError(\"pembagi tidak boleh nol\")\n    return a / b\n```",
+              "solution": "```python\ndef bagi(a, b):\n    if b == 0:\n        raise ZeroDivisionError(\"pembagi tidak boleh nol\")\n    return a / b\n\ndef uji_bagi_biasa():\n    assert bagi(10, 2) == 5\n\ndef uji_bagi_hasil_pecahan():\n    import math\n    assert math.isclose(bagi(1, 3), 0.3333333333333333)\n\ndef uji_bagi_nol_ditolak():\n    try:\n        bagi(10, 0)\n    except ZeroDivisionError:\n        return\n    raise AssertionError(\"seharusnya menolak pembagi nol\")\n\nfor f in [uji_bagi_biasa, uji_bagi_hasil_pecahan, uji_bagi_nol_ditolak]:\n    try:\n        f(); print(f\"  lolos  {f.__name__}\")\n    except AssertionError as e:\n        print(f\"  GAGAL  {f.__name__}: {e}\")\n```\n\nTiga hal yang membuat kumpulan uji ini layak.\n\nUji kedua memakai `math.isclose`, bukan `==`, karena `1/3` adalah pecahan yang tidak bisa disimpan tepat. Memakai `==` di sini membuat ujinya rapuh.\n\nUji ketiga berbentuk khas untuk memeriksa penolakan: coba jalankan, kalau galat yang diharapkan muncul maka kembalikan dengan sukses, dan kalau sampai ke baris terakhir berarti galatnya **tidak** muncul dan itu kegagalan.\n\nDengan pytest, uji ketiga jauh lebih pendek:\n\n```python\nimport pytest\n\ndef test_bagi_nol_ditolak():\n    with pytest.raises(ZeroDivisionError):\n        bagi(10, 0)\n```\n\nYang sering terlewat: menguji bahwa sesuatu **gagal dengan benar** sama pentingnya dengan menguji bahwa ia berhasil. Fungsi yang diam saja ketika datanya salah jauh lebih berbahaya daripada fungsi yang berhenti."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah fungsi memberi hasil yang salah tetapi tidak menghentikan program. Urutkan langkah menelusurinya, dari yang paling murah.",
+              "solution": "```\n1. Baca pesan dan keluarannya sampai habis.\n   Kalau ada peringatan, jangan dilewati. Banyak bug sudah\n   disebutkan di sana.\n\n2. Cetak nilai di sekitar baris yang dicurigai.\n   print(f\"{x = }, {y = }\") menyebut namanya sekaligus,\n   jadi tidak ada angka tanpa keterangan.\n\n3. Kecilkan kasusnya.\n   Ganti data sungguhan dengan tiga baris yang Anda hitung\n   sendiri jawabannya. Kalau bug-nya hilang, berarti\n   penyebabnya ada di datanya, bukan di logikanya.\n\n4. Periksa anggapan dengan assert di tengah jalan.\n   assert len(hasil) == len(masukan), f\"{len(hasil)} vs {len(masukan)}\"\n\n5. Baru pakai penelusur.\n   breakpoint() lalu n, s, p nama, c.\n```\n\nKebanyakan orang melompat dari langkah 1 ke langkah 5, dan itu justru paling lambat. Penelusur menuntut Anda sudah tahu di mana harus berhenti; tiga langkah pertama yang memberi tahu letaknya.\n\nSatu langkah tambahan yang sering menyelesaikan masalah sendiri: **jelaskan kodenya baris per baris kepada orang lain**, atau kepada benda apa pun. Kebiasaan ini punya nama di kalangan pemrogram, dan ia bekerja karena menjelaskan memaksa Anda membaca apa yang benar-benar tertulis, bukan apa yang Anda kira tertulis.\n\nSetelah bug-nya ketemu, tulis satu uji yang menangkapnya **sebelum** memperbaikinya. Uji itu memastikan bug yang sama tidak kembali, dan sekaligus membuktikan perbaikannya memang bekerja."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `assert hasil == 0.3` berbahaya pada pengujian bilangan pecahan? Apa gantinya?",
+              "solution": "Karena hampir semua pecahan desimal tidak bisa disimpan tepat dalam biner, sehingga perhitungan yang menurut matematika benar bisa meleset di angka terakhir.\n\n```python\nprint(0.1 + 0.2)              # 0.30000000000000004\nprint(0.1 + 0.2 == 0.3)       # False\n```\n\nUjinya gagal padahal kodenya benar. Uji yang gagal tanpa sebab nyata jauh lebih merugikan daripada tidak ada uji sama sekali, karena orang akan terbiasa mengabaikan kegagalan.\n\nGantinya membandingkan selisihnya terhadap batas toleransi:\n\n```python\nimport math\n\nassert math.isclose(0.1 + 0.2, 0.3)\nassert abs((0.1 + 0.2) - 0.3) < 1e-9\n```\n\nDengan pytest:\n\n```python\nimport pytest\n\nassert 0.1 + 0.2 == pytest.approx(0.3)\nassert [0.1 + 0.2, 0.2] == pytest.approx([0.3, 0.2])   # untuk urutan juga\n```\n\n`math.isclose` memakai toleransi nisbi, jadi ia tetap masuk akal untuk bilangan yang sangat besar maupun sangat kecil. Memakai selisih tetap seperti `< 1e-9` justru salah untuk bilangan berukuran miliaran.\n\nSatu perkecualian: pecahan yang penyebutnya pangkat dua tersimpan tepat, jadi `0.5 + 0.25 == 0.75` memang bernilai benar. Tetapi jangan menggantungkan uji pada kebetulan itu; pakai perbandingan toleransi untuk seluruh pecahan."
             }
           ]
         }

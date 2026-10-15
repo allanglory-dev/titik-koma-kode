@@ -1,7 +1,7 @@
 # Silabus Titik Koma Kode
 
 **Jalur Data dan Kecerdasan Buatan**
-Versi 2, 14 Oktober 2026
+Versi 3, 15 Oktober 2026
 
 Dokumen ini adalah sumber kebenaran untuk isi `backend/src/main/resources/seed/`.
 Kalau ada perbedaan antara dokumen ini dan berkas seed, yang berlaku dokumen ini,
@@ -71,7 +71,7 @@ atau topik umum lain yang layak ditambahkan.
 | Kode | Judul | Jam | Isi pokok |
 |---|---|---|---|
 | UM01 | Pengantar Ilmu Komputer | 45 | Bagaimana mesin menyimpan segala sesuatu sebagai bilangan, dan di mana letak data serta AI |
-| UM02 | Algoritma dan Pemrograman Python | 60 | Menyusun langkah dan menuliskannya dalam Python |
+| UM02 | Algoritma dan Pemrograman Python | 60 | Dari algoritma sampai pengujian: struktur data, fungsi, type hint, galat, berkas, generator, kelas, dan penataan lingkungan kerja |
 | UM03 | Logika Informatika | 45 | Proposisi, tabel kebenaran, kuantor. Dasar penyaringan data dan kondisi pada kueri |
 | UM04 | Matematika Diskrit | 45 | Himpunan, relasi, fungsi, kombinatorik, graf |
 | UM05 | Bahasa Inggris untuk Teknologi | 30 | Membaca dokumentasi dan makalah, menguraikan pesan kesalahan |
@@ -363,7 +363,7 @@ dikuasainya, dengan kode unit yang sama seperti yang dipakai di ujian sertifikas
 | 3 ML dan AI | 0 | 2 | 4 |
 | Modul | 0 | 3 | 0 |
 
-Sudah ditulis 58.651 kata. Sisanya sekitar 150.000 kata.
+Sudah ditulis 60 bab dan sekitar 60.200 kata dengan 223 latihan. Sisanya sekitar 150.000 kata.
 
 Urutan pengerjaan yang disarankan, dipilih supaya tiap kursus yang selesai
 langsung membuka satu jalur lebih jauh:
