@@ -8108,14 +8108,225 @@
       ],
       "lessons": [
         {
-          "title": "Lingkungan Kerja",
-          "summary": "Notebook, lingkungan maya, dan mengelola pustaka.",
-          "blocks": []
+          "title": "Kenapa NumPy Ada",
+          "summary": "Selisih kecepatan yang diukur, bukan diklaim.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Python mudah ditulis, tetapi lambat ketika harus mengerjakan jutaan perhitungan kecil. NumPy ada untuk menutup kelemahan itu, dan hampir seluruh tumpukan perkakas data, termasuk pandas dan scikit-learn, dibangun di atasnya."
+            },
+            {
+              "type": "TEXT",
+              "content": "Mari ukur dulu selisihnya, supaya yang dibicarakan bukan klaim."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import time\nimport numpy as np\n\nn = 2_000_000\ndaftar = list(range(n))\nlarik = np.arange(n)\n\nt = time.perf_counter()\nhasil_py = [x * 2 for x in daftar]\nwaktu_py = time.perf_counter() - t\n\nt = time.perf_counter()\nhasil_np = larik * 2\nwaktu_np = time.perf_counter() - t\n\nprint(f\"Python murni : {waktu_py * 1000:8.1f} ms\")\nprint(f\"NumPy        : {waktu_np * 1000:8.1f} ms\")\nprint(f\"selisih      : {waktu_py / waktu_np:8.0f} kali\")\nprint(\"hasilnya sama:\", hasil_np[:3].tolist() == hasil_py[:3])"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Dari mana selisihnya datang.** Bukan karena NumPy memakai algoritma yang lebih pandai; perkaliannya sama persis. Yang berbeda adalah apa yang dikerjakan mesin untuk setiap anggota."
+            },
+            {
+              "type": "DIAGRAM",
+              "content": "<svg viewBox=\"0 0 600 260\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"\n     aria-label=\"List Python menyimpan penunjuk ke objek yang tersebar, larik NumPy menyimpan nilainya berdampingan\">\n  <text x=\"24\" y=\"22\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">LIST PYTHON</text>\n  <g>\n    <rect x=\"24\" y=\"34\" width=\"46\" height=\"28\" fill=\"currentColor\" opacity=\"0.07\"/>\n    <rect x=\"70\" y=\"34\" width=\"46\" height=\"28\" fill=\"currentColor\" opacity=\"0.07\"/>\n    <rect x=\"116\" y=\"34\" width=\"46\" height=\"28\" fill=\"currentColor\" opacity=\"0.07\"/>\n    <rect x=\"162\" y=\"34\" width=\"46\" height=\"28\" fill=\"currentColor\" opacity=\"0.07\"/>\n  </g>\n  <g stroke=\"currentColor\" stroke-opacity=\"0.3\" fill=\"none\">\n    <rect x=\"24\" y=\"34\" width=\"184\" height=\"28\"/>\n    <line x1=\"70\" y1=\"34\" x2=\"70\" y2=\"62\"/><line x1=\"116\" y1=\"34\" x2=\"116\" y2=\"62\"/>\n    <line x1=\"162\" y1=\"34\" x2=\"162\" y2=\"62\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"10\" fill=\"currentColor\" opacity=\"0.5\" text-anchor=\"middle\">\n    <text x=\"47\" y=\"52\">&#8226;</text><text x=\"93\" y=\"52\">&#8226;</text>\n    <text x=\"139\" y=\"52\">&#8226;</text><text x=\"185\" y=\"52\">&#8226;</text>\n  </g>\n  <text x=\"224\" y=\"52\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.55\">penunjuk, bukan nilainya</text>\n\n  <g stroke=\"var(--kunyit)\" stroke-opacity=\"0.5\" fill=\"none\" stroke-dasharray=\"2 3\">\n    <path d=\"M 47 62 L 90 104\"/><path d=\"M 93 62 L 220 104\"/>\n    <path d=\"M 139 62 L 350 104\"/><path d=\"M 185 62 L 470 104\"/>\n  </g>\n  <g>\n    <rect x=\"66\" y=\"106\" width=\"48\" height=\"26\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.22\"/>\n    <rect x=\"196\" y=\"106\" width=\"48\" height=\"26\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.22\"/>\n    <rect x=\"326\" y=\"106\" width=\"48\" height=\"26\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.22\"/>\n    <rect x=\"446\" y=\"106\" width=\"48\" height=\"26\" rx=\"3\" fill=\"var(--kunyit)\" opacity=\"0.22\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--kunyit)\" text-anchor=\"middle\">\n    <text x=\"90\" y=\"124\">10</text><text x=\"220\" y=\"124\">20</text>\n    <text x=\"350\" y=\"124\">30</text><text x=\"470\" y=\"124\">40</text>\n  </g>\n  <text x=\"24\" y=\"152\" font-family=\"system-ui, sans-serif\" font-size=\"10.5\" fill=\"currentColor\" opacity=\"0.5\">tiap objek punya tempatnya sendiri, tersebar di memori</text>\n\n  <line x1=\"24\" y1=\"172\" x2=\"576\" y2=\"172\" stroke=\"currentColor\" stroke-opacity=\"0.15\"/>\n\n  <text x=\"24\" y=\"198\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"var(--nila)\">LARIK NUMPY</text>\n  <g>\n    <rect x=\"24\" y=\"210\" width=\"46\" height=\"28\" fill=\"var(--nila)\" opacity=\"0.28\"/>\n    <rect x=\"70\" y=\"210\" width=\"46\" height=\"28\" fill=\"var(--nila)\" opacity=\"0.28\"/>\n    <rect x=\"116\" y=\"210\" width=\"46\" height=\"28\" fill=\"var(--nila)\" opacity=\"0.28\"/>\n    <rect x=\"162\" y=\"210\" width=\"46\" height=\"28\" fill=\"var(--nila)\" opacity=\"0.28\"/>\n  </g>\n  <g stroke=\"var(--nila)\" stroke-opacity=\"0.5\" fill=\"none\">\n    <rect x=\"24\" y=\"210\" width=\"184\" height=\"28\"/>\n    <line x1=\"70\" y1=\"210\" x2=\"70\" y2=\"238\"/><line x1=\"116\" y1=\"210\" x2=\"116\" y2=\"238\"/>\n    <line x1=\"162\" y1=\"210\" x2=\"162\" y2=\"238\"/>\n  </g>\n  <g font-family=\"ui-monospace, Consolas, monospace\" font-size=\"12\" fill=\"var(--nila)\" text-anchor=\"middle\">\n    <text x=\"47\" y=\"229\">10</text><text x=\"93\" y=\"229\">20</text>\n    <text x=\"139\" y=\"229\">30</text><text x=\"185\" y=\"229\">40</text>\n  </g>\n  <text x=\"224\" y=\"229\" font-family=\"system-ui, sans-serif\" font-size=\"11\" fill=\"currentColor\" opacity=\"0.6\">nilainya langsung, berdampingan, ukurannya sama</text>\n</svg>",
+              "solution": "List Python menyimpan penunjuk ke objek yang tersebar di memori, masing-masing dengan keterangan tipenya sendiri. Larik NumPy menyimpan nilainya langsung dan berdampingan, semuanya bertipe sama."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "Untuk setiap anggota, Python murni mengerjakan\n\n  1. ambil penunjuk dari list\n  2. telusuri penunjuknya ke objek di tempat lain\n  3. periksa tipe objeknya\n  4. cari fungsi perkalian yang sesuai tipe itu\n  5. kalikan\n  6. buat objek baru untuk menampung hasilnya\n  7. simpan penunjuknya ke list hasil\n\nNumPy mengerjakan\n\n  1. kalikan"
+            },
+            {
+              "type": "TEXT",
+              "content": "Pemeriksaan tipe dilakukan **sekali** untuk seluruh larik, bukan sekali per anggota, karena seluruh isinya dijamin bertipe sama. Perkaliannya sendiri dijalankan kode terkompilasi yang menyapu memori secara berurutan."
+            },
+            {
+              "type": "NOTE",
+              "content": "Istilah untuk gaya ini adalah *vectorization* (vektorisasi): menyatakan perhitungan atas seluruh larik sekaligus, bukan atas satu anggota pada satu waktu. Kalau Anda menulis perulangan `for` atas larik NumPy, hampir selalu ada cara yang lebih baik, dan selisih kecepatannya biasanya puluhan sampai ratusan kali."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\nimport time\n\nlarik = np.arange(500_000)\n\nt = time.perf_counter()\nhasil_lambat = np.array([x * 2 for x in larik])     # perulangan atas larik\nlambat = time.perf_counter() - t\n\nt = time.perf_counter()\nhasil_cepat = larik * 2\ncepat = time.perf_counter() - t\n\nprint(f\"perulangan atas larik : {lambat * 1000:8.1f} ms\")\nprint(f\"operasi menyeluruh    : {cepat * 1000:8.1f} ms\")\nprint(\"sama:\", np.array_equal(hasil_lambat, hasil_cepat))"
+            },
+            {
+              "type": "TEXT",
+              "content": "Perhatikan bahwa perulangan atas larik NumPy justru **lebih lambat** daripada perulangan atas list biasa, karena setiap pengambilan anggota harus membungkus nilainya menjadi objek Python lebih dulu. Memakai NumPy dengan gaya perulangan memberi yang terburuk dari keduanya."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Hemat memori juga.** Karena tidak ada penunjuk dan tidak ada keterangan tipe per anggota."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import sys\nimport numpy as np\n\nn = 100_000\ndaftar = list(range(n))\nlarik = np.arange(n, dtype=np.int64)\n\nbesar_list = sys.getsizeof(daftar) + sum(sys.getsizeof(x) for x in daftar)\nbesar_np = larik.nbytes\n\nprint(f\"list  : {besar_list:>12,} bita\")\nprint(f\"NumPy : {besar_np:>12,} bita\")\nprint(f\"selisih sekitar {besar_list / besar_np:.0f} kali\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Harganya.** NumPy tidak gratis, dan tiga batasannya perlu Anda ketahui sejak awal."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "1. Seluruh isinya harus bertipe sama.\n   Tidak bisa mencampur angka dengan teks dalam satu larik numerik.\n\n2. Ukurannya tetap.\n   Menambah anggota berarti membuat larik baru dan menyalin isinya,\n   jadi jangan dipakai sebagai penampung yang tumbuh.\n\n3. Menguntungkan hanya pada data yang banyak.\n   Untuk sepuluh angka, beban penyiapannya lebih besar\n   daripada hematnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\nimport time\n\nfor n in [10, 1_000, 100_000]:\n    daftar = list(range(n))\n    larik = np.arange(n)\n\n    t = time.perf_counter()\n    for _ in range(1000):\n        [x + 1 for x in daftar]\n    py = time.perf_counter() - t\n\n    t = time.perf_counter()\n    for _ in range(1000):\n        larik + 1\n    np_ = time.perf_counter() - t\n\n    print(f\"n={n:>7,}  Python {py*1000:7.1f} ms   NumPy {np_*1000:7.1f} ms   \"\n          f\"{'NumPy menang' if np_ < py else 'Python menang'}\")"
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan pengukuran pertama. Kenapa NumPy jauh lebih cepat padahal perkaliannya sama persis?",
+              "solution": "Hasilnya kira-kira:\n\n```\nPython murni :     83.7 ms\nNumPy        :      4.6 ms\nselisih      :       18 kali\nhasilnya sama: True\n```\n\nAngka pastinya berbeda tiap mesin. Di panel halaman ini yang berjalan di atas WebAssembly selisihnya biasanya belasan kali, sementara di komputer biasa sering mencapai puluhan kali.\n\nPerkaliannya memang sama. Yang berbeda adalah pekerjaan di sekelilingnya.\n\nPada Python murni, setiap anggota menuntut penelusuran penunjuk, pemeriksaan tipe, pencarian fungsi yang sesuai, dan pembuatan objek baru untuk hasilnya. Tujuh langkah untuk satu perkalian, dua juta kali.\n\nPada NumPy, seluruh isinya dijamin bertipe sama, jadi pemeriksaan tipenya dikerjakan **sekali** untuk seluruh larik. Sisanya adalah kode terkompilasi yang menyapu memori berurutan.\n\nAda sebab kedua yang memperbesar selisihnya. Karena nilainya berdampingan di memori, prosesor bisa membaca banyak nilai sekaligus dan menebak alamat berikutnya dengan tepat. Bagian Tata Letak Memori nanti membahas hal ini lebih jauh."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa perulangan `for` atas larik NumPy lebih lambat daripada perulangan atas list biasa?",
+              "solution": "Karena mengambil satu anggota dari larik NumPy menuntut pekerjaan **tambahan** yang tidak ada pada list.\n\n```\nlist     anggotanya memang sudah berupa objek Python.\n         Mengambilnya cukup menyerahkan penunjuknya.\n\nNumPy    anggotanya berupa bita mentah, misalnya delapan bita\n         bilangan bulat. Untuk diserahkan ke kode Python, ia\n         harus dibungkus dulu menjadi objek Python yang baru.\n```\n\nJadi perulangan atas larik membayar biaya pembungkusan itu untuk setiap anggota, sekaligus kehilangan seluruh keuntungan operasi menyeluruh.\n\nInilah sebabnya pola berikut adalah kekeliruan yang paling sering ditemui pada kode data pemula:\n\n```python\nhasil = []\nfor x in larik:            # lambat\n    hasil.append(x * 2)\nhasil = np.array(hasil)\n\nhasil = larik * 2          # cepat, dan lebih pendek\n```\n\nPatokannya: **begitu data Anda masuk ke NumPy, jangan keluar lagi per anggota.** Kalau sebuah perhitungan terasa menuntut perulangan, biasanya ada fungsi NumPy yang sudah menanganinya, atau ada cara menyusunnya kembali sebagai operasi menyeluruh."
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan perbandingan untuk n kecil dan n besar. Pada ukuran berapa NumPy mulai menang, dan kenapa tidak selalu menang?",
+              "solution": "Hasilnya kira-kira:\n\n```\nn=     10  Python     0.6 ms   NumPy     1.1 ms   Python menang\nn=  1,000  Python    28.0 ms   NumPy     1.4 ms   NumPy menang\nn=100,000  Python  2800.0 ms   NumPy    25.0 ms   NumPy menang\n```\n\nPada sepuluh anggota, Python murni justru lebih cepat.\n\nSebabnya setiap operasi NumPy punya beban tetap: memanggil fungsinya, memeriksa bentuk dan tipe larik, menyiapkan larik hasil, lalu kembali ke Python. Beban itu sekitar satu mikrodetik dan **tidak bergantung pada jumlah anggota**.\n\n```\nPython murni   biaya per anggota tinggi, beban tetap hampir nol\nNumPy          biaya per anggota sangat rendah, ada beban tetap\n```\n\nTitik impasnya biasanya di kisaran puluhan sampai ratusan anggota.\n\nAkibat praktisnya ada dua. Pertama, untuk data kecil jangan repot memindahkannya ke NumPy. Kedua, dan ini yang lebih sering merugikan, **hindari memanggil operasi NumPy berkali-kali atas larik kecil di dalam perulangan**. Seribu panggilan atas larik sepuluh anggota jauh lebih lambat daripada satu panggilan atas larik sepuluh ribu anggota, meski jumlah perhitungannya sama."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa larik NumPy jauh lebih hemat memori daripada list berisi bilangan yang sama?",
+              "solution": "Hasil pengukurannya kira-kira:\n\n```\nlist  :    2,000,028 bita\nNumPy :      800,000 bita\nselisih sekitar 3 kali\n```\n\nSelisihnya berbeda antar lingkungan. Di panel halaman ini bilangan bulat kecil memakan 16 bita, sementara di CPython biasa sekitar 28 bita, sehingga di sana selisihnya mendekati lima kali.\n\nTiga sumber pemborosan pada list.\n\n**Penunjuknya sendiri.** List menyimpan penunjuk sebesar delapan bita per anggota, dan penunjuk itu belum berisi nilainya.\n\n**Objek yang ditunjuknya.** Satu bilangan bulat Python bukan sekadar angka. Ia membawa penghitung rujukan, penunjuk ke tipenya, dan keterangan panjangnya, sehingga satu bilangan kecil memakan 16 sampai 28 bita, bergantung lingkungannya.\n\n**Tersebar di memori.** Tiap objek dialokasikan terpisah, sehingga ada beban pengelolaan memori untuk masing-masing.\n\nNumPy membuang ketiganya. Satu `int64` memakan persis delapan bita, tanpa penunjuk dan tanpa keterangan tambahan, karena tipenya dicatat sekali untuk seluruh larik.\n\nHematnya bisa jauh lebih besar kalau tipenya dipilih dengan tepat:\n\n```python\nnp.arange(100_000, dtype=np.int64).nbytes    # 800,000\nnp.arange(100_000, dtype=np.int32).nbytes    # 400,000\nnp.arange(100_000, dtype=np.int8)            # hati-hati, hanya muat -128..127\n```\n\nPemilihan tipe ini dibahas di bab berikutnya, termasuk bahayanya kalau dipilih terlalu kecil."
+            }
+          ]
         },
         {
-          "title": "Mengolah Berkas",
-          "summary": "Membaca dan menulis CSV, JSON, dan berkas teks.",
-          "blocks": []
+          "title": "Larik dan Tipe Data",
+          "summary": "Satu tipe untuk seluruh isi, dan kenapa pilihannya berpengaruh.",
+          "blocks": [
+            {
+              "type": "TEXT",
+              "content": "Larik NumPy berbeda dari list Python dalam satu hal yang menentukan segalanya: seluruh isinya bertipe sama, dan tipe itu dicatat sekali untuk seluruh larik. Tipe itulah yang disebut *dtype*."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\na = np.array([1, 2, 3])\nb = np.array([1.0, 2.0, 3.0])\nc = np.array([True, False, True])\n\nfor x in (a, b, c):\n    print(f\"{str(x):<22} dtype={x.dtype}  nbytes={x.nbytes}\")"
+            },
+            {
+              "type": "NOTE",
+              "content": "Tipe bawaan untuk bilangan bulat **berbeda antar lingkungan**. Di panel halaman ini yang berjalan di atas WebAssembly, `np.array([1, 2, 3])` menghasilkan `int32`; di komputer 64 bit biasa ia menghasilkan `int64`. Karena itu jangan pernah bergantung pada tipe bawaan ketika jangkauan nilainya penting. Sebutkan `dtype` secara tegas, dan periksa dengan `arr.dtype` kalau ragu."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Membuat larik.** Ada beberapa cara, dan masing-masing punya tempatnya."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nprint(np.array([1, 2, 3]))              # dari list yang sudah ada\nprint(np.zeros(4))                      # terisi nol\nprint(np.ones(3, dtype=np.int32))       # terisi satu\nprint(np.full(3, 7))                    # terisi nilai tertentu\nprint(np.arange(0, 10, 2))              # deret, mirip range\nprint(np.linspace(0, 1, 5))             # n titik yang berjarak sama\nprint(np.empty(3).shape)                # belum diisi, isinya sampah"
+            },
+            {
+              "type": "NOTE",
+              "content": "`np.arange` memakai ukuran langkah, sedangkan `np.linspace` memakai banyaknya titik. Untuk bilangan pecahan, `arange` bisa memberi jumlah anggota yang tidak terduga karena pembulatan, jadi pakai `linspace` ketika yang Anda tentukan adalah banyaknya titik."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nprint(np.arange(0, 1, 0.1).size)        # harapannya 10\nprint(np.arange(0, 0.3, 0.1))           # perhatikan ujungnya\nprint(np.linspace(0, 1, 11))            # pasti 11 titik, ujungnya ikut"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tipe bilangan bulat.** Lebar bitnya menentukan jangkauan nilainya, persis seperti yang Anda pelajari tentang sistem bilangan."
+            },
+            {
+              "type": "CODE",
+              "language": "text",
+              "content": "tipe        bit   jangkauan\nint8          8   -128 .. 127\nint16        16   -32.768 .. 32.767\nint32        32   sekitar ±2,1 miliar\nint64        64   sekitar ±9,2 x 10^18\n\nuint8         8   0 .. 255          dipakai untuk piksel gambar\nuint16       16   0 .. 65.535\nuint32       32   0 .. sekitar 4,3 miliar"
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nfor t in (np.int8, np.int16, np.int32, np.int64):\n    info = np.iinfo(t)\n    print(f\"{str(np.dtype(t)):<8} {info.bits:>3} bit   {info.min:>22,} .. {info.max:,}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Memilih tipe terlalu kecil itu berbahaya.** NumPy tidak melebarkan tipenya sendiri ketika nilainya tidak muat; ia membiarkan nilainya berputar, persis seperti perilaku perangkat keras."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\na = np.array([127], dtype=np.int8)\nprint(\"sebelum:\", a)\nprint(\"sesudah ditambah 1:\", a + np.int8(1))\n\nb = np.array([200, 100], dtype=np.uint8)\nprint(\"200 + 100 pada uint8:\", b[0] + b[1])\nprint(\"padahal seharusnya  :\", 300)"
+            },
+            {
+              "type": "TEXT",
+              "content": "Hasilnya bukan galat, melainkan angka yang salah. Inilah jenis bug yang paling lama ditemukan, dan ia muncul di dunia nyata pada pengolahan gambar, yang nilainya disimpan sebagai `uint8`."
+            },
+            {
+              "type": "NOTE",
+              "content": "Sejak NumPy 2.0, aturan penentuan tipe hasil diubah mengikuti NEP 50 supaya lebih mudah diramalkan: tipe larik tidak lagi dipengaruhi besar kecilnya bilangan Python biasa yang ikut dalam perhitungan. Akibatnya, `np.int8(100) + 200` tidak lagi diam-diam naik ke tipe yang lebih lebar. Kalau Anda menemukan tulisan lama yang menjanjikan perilaku berbeda, itu petunjuk tulisannya ditulis sebelum NumPy 2."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Tipe pecahan.** Dua yang akan Anda pakai, dan selisihnya nyata."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nfor t in (np.float32, np.float64):\n    info = np.finfo(t)\n    print(f\"{str(np.dtype(t)):<9} {info.bits:>3} bit  \"\n          f\"ketelitian sekitar {round(abs(np.log10(info.eps)))} angka desimal  \"\n          f\"terbesar {info.max:.3e}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "`float64` adalah bawaan NumPy untuk pecahan, dan juga bawaan Python. `float32` memakai separuh memori dengan ketelitian sekitar tujuh angka desimal, dan itu sudah lazim dipakai untuk melatih model."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\nn = 1_000_000\na = np.full(n, 0.1, dtype=np.float32)\n\n# NumPy menjumlahkan berpasangan, jadi tetap teliti meski float32\nprint(f\"np.sum pada float32   : {a.sum():.4f}\")\n\n# dijumlahkan satu per satu, cara naif\ntotal = np.float32(0)\nfor x in a[:200_000]:\n    total += x\nprint(f\"satu per satu, 200 ribu: {float(total):.4f}\")\nprint(f\"seharusnya             : {200_000 * 0.1:.4f}\")"
+            },
+            {
+              "type": "TEXT",
+              "content": "**Mengubah tipe.** `astype` selalu membuat salinan baru, dan pemotongannya tidak selalu seperti dugaan."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\na = np.array([1.7, -1.7, 2.5, 3.5])\nprint(\"astype ke int :\", a.astype(np.int64))      # memotong ke arah nol\nprint(\"np.round      :\", np.round(a))             # membulatkan ke genap terdekat\nprint(\"np.floor      :\", np.floor(a))"
+            },
+            {
+              "type": "NOTE",
+              "content": "`np.round(2.5)` memberi 2, bukan 3, dan `np.round(3.5)` memberi 4. Aturannya membulatkan ke bilangan genap terdekat ketika tepat di tengah, yang disebut pembulatan bankir. Tujuannya menghindari bias ke atas kalau banyak nilai dibulatkan sekaligus. Python bawaan memakai aturan yang sama pada `round`."
+            },
+            {
+              "type": "TEXT",
+              "content": "**Keterangan sebuah larik.** Lima sifat yang akan terus Anda periksa."
+            },
+            {
+              "type": "CODE",
+              "language": "python",
+              "content": "import numpy as np\n\na = np.arange(12).reshape(3, 4)\n\nprint(\"isi     :\", a.tolist())\nprint(\"shape   :\", a.shape)      # bentuknya, selalu tuple\nprint(\"ndim    :\", a.ndim)       # banyak dimensi\nprint(\"size    :\", a.size)       # banyak anggota seluruhnya\nprint(\"dtype   :\", a.dtype)\nprint(\"itemsize:\", a.itemsize, \"bita per anggota\")\nprint(\"nbytes  :\", a.nbytes)"
+            },
+            {
+              "type": "TASK",
+              "content": "Apa keluaran kode berikut, dan kenapa hasilnya bukan 300?\n\n```python\nimport numpy as np\nb = np.array([200, 100], dtype=np.uint8)\nprint(b[0] + b[1])\n```",
+              "solution": "Keluarannya `44`, bukan 300.\n\nTipe `uint8` hanya menyimpan nilai 0 sampai 255. Hasil 300 tidak muat, jadi nilainya berputar:\n\n```\n300 - 256 = 44\n```\n\nDalam pola bit:\n\n```\n200 = 1100 1000\n100 = 0110 0100\n    + -----------\n      1 0010 1100\n\nBit kesembilan tidak punya tempat pada uint8,\njadi terbuang. Sisanya 0010 1100 = 44.\n```\n\nNumPy memang memunculkan `RuntimeWarning: overflow encountered in scalar add` untuk penjumlahan skalar seperti ini. Tetapi peringatan mudah terlewat, dan untuk operasi atas larik utuh peringatannya hanya muncul sekali meski ribuan nilai berputar.\n\nNumPy sengaja tidak melebarkan tipenya sendiri, karena itu akan melipatgandakan pemakaian memori pada larik besar, dan hemat memori justru alasan utama memilih tipe kecil.\n\nKasus nyatanya ada di pengolahan gambar. Nilai piksel disimpan sebagai `uint8`, sehingga mencerahkan gambar dengan menambahkan 100 akan membuat bagian yang sudah terang justru menjadi gelap.\n\nCara menghindarinya, naikkan tipenya lebih dulu:\n\n```python\nprint(b.astype(np.int32)[0] + b.astype(np.int32)[1])   # 300\nprint(np.clip(b.astype(np.int32) + 100, 0, 255))       # dipotong di 255\n```"
+            },
+            {
+              "type": "TASK",
+              "content": "Jalankan perbandingan `float32` di atas. Kenapa `np.sum` tetap teliti sementara penjumlahan satu per satu menyimpang jauh?",
+              "solution": "Hasilnya kira-kira:\n\n```\nnp.sum pada float32   : 100000.0078\nsatu per satu, 200 ribu: 19959.4941\nseharusnya             : 20000.0000\n```\n\n`np.sum` atas sejuta nilai hanya meleset 0,008. Penjumlahan satu per satu atas seperlima datanya saja sudah meleset 40, atau 0,2 persen.\n\nSebabnya **cara menjumlahkannya**, bukan tipenya.\n\nPenjumlahan satu per satu menumpuk galat. Begitu jumlah berjalannya sudah besar sementara nilai yang ditambahkan kecil, nilai kecil itu sebagian hilang saat dibulatkan. Pada `float32` yang ketelitiannya sekitar tujuh angka desimal, menambahkan 0,1 ke 20.000 sudah kehilangan sebagian.\n\n`np.sum` memakai penjumlahan berpasangan: ia menjumlahkan pasangan-pasangan kecil lebih dulu, lalu menjumlahkan hasilnya, dan seterusnya seperti pohon. Dengan begitu kedua bilangan yang dijumlahkan selalu berukuran mirip, sehingga jauh lebih sedikit yang terbuang. Galatnya tumbuh kira-kira seperti akar dari banyaknya anggota, bukan sebanding dengan banyaknya anggota.\n\nDua pelajaran yang bisa dibawa.\n\n**Jangan menjumlahkan larik NumPy dengan perulangan.** Selain ratusan kali lebih lambat, hasilnya juga lebih tidak teliti.\n\n**Kalau tetap butuh ketelitian lebih**, minta penjumlahannya dikerjakan pada tipe yang lebih lebar tanpa mengubah penyimpanannya:\n\n```python\nprint(a.sum(dtype=np.float64))\n```\n\nIsinya tetap `float32` dan hemat memori, tetapi penjumlahannya dikerjakan dengan `float64`."
+            },
+            {
+              "type": "TASK",
+              "content": "Kenapa `np.arange(0, 1, 0.1)` berisiko, dan apa gantinya?",
+              "solution": "Karena jumlah anggotanya ditentukan oleh pembagian bilangan pecahan, dan pembagian itu tidak tepat.\n\n```python\nprint(np.arange(0, 1, 0.1).size)        # 10, kebetulan benar\nprint(np.arange(0, 0.3, 0.1))           # [0.  0.1 0.2] atau kadang ikut 0.3\n```\n\nBatas akhirnya memang tidak ikut, tetapi karena `0.1` sebenarnya sedikit lebih besar atau lebih kecil dari sepersepuluh, nilai terakhir kadang jatuh tepat di bawah batas dan ikut masuk, kadang tidak. Perilakunya bergantung pada angka yang dipakai dan sulit diramalkan.\n\nDokumentasi NumPy sendiri menganjurkan `linspace` untuk langkah pecahan:\n\n```python\nprint(np.linspace(0, 1, 11))     # pasti 11 titik, 0 sampai 1, ujungnya ikut\nprint(np.linspace(0, 1, 10, endpoint=False))   # 10 titik, ujungnya tidak ikut\n```\n\nBedanya pada apa yang Anda tentukan:\n\n```\narange     Anda menentukan ukuran langkahnya,\n           jumlah titiknya dihitung dan bisa meleset\n\nlinspace   Anda menentukan jumlah titiknya,\n           ukuran langkahnya dihitung dan selalu pas\n```\n\nUntuk bilangan bulat, `arange` tetap aman dan lebih jelas maksudnya."
+            },
+            {
+              "type": "TASK",
+              "content": "Sebuah larik berisi sepuluh juta nilai antara 0 dan 1000, semuanya bilangan bulat. Tipe apa yang sebaiknya dipakai, dan berapa hematnya dibanding bawaan?",
+              "solution": "Jangkauan 0 sampai 1000 muat di `int16`, yang menampung −32.768 sampai 32.767. Kalau dipastikan tidak pernah negatif, `uint16` juga muat.\n\n```python\nimport numpy as np\n\nn = 10_000_000\nprint(f\"int64  : {np.zeros(n, dtype=np.int64).nbytes:>14,} bita\")\nprint(f\"int32  : {np.zeros(n, dtype=np.int32).nbytes:>14,} bita\")\nprint(f\"int16  : {np.zeros(n, dtype=np.int16).nbytes:>14,} bita\")\n```\n\n```\nint64  :     80,000,000 bita   sekitar 80 MB\nint32  :     40,000,000 bita\nint16  :     20,000,000 bita   sekitar 20 MB\n```\n\nHematnya empat kali dibanding `int64` yang menjadi bawaan.\n\nTetapi jangan memilih yang terkecil secara membabi buta. Pertimbangkan tiga hal.\n\n**Apakah nilainya bisa tumbuh?** Kalau larik ini akan dijumlahkan atau dikalikan, hasilnya bisa melampaui 32.767 dan berputar tanpa peringatan.\n\n**Apakah hematnya berarti?** Selisih 60 MB nyata untuk data sepuluh juta baris, tetapi tidak berarti untuk seribu baris.\n\n**Apakah ada pustaka lain yang menyentuhnya?** Sebagian fungsi menaikkan tipenya kembali, sehingga hematnya hilang di langkah berikutnya.\n\nPatokan amannya: pilih tipe terkecil yang muat untuk **data yang disimpan**, lalu naikkan tipenya secara tegas sebelum perhitungan yang hasilnya bisa membesar.\n\n```python\nnilai = np.array([30000, 30000], dtype=np.int16)\nprint(nilai.sum())                      # berputar\nprint(nilai.sum(dtype=np.int64))        # benar\n```"
+            }
+          ]
         },
         {
           "title": "NumPy",
@@ -8130,11 +8341,6 @@
         {
           "title": "Nilai Kosong dan Data Kotor",
           "summary": "Pola data dunia nyata yang jarang rapi.",
-          "blocks": []
-        },
-        {
-          "title": "Catatan yang Dapat Diulang",
-          "summary": "Menyusun notebook supaya hasilnya bisa diulang orang lain.",
           "blocks": []
         }
       ],
